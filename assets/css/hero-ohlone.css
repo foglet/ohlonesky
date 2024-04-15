@@ -39,6 +39,9 @@ body {
     background: #efefef; 
     text-rendering: optimizelegibility; }
 
+body.ohlone {border-top: 8px solid #12176e; }
+
+
 /* Typography */
 /* p */
 
