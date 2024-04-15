@@ -44,7 +44,7 @@ body {
 /* Header */
 
 .header {
-	background: #FFF; /* 12176e */
+	background: none; /* 12176e */
   	float: left;
   	margin: 50px 0;
   	height: 100px; width: 100%; }
