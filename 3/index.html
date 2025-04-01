@@ -15,6 +15,7 @@
       font-family: system-ui, sans-serif;
       background-color: #f9f9f9;
       color: #333;
+      line-height: 1.6;
     }
 
     .site-header {
@@ -65,7 +66,6 @@
       cursor: pointer;
     }
 
-    /* Mobile drawer styles */
     .mobile-nav {
       position: fixed;
       top: 0;
@@ -93,60 +93,24 @@
       font-weight: 500;
     }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-        color: #333;
-      }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
-  </style>
-</head>
-<body>
 
-  <header class="site-header">
-    <div class="container">
-      <div class="logo">Ohlone Sky</div>
-      <nav class="nav-links">
-      
-      <a href="#faqs">FAQs</a>
-        <a href="#support">Support</a>
-      </nav>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button>
-    </div>
-  </header>
-
-  <nav class="mobile-nav" id="mobile-nav">
-    <a href="#faqs" onclick="closeMenu()">FAQs</a>
-    <a href="#support" onclick="closeMenu()">Support</a>
-  </nav>
-
-  <main>
-    <section id="faqs">
-      <!-- FAQs content -->
-      <p>FAQs</p>
-    </section>
-    <section id="support">
-      <!-- Support content -->
-      <p>Support</p>
-    </section>
-  </main>
-
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    toggle.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
-
-    function closeMenu() {
-      mobileNav.classList.remove('open');
+    section {
+      margin-bottom: 3rem;
     }
-  </script>
 
-</body>
-</html>
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      color: #222;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    @media
