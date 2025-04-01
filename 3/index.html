@@ -100,18 +100,19 @@
     }
 
     section {
-      margin-bottom: 3rem;
-    }
+      margin-bottom: 3rem; }
+
+    section {
+  scroll-margin-top: 100px; /* smooth scrolling target stops just below header */ }
+
 
     h2 {
       margin-bottom: 1rem;
       font-size: 1.75rem;
-      color: #222;
-    }
+      color: #222; }
 
     p {
-      margin-bottom: 1rem;
-    }
+      margin-bottom: 1rem; }
 
     @media (max-width: 768px) {
       .nav-links {
@@ -168,19 +169,27 @@
     mobileNav.classList.toggle('open');
   });
 
-  // Close menu & scroll to section
   mobileLinks.forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href').substring(1);
       const targetEl = document.getElementById(targetId);
 
+      // Close the drawer
       mobileNav.classList.remove('open');
 
-      // Delay scroll until drawer finishes sliding out
+      // Wait until the drawer is visually closed
       setTimeout(() => {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300); // match CSS transition timing
+        // Offset the scroll to account for sticky header height
+        const offset = 80; // adjust based on your header's actual height
+        const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 300); // match the drawer's CSS transition duration
     });
   });
 </script>
