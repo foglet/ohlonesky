@@ -159,18 +159,32 @@
     </section>
   </main>
 
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
+ <script>
+  const toggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileLinks = mobileNav.querySelectorAll('a');
 
-    toggle.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
+  toggle.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
 
-    function closeMenu() {
+  // Close menu & scroll to section
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+
       mobileNav.classList.remove('open');
-    }
-  </script>
+
+      // Delay scroll until drawer finishes sliding out
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300); // match CSS transition timing
+    });
+  });
+</script>
+
 
 </body>
 </html>
