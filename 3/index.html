@@ -113,4 +113,64 @@
       margin-bottom: 1rem;
     }
 
-    @media
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        color: #333;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Ohlone Sky</div>
+      <nav class="nav-links">
+        <a href="#faqs">FAQs</a>
+        <a href="#support">Support</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#faqs" onclick="closeMenu()">FAQs</a>
+    <a href="#support" onclick="closeMenu()">Support</a>
+  </nav>
+
+  <main>
+    <section id="faqs">
+      <h2>FAQs</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, libero at viverra iaculis, lacus eros vulputate quam, in tincidunt ex justo at sapien.</p>
+      <p>Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi mattis mauris et sem pharetra, vitae bibendum lectus tempor.</p>
+      <p>Phasellus ullamcorper lacinia sem, a sollicitudin purus accumsan sed. Nulla facilisi. Integer nec dui vitae orci dapibus elementum non a magna.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec fermentum ligula. Quisque vitae dui eu sem porta pretium.</p>
+      <p>Sed at erat quis risus condimentum porta. Fusce efficitur turpis at velit feugiat, in tincidunt ligula commodo. Etiam in felis nec diam ullamcorper luctus.</p>
+      <p>Nam gravida urna at ligula tincidunt, nec posuere nulla ullamcorper. Vivamus ut lacus non justo tincidunt rutrum. Aenean nec eros feugiat, lacinia magna in, rutrum nulla.</p>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    toggle.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+
+    function closeMenu() {
+      mobileNav.classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>
