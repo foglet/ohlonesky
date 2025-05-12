@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ohlone Sky</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+      };
+    </script>
   </head>
   <body class="bg-white text-gray-800">
     <!-- Header -->
@@ -15,12 +22,24 @@
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
             <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
           </a>
+          <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-600 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
           <nav class="hidden md:flex space-x-6 text-sm">
             <a href="#impact" class="text-gray-700 hover:text-indigo-600">Why It Matters</a>
             <a href="#video" class="text-gray-700 hover:text-indigo-600">Video</a>
             <a href="#support" class="text-gray-700 hover:text-indigo-600">Support</a>
           </nav>
         </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+        <a href="#impact" class="block py-2 text-gray-700 hover:text-indigo-600">Why It Matters</a>
+        <a href="#video" class="block py-2 text-gray-700 hover:text-indigo-600">Video</a>
+        <a href="#support" class="block py-2 text-gray-700 hover:text-indigo-600">Support</a>
       </div>
     </header>
 
@@ -95,5 +114,13 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      const toggleBtn = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
   </body>
 </html>
