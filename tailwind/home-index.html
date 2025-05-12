@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ohlone Sky</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {},
-        },
-      };
-    </script>
   </head>
   <body class="bg-white text-gray-800">
     <!-- Header -->
@@ -22,24 +15,12 @@
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
             <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
           </a>
-          <div class="md:hidden">
-            <button id="menu-toggle" class="text-gray-600 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
           <nav class="hidden md:flex space-x-6 text-sm">
             <a href="#impact" class="text-gray-700 hover:text-indigo-600">Why It Matters</a>
             <a href="#video" class="text-gray-700 hover:text-indigo-600">Video</a>
             <a href="#support" class="text-gray-700 hover:text-indigo-600">Support</a>
           </nav>
         </div>
-      </div>
-      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <a href="#impact" class="block py-2 text-gray-700 hover:text-indigo-600">Why It Matters</a>
-        <a href="#video" class="block py-2 text-gray-700 hover:text-indigo-600">Video</a>
-        <a href="#support" class="block py-2 text-gray-700 hover:text-indigo-600">Support</a>
       </div>
     </header>
 
@@ -113,14 +94,74 @@
           <a href="mailto:ohlonesky@fogday.com" class="text-indigo-600 hover:underline">ohlonesky@fogday.com</a>
         </p>
       </div>
-    </footer>
 
-    <script>
-      const toggleBtn = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      toggleBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    </script>
+      <!-- Support Section -->
+<section id="support" class="bg-white py-16">
+  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Support Ohlone Sky</h2>
+      <p class="mt-4 text-gray-600">
+        Your donation powers climate-smart transit, community equity, and breathtaking infrastructure. We align with the <strong>United Nations' 17 Sustainable Development Goals</strong>.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Zero-Emission Transit</h3>
+        <p class="mt-2 text-gray-600">All-electric gondolas replace car trips and cut carbon across the Bay.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Equity in Motion</h3>
+        <p class="mt-2 text-gray-600">We bridge gaps in access for underserved and transit-isolated communities.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">No Roads, No Tunnels</h3>
+        <p class="mt-2 text-gray-600">We build in the air—over water, using existing public right-of-way.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Reinvest in the Bay</h3>
+        <p class="mt-2 text-gray-600">Excess revenue supports local climate, arts, and education initiatives.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Indigenous Acknowledgment</h3>
+        <p class="mt-2 text-gray-600">Our name honors the original stewards of the land—the Ohlone people.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Faster than the Bus</h3>
+        <p class="mt-2 text-gray-600">We bypass traffic entirely with 10-minute trips and no congestion.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Gondola With a View</h3>
+        <p class="mt-2 text-gray-600">Every ride is a visual experience of the Bay’s natural beauty.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Future-Proof Infrastructure</h3>
+        <p class="mt-2 text-gray-600">Safe from floods, sea rise, and earthquakes. Built for the next century.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Real Jobs, Right Now</h3>
+        <p class="mt-2 text-gray-600">Union-built. Locally operated. We generate skilled employment opportunities.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Urban Leadership</h3>
+        <p class="mt-2 text-gray-600">Help San Francisco lead the U.S. in bold, sustainable mobility design.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Ready to Build</h3>
+        <p class="mt-2 text-gray-600">We’re not stuck in study mode. Your gift accelerates real progress.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-indigo-600">Transparent & Lean</h3>
+        <p class="mt-2 text-gray-600">Every dollar supports project delivery—not overhead or delay.</p>
+      </div>
+    </div>
+    <div class="mt-12 text-center">
+      <a href="mailto:ohlonesky@fogday.com" class="inline-block rounded bg-indigo-600 px-6 py-3 text-white font-medium hover:bg-indigo-700">
+        Make a Contribution
+      </a>
+    </div>
+  </div>
+</section>
+
+    </footer>
   </body>
 </html>
