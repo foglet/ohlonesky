@@ -1,163 +1,66 @@
 <!DOCTYPE html>
-<!--[if !IE 7]>
-    <style type="text/css">
-        #wrap {display:table;height:100%}
-    </style>
-<![endif]-->
-
-<!-- Pinterest verify -->
-    <meta  me="p:domain_verify" content="86b9b4f5d232f9a2a8242ef39d520e5b"/>
-
-    <html dir='ltr' lang='en'>
-
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='description' content='Ohlone Sky'>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes" />
-
-    <!-- Hat tip to Niklaus Gerber for his excellent Rapid Bootstrap V4. -->
-
-    <!-- This site is conceived and designed by:
-     @fogfish at Fogday Studios: fogday.com -->
-
-    <title>Ohlone Sky</title>
-
-    <!-- Robots -->
-    <meta content='index,follow' name='robots'>
-
-     <!-- CSS -->
-        <link rel='stylesheet' href='https://s3-us-west-1.amazonaws.com/fogday.ai/css/reset.css'>
-
-        <link rel='stylesheet' href='https://foglet.github.io/ohlonesky/assets/css/styles.css'>
-        <link rel='stylesheet' href='https://foglet.github.io/ohlonesky/assets/css/hero-ohlone.css'>
-
-    <!-- Adobe: YSRA -->
-    <link rel="stylesheet" href="https://use.typekit.net/bqh2pni.css">
-
-    <!-- Scripts -->
-      <!--   <script>
-        $(function() {
-            $("img").unveil(300);
-        });
-        </script> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohlone Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+          },
+        },
+      },
+    }
+  </script>
 </head>
+<body class="bg-white text-gray-800">
+  <!-- Header -->
+  <header class="sticky top-0 bg-white shadow z-50">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center space-x-2">
+          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
+          <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
+        </a>
+        <nav class="space-x-4 hidden md:flex">
+          <a href="faq/" class="text-gray-700 hover:text-primary">FAQs</a>
+          <a href="coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
+          <a href="support/" class="text-gray-700 hover:text-primary">Support</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<body class="ohlone" >
-    <div class='container'> <!-- div class='test' -->
+  <!-- Hero -->
+  <main class="py-16 px-4 max-w-3xl mx-auto">
+  <h1 class="text-3xl font-bold mb-8 text-primary">Support the Vision</h1>
+  <p>Become a founding donor or sponsor. All donations over $100,000 will be acknowledged at all three station sites. Naming opportunities available.</p>
+</main>
 
-    <div class="header">
-        <a href="https://ohlonesky.com"><img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-text.svg" alt="Ohlone Sky" style="height:36px;"></a>
+  <footer class="bg-gray-100 border-t border-gray-200 mt-16">
+  <div class="max-w-screen-xl mx-auto px-4 py-8 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
+
+    <!-- Centered Logo -->
+    <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" />
+
+    <!-- Email Below -->
+    <div>
+      <a href="mailto:team@ohlonesky.com" class="hover:text-indigo-600">team@ohlonesky.com</a>
     </div>
 
-        <br />
+    <!-- Year (optional) -->
+    <div class="mt-2">© <span id="year"></span> Ohlone Sky</div>
+  </div>
 
-        <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png" alt="San Francisco Bay"width="100%" height="100%" /><p><br />
-
-    <!-- <a href="https://foglet.github.io/ohlonesky/"><img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logoWhite-hlock.svg" alt="Ohlone Sky" style="width:394px;height:56px;"></a> -->
-
-    <!--
-
-    <div class='logo'>
-        <center>OHLONE SKY</center>
-    </div><br />
-
-    -->
-
-
-<h1 style="color:#636363;">Ohlone Sky is proposal for an aerial gondola connecting Pier 24 to Yerba Buena and Treasure Island in San Francisco.</h1><br />
-
-<!-- Join the Coalition -->
-<h2 style="color:#FF4500;">« <a href="https://ohlonesky.com/coalition" style="text-decoration: none;" >Join the Coalition</a> »</h2><br />
-
-<!-- FAQs -->
-<h2>Frequently Asked Questions About Ohlone Sky</h2>
-<p><em>What is Ohlone Sky?</em> Ohlone Sky (working title) is a proposed network of gondolas (aerial cable cars) to connect Pier 24 along the Embarcadero to Yerba Buena Island and Treasure Island. One of our goals is to become the de facto option for those traveling between Treasure Island, Yerba Buena and the San Francisco waterfront. </p><br />
-
-<p><em>Is Ohlone Sky a private project?</em> Ohlone Sky will be built through a public-private partnership and operated by a Public Benefit Corporation (B Corp), modeled after successful projects like the Roosevelt Island Tramway.</p><br />
-
-<p><em>What is an gondola or aerial cable car?</em> A gondola or aerial cable car is a cabin propelled by a cable stretched between two or more stations and towers. Common types include enclosed cabins and open-air ski lifts found at resorts. A gondola cabin can transport as many as thirty-eight people. An aerial tramway 80-100.</p> <br />
-
-<p><em>How long is the journey?</em> The journey from Pier 24 to Treasure Island takes approximately twelve minutes.</p><br />
-
-<!-- Distance Between Stations graphic -->
-<!-- <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-routes-v004.png" target="_blank" alt="Ohlone Sky Distance graphic" width="100%" height="100%" /><p> -->
-
-<p><em>Where are the proposed stations? </em>Proposed stations are located near Pier 24, Yerba Buena Island, and Treasure Island.</p><br>
-
-<!-- mapbox maps -->
-<a href="http://geojson.io/#id=gist:foglet/f1989b576a3e2e5d4c44aa4843788e73&map=12/37.5333/-122.0835"><img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-bonusMaps-v003.png" alt="Bonus Map Views"width="100%" height="100%" /></a><br />
-
-<p><em>How often will it run?</em> Departures are scheduled every 20–30 seconds from dawn to dusk, ensuring high-frequency service.
-</p><br>
-
-<p><em>Where are the nearest transit connections?</em> The Pier 24 terminus is within minutes of the F Line, Muni Metro, Muni buses, BART, cable cars, and the San Francisco Ferry Building and terminal.</p><br>
-
-<p><em>Why here? </em>Currently, 20,000 housing units are under construction on Treasure Island, with several condos already built on Yerba Buena Island. Ohlone Sky addresses future transit needs for residents and visitors, providing an alternative to driving. To be clear, this is meant as a supplement to urban transportation. We want to add to, not detract from, mobility options.</p><br />
-
-<p><em>What about wind on the bay?</em> Ohlone Sky may temporarily close due to high winds on the bay—not due to safety concerns, but to prevent passenger discomfort from motion sickness. </p><br />
-
-<p><em>Who is this for?</em> Ohlone Sky is designed for anyone traveling between Treasure Island, Yerba Buena Island, and San Francisco—whether attending a Bay FC match, visiting Panorama Park, exploring a craft fair, or meeting friends for champagne and oysters. It is poised to become one of San Francisco's most frequented tourist attractions.
-</p><br />
-
-<!-- Fog, Hong Kong photo, Unsplash -->
-<img src="https://images.unsplash.com/photo-1508449311527-313da8823205?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tian Tan Buddha in Hong Kong by Joe Green"  width="100%" height="100%" /><p>
-
-<copyright class="copyright">Tian Tan Buddha, Hong Kong. Source: <a href="https://unsplash.com/@jg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joe Green</a><p><hr />
-
-<p><em>How much will Ohlone Sky cost to build? </em> The estimated construction cost for Ohlone Sky is approximately $275 million. For comparison, Paris, France, is constructing a 4.5-kilometer-long cable car (<a href="https://www.iledefrance-mobilites.fr/le-reseau/projets/cablec1">Câble C1</a>) with five stations for €132 million (~$145 million), scheduled for completion in 2025. The San Francisco route spans the same length but requires two towers in the bay contributing to the overall estimate. Ohlone Sky will be privately funded and sponsored.</p><br />
-
-<p><em>How fast can this be constructed? </em> Ohlone Sky could be completed within five years after permits have been secured and funded. Ropeways and cabins are standarized and can be employed quickly though once EIRs and approvals have been secured. Building into the bay is not a timely affair. The build out, not including the towers the bay, could be a brief ten months.</p><br />
-
-<p><em>How long can a ropeway or cableway be?</em> According to the Doppelmayr Group, 1500 meters is  comfortable range. The distance between Pier 24 and Yerba Buena Island is two miles (3200 metres). The two-tower approach easily lands within this range. </p><br />
-
-<p><em>What's the fare? </em> $10 roundtrip is our goal. It will be accessible via Clipper and mobile payment options. </p><br />
-
-<p><em>Bikes and scooters? </em> Bikes, e-bikes and e-scooters are welcome. All cabins are ADA-accessible. We are the first-last mile in your bike ride across the bay. Note: This is in the route of the Bay Trail.</p><br />
-
-<p><em>How far is the Ferry Building to Pier 24?</em> It's approximately one-half mile (800 metres); a moderate ten-minute walk. Being one of the most frequented places in the City we expect many visitors.</p><br />
-
-<!-- Sentosa Island, Hong Kong photo, Unsplash -->
-<img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Two cable cars traveling during sunset by Tbel Abuseridze"  width="100%" height="100%" /><p>
-<copyright class="copyright"> Two cable cars traveling during sunset, Lisbon, Portugal. Source: <a href="https://unsplash.com/">Tbel Abuseridze</a><p><hr />
-
-<p><em>What is the current state of rail in the the Bay Area? </em> <a href=" http://calurbanist.com">CalUrbanist.com</a>, by Steve Boland,  publishes a comprehensive map of current <a href="http://calurbanist.com/bay-area-rail/">Bay Area Rail systems</a>.</p><br />
-
-<p><em>What are some examples of gondolas and aerial trams? </em> Locally, Oakland has the super cool <a href="https://www.oaklandzoo.org/blog/gondola">Oakland Zoo Gondola</a> which sports a six-county bird's-eye view over live oak trees, bison, camels and elephants. San Francisco sports a little-used gondola to Salesforce Park (atop the Salesforce Transit Center) from Mission Street. In Napa, <a href="https://www.sterlingvineyards.com/en/blog/sterling-aerial-gondola-facts.html">Sterling Vineyards</a> lays claim to "the only winery in the world with a aerial gondola." In Oregon, the <a href="http://www.gobytram.com">Portland Aerial Tram</a> connects South Waterfront to Marquam Hill with 10,000 daily riders. In Colorado, the <a href="https://www.telluride.com/plan/our-destination/telluride-mountain-village-gondola/">Telluride Village Gondola</a> "offers free, seasonal transportation for the public." Some consider it the most beautiful commute in the United States. We'll concede for now. In New York, the <a href="https://rioc.ny.gov/302/Tram">Roosevelt Island Tramway</a> connects the Upper East Side to Roosevelt Island.</p><br />
-
-<!-- Join the Coalition -->
-<h2 style="color:#FF4500;">« <a href="https://ohlonesky.com/coalition" style="text-decoration: none;" >Join the Coalition</a> »</h2><br />
-
-<p><em>What's a good blog on gondolas and aerial trams? </em> <a href="http://gondolaproject.com"> The Gondola Project</a> and <a href="https://liftblog.com"> Liftblog</a> are excellent resources for the latest proposals and openings around the globe. For an in-depth read, see the <a href="https://www.worldtransportjournal.org">WTPPJ</a> <a href="https://static1.squarespace.com/static/619593021331d42c0b62a1c6/t/6570ba2ace9f1c778fa13700/1701886548399/wtpp+28.2+-hi+res+%2812.6.23%29-+18MB.pdf"> issue on aerial cable cars</a>.</p><br />
-
-<p><em>When can I ride this?</em> We can't ride this yet but late 2030. We're excited.</p><br />
-
-
-</div>  <!-- end of container -->
-
-  <!-- Connect: e-mail and socials -->
-<div class="connect center">
-
-      <a href="https://ohlonesky.com"><img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky" style="width:60px;height:60px;"></a>
-
-      <h2>Connect</h2>
-      <p>Please direct media inquiries, comments and questions to: <em>ohlonesky@fogday.com</em></a></p><br />
-
-      <!-- <p>@fogfish </p><br />
-      <a target="_blank" class="social-icon" title="Connect on Twitter" href="https://www.twitter.com/fogfish"><img alt="Connecyt on Twitter" src="https://s3-us-west-1.amazonaws.com/fogday.ai/svg/twitter.svg" style="width:24px;height:20px;" border=0></a>&nbsp;
-      <a target="_blank" class="social-icon" title="Connect on Instagram" href="https://www.instagram.com/fogfish"><img alt="Connect on Instagram" src="https://s3-us-west-1.amazonaws.com/fogday.ai/svg/instagram.svg" style="width:24px;height:24px;" border=0></a>
-      <a target="_blank" class="social-icon" title="Connect on Facebook" href="https://www.facebook.com/ohlonesky"><img alt="Connect on Instagram" src="https://s3-us-west-1.amazonaws.com/fogday.ai/svg/fb.svg" style="width:24px;height:24px;" border=0></a>
-      <br />-->
-
-      <p>#ohloneSky #baytosky</p><br />
-
-      <footer class="footer copyright">
-      <a href="http://fogday.com" style="text-decoration: none;" ><h4>© FOGDAY</h4></a>
-      </footer>
-
-</div><!-- end of div: connect center --> <br />
-
-<!-- </div>  orig end div: container -->
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</footer>
 
 </body>
 </html>
