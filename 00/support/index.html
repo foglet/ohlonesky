@@ -1,39 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ohlone Sky</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#4f46e5',
-          },
-        },
-      },
-    }
-  </script>
-</head>
-<body class="bg-white text-gray-800">
-  <!-- Header -->
-  <header class="sticky top-0 bg-white shadow z-50">
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
-          <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
-        </a>
-        <nav class="space-x-4 hidden md:flex">
-          <a href="/00/faqs/" class="text-gray-700 hover:text-primary">FAQs</a>
-          <a href="/00/coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
-          <a href="/00/support/" class="text-gray-700 hover:text-primary">Support</a>
-        </nav>
-      </div>
+<!-- Header -->
+<header class="sticky top-0 bg-white shadow z-50">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="/00/" class="flex items-center space-x-2">
+        <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
+        <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="space-x-4 hidden md:flex">
+        <a href="/00/faqs/" class="text-gray-700 hover:text-primary">FAQs</a>
+        <a href="/00/coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
+        <a href="/00/support/" class="text-gray-700 hover:text-primary">Support</a>
+      </nav>
+
+      <!-- Mobile Button -->
+      <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
-  </header>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+    <a href="/00/faqs/" class="block py-2 text-gray-700 hover:text-primary">FAQs</a>
+    <a href="/00/coalition/" class="block py-2 text-gray-700 hover:text-primary">Coalition</a>
+    <a href="/00/support/" class="block py-2 text-gray-700 hover:text-primary">Support</a>
+  </div>
+
+  <!-- Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</header>
 
   <!-- Hero -->
   <main class="py-16 px-4 max-w-3xl mx-auto">
@@ -41,23 +49,22 @@
   <p>Become a founding donor or sponsor. All donations over $100,000 will be acknowledged at all three station sites. Naming opportunities available.</p>
 </main>
 
-  <footer class="bg-gray-100 border-t border-gray-200 mt-16">
-  <div class="max-w-screen-xl mx-auto px-4 py-8 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
-
-    <!-- Centered Logo -->
+<footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+  <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+    <!-- Logo -->
     <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" />
 
-    <!-- Email Below -->
+    <!-- Email -->
     <div>
       <a href="mailto:team@ohlonesky.com" class="hover:text-indigo-600">team@ohlonesky.com</a>
     </div>
 
-    <!-- Year (optional) -->
+    <!-- Year -->
     <div class="mt-2">© <span id="year"></span> Ohlone Sky</div>
   </div>
 
   <script>
-    // Set current year
+    // Update year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </footer>
