@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohlone Sky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1d2834', // Customize if needed
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <!-- Header -->
+  <header id="top-bar" class="bg-white shadow z-50 fixed top-0 w-full transition-all duration-300">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+
+        <!-- Left: Project name -->
+        <div id="project-name" class="absolute left-0 text-indigo-600 font-bold text-xl transition-opacity duration-300">
+          Ohlone Sky
+        </div>
+
+        <!-- Center: Logo -->
+        <a href="https://ohlonesky.com/00/" class="absolute left-1/2 transform -translate-x-1/2">
+          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
+        </a>
+
+        <!-- Right: Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <!-- Hamburger icon -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-4 absolute right-0">
+          <a href="/00/faqs/" class="text-gray-700 hover:text-indigo-600">FAQs</a>
+          <a href="/00/coalition/" class="text-gray-700 hover:text-indigo-600">Coalition</a>
+          <a href="/00/support/" class="text-gray-700 hover:text-indigo-600">Support</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Full-screen Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col items-center justify-center space-y-6 text-xl md:hidden">
+      <a href="/00/faqs/" class="text-gray-700 hover:text-indigo-600">FAQs</a>
+      <a href="/00/coalition/" class="text-gray-700 hover:text-indigo-600">Coalition</a>
+      <a href="/00/support/" class="text-gray-700 hover:text-indigo-600">Support</a>
+      <button id="close-menu" class="text-gray-500 hover:text-red-500 text-sm mt-8">Close</button>
+    </div>
+  </header>
+
+      <!-- Toggle Script -->
+      <script>
+        // Fade out "Ohlone Sky" on scroll
+        window.addEventListener('scroll', () => {
+          const projectName = document.getElementById('project-name');
+          if (window.scrollY > 10) {
+            projectName.classList.add('opacity-0');
+          } else {
+            projectName.classList.remove('opacity-0');
+          }
+        });
+
+        // Toggle full-screen mobile menu
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu');
+
+        menuBtn.addEventListener('click', () => {
+          menu.classList.remove('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+          menu.classList.add('hidden');
+        });
+      </script>
+
+    </header>
+
+    <!-- Spacer below header -->
+    <div class="h-20"></div>
+
+
+    <!-- Hero -->
+    <main class="py-16 px-4 text-center">
+      <h1 class="text-4xl font-bold mb-4 text-primary">Test NAV</h1>
+      <p class="text-lg max-w-2xl mx-auto">Ohlone Sky is a visionary aerial tram system connecting San Francisco to Treasure Island. Safe. Scenic. Sustainable.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <!-- Logo -->
+        <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" />
+
+        <!-- Email -->
+        <div>
+          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+        </div>
+
+        <!-- Year -->
+        <div class="mt-2">© </span>FOGDAY</div>
+      </div>
+
+      <script>
+        // Update year
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </footer>
+  </body>
+</html>
