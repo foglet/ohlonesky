@@ -1,4 +1,26 @@
-<!-- Header -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohlone Sky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#4F46E5', // Customize if needed
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header -->
 <header class="sticky top-0 bg-white shadow z-50">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -42,6 +64,8 @@
     });
   </script>
 </header>
+
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
 
   <!-- Hero -->
   <main class="py-16 px-4 max-w-3xl mx-auto">
