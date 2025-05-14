@@ -21,7 +21,6 @@
   <body class="bg-white text-gray-800 flex flex-col min-h-screen">
 
     <!-- Header -->
-    <!-- Header -->
   <header id="top-bar" class="bg-white shadow z-50 fixed top-0 w-full transition-all duration-300">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
@@ -37,10 +36,11 @@
         </a>
 
         <!-- Right: Mobile menu button -->
-        <div class="md:hidden">
+        <div class="md:hidden absolute right-0 pr-4">
           <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <!-- Hamburger icon -->
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -61,35 +61,37 @@
       <a href="/00/faqs/" class="text-gray-700 hover:text-indigo-600">FAQs</a>
       <a href="/00/coalition/" class="text-gray-700 hover:text-indigo-600">Coalition</a>
       <a href="/00/support/" class="text-gray-700 hover:text-indigo-600">Support</a>
-      <button id="close-menu" class="text-gray-500 hover:text-red-500 text-sm mt-8">Close</button>
     </div>
   </header>
 
+  <!-- Spacer below header -->
+  <div class="h-20"></div>
+
       <!-- Toggle Script -->
       <script>
-        // Fade out "Ohlone Sky" on scroll
-        window.addEventListener('scroll', () => {
-          const projectName = document.getElementById('project-name');
-          if (window.scrollY > 10) {
-            projectName.classList.add('opacity-0');
-          } else {
-            projectName.classList.remove('opacity-0');
-          }
-        });
+  const projectName = document.getElementById('project-name');
+  const menuBtn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  let menuOpen = false;
 
-        // Toggle full-screen mobile menu
-        const menuBtn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        const closeBtn = document.getElementById('close-menu');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      projectName.classList.add('opacity-0');
+    } else if (!menuOpen) {
+      projectName.classList.remove('opacity-0');
+    }
+  });
 
-        menuBtn.addEventListener('click', () => {
-          menu.classList.remove('hidden');
-        });
-
-        closeBtn.addEventListener('click', () => {
-          menu.classList.add('hidden');
-        });
-      </script>
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    menu.classList.toggle('hidden');
+    if (menuOpen) {
+      projectName.classList.add('opacity-0');
+    } else if (window.scrollY < 10) {
+      projectName.classList.remove('opacity-0');
+    }
+  });
+</script>
 
     </header>
 
