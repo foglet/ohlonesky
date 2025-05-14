@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohlone Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Header -->
+  <header class="sticky top-0 bg-white shadow z-50">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center space-x-2">
+          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-8 w-auto" />
+          <span class="text-xl font-bold text-indigo-600">Ohlone Sky</span>
+        </a>
+        <nav class="space-x-4 hidden md:flex">
+          <a href="faq/" class="text-gray-700 hover:text-primary">FAQs</a>
+          <a href="coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
+          <a href="support/" class="text-gray-700 hover:text-primary">Support</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="py-16 px-4 max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8 text-primary">Frequently Asked Questions</h1>
+    <div class="space-y-6">
+      <div>
+        <h2 class="font-semibold">What is Ohlone Sky?</h2>
+        <p>A high-capacity aerial tram envisioned to connect Pier 24 to Treasure Island in under 7 minutes.</p>
+      </div>
+      <div>
+        <h2 class="font-semibold">When will it be operational?</h2>
+        <p>We estimate construction to begin within 3 years, pending environmental and city approvals.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 border-t border-gray-200 mt-16">
+  <div class="max-w-screen-xl mx-auto px-4 py-8 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
+
+    <!-- Centered Logo -->
+    <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" />
+
+    <!-- Email Below -->
+    <div>
+      <a href="mailto:team@ohlonesky.com" class="hover:text-indigo-600">team@ohlonesky.com</a>
+    </div>
+
+    <!-- Year (optional) -->
+    <div class="mt-2">© <span id="year"></span> Ohlone Sky</div>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</footer>
+
+</body>
+</html>
