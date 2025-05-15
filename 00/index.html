@@ -10,7 +10,7 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1d2834',// Customize if needed
+              primary: '#1d2834',
               brandDark: '#1d2834',
             },
           },
@@ -26,14 +26,13 @@
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
 
-      <!-- Logo -->
+          <!-- Logo -->
           <a href="/00/" class="flex items-center space-x-2">
             <img
-            src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
-            alt="Ohlone Sky Logo"
-            class="h-6 md:h-8 lg:h-10 w-auto"
+              src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+              alt="Ohlone Sky Logo"
+              class="h-6 md:h-8 lg:h-10 w-auto"
             />
-            <!-- <span class="text-xl font-bold text-slate-800">Ohlone Sky</span> -->
           </a>
 
           <!-- Desktop Nav -->
@@ -44,38 +43,32 @@
           </nav>
 
           <!-- Mobile menu button -->
-    <div class="md:hidden flex items-center">
-      <button id="menuButton" class="text-gray-700 focus:outline-none">
-        <!-- Hamburger icon -->
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
+          <div class="md:hidden flex items-center">
+            <button id="menuButton" aria-label="Open menu" class="text-gray-700 focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
 
-    <!-- Mobile menu popup -->
-    <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full">
-      <button id="closeMenu" class="text-gray-700 absolute top-4 right-4">
-        <!-- Close icon -->
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-      <a href="/00/faqs/" class="block text-gray-800 hover:text-primary">FAQs</a>
-      <a href="/00/coalition/" class="block text-gray-800 hover:text-primary">Coalition</a>
-      <a href="/00/support/" class="block text-gray-800 hover:text-primary">Support</a>
-    </div>
+      <!-- Backdrop -->
+      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 opacity-0"></div>
 
-      <!-- Toggle Script -->
-      <script>
-        const toggleBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        toggleBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      </script>
+      <!-- Mobile menu popup -->
+      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full">
+        <button id="closeMenu" aria-label="Close menu" class="text-gray-700 absolute top-4 right-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <a href="/00/faqs/" class="block text-gray-800 hover:text-primary">FAQs</a>
+        <a href="/00/coalition/" class="block text-gray-800 hover:text-primary">Coalition</a>
+        <a href="/00/support/" class="block text-gray-800 hover:text-primary">Support</a>
+      </div>
     </header>
 
     <!-- Hero -->
@@ -91,40 +84,45 @@
     <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
       <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-
-        <!-- No Logo -->
-          <span class="text-xl font-bold text-slate-800">Ohlone Sky</span>
-        <!-- <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" /> -->
-
-        <!-- Email -->
+        <span class="text-xl font-bold text-slate-800">Ohlone Sky</span>
         <div>
           <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
         </div>
-
-        <!-- Year -->
-        <div class="mt-2">© </span>FOGDAY</div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
       </div>
-
       <script>
-        // Update year
         document.getElementById('year').textContent = new Date().getFullYear();
       </script>
     </footer>
 
+    <!-- Menu toggle script -->
     <script>
-        const menuButton = document.getElementById('menuButton');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
+      const menuButton = document.getElementById('menuButton');
+      const closeMenu = document.getElementById('closeMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuBackdrop = document.getElementById('menuBackdrop');
 
-        menuButton.addEventListener('click', () => {
-          mobileMenu.classList.remove('hidden');
-          setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
-        });
+      function openMenu() {
+        mobileMenu.classList.remove('hidden');
+        menuBackdrop.classList.remove('hidden');
+        setTimeout(() => {
+          mobileMenu.classList.remove('translate-x-full');
+          menuBackdrop.classList.remove('opacity-0');
+        }, 10);
+      }
 
-        closeMenu.addEventListener('click', () => {
-          mobileMenu.classList.add('translate-x-full');
-          setTimeout(() => mobileMenu.classList.add('hidden'), 300); // match transition duration
-        });
+      function closeMenuPopup() {
+        mobileMenu.classList.add('translate-x-full');
+        menuBackdrop.classList.add('opacity-0');
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+          menuBackdrop.classList.add('hidden');
+        }, 300);
+      }
+
+      menuButton.addEventListener('click', openMenu);
+      closeMenu.addEventListener('click', closeMenuPopup);
+      menuBackdrop.addEventListener('click', closeMenuPopup);
     </script>
 
   </body>
