@@ -37,9 +37,9 @@
 
           <!-- Desktop Nav -->
           <nav class="space-x-4 hidden md:flex">
-            <a href="/00/faqs/" class="text-gray-700 hover:text-primary">FAQs</a>
-            <a href="/00/coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
-            <a href="/00/support/" class="text-gray-700 hover:text-primary">Support</a>
+            <a href="/00/faqs/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">FAQs</a>
+            <a href="/00/coalition/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Coalition</a>
+            <a href="/00/support/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Support</a>
           </nav>
 
           <!-- Mobile menu button -->
@@ -65,9 +65,9 @@
               d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <a href="/00/faqs/" class="block text-gray-800 hover:text-primary">FAQs</a>
-        <a href="/00/coalition/" class="block text-gray-800 hover:text-primary">Coalition</a>
-        <a href="/00/support/" class="block text-gray-800 hover:text-primary">Support</a>
+        <a href="/00/faqs/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">FAQs</a>
+        <a href="/00/coalition/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Coalition</a>
+        <a href="/00/support/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Support</a>
       </div>
     </header>
 
@@ -96,34 +96,44 @@
     </footer>
 
     <!-- Menu toggle script -->
-    <script>
-      const menuButton = document.getElementById('menuButton');
-      const closeMenu = document.getElementById('closeMenu');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuBackdrop = document.getElementById('menuBackdrop');
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+const menuButton = document.getElementById('menuButton');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuBackdrop = document.getElementById('menuBackdrop');
 
-      function openMenu() {
-        mobileMenu.classList.remove('hidden');
-        menuBackdrop.classList.remove('hidden');
-        setTimeout(() => {
-          mobileMenu.classList.remove('translate-x-full');
-          menuBackdrop.classList.remove('opacity-0');
-        }, 10);
-      }
+function openMenu() {
+  mobileMenu.classList.remove('hidden');
+  menuBackdrop.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
+  setTimeout(() => {
+    mobileMenu.classList.remove('translate-x-full');
+    menuBackdrop.classList.remove('opacity-0');
+  }, 10);
+}
 
-      function closeMenuPopup() {
-        mobileMenu.classList.add('translate-x-full');
-        menuBackdrop.classList.add('opacity-0');
-        setTimeout(() => {
-          mobileMenu.classList.add('hidden');
-          menuBackdrop.classList.add('hidden');
-        }, 300);
-      }
+function closeMenuPopup() {
+  mobileMenu.classList.add('translate-x-full');
+  menuBackdrop.classList.add('opacity-0');
+  document.body.classList.remove('overflow-hidden');
+  setTimeout(() => {
+    mobileMenu.classList.add('hidden');
+    menuBackdrop.classList.add('hidden');
+  }, 300);
+}
 
-      menuButton.addEventListener('click', openMenu);
-      closeMenu.addEventListener('click', closeMenuPopup);
-      menuBackdrop.addEventListener('click', closeMenuPopup);
-    </script>
+menuButton.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', closeMenuPopup);
+menuBackdrop.addEventListener('click', closeMenuPopup);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+    closeMenuPopup();
+  }
+});
+});
+  </script>
 
   </body>
 </html>
