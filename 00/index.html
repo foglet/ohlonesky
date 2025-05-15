@@ -11,7 +11,6 @@
           extend: {
             colors: {
               primary: '#1d2834',
-              brandDark: '#1d2834',
             },
           },
         },
@@ -36,13 +35,13 @@
           </a>
 
           <!-- Desktop Nav -->
-          <nav class="space-x-4 hidden md:flex">
-            <a href="/00/faqs/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">FAQs</a>
-            <a href="/00/coalition/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Coalition</a>
-            <a href="/00/support/" class="block px-4 py-2 rounded text-gray-800 font-medium hover:bg-primary hover:text-white hover:font-bold transition">Support</a>
+          <nav class="hidden md:flex space-x-4">
+            <a href="/00/faqs/" class="font-bold text-primary hover:text-primary">FAQs</a>
+            <a href="/00/coalition/" class="font-bold text-primary hover:text-primary">Coalition</a>
+            <a href="/00/support/" class="font-bold text-primary hover:text-primary">Support</a>
           </nav>
 
-          <!-- Mobile menu button -->
+          <!-- Mobile Menu Button -->
           <div class="md:hidden flex items-center">
             <button id="menuButton" aria-label="Open menu" aria-expanded="false">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,9 +56,9 @@
       <!-- Backdrop -->
       <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 opacity-0"></div>
 
-      <!-- Mobile menu popup -->
-      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full">
-        <button id="closeMenu" aria-label="Close menu" class="text-gray-700 absolute top-4 right-4">
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full will-change-transform">
+        <button id="closeMenu" aria-label="Close menu" class="absolute top-4 right-4 text-gray-700">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M6 18L18 6M6 6l12 12" />
@@ -74,7 +73,7 @@
     <!-- Hero -->
     <main class="py-16 px-4 bg-indigo-50">
       <div class="text-center max-w-3xl mx-auto p-8 rounded-lg">
-        <h1 class="text-4xl font-bold mb-4 text-brandDark">The Future of Bay Area Transit</h1>
+        <h1 class="text-4xl font-bold mb-4 text-primary">The Future of Bay Area Transit</h1>
         <p class="text-lg text-gray-700">
           Ohlone Sky is a visionary aerial tram system connecting San Francisco to Treasure Island. Safe. Scenic. Sustainable.
         </p>
@@ -84,7 +83,7 @@
     <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
       <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-        <span class="text-xl font-bold text-slate-800">Ohlone Sky</span>
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
         <div>
           <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
         </div>
@@ -95,48 +94,67 @@
       </script>
     </footer>
 
-    <!-- Menu toggle script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-const menuButton = document.getElementById('menuButton');
-const closeMenu = document.getElementById('closeMenu');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuBackdrop = document.getElementById('menuBackdrop');
+    <!-- Menu Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobileMenu');
+        const menuButton = document.getElementById('menuButton');
+        const closeButton = document.getElementById('closeMenu');
+        const backdrop = document.getElementById('menuBackdrop');
 
+        function trapFocus(element) {
+          const focusable = element.querySelectorAll('a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
 
-function openMenu() {
-  menuButton.setAttribute('aria-expanded', 'true');
-  mobileMenu.classList.remove('hidden');
-  menuBackdrop.classList.remove('hidden');
-  document.body.classList.add('overflow-hidden');
-  setTimeout(() => {
-    mobileMenu.classList.remove('translate-x-full');
-    menuBackdrop.classList.remove('opacity-0');
-  }, 10);
-}
+          element.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+              if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          });
+          first?.focus();
+        }
 
-function closeMenuPopup() {
-  menuButton.setAttribute('aria-expanded', 'false');
-  mobileMenu.classList.add('translate-x-full');
-  menuBackdrop.classList.add('opacity-0');
-  document.body.classList.remove('overflow-hidden');
-  setTimeout(() => {
-    mobileMenu.classList.add('hidden');
-    menuBackdrop.classList.add('hidden');
-  }, 300);
-}
+        function openMenu() {
+          menuButton.setAttribute('aria-expanded', 'true');
+          menu.classList.remove('hidden');
+          backdrop.classList.remove('hidden');
+          document.body.classList.add('overflow-hidden');
+          setTimeout(() => {
+            menu.classList.remove('translate-x-full');
+            backdrop.classList.remove('opacity-0');
+          }, 10);
+          trapFocus(menu);
+        }
 
-menuButton.addEventListener('click', openMenu);
-closeMenu.addEventListener('click', closeMenuPopup);
-menuBackdrop.addEventListener('click', closeMenuPopup);
+        function closeMenu() {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menu.classList.add('translate-x-full');
+          backdrop.classList.add('opacity-0');
+          document.body.classList.remove('overflow-hidden');
+          setTimeout(() => {
+            menu.classList.add('hidden');
+            backdrop.classList.add('hidden');
+            menuButton.focus();
+          }, 300);
+        }
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-    closeMenuPopup();
-  }
-});
-});
-  </script>
+        menuButton.addEventListener('click', openMenu);
+        closeButton.addEventListener('click', closeMenu);
+        backdrop.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+            closeMenu();
+          }
+        });
+      });
+    </script>
 
   </body>
 </html>
