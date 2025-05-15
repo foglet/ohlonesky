@@ -43,21 +43,30 @@
             <a href="/00/support/" class="text-gray-700 hover:text-primary">Support</a>
           </nav>
 
-          <!-- Mobile Button -->
-          <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
-        </div>
-      </div>
+          <!-- Mobile menu button -->
+    <div class="md:hidden flex items-center">
+      <button id="menuButton" class="text-gray-700 focus:outline-none">
+        <!-- Hamburger icon -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <a href="/00/faqs/" class="block py-2 text-gray-700 hover:text-primary">FAQs</a>
-        <a href="/00/coalition/" class="block py-2 text-gray-700 hover:text-primary">Coalition</a>
-        <a href="/00/support/" class="block py-2 text-gray-700 hover:text-primary">Support</a>
-      </div>
+    <!-- Mobile menu popup -->
+    <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full">
+      <button id="closeMenu" class="text-gray-700 absolute top-4 right-4">
+        <!-- Close icon -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a href="/00/faqs/" class="block text-gray-800 hover:text-primary">FAQs</a>
+      <a href="/00/coalition/" class="block text-gray-800 hover:text-primary">Coalition</a>
+      <a href="/00/support/" class="block text-gray-800 hover:text-primary">Support</a>
+    </div>
 
       <!-- Toggle Script -->
       <script>
@@ -101,5 +110,22 @@
         document.getElementById('year').textContent = new Date().getFullYear();
       </script>
     </footer>
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+          setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
+        });
+
+        closeMenu.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+          setTimeout(() => mobileMenu.classList.add('hidden'), 300); // match transition duration
+        });
+    </script>
+
   </body>
 </html>
