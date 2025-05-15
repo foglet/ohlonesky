@@ -10,7 +10,8 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1d2834', // Customize if needed
+              primary: '#1d2834',
+              highlight: '#ff5500' // Add this line
             },
           },
         },
@@ -25,88 +26,143 @@
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
 
-      <!-- Logo -->
+          <!-- Logo -->
           <a href="/00/" class="flex items-center space-x-2">
             <img
-            src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
-            alt="Ohlone Sky Logo"
-            class="h-6 md:h-8 lg:h-10 w-auto"
+              src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+              alt="Ohlone Sky Logo"
+              class="h-6 md:h-8 lg:h-10 w-auto"
             />
-            <!-- <span class="text-xl font-bold text-slate-800">Ohlone Sky</span> -->
           </a>
 
           <!-- Desktop Nav -->
-          <nav class="space-x-4 hidden md:flex">
-            <a href="/00/faqs/" class="text-gray-700 hover:text-primary">FAQs</a>
-            <a href="/00/coalition/" class="text-gray-700 hover:text-primary">Coalition</a>
-            <a href="/00/support/" class="text-gray-700 hover:text-primary">Support</a>
+          <nav class="hidden md:flex space-x-4">
+            <a href="/00/faqs/" class="relative inline-block text-primary font-bold hover:text-highlight transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-highlight hover:after:w-full after:transition-all after:duration-300">FAQs</a>
+            <a href="/00/coalition/" class="relative inline-block text-primary font-bold hover:text-highlight transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-highlight hover:after:w-full after:transition-all after:duration-300">Coalition</a>
+            <a href="/00/support/" class="relative inline-block text-primary font-bold hover:text-highlight transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-highlight hover:after:w-full after:transition-all after:duration-300">Support</a>
+
+            <!--
+            <a href="/00/coalition/" class="font-bold text-primary hover:text-highlight">Coalition</a>
+            <a href="/00/support/" class="font-bold text-primary hover:text-highlight">Support</a> -->
           </nav>
 
-          <!-- Mobile Button -->
-          <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button id="menuButton" aria-label="Open menu" aria-expanded="false">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <a href="/00/faqs/" class="block py-2 text-gray-700 hover:text-primary">FAQs</a>
-        <a href="/00/coalition/" class="block py-2 text-gray-700 hover:text-primary">Coalition</a>
-        <a href="/00/support/" class="block py-2 text-gray-700 hover:text-primary">Support</a>
-      </div>
+      <!-- Backdrop -->
+      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 opacity-0"></div>
 
-      <!-- Toggle Script -->
-      <script>
-        const toggleBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        toggleBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      </script>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full will-change-transform">
+        <button id="closeMenu" aria-label="Close menu" class="absolute top-4 right-4 text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <a href="/00/faqs/" class="block px-4 py-2 rounded text-gray-800 font-bold hover:bg-highlight hover:text-white transition-colors duration-200">FAQs</a>
+        <a href="/00/coalition/" class="block px-4 py-2 rounded text-gray-800 font-bold hover:bg-highlight hover:text-white transition-colors duration-200">Coalition</a>
+        <a href="/00/support/" class="block px-4 py-2 rounded text-gray-800 font-bold hover:bg-highlight hover:text-white transition-colors duration-200">Support</a>
+      </div>
     </header>
 
-  <!-- Hero
-  <main class="py-16 px-4 max-w-3xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8 text-primary">Coalition Building</h1>
-    <p>We’re assembling a coalition of urbanists, environmental leaders, and community organizations. Join us in shaping the most scenic ride in the Bay.</p>
-  </main> -->
-
-<!-- Hero 2 -->
-  <main class="py-16 px-4 bg-indigo-50">
-    <div class="max-w-3xl mx-auto p-8 rounded-lg">
-      <h1 class="text-3xl font-bold mb-8 text-brandDark">Coalition Building</h1>
-      <p class="text-gray-700">
-        We’re assembling a coalition of urbanists, environmental leaders, and community organizations.
-        Join us in shaping the most scenic ride in the Bay.
-      </p>
-    </div>
-  </main>
-
-  <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
-    <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-
-      <!-- No Logo -->
-        <span class="text-xl font-bold text-slate-800">Ohlone Sky</span>
-      <!-- <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="mx-auto mb-2" style="height: 20px;" /> -->
-
-
-      <!-- Email -->
-      <div>
-        <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+    <!-- Hero -->
+    <main class="py-16 px-4 bg-indigo-50">
+      <div class="max-w-3xl mx-auto p-8 rounded-lg text-center">
+        <h1 class="text-3xl font-bold mb-8 text-brandDark">Support the Vision</h1>
+        <p class="text-gray-700 mb-8">
+          Become a founding donor or sponsor. All donations over $100,000 will be acknowledged at all three station sites. Naming opportunities available.
+        </p>
+        <a href="/00/support/" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 transition">
+          Become a Donor
+        </a>
       </div>
+    </main>
 
-      <!-- Year -->
-      <div class="mt-2">© </span>FOGDAY</div>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div>
+          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+        </div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </footer>
 
+    <!-- Menu Toggle Script -->
     <script>
-      // Update year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </footer>
+      document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobileMenu');
+        const menuButton = document.getElementById('menuButton');
+        const closeButton = document.getElementById('closeMenu');
+        const backdrop = document.getElementById('menuBackdrop');
 
-</body>
+        function trapFocus(element) {
+          const focusable = element.querySelectorAll('a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          element.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+              if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          });
+          first?.focus();
+        }
+
+        function openMenu() {
+          menuButton.setAttribute('aria-expanded', 'true');
+          menu.classList.remove('hidden');
+          backdrop.classList.remove('hidden');
+          document.body.classList.add('overflow-hidden');
+          setTimeout(() => {
+            menu.classList.remove('translate-x-full');
+            backdrop.classList.remove('opacity-0');
+          }, 10);
+          trapFocus(menu);
+        }
+
+        function closeMenu() {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menu.classList.add('translate-x-full');
+          backdrop.classList.add('opacity-0');
+          document.body.classList.remove('overflow-hidden');
+          setTimeout(() => {
+            menu.classList.add('hidden');
+            backdrop.classList.add('hidden');
+            menuButton.focus();
+          }, 300);
+        }
+
+        menuButton.addEventListener('click', openMenu);
+        closeButton.addEventListener('click', closeMenu);
+        backdrop.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+            closeMenu();
+          }
+        });
+      });
+    </script>
+
+  </body>
 </html>
