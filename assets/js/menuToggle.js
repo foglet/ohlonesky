@@ -5,6 +5,7 @@ export function initMenuToggle() {
   const menuButton = document.getElementById('menuButton');
   const closeButton = document.getElementById('closeMenu');
   const backdrop = document.getElementById('menuBackdrop');
+  const pageContent = document.getElementById('pageContent');
 
   function trapFocus(element) {
     const focusable = element.querySelectorAll(
@@ -60,6 +61,12 @@ export function initMenuToggle() {
     menu.classList.add('translate-x-full');
     backdrop.classList.add('opacity-0');
 
+    // Trigger fade-out on page content
+    if (pageContent) {
+      pageContent.classList.remove('opacity-100');
+      pageContent.classList.add('opacity-0');
+    }
+
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
@@ -78,13 +85,13 @@ export function initMenuToggle() {
     }
   });
 
-  // Intercept mobile nav links (but not target=_blank)
+  // Intercept mobile nav links (except those with target="_blank")
   menu.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       const target = link.getAttribute('target');
 
-      if (target === '_blank') return; // Let it open in new tab normally
+      if (target === '_blank') return; // allow new tab behavior
 
       e.preventDefault();
       closeMenuAndNavigate(href);
