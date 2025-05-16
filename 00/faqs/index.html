@@ -21,6 +21,8 @@
 
   <body class="bg-white text-gray-800 flex flex-col min-h-screen min-h-0">
 
+  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
     <!-- Header -->
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +101,7 @@
       </div>
     </footer>
 
-
+  </div>
     <!-- Scripts -->
     <!--     <script src="../../assets/js/menuToggle.js"></script> -->
 
@@ -109,8 +111,15 @@
       document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('year').textContent = new Date().getFullYear();
         initMenuToggle();
+
+        // Fade-in effect on page load
+        const pageContent = document.getElementById('pageContent');
+        requestAnimationFrame(() => {
+          pageContent.classList.remove('opacity-0');
+          pageContent.classList.add('opacity-100');
+        });
       });
     </script>
-    
+
   </body>
 </html>
