@@ -109,22 +109,32 @@
 
   </div>
 
-    <!-- Scripts -->
-    <script type="module">
-      import { initMenuBlitz } from '/assets/js/menuBlitzloader.js';
+  <!-- Scripts -->
+  <script type="module">
+    import { initMenuBlitz } from '/assets/js/menuBlitzloader.js';
 
-      document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-        const pageContent = document.getElementById('pageContent');
-        requestAnimationFrame(() => {
+      const pageContent = document.getElementById('pageContent');
+      const skipFade = sessionStorage.getItem('skipFadeIn');
+
+      if (pageContent) {
+        if (skipFade) {
           pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
+          sessionStorage.removeItem('skipFadeIn');
+        } else {
+          requestAnimationFrame(() => {
+            pageContent.classList.remove('opacity-0');
+            pageContent.classList.add('opacity-100');
+          });
+        }
+      }
 
-        initMenuBlitz();
-      });
-    </script>
+      initMenuBlitz();
+    });
+  </script>
 
   </body>
 </html>
