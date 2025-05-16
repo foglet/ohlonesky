@@ -20,7 +20,7 @@ export function initMenuBlitz() {
     setTimeout(() => {
       mobileMenu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 300); // Match your transition speed
+    }, 500); // Match your transition speed
   }
 
   // Bind open/close triggers
