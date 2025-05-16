@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ohlone Sky</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brandDark: '#1d2834',
-              highlight: '#ff5500' // Add this line
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                brandDark: '#1d2834',
+                highlight: '#ff5500' // Add this line
+              },
             },
           },
-        },
-      };
-    </script>
+        };
+      </script>
   </head>
 
   <body class="bg-white text-gray-800 flex flex-col min-h-screen">
@@ -71,7 +71,7 @@
       </div>
     </header>
 
-    <!-- Hero -->
+    <!-- ******** Heroes Live Here ******** -->
     <main class="py-16 px-4 bg-indigo-50">
       <div class="max-w-3xl mx-auto p-8 rounded-lg text-center">
         <h1 class="text-3xl font-bold mb-8 text-brandDark">Support the Vision</h1>
@@ -84,25 +84,10 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
-      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-        <div>
-          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
-        </div>
-        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
-      </div>
-      <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-      </script>
-    </footer>
+    <!-- Menu Toggle Script -->
+<!--     <script src="../../assets/js/menuToggle.js"></script> -->
 
-    <!-- Menu Toggle Script hello! -->
-    <script src="/assets/menuToggle.js"></script>
-
-
-  <!--  <script>
+    <script>
       document.addEventListener('DOMContentLoaded', () => {
         const menu = document.getElementById('mobileMenu');
         const menuButton = document.getElementById('menuButton');
@@ -161,7 +146,21 @@
           }
         });
       });
-    </script> -->
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div>
+          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+        </div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </footer>
 
   </body>
 </html>
