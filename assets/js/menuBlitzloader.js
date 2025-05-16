@@ -1,36 +1,44 @@
-export function initMenuBlitz() {
-  const menuButton = document.getElementById('menuButton');
-  const closeButton = document.getElementById('closeMenu');
-  const mobileMenu = document.getElementById('mobileMenu');
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const links = mobileMenu?.querySelectorAll('a') || [];
+  const bars = toggle.querySelectorAll('span');
 
   function openMenu() {
-    mobileMenu.classList.remove('hidden');
+    menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      mobileMenu.classList.remove('translate-x-full');
+    setTimeout(() => {
+      menu.classList.remove('translate-x-full');
+      backdrop.classList.add('opacity-100');
       backdrop.classList.remove('opacity-0');
-    });
+    }, 10);
+
+    // Animate bars
+    bars[0].classList.add('rotate-45', 'translate-y-1.5');
+    bars[1].classList.add('-rotate-45', '-translate-y-1');
+    bars[1].classList.replace('w-5', 'w-8');
   }
 
   function closeMenu() {
-    mobileMenu.classList.add('translate-x-full');
+    menu.classList.add('translate-x-full');
+    backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
+
+    // Animate bars back
+    bars[0].classList.remove('rotate-45', 'translate-y-1.5');
+    bars[1].classList.remove('-rotate-45', '-translate-y-1');
+    bars[1].classList.replace('w-8', 'w-5');
+
     setTimeout(() => {
-      mobileMenu.classList.add('hidden');
+      menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 500); // Match Tailwind transition duration
+    }, 300);
   }
 
-  menuButton?.addEventListener('click', openMenu);
-  closeButton?.addEventListener('click', closeMenu);
-  backdrop?.addEventListener('click', closeMenu);
-
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      sessionStorage.setItem('skipFadeIn', 'true');
-      closeMenu();
-    });
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden') && !menu.classList.contains('translate-x-full');
+    isOpen ? closeMenu() : openMenu();
   });
-}
+
+  backdrop.addEventListener('click', closeMenu);
+});
