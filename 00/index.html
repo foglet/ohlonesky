@@ -11,7 +11,7 @@
           extend: {
             colors: {
               brandDark: '#1d2834',
-              highlight: '#ff5500' // Add this line
+              highlight: '#ff5500'
             },
           },
         },
@@ -19,7 +19,7 @@
     </script>
   </head>
 
-  <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <body class="bg-white text-gray-800 flex flex-col min-h-screen min-h-0">
 
     <!-- Header -->
     <header class="sticky top-0 bg-white shadow z-50">
@@ -44,7 +44,7 @@
 
           <!-- Mobile Menu Button -->
           <div class="md:hidden flex items-center">
-            <button id="menuButton" aria-label="Open menu" aria-expanded="false">
+            <button id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" lang="en">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M4 6h16M4 12h16M4 18h16" />
@@ -55,11 +55,11 @@
       </div>
 
       <!-- Backdrop -->
-      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 opacity-0"></div>
+      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] opacity-0"></div>
 
       <!-- Mobile Menu -->
-      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform transform translate-x-full will-change-transform">
-        <button id="closeMenu" aria-label="Close menu" class="absolute top-4 right-4 text-gray-700">
+      <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] transform translate-x-full will-change-transform">
+        <button id="closeMenu" type="button" aria-label="Close menu" class="absolute top-4 right-4 text-gray-700" lang="en">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M6 18L18 6M6 6l12 12" />
@@ -81,11 +81,25 @@
       </div>
     </main>
 
-    <!-- Menu Toggle Script -->
-<!--     <script src="../../assets/js/menuToggle.js"></script> -->
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-auto py-10">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div>
+          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+        </div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <!--     <script src="../../assets/js/menuToggle.js"></script> -->
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         const menu = document.getElementById('mobileMenu');
         const menuButton = document.getElementById('menuButton');
         const closeButton = document.getElementById('closeMenu');
@@ -144,20 +158,5 @@
         });
       });
     </script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 border-t border-gray-200 mt-auto py-10">
-      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-        <div>
-          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
-        </div>
-        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
-      </div>
-      <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-      </script>
-    </footer>
-
   </body>
 </html>
