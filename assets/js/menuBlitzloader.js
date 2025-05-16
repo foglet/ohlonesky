@@ -11,32 +11,43 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.classList.remove('hidden');
 
     setTimeout(() => {
-      // Slide menu in
+      // Slide in the overlay
       menu.classList.remove('-translate-x-full');
       backdrop.classList.add('opacity-100');
       backdrop.classList.remove('opacity-0');
 
-      // Animate menu links (fade + float up)
+      // Animate menu link container (fade + lift)
       menuLinks.classList.remove('opacity-0', 'translate-y-4');
       menuLinks.classList.add('opacity-100', 'translate-y-0');
+
+      // Fade in each link
+      const links = menuLinks.querySelectorAll('a');
+      links.forEach(link => {
+        link.classList.add('opacity-100');
+      });
     }, 10);
 
-    // Animate bars into X
+    // Animate hamburger into X
     barTop.classList.add('rotate-45', 'translate-y-1');
     barBottom.classList.add('-rotate-45', '-translate-y-1');
   }
 
   function closeMenu() {
-    // Animate menu links out
+    // Reset menu links
     menuLinks.classList.add('opacity-0', 'translate-y-4');
     menuLinks.classList.remove('opacity-100', 'translate-y-0');
 
-    // Slide menu out
+    const links = menuLinks.querySelectorAll('a');
+    links.forEach(link => {
+      link.classList.remove('opacity-100');
+    });
+
+    // Slide out the menu
     menu.classList.add('-translate-x-full');
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    // Reset bars
+    // Reset hamburger bars
     barTop.classList.remove('rotate-45', 'translate-y-1');
     barBottom.classList.remove('-rotate-45', '-translate-y-1');
 
