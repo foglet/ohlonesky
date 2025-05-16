@@ -64,8 +64,20 @@
         </div>
       </div>
 
+      <button id="menuToggle" class="fixed top-4 right-4 z-50 flex flex-col justify-center items-end space-y-1 w-8 h-8 focus:outline-none">
+        <span class="block w-8 h-0.5 bg-black transition-transform duration-300 origin-right"></span>
+        <span class="block w-5 h-0.5 bg-black transition-transform duration-300 origin-right"></span>
+      </button>
+
       <!-- Backdrop -->
-      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] opacity-0"></div>
+      <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"></div>
+
+      <!-- Slide-Out Menu -->
+      <nav id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-6 transform translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
+        <a href="/00/index.html" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">Home</a>
+        <a href="/00/faqs/" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">FAQs</a>
+        <a href="/00/support/" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">Support</a>
+      </nav>
 
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-4 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] transform translate-x-full will-change-transform">
