@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('menuToggle');
   const menu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const bars = toggle.querySelectorAll('span');
+  const barTop = toggle.querySelector('.bar-top');
+  const barBottom = toggle.querySelector('.bar-bottom');
 
   function openMenu() {
     menu.classList.remove('hidden');
@@ -13,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.classList.remove('opacity-0');
     }, 10);
 
-    // Animate bars
-    bars[0].classList.add('rotate-45', 'translate-y-1.5');
-    bars[1].classList.add('-rotate-45', '-translate-y-1');
+    // Animate to "X"
+    barTop.classList.add('rotate-45', 'translate-y-2');
+    barBottom.classList.add('-rotate-45', '-translate-y-2');
   }
 
   function closeMenu() {
@@ -23,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    bars[0].classList.remove('rotate-45', 'translate-y-1.5');
-    bars[1].classList.remove('-rotate-45', '-translate-y-1');
+    // Animate back to bars
+    barTop.classList.remove('rotate-45', 'translate-y-2');
+    barBottom.classList.remove('-rotate-45', '-translate-y-2');
 
     setTimeout(() => {
       menu.classList.add('hidden');
