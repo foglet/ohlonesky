@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10);
 
     // Animate hamburger into X
-    barTop.classList.add('rotate-45', 'translate-y-1.5');
-    barBottom.classList.add('-rotate-45', '-translate-y-1.5');
+    barTop.classList.add('rotate-45', 'translate-y-1');
+    barBottom.classList.add('-rotate-45', '-translate-y-');
   }
 
   function closeMenu() {
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    barTop.classList.remove('rotate-45', 'translate-y-1.5');
-    barBottom.classList.remove('-rotate-45', '-translate-y-1.5');
+    barTop.classList.remove('rotate-45', 'translate-y-1');
+    barBottom.classList.remove('-rotate-45', '-translate-y-1');
 
     setTimeout(() => {
       menu.classList.add('hidden');
