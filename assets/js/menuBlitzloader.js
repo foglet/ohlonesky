@@ -11,46 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.classList.remove('hidden');
 
     setTimeout(() => {
-      // Slide in the overlay
-      menu.classList.remove('-translate-x-full');
+      // Fade in menu and backdrop
+      menu.classList.add('opacity-100');
+      menu.classList.remove('opacity-0');
       backdrop.classList.add('opacity-100');
       backdrop.classList.remove('opacity-0');
 
-      // Animate menu link container (fade + lift)
-      menuLinks.classList.remove('opacity-0', 'translate-y-4');
-      menuLinks.classList.add('opacity-100', 'translate-y-0');
-
-      // Fade in each link
+      // Optionally: trigger bounce/fade on links
       const links = menuLinks.querySelectorAll('a');
-      links.forEach(link => {
-        link.classList.add('opacity-100');
-      });
+      links.forEach(link => link.classList.add('opacity-100'));
     }, 10);
 
-    // Animate hamburger into X
+    // Animate hamburger bars into an X
     barTop.classList.add('rotate-45', 'translate-y-1');
     barBottom.classList.add('-rotate-45', '-translate-y-1');
   }
 
   function closeMenu() {
-    // Reset menu links
-    menuLinks.classList.add('opacity-0', 'translate-y-4');
-    menuLinks.classList.remove('opacity-100', 'translate-y-0');
-
-    const links = menuLinks.querySelectorAll('a');
-    links.forEach(link => {
-      link.classList.remove('opacity-100');
-    });
-
-    // Slide out the menu
-    menu.classList.add('-translate-x-full');
+    // Fade out menu and backdrop
+    menu.classList.remove('opacity-100');
+    menu.classList.add('opacity-0');
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
+
+    // Optionally: hide links again
+    const links = menuLinks.querySelectorAll('a');
+    links.forEach(link => link.classList.remove('opacity-100'));
 
     // Reset hamburger bars
     barTop.classList.remove('rotate-45', 'translate-y-1');
     barBottom.classList.remove('-rotate-45', '-translate-y-1');
 
+    // Fully hide after animation
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
@@ -58,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   toggle.addEventListener('click', () => {
-    const isOpen = !menu.classList.contains('hidden') && !menu.classList.contains('-translate-x-full');
+    const isOpen =
+      !menu.classList.contains('hidden') &&
+      menu.classList.contains('opacity-100');
     isOpen ? closeMenu() : openMenu();
   });
 
