@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ohlone Sky</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -11,32 +13,35 @@
         extend: {
           colors: {
             brandDark: '#1d2834',
-            highlight: '#ff5500'
+            highlight: '#ff5500',
+          },
+          fontFamily: {
+            adobe: ['freight-sans-pro', 'sans-serif'],
           },
         },
       },
     };
   </script>
 
+  <!-- Adobe Fonts (replace this with your project link) -->
+  <link rel="stylesheet" href="https://use.typekit.net/xxxxxxx.css">
+
+  <!-- Bounce-in animation -->
   <style>
-      @keyframes bounce-in {
-      0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-      60% { opacity: 1; transform: translateY(-6px) scale(1.02); }
+    @keyframes bounce-in {
+      0%   { opacity: 0; transform: translateY(20px) scale(0.96); }
+      60%  { opacity: 1; transform: translateY(-6px) scale(1.02); }
       100% { transform: translateY(0) scale(1); }
-      }
-      .animate-bounce-in {
-      animation: bounce-in 600ms ease-out forwards;
-      }
-      .delay-100 { animation-delay: 100ms; }
-      .delay-200 { animation-delay: 200ms; }
-      .delay-300 { animation-delay: 300ms; }
+    }
+    .animate-bounce-in { animation: bounce-in 600ms ease-out forwards; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
   </style>
 </head>
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
-  <noscript>
-    <style>#pageContent { opacity: 1 !important; }</style>
-  </noscript>
+  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
@@ -46,7 +51,9 @@
         <div class="flex items-center justify-between h-16 pr-2">
           <!-- Logo -->
           <a href="/00/" class="flex items-center space-x-2">
-            <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-[28px] w-auto" />
+            <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+                 alt="Ohlone Sky Logo"
+                 class="h-[28px] w-auto" />
           </a>
 
           <!-- Desktop Nav -->
@@ -56,37 +63,40 @@
             <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
           </nav>
 
-          <!-- Mobile Toggle -->
+          <!-- Hamburger Button -->
           <button id="menuToggle" class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
-          <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
-          <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
-        </button>
+            <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
+            <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
+          </button>
         </div>
       </div>
     </header>
 
     <!-- Backdrop -->
-    <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"></div>
+    <div id="menuBackdrop"
+         class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out">
+    </div>
 
-    <!-- Slide-Out Mobile Menu -->
-    <nav id="mobileMenu" class="hidden absolute top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out">
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu"
+         class="hidden absolute top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out">
       <div id="menuLinks" class="text-center space-y-2">
         <a href="/00/faqs/"
-          class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 opacity-80 transition-opacity duration-300 hover:opacity-100 hover:text-highlight">
-          FAQs
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:opacity-100 hover:text-highlight">
+           FAQs
         </a>
         <a href="/00/coalition/"
-          class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 opacity-80 transition-opacity duration-300 hover:opacity-100 hover:text-highlight">
-          Coalition
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:opacity-100 hover:text-highlight">
+           Coalition
         </a>
         <a href="/00/support/"
-          class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 opacity-80 transition-opacity duration-300 hover:opacity-100 hover:text-highlight">
-          Support
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:opacity-100 hover:text-highlight">
+           Support
         </a>
       </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <main class="flex-grow py-16 px-4 bg-indigo-50 text-center">
       <div class="max-w-3xl mx-auto p-8 rounded-lg">
         <h1 class="text-4xl font-bold mb-4 text-brandDark">The Future of Bay Area Transit</h1>
@@ -104,12 +114,47 @@
         <div class="mt-2">© <span id="year"></span> FOGDAY</div>
       </div>
     </footer>
-  </div> <!-- test -->
+  </div>
 
-  <!-- Scripts -->
-  <script src="/assets/js/menuBlitzloader.js" defer></script>
+  <!-- JS Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+      const barTop = toggle.querySelector('.bar-top');
+      const barBottom = toggle.querySelector('.bar-bottom');
+
+      function openMenu() {
+        menu.classList.remove('hidden', 'opacity-0');
+        menu.classList.add('opacity-100');
+        backdrop.classList.remove('hidden', 'opacity-0');
+        backdrop.classList.add('opacity-100');
+        barTop.classList.add('rotate-45', 'translate-y-1');
+        barBottom.classList.add('-rotate-45', '-translate-y-1');
+      }
+
+      function closeMenu() {
+        menu.classList.remove('opacity-100');
+        menu.classList.add('opacity-0');
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        barTop.classList.remove('rotate-45', 'translate-y-1');
+        barBottom.classList.remove('-rotate-45', '-translate-y-1');
+        setTimeout(() => {
+          menu.classList.add('hidden');
+          backdrop.classList.add('hidden');
+        }, 500);
+      }
+
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.contains('opacity-100') && !menu.classList.contains('hidden');
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      backdrop.addEventListener('click', closeMenu);
+
+      // Footer year and page fade
       const year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
 
