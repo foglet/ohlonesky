@@ -20,71 +20,95 @@
 </head>
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <noscript>
+    <style>
+      #pageContent { opacity: 1 !important; }
+    </style>
+  </noscript>
 
-  <!-- Header -->
-  <header class="sticky top-0 bg-white shadow z-50">
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <a href="/00/" class="flex items-center space-x-2">
-          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-7 w-auto" />
-        </a>
+  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-4">
-          <a href="/00/faqs/" class="text-gray-700 font-bold hover:text-highlight">FAQs</a>
-          <a href="/00/coalition/" class="text-gray-700 font-bold hover:text-highlight">Coalition</a>
-          <a href="/00/support/" class="text-gray-700 font-bold hover:text-highlight">Support</a>
-        </nav>
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow z-50">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="/00/" class="flex items-center space-x-2">
+            <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-[28px] w-auto" />
+          </a>
 
-        <!-- Mobile Menu Toggle -->
-        <div class="md:hidden">
-          <button id="mobileMenuToggle" class="text-gray-700 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex space-x-4">
+            <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+            <a href="/00/coalition/" class="text-brandDark font-bold hover:text-highlight">Coalition</a>
+            <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+          </nav>
+
+          <!-- Mobile Trigger -->
+          <button id="menuToggle" class="md:hidden flex flex-col justify-center items-end space-y-1 w-8 h-8 focus:outline-none">
+            <span class="block w-8 h-0.5 bg-black transition-transform duration-500 origin-right"></span>
+            <span class="block w-5 h-0.5 bg-black transition-transform duration-500 origin-right"></span>
           </button>
         </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Mobile Navigation -->
-    <nav id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2">
-      <a href="/00/faqs/" class="block text-gray-700 font-bold hover:text-highlight">FAQs</a>
-      <a href="/00/coalition/" class="block text-gray-700 font-bold hover:text-highlight">Coalition</a>
-      <a href="/00/support/" class="block text-gray-700 font-bold hover:text-highlight">Support</a>
+    <!-- Backdrop -->
+    <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"></div>
+
+    <!-- Slide-Out Mobile Menu -->
+    <nav id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6 space-y-6 transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
+      <button id="closeMenu" type="button" aria-label="Close menu" class="absolute top-4 right-4 text-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a href="/00/faqs/" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">FAQs</a>
+      <a href="/00/coalition/" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">Coalition</a>
+      <a href="/00/support/" class="block text-lg font-bold text-gray-800 hover:text-highlight transition-colors duration-200">Support</a>
     </nav>
-  </header>
 
-  <!-- Hero -->
-  <main class="flex-grow py-16 px-4 bg-indigo-50 text-center">
-    <div class="max-w-3xl mx-auto p-8 rounded-lg">
-      <h1 class="text-4xl font-bold mb-4 text-brandDark">The Future of Bay Area Transit</h1>
-      <p class="text-lg text-gray-700">
-        Ohlone Sky is a visionary aerial tram system connecting San Francisco to Treasure Island. Safe. Scenic. Sustainable.
-      </p>
-    </div>
-  </main>
+    <!-- Hero Section -->
+    <main class="flex-grow py-16 px-4 bg-indigo-50 text-center">
+      <div class="max-w-3xl mx-auto p-8 rounded-lg">
+        <h1 class="text-4xl font-bold mb-4 text-brandDark">The Future of Bay Area Transit</h1>
+        <p class="text-lg text-gray-700">
+          Ohlone Sky is a visionary aerial tram system connecting San Francisco to Treasure Island. Safe. Scenic. Sustainable.
+        </p>
+      </div>
+    </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
-    <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-      <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-      <div><a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a></div>
-      <div class="mt-2">© <span id="year"></span> FOGDAY</div>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div><a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a></div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+    </footer>
+  </div>
 
+  <!-- Scripts -->
+  <script src="/assets/js/menuBlitzloader.js" defer></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-    // Mobile toggle
-    document.getElementById('mobileMenuToggle').addEventListener('click', () => {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
+      const pageContent = document.getElementById('pageContent');
+      const skipFade = sessionStorage.getItem('skipFadeIn');
+      if (pageContent) {
+        if (skipFade) {
+          pageContent.classList.remove('opacity-0');
+          sessionStorage.removeItem('skipFadeIn');
+        } else {
+          requestAnimationFrame(() => {
+            pageContent.classList.remove('opacity-0');
+            pageContent.classList.add('opacity-100');
+          });
+        }
+      }
     });
   </script>
-
 </body>
 </html>
