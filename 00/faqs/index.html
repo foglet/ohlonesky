@@ -19,7 +19,15 @@
     </script>
   </head>
 
-  <body class="bg-white text-gray-800 flex flex-col min-h-screen min-h-0">
+  <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    <noscript>
+      <style>
+      #pageContent { opacity: 1 !important; }
+      </style>
+    </noscript>
+
+  <main role="main" class="flex-grow py-16 px-4 bg-indigo-50">
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
@@ -29,7 +37,7 @@
         <div class="flex items-center justify-between h-16">
 
           <!-- Logo -->
-          <a href="/00/" class="flex items-center space-x-2">
+          <a href="/00/" id="logoLink" class="flex items-center space-x-2">
             <img
               src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
               alt="Ohlone Sky Logo"
