@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate bars
     bars[0].classList.add('rotate-45', 'translate-y-1.5');
     bars[1].classList.add('-rotate-45', '-translate-y-1');
-    bars[1].classList.replace('w-5', 'w-8');
   }
 
   function closeMenu() {
@@ -24,15 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    // Animate bars back
     bars[0].classList.remove('rotate-45', 'translate-y-1.5');
     bars[1].classList.remove('-rotate-45', '-translate-y-1');
-    bars[1].classList.replace('w-8', 'w-5');
 
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 300);
+    }, 500);
   }
 
   toggle.addEventListener('click', () => {
@@ -41,4 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   backdrop.addEventListener('click', closeMenu);
+  document.getElementById('closeMenu')?.addEventListener('click', closeMenu);
 });
