@@ -78,11 +78,15 @@ export function initMenuToggle() {
     }
   });
 
-  // Intercept mobile nav links and delay navigation
+  // Intercept mobile nav links (but not target=_blank)
   menu.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
       const href = link.getAttribute('href');
+      const target = link.getAttribute('target');
+
+      if (target === '_blank') return; // Let it open in new tab normally
+
+      e.preventDefault();
       closeMenuAndNavigate(href);
     });
   });
