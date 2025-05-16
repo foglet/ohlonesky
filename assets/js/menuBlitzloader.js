@@ -10,29 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
 
-    // Start animation slightly after class removal for smooth transition
     setTimeout(() => {
       menu.classList.remove('-translate-x-full');
       backdrop.classList.add('opacity-100');
       backdrop.classList.remove('opacity-0');
     }, 10);
 
-    // Animate bars into an X
+    // Animate hamburger into X
     barTop.classList.add('rotate-45', 'translate-y-2');
     barBottom.classList.add('-rotate-45', '-translate-y-2');
   }
 
   function closeMenu() {
-    // Start hide animation
     menu.classList.add('-translate-x-full');
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    // Reset bars
     barTop.classList.remove('rotate-45', 'translate-y-2');
     barBottom.classList.remove('-rotate-45', '-translate-y-2');
 
-    // Fully hide after animation ends
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
