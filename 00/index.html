@@ -72,7 +72,7 @@
     </header>
 
     <!-- Hero -->
-    <main class="py-16 px-4 bg-indigo-50">
+    <main class="flex-grow py-16 px-4 bg-indigo-50">
       <div class="text-center max-w-3xl mx-auto p-8 rounded-lg">
         <h1 class="text-4xl font-bold mb-4 text-brandDark">The Future of Bay Area Transit</h1>
         <p class="text-lg text-gray-700">
@@ -81,25 +81,10 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
-      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
-        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-        <div>
-          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
-        </div>
-        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
-      </div>
-      <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-      </script>
-    </footer>
-
-
     <!-- Menu Toggle Script -->
-    <script src="../../assets/js/menuToggle.js"></script>
+<!--     <script src="../../assets/js/menuToggle.js"></script> -->
 
-  <!--  <script>
+  <script>
       document.addEventListener('DOMContentLoaded', () => {
         const menu = document.getElementById('mobileMenu');
         const menuButton = document.getElementById('menuButton');
@@ -158,7 +143,21 @@
           }
         });
       });
-    </script> -->
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div>
+          <a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a>
+        </div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </footer>
 
   </body>
 </html>
