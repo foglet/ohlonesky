@@ -46,11 +46,11 @@ export function initMenuToggle() {
     menuButton.setAttribute('aria-expanded', 'false');
     menu.classList.add('translate-x-full');
     backdrop.classList.add('opacity-0');
-    document.body.classList.remove('overflow-hidden');
 
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden'); // ✅ Moved here
       menuButton.focus();
     }, 300);
   }
