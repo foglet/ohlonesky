@@ -1,16 +1,12 @@
-// assets/js/menuToggle.js
-
 export function initMenuToggle() {
   const menu = document.getElementById('mobileMenu');
+  const backdrop = document.getElementById('menuBackdrop');
   const menuButton = document.getElementById('menuButton');
   const closeButton = document.getElementById('closeMenu');
-  const backdrop = document.getElementById('menuBackdrop');
-  const pageContent = document.getElementById('pageContent');
 
   function trapFocus(element) {
-    const focusable = element.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-    );
+    const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select';
+    const focusable = element.querySelectorAll(focusableSelectors);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
 
@@ -35,10 +31,12 @@ export function initMenuToggle() {
     backdrop.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
 
-    setTimeout(() => {
+    // Animate in
+    requestAnimationFrame(() => {
       menu.classList.remove('translate-x-full');
       backdrop.classList.remove('opacity-0');
-    }, 10);
+      backdrop.classList.add('opacity-100');
+    });
 
     trapFocus(menu);
   }
@@ -46,33 +44,16 @@ export function initMenuToggle() {
   function closeMenu() {
     menuButton.setAttribute('aria-expanded', 'false');
     menu.classList.add('translate-x-full');
+    backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
+    document.body.classList.remove('overflow-hidden');
 
+    // Delay hiding the elements until animation completes
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
       menuButton.focus();
-    }, 300);
-  }
-
-  function closeMenuAndNavigate(href) {
-    menuButton.setAttribute('aria-expanded', 'false');
-    menu.classList.add('translate-x-full');
-    backdrop.classList.add('opacity-0');
-
-    // Trigger fade-out on page content
-    if (pageContent) {
-      pageContent.classList.remove('opacity-100');
-      pageContent.classList.add('opacity-0');
-    }
-
-    setTimeout(() => {
-      menu.classList.add('hidden');
-      backdrop.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      window.location.href = href;
-    }, 300);
+    }, 300); // Match transition duration
   }
 
   menuButton.addEventListener('click', openMenu);
@@ -83,18 +64,5 @@ export function initMenuToggle() {
     if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
       closeMenu();
     }
-  });
-
-  // Intercept mobile nav links (except those with target="_blank")
-  menu.querySelectorAll('a[href]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      const target = link.getAttribute('target');
-
-      if (target === '_blank') return; // allow new tab behavior
-
-      e.preventDefault();
-      closeMenuAndNavigate(href);
-    });
   });
 }
