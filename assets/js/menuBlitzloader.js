@@ -3,14 +3,14 @@ export function initMenuBlitz() {
   const closeButton = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const links = mobileMenu.querySelectorAll('a');
+  const links = mobileMenu?.querySelectorAll('a') || [];
 
   function openMenu() {
     mobileMenu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
     requestAnimationFrame(() => {
-      backdrop.classList.remove('opacity-0');
       mobileMenu.classList.remove('translate-x-full');
+      backdrop.classList.remove('opacity-0');
     });
   }
 
@@ -20,16 +20,17 @@ export function initMenuBlitz() {
     setTimeout(() => {
       mobileMenu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 500); // Match your transition speed
+    }, 500); // Match Tailwind transition duration
   }
 
-  // Bind open/close triggers
   menuButton?.addEventListener('click', openMenu);
   closeButton?.addEventListener('click', closeMenu);
   backdrop?.addEventListener('click', closeMenu);
 
-  // Auto-close on any menu link click
   links.forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => {
+      sessionStorage.setItem('skipFadeIn', 'true');
+      closeMenu();
+    });
   });
 }
