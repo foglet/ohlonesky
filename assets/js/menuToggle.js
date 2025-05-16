@@ -50,8 +50,21 @@ export function initMenuToggle() {
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden'); // ✅ Moved here
+      document.body.classList.remove('overflow-hidden');
       menuButton.focus();
+    }, 300);
+  }
+
+  function closeMenuAndNavigate(href) {
+    menuButton.setAttribute('aria-expanded', 'false');
+    menu.classList.add('translate-x-full');
+    backdrop.classList.add('opacity-0');
+
+    setTimeout(() => {
+      menu.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      window.location.href = href;
     }, 300);
   }
 
@@ -63,5 +76,14 @@ export function initMenuToggle() {
     if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
       closeMenu();
     }
+  });
+
+  // Intercept mobile nav links and delay navigation
+  menu.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      closeMenuAndNavigate(href);
+    });
   });
 }
