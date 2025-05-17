@@ -237,27 +237,14 @@
     </footer>
   </div>
 
-  <!-- JavaScript -->
-  <script>
+  <!-- Scripts -->
+  <script type="module">
+    import { initMenu } from '/assets/js/menuBlitzloader.js';
+
     document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('menuToggle');
-      const menu = document.getElementById('mobileMenu');
-      const backdrop = document.getElementById('menuBackdrop');
+      initMenu();
 
-      function toggleMenu() {
-        const isOpen = menu.classList.contains('flex');
-        menuToggle.setAttribute('aria-expanded', !isOpen);
-        menu.classList.toggle('hidden');
-        menu.classList.toggle('flex');
-        menu.classList.toggle('opacity-0');
-        backdrop.classList.toggle('hidden');
-        backdrop.classList.toggle('opacity-0');
-      }
-
-      if (menuToggle && menu && backdrop) {
-        menuToggle.addEventListener('click', toggleMenu);
-      }
-
+      // Set footer year and fade-in
       const year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
 
