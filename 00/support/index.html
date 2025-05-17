@@ -29,8 +29,8 @@
   <!-- Bounce-in animation -->
   <style>
     @keyframes bounce-in {
-      0%   { opacity: 0; transform: translateY(20px) scale(0.96); }
-      60%  { opacity: 1; transform: translateY(-6px) scale(1.02); }
+      0%   { opacity: 0; transform: translateY(16px) scale(0.98); }
+      60%  { opacity: 1; transform: translateY(-2px) scale(1.01); }
       100% { transform: translateY(0) scale(1); }
     }
     .animate-bounce-in { animation: bounce-in 600ms ease-out forwards; }
@@ -79,7 +79,7 @@
 
     <!-- Mobile Menu -->
     <nav id="mobileMenu"
-         class="hidden absolute top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out">
+         class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out">
       <div id="menuLinks" class="text-center space-y-2">
         <a href="/00/faqs/"
            class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:opacity-100 hover:text-highlight">
