@@ -44,21 +44,18 @@
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 pr-2">
-          <!-- Logo -->
           <a href="/00/" class="flex items-center space-x-2">
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
                  alt="Ohlone Sky Logo"
                  class="h-[28px] w-auto" />
           </a>
-          <!-- Desktop Nav -->
           <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
             <a href="/00/faqs/" class="text-highlight font-bold underline">FAQs</a>
             <a href="/00/coalition/" class="text-brandDark font-bold hover:text-highlight">Coalition</a>
             <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
           </nav>
-
-          <!-- Hamburger Button -->
-          <button id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle Menu" class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
+          <button id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle Menu"
+            class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
             <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
             <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
           </button>
@@ -66,10 +63,7 @@
       </div>
     </header>
 
-    <!-- Backdrop -->
     <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out"></div>
-
-    <!-- Mobile Menu -->
     <nav id="mobileMenu" class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden" aria-label="Mobile Menu">
       <div id="menuLinks" class="text-center space-y-2">
         <a href="/00/faqs/" class="block text-4xl font-bold uppercase tracking-tight text-highlight animate-bounce-in delay-100">FAQs</a>
@@ -78,7 +72,7 @@
       </div>
     </nav>
 
-    <!-- Hero Image -->
+    <!-- Hero -->
     <figure>
       <img src="https://images.unsplash.com/photo-1508449311527-313da8823205?auto=format&fit=crop&w=1350&q=80" alt="Tian Tan Buddha in Hong Kong by Joe Green" class="w-full h-auto" loading="lazy" />
       <figcaption class="text-xs text-gray-600 text-center mt-2">
@@ -90,12 +84,12 @@
     <main id="mainContent" class="flex-grow py-16 px-4 bg-indigo-50">
       <section class="text-center mb-16">
         <h1 class="text-4xl font-bold mb-4 text-brandDark">Frequently Asked Questions</h1>
-        <p>
-          Everything you need to know about Ohlone Sky, the Bay Area’s next iconic transit system.
-        </p>
+        <p>Everything you need to know about Ohlone Sky, the Bay Area’s next iconic transit system.</p>
       </section>
 
       <section class="max-w-4xl mx-auto space-y-12 text-left text-gray-800">
+
+        <!-- Example FAQ Group -->
         <div>
           <h2 class="text-2xl font-semibold text-brandDark mb-4">Why Ohlone Sky?</h2>
           <div class="space-y-6">
@@ -117,10 +111,12 @@
             </div>
           </div>
         </div>
+
+        <!-- Add additional FAQ groups here -->
+
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
       <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
         <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
@@ -130,7 +126,6 @@
     </footer>
   </div>
 
-  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const menuToggle = document.getElementById('menuToggle');
