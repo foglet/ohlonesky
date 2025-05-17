@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ohlone Sky</title>
+  <meta name="description" content="Support Ohlone Sky — San Francisco's visionary aerial gondola system, committed to sustainability and equity.">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,8 +24,8 @@
     };
   </script>
 
-  <!-- Adobe Fonts (replace this with your project link) -->
-  <link rel="stylesheet" href="https://use.typekit.net/xxxxxxx.css">
+  <!-- Adobe Fonts (replace with actual project link) -->
+  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css">
 
   <!-- Bounce-in animation -->
   <style>
@@ -41,6 +42,7 @@
 </head>
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
   <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
@@ -49,7 +51,7 @@
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 pr-2">
-          <!-- Logo -->
+          <!-- Logo (do not lazy load) -->
           <a href="/00/" class="flex items-center space-x-2">
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
                  alt="Ohlone Sky Logo"
@@ -57,14 +59,15 @@
           </a>
 
           <!-- Desktop Nav -->
-          <nav class="hidden md:flex space-x-4">
+          <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
             <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
             <a href="/00/coalition/" class="text-brandDark font-bold hover:text-highlight">Coalition</a>
             <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
           </nav>
 
           <!-- Hamburger Button -->
-          <button id="menuToggle" class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
+          <button id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle Menu"
+            class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
             <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
             <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
           </button>
@@ -74,56 +77,62 @@
 
     <!-- Backdrop -->
     <div id="menuBackdrop"
-         class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out">
-    </div>
+         class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out"></div>
 
     <!-- Mobile Menu -->
     <nav id="mobileMenu"
-       class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden">
+         class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden"
+         aria-label="Mobile Navigation">
       <div id="menuLinks" class="text-center space-y-2">
         <a href="/00/faqs/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:text-highlight">
            FAQs</a>
         <a href="/00/coalition/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:text-highlight">
            Coalition</a>
         <a href="/00/support/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:text-highlight">
            Support</a>
       </div>
     </nav>
 
-    <!-- ******** images images images ******** -->
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg" alt="Aerial view of tram line"
-     class="w-full h-auto" /><p class="text-xs text-gray-600 text-center mt-2">
-       Source: UNStudio</p><br>
+    <!-- Hero Image -->
+    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
+         alt="Aerial view of tram line"
+         class="w-full h-auto"
+         loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: UNStudio
+    </p>
 
-
-
-   <!-- ******** Heroes: Support ******** -->
-    <main class="flex-grow py-16 px-4 bg-indigo-50">
+    <!-- Support Hero Section -->
+    <main id="mainContent" class="flex-grow py-16 px-4 bg-indigo-50">
       <section class="text-center max-w-3xl mx-auto space-y-6">
-      <h1 class="text-4xl font-bold text-brandDark">Support Ohlone Sky</h1>
-      <p class="text-lg text-gray-700">
-        Your support brings us closer to a cleaner, more connected Bay Area — one that future generations will thank us for.
-      </p>
-      <p class="text-gray-600">
-        Every dollar helps fund design, environmental review, and early-phase development of San Francisco’s most visionary transit project. Whether you're an individual, foundation, or corporate sponsor, you’re helping build something extraordinary.
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-        <a href="/donate" class="inline-block bg-brandDark text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-brandAccent transition">
-          Make a Donation
-        </a>
-        <a href="/contact" class="inline-block bg-white text-brandDark font-semibold px-6 py-3 border border-brandDark rounded-lg hover:bg-gray-100 transition">
-          Contact Our Team
-        </a>
-      </div>
+        <h1 class="text-4xl font-bold text-brandDark">Support Ohlone Sky</h1>
+        <p class="text-lg text-gray-700">
+          Your support brings us closer to a cleaner, more connected Bay Area — one that future generations will thank us for.
+        </p>
+        <p class="text-gray-600">
+          Every dollar helps fund design, environmental review, and early-phase development of San Francisco’s most visionary transit project.
+          Our goals align with the <a href="https://sdgs.un.org/goals" class="text-brandDark font-medium underline hover:text-brandAccent transition" target="_blank" rel="noopener noreferrer">
+          United Nations’ 17 Sustainable Development Goals</a>, advancing clean energy, mobility, equity, and climate resilience.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+          <a href="/donate" class="inline-block bg-brandDark text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-brandAccent transition">
+            Make a Donation
+          </a>
+          <a href="/contact" class="inline-block bg-white text-brandDark font-semibold px-6 py-3 border border-brandDark rounded-lg hover:bg-gray-100 transition">
+            Contact Our Team
+          </a>
+        </div>
       </section>
     </main>
 
-     <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png" alt="London Cable Car" class="w-full h-auto" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-          Source: Emirates_Air_Line, Wikipedia</p><br>
+    <!-- Secondary Image -->
+    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png" alt="London Cable Car" class="w-full h-auto" loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Emirates_Air_Line, <a href="https://en.wikipedia.org/wiki/Emirates_Air_Line_(cable_car)" class="underline hover:text-highlight" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+    </p>
 
     <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
@@ -137,30 +146,28 @@
 
   <!-- Scripts -->
   <script type="module">
-  import { initMenu } from '/assets/js/menuBlitzloader.js';
+    import { initMenu } from '/assets/js/menuBlitzloader.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initMenu();
+    document.addEventListener('DOMContentLoaded', () => {
+      initMenu();
 
-    // Set footer year and page fade
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-    const pageContent = document.getElementById('pageContent');
-    const skipFade = sessionStorage.getItem('skipFadeIn');
-    if (pageContent) {
-      if (skipFade) {
-        pageContent.classList.remove('opacity-0');
-        sessionStorage.removeItem('skipFadeIn');
-      } else {
-        requestAnimationFrame(() => {
+      const pageContent = document.getElementById('pageContent');
+      const skipFade = sessionStorage.getItem('skipFadeIn');
+      if (pageContent) {
+        if (skipFade) {
           pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
+          sessionStorage.removeItem('skipFadeIn');
+        } else {
+          requestAnimationFrame(() => {
+            pageContent.classList.remove('opacity-0');
+            pageContent.classList.add('opacity-100');
+          });
+        }
       }
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
