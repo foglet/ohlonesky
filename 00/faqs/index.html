@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQs – Ohlone Sky</title>
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,12 +17,10 @@
       },
     };
   </script>
-
-  <!-- Bounce-in animation -->
   <style>
     @keyframes bounce-in {
-      0%   { opacity: 0; transform: translateY(16px) scale(0.98); }
-      60%  { opacity: 1; transform: translateY(-2px) scale(1.01); }
+      0% { opacity: 0; transform: translateY(16px) scale(0.98); }
+      60% { opacity: 1; transform: translateY(-2px) scale(1.01); }
       100% { transform: translateY(0) scale(1); }
     }
     .animate-bounce-in { animation: bounce-in 600ms ease-out forwards; }
@@ -33,11 +29,9 @@
     .delay-300 { animation-delay: 300ms; }
   </style>
 </head>
-
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
   <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
   <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
-
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
     <!-- Header -->
@@ -50,7 +44,7 @@
                  class="h-[28px] w-auto" />
           </a>
           <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
-            <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+            <a href="/00/faqs/" class="text-highlight font-bold underline">FAQs</a>
             <a href="/00/coalition/" class="text-brandDark font-bold hover:text-highlight">Coalition</a>
             <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
           </nav>
@@ -63,6 +57,7 @@
       </div>
     </header>
 
+    <!-- Mobile Menu -->
     <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out"></div>
     <nav id="mobileMenu" class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden" aria-label="Mobile Menu">
       <div id="menuLinks" class="text-center space-y-2">
@@ -88,141 +83,139 @@
       </section>
 
       <section class="max-w-4xl mx-auto space-y-12 text-left text-gray-800">
+        <!-- Why Ohlone Sky? -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Why Ohlone Sky?</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">What is Ohlone Sky?</h3>
+      <p>A privately funded aerial gondola system connecting San Francisco’s Pier 24 to Yerba Buena and Treasure Island. It’s transit with a view — designed to inspire and built to last.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Why build a gondola?</h3>
+      <p>Because nothing else solves this problem so efficiently. It’s fast, carbon-free, visually stunning, and doesn’t clog the roads or cost taxpayers billions.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">How many people will ride it?</h3>
+      <p>We estimate at least two million roundtrip riders annually — including tourists, commuters, and Treasure Island residents.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Is this just a tourist attraction?</h3>
+      <p>No. It’s daily transportation — beautiful, efficient, and equitable. Tourists love it, but locals will rely on it.</p>
+    </div>
+  </div>
+</div>
 
-        <!-- Example FAQ Group -->
-        <div>
-          <h2 class="text-2xl font-semibold text-brandDark mb-4">Why Ohlone Sky?</h2>
-          <div class="space-y-6">
-            <div>
-              <h3 class="font-semibold">What is Ohlone Sky?</h3>
-              <p>A privately funded aerial gondola system connecting San Francisco’s Pier 24 to Yerba Buena and Treasure Island. It’s transit with a view — designed to inspire and built to last.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold">Why build a gondola?</h3>
-              <p>Because nothing else solves this problem so efficiently. It’s fast, carbon-free, visually stunning, and doesn’t clog the roads or cost taxpayers billions.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold">How many people will ride it?</h3>
-              <p>We estimate at least two million roundtrip riders annually — including tourists, commuters, and Treasure Island residents.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold">Is this just a tourist attraction?</h3>
-              <p>No. It’s daily transportation — beautiful, efficient, and equitable. Tourists love it, but locals will rely on it.</p>
-            </div>
-          </div>
-        </div>
+<!-- Environmental Impact -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Environmental Impact</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">Is it eco-friendly?</h3>
+      <p>Yes. It’s powered by electricity, produces no tailpipe emissions.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Does it protect the Bay?</h3>
+      <p>Absolutely. The system glides over water, avoiding marine disruption and reducing runoff pollution from car traffic.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">What about the view?</h3>
+      <p>We’ve partnered with leading architects to design towers and stations that respect and elevate the beauty of San Francisco’s skyline.</p>
+    </div>
+  </div>
+</div>
 
-        <!-- Environmental Impact -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Environmental Impact</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">Is it eco-friendly?</h3>
-                <p>Yes. It’s powered by electricity, produces no tailpipe emissions.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">Does it protect the Bay?</h3>
-                <p>Absolutely. The system glides over water, avoiding marine disruption and reducing runoff pollution from car traffic.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">What about the view?</h3>
-                <p>We’ve partnered with leading architects to design towers and stations that respect and elevate the beauty of San Francisco’s skyline.</p>
-              </div>
-            </div>
-          </div>
+<!-- Funding & Costs -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Funding & Costs</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">Who’s paying for this?</h3>
+      <p>Private investors, philanthropic sponsors, and eventually ticket revenue — not San Francisco taxpayers.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">How much will it cost?</h3>
+      <p>Approximately $300 million with a 10% contingency. That’s a fraction of the cost of any comparable project.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">What does San Francisco contribute?</h3>
+      <p>Just liability insurance. The city carries no financial burden for construction or operations.</p>
+    </div>
+  </div>
+</div>
 
-          <!-- Funding & Costs -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Funding & Costs</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">Who’s paying for this?</h3>
-                <p>Private investors, philanthropic sponsors, and eventually ticket revenue — not San Francisco taxpayers.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">How much will it cost?</h3>
-                <p>Approximately $300 million with a 10% contingency. That’s a fraction of the cost of any comparable project.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">What does San Francisco contribute?</h3>
-                <p>Just liability insurance. The city carries no financial burden for construction or operations.</p>
-              </div>
-            </div>
-          </div>
+<!-- Operations & Experience -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Operations & Experience</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">How long is the ride?</h3>
+      <p>About twelve minutes from end to end — much faster than driving or taking a bus.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">How often do cabins run?</h3>
+      <p>Every 30–60 seconds. No long waits, no crowding, just step aboard.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Is it accessible?</h3>
+      <p>Yes. Cabins are wheelchair-friendly, stroller-friendly, and easy to board for all ages and abilities. BYO bike.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">What happens in bad weather?</h3>
+      <p>The system is designed to operate safely in wind, fog, and rain — conditions San Franciscans know well.</p>
+    </div>
+  </div>
+</div>
 
-          <!-- Operations & Experience -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Operations & Experience</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">How long is the ride?</h3>
-                <p>About twelve minutes from end to end — much faster than driving or taking a bus.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">How often do cabins run?</h3>
-                <p>Every 30–60 seconds. No long waits, no crowding, just step aboard.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">Is it accessible?</h3>
-                <p>Yes. Cabins are wheelchair-friendly, stroller-friendly, and easy to board for all ages and abilities. BYO bike.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">What happens in bad weather?</h3>
-                <p>The system is designed to operate safely in wind, fog, and rain — conditions San Franciscans know well.</p>
-              </div>
-            </div>
-          </div>
+<!-- Community & Equity -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Community & Equity</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">Who benefits from Ohlone Sky?</h3>
+      <p>Everyone. Treasure Island residents, downtown workers, small businesses, and tourists all gain faster, cleaner access.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Do you give back?</h3>
+      <p>Yes. We commit 10% of annual profits to charitable causes and community development projects.</p>
+    </div>
+  </div>
+</div>
 
-          <!-- Community & Equity -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Community & Equity</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">Who benefits from Ohlone Sky?</h3>
-                <p>Everyone. Treasure Island residents, downtown workers, small businesses, and tourists all gain faster, cleaner access.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">Do you give back?</h3>
-                <p>Yes. We commit 10% of annual profits to charitable causes and community development projects.</p>
-              </div>
-            </div>
-          </div>
+<!-- Permits & Approvals -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Permits & Approvals</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">Is this legally approved?</h3>
+      <p>It will be. We’re entering a 2–3 year environmental and permitting process with local, state, and federal agencies.</p>
+    </div>
+    <div>
+      <h3 class="font-semibold">Will the public have input?</h3>
+      <p>Yes. Community voices matter, and we’ll host public sessions during the design and approval phases.</p>
+    </div>
+  </div>
+</div>
 
-          <!-- Permits & Approvals -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Permits & Approvals</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">Is this legally approved?</h3>
-                <p>It will be. We’re entering a 2–3 year environmental and permitting process with local, state, and federal agencies.</p>
-              </div>
-              <div>
-                <h3 class="font-semibold">Will the public have input?</h3>
-                <p>Yes. Community voices matter, and we’ll host public sessions during the design and approval phases.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Global Goals -->
-          <div>
-            <h2 class="text-2xl font-semibold text-brandDark mb-4">Global Goals</h2>
-            <div class="space-y-6">
-              <div>
-                <h3 class="font-semibold">How sustainable is Ohlone Sky?</h3>
-                <p>
-                  We advance goals around clean energy, resilient infrastructure, equitable mobility, climate action, and community uplift — not just for San Francisco, but for the world we want to live in.
-                  We support those solving challenges aligned with the
-                  <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">United Nations’ 17 Sustainable Development Goals</a>.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </section>
+<!-- Global Goals -->
+<div>
+  <h2 class="text-2xl font-semibold text-brandDark mb-4">Global Goals</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="font-semibold">How sustainable is Ohlone Sky?</h3>
+      <p>
+        We advance goals around clean energy, resilient infrastructure, equitable mobility, climate action, and community uplift — not just for San Francisco, but for the world we want to live in.
+        We support those solving challenges aligned with the
+        <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">United Nations’ 17 Sustainable Development Goals</a>.
+      </p>
+    </div>
+  </div>
+</div>
 
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
       <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
         <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
@@ -232,6 +225,7 @@
     </footer>
   </div>
 
+  <!-- JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const menuToggle = document.getElementById('menuToggle');
@@ -243,6 +237,7 @@
         menuToggle.setAttribute('aria-expanded', !isOpen);
         menu.classList.toggle('hidden');
         menu.classList.toggle('flex');
+        menu.classList.toggle('opacity-0');
         backdrop.classList.toggle('hidden');
         backdrop.classList.toggle('opacity-0');
       }
