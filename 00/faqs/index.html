@@ -14,17 +14,11 @@
           colors: {
             brandDark: '#1d2834',
             highlight: '#ff5500',
-          },
-          fontFamily: {
-            adobe: ['freight-sans-pro', 'sans-serif'],
-          },
+          }
         },
       },
     };
   </script>
-
-  <!-- Adobe Fonts (PRODUCTION READY) -->
-  <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
 
   <!-- Bounce-in animation -->
   <style>
@@ -50,7 +44,7 @@
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 pr-2">
-          <!-- Logo (do not lazy load) -->
+          <!-- Logo -->
           <a href="/00/" class="flex items-center space-x-2">
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
                  alt="Ohlone Sky Logo"
@@ -78,9 +72,9 @@
     <!-- Mobile Menu -->
     <nav id="mobileMenu" class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden" aria-label="Mobile Menu">
       <div id="menuLinks" class="text-center space-y-2">
-        <a href="/00/faqs/" class="block text-4xl font-bold uppercase tracking-tight font-adobe text-highlight animate-bounce-in delay-100">FAQs</a>
-        <a href="/00/coalition/" class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:text-highlight">Coalition</a>
-        <a href="/00/support/" class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:text-highlight">Support</a>
+        <a href="/00/faqs/" class="block text-4xl font-bold uppercase tracking-tight text-highlight animate-bounce-in delay-100">FAQs</a>
+        <a href="/00/coalition/" class="block text-4xl font-bold uppercase tracking-tight text-gray-800 animate-bounce-in delay-200 hover:text-highlight">Coalition</a>
+        <a href="/00/support/" class="block text-4xl font-bold uppercase tracking-tight text-gray-800 animate-bounce-in delay-300 hover:text-highlight">Support</a>
       </div>
     </nav>
 
@@ -92,9 +86,38 @@
       </figcaption>
     </figure>
 
-    <!-- Main Content Placeholder -->
+    <!-- Main Content -->
     <main id="mainContent" class="flex-grow py-16 px-4 bg-indigo-50">
-      <!-- FAQ content is inserted here -->
+      <section class="text-center mb-16">
+        <h1 class="text-4xl font-bold mb-4 text-brandDark">Frequently Asked Questions</h1>
+        <p>
+          Everything you need to know about Ohlone Sky, the Bay Area’s next iconic transit system.
+        </p>
+      </section>
+
+      <section class="max-w-4xl mx-auto space-y-12 text-left text-gray-800">
+        <div>
+          <h2 class="text-2xl font-semibold text-brandDark mb-4">Why Ohlone Sky?</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-semibold">What is Ohlone Sky?</h3>
+              <p>A privately funded aerial gondola system connecting San Francisco’s Pier 24 to Yerba Buena and Treasure Island. It’s transit with a view — designed to inspire and built to last.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">Why build a gondola?</h3>
+              <p>Because nothing else solves this problem so efficiently. It’s fast, carbon-free, visually stunning, and doesn’t clog the roads or cost taxpayers billions.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">How many people will ride it?</h3>
+              <p>We estimate at least two million roundtrip riders annually — including tourists, commuters, and Treasure Island residents.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">Is this just a tourist attraction?</h3>
+              <p>No. It’s daily transportation — beautiful, efficient, and equitable. Tourists love it, but locals will rely on it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
