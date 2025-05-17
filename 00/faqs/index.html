@@ -55,7 +55,7 @@
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
                  alt="Ohlone Sky Logo"
                  class="h-[28px] w-auto" />
-          </a> 
+          </a>
           <!-- Desktop Nav -->
           <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
             <a href="/00/faqs/" class="text-highlight font-bold underline">FAQs</a>
@@ -108,11 +108,24 @@
   </div>
 
   <!-- Scripts -->
-  <script type="module">
-    import { initMenu } from '/assets/js/menuBlitzloader.js';
-
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
-      initMenu();
+      const menuToggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+
+      function toggleMenu() {
+        const isOpen = menu.classList.contains('flex');
+        menuToggle.setAttribute('aria-expanded', !isOpen);
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+        backdrop.classList.toggle('hidden');
+        backdrop.classList.toggle('opacity-0');
+      }
+
+      if (menuToggle && menu && backdrop) {
+        menuToggle.addEventListener('click', toggleMenu);
+      }
 
       const year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
