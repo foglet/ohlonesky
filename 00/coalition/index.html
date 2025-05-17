@@ -23,8 +23,8 @@
     };
   </script>
 
-  <!-- Adobe Fonts (replace this with your project link) -->
-  <link rel="stylesheet" href="https://use.typekit.net/xxxxxxx.css">
+  <!-- Adobe Fonts (replace with actual project link) -->
+  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css">
 
   <!-- Bounce-in animation -->
   <style>
@@ -41,6 +41,7 @@
 </head>
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
   <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
@@ -49,7 +50,7 @@
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 pr-2">
-          <!-- Logo -->
+          <!-- Logo (do not lazy load) -->
           <a href="/00/" class="flex items-center space-x-2">
             <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
                  alt="Ohlone Sky Logo"
@@ -57,14 +58,15 @@
           </a>
 
           <!-- Desktop Nav -->
-          <nav class="hidden md:flex space-x-4">
+          <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
             <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
             <a href="/00/coalition/" class="text-brandDark font-bold hover:text-highlight">Coalition</a>
             <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
           </nav>
 
           <!-- Hamburger Button -->
-          <button id="menuToggle" class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
+          <button id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu"
+            class="md:hidden flex flex-col justify-center items-center space-y-1 w-8 h-8 focus:outline-none">
             <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
             <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-500 origin-center"></span>
           </button>
@@ -73,86 +75,73 @@
     </header>
 
     <!-- Backdrop -->
-    <div id="menuBackdrop"
-         class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out">
-    </div>
+    <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 opacity-0 transition-opacity duration-500 ease-out"></div>
 
     <!-- Mobile Menu -->
     <nav id="mobileMenu"
-       class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden">
+         class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-white z-40 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out overflow-hidden"
+         aria-label="Mobile Navigation">
       <div id="menuLinks" class="text-center space-y-2">
         <a href="/00/faqs/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-100 hover:text-highlight">
            FAQs</a>
         <a href="/00/coalition/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-200 hover:text-highlight">
            Coalition</a>
         <a href="/00/support/"
-           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:opacity-100 hover:text-highlight">
+           class="block text-4xl font-bold uppercase tracking-tight font-adobe text-gray-800 animate-bounce-in delay-300 hover:text-highlight">
            Support</a>
       </div>
     </nav>
 
-    <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8" alt="Two cable cars traveling during sunset by Tbel Abuseridze"
-     class="w-full h-auto" />
+    <!-- Hero Image -->
+    <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+         alt="Two cable cars traveling during sunset by Tbel Abuseridze"
+         class="w-full h-auto" loading="lazy" />
 
-     <p class="text-xs text-gray-600 text-center mt-2">
-         Source: Tbel Abuseridze, Unsplash<p><br>
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Tbel Abuseridze, <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="underline hover:text-highlight">Unsplash</a>
+    </p>
 
-
-
-
-
-
-   <!-- ******** Heroes: Coalition Call to Action ******** -->
-     <main class="flex-grow py-16 px-4 bg-indigo-50">
-       <section class="bg-white py-16 px-4 rounded-lg shadow max-w-4xl mx-auto">
-         <div class="space-y-8 text-left text-gray-800">
-           <h2 class="text-3xl font-bold text-brandDark text-center">Shared Values. Shared Future.</h2>
-           <p>
-             Join a coalition that believes infrastructure should uplift communities, protect the planet, and serve the public good — not the status quo.
-           </p>
-           <p>
-             Ohlone Sky embodies the values of the United Nations’ 17 Sustainable Development Goals. Our gondola system is:
-           </p>
-           <ul class="list-disc list-inside space-y-3">
-             <li><strong>Cleaner</strong> than buses or cars, supporting climate resilience</li>
-             <li><strong>More inclusive</strong>, connecting underserved communities</li>
-             <li><strong>Smarter</strong>, using energy-efficient systems with minimal land disruption</li>
-             <li><strong>Faster to build</strong>, and <strong>cheaper to operate</strong>, than traditional transit</li>
-             <li><strong>Designed for longevity</strong>, with minimal environmental footprint</li>
-           </ul>
-           <p>
-             Let’s transform the Bay Area into a global model of sustainable urban transportation. Our coalition includes transit advocates, climate leaders, equity-focused nonprofits, designers, and citizens.
-           </p>
-           <p class="text-xl font-medium text-center">Add your name. Share your voice. Be part of the future.</p>
-           <div class="text-center mt-8">
-             <a href="/join" class="inline-block bg-brandDark text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-brandAccent transition">
-               Join the Coalition
-             </a>
-           </div>
-         </div>
-       </section>
+    <!-- Coalition CTA -->
+    <main id="mainContent" class="flex-grow py-16 px-4 bg-indigo-50">
+      <section class="bg-white py-16 px-4 rounded-lg shadow max-w-4xl mx-auto">
+        <div class="space-y-8 text-left text-gray-800">
+          <h2 class="text-3xl font-bold text-brandDark text-center">Shared Values. Shared Future.</h2>
+          <p>
+            Join a coalition that believes infrastructure should uplift communities, protect the planet, and serve the public good — not the status quo.
+          </p>
+          <p>
+            Ohlone Sky embodies the values of the United Nations’ 17 Sustainable Development Goals. Our gondola system is:
+          </p>
+          <ul class="list-disc list-inside space-y-3">
+            <li><strong>Cleaner</strong> than buses or cars, supporting climate resilience</li>
+            <li><strong>More inclusive</strong>, connecting underserved communities</li>
+            <li><strong>Smarter</strong>, using energy-efficient systems with minimal land disruption</li>
+            <li><strong>Faster to build</strong>, and <strong>cheaper to operate</strong>, than traditional transit</li>
+            <li><strong>Designed for longevity</strong>, with minimal environmental footprint</li>
+          </ul>
+          <p>
+            Let’s transform the Bay Area into a global model of sustainable urban transportation. Our coalition includes transit advocates, climate leaders, equity-focused nonprofits, designers, and citizens.
+          </p>
+          <p class="text-xl font-medium text-center">Add your name. Share your voice. Be part of the future.</p>
+          <div class="text-center mt-8">
+            <a href="/join" class="inline-block bg-brandDark text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-brandAccent transition">
+              Join the Coalition
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
-
-     <!-- Oakland Zoo -->
-      <div class="video-wrapper">
-        <video controls playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg">
-        <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola.mov" type="video/quicktime">
+    <!-- Oakland Zoo Video -->
+    <div class="video-wrapper max-w-4xl mx-auto px-4 pb-10">
+      <video controls playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full rounded-lg shadow">
+        <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola.mov" type="video/mp4">
         Your browser does not support the video tag.
-        </video>
-      </div>
-      <p class="text-xs text-gray-600 text-center mt-2" alt="Oakland Zoo by Fogday Studios">Source: Fogday Studios</p><br>
-
-
-
-
-
-
-
-
-
+      </video>
+      <p class="text-xs text-gray-600 text-center mt-2">Oakland Zoo gondola footage. Source: Fogday Studios.</p>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
@@ -166,30 +155,29 @@
 
   <!-- Scripts -->
   <script type="module">
-  import { initMenu } from '/assets/js/menuBlitzloader.js';
+    import { initMenu } from '/assets/js/menuBlitzloader.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initMenu();
+    document.addEventListener('DOMContentLoaded', () => {
+      initMenu();
 
-    // Set footer year and page fade
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
+      // Set footer year and fade-in
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-    const pageContent = document.getElementById('pageContent');
-    const skipFade = sessionStorage.getItem('skipFadeIn');
-    if (pageContent) {
-      if (skipFade) {
-        pageContent.classList.remove('opacity-0');
-        sessionStorage.removeItem('skipFadeIn');
-      } else {
-        requestAnimationFrame(() => {
+      const pageContent = document.getElementById('pageContent');
+      const skipFade = sessionStorage.getItem('skipFadeIn');
+      if (pageContent) {
+        if (skipFade) {
           pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
+          sessionStorage.removeItem('skipFadeIn');
+        } else {
+          requestAnimationFrame(() => {
+            pageContent.classList.remove('opacity-0');
+            pageContent.classList.add('opacity-100');
+          });
+        }
       }
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
