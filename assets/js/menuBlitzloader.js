@@ -1,36 +1,68 @@
 export function initMenu() {
-  const toggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('mobileMenu');
+  const toggleBtn = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const barTop = toggle.querySelector('.bar-top');
-  const barBottom = toggle.querySelector('.bar-bottom');
+  const barTop = toggleBtn?.querySelector('.bar-top');
+  const barBottom = toggleBtn?.querySelector('.bar-bottom');
+
+  if (!toggleBtn || !mobileMenu || !backdrop || !barTop || !barBottom) return;
+
+  let isOpen = false;
 
   function openMenu() {
-    menu.classList.remove('hidden', 'opacity-0');
-    menu.classList.add('opacity-100');
-    backdrop.classList.remove('hidden', 'opacity-0');
-    backdrop.classList.add('opacity-100');
-    barTop.classList.add('rotate-45', 'translate-y-1');
-    barBottom.classList.add('-rotate-45', '-translate-y-1');
+    isOpen = true;
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('overflow-hidden');
+
+    // Show menu + backdrop
+    mobileMenu.classList.remove('hidden');
+    backdrop.classList.remove('hidden');
+
+    // Trigger opacity transition
+    requestAnimationFrame(() => {
+      mobileMenu.classList.remove('opacity-0');
+      mobileMenu.classList.add('opacity-100');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+    });
+
+    // Animate hamburger to X
+    barTop.style.transform = 'rotate(45deg) translateY(4px)';
+    barBottom.style.transform = 'rotate(-45deg) translateY(-4px)';
   }
 
   function closeMenu() {
-    menu.classList.remove('opacity-100');
-    menu.classList.add('opacity-0');
-    backdrop.classList.remove('opacity-100');
+    isOpen = false;
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('overflow-hidden');
+
+    // Fade out menu + backdrop
+    mobileMenu.classList.add('opacity-0');
+    mobileMenu.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
-    barTop.classList.remove('rotate-45', 'translate-y-1');
-    barBottom.classList.remove('-rotate-45', '-translate-y-1');
+    backdrop.classList.remove('opacity-100');
+
+    // Hide after fade completes
     setTimeout(() => {
-      menu.classList.add('hidden');
+      mobileMenu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 500);
+    }, 300);
+
+    // Reset hamburger
+    barTop.style.transform = '';
+    barBottom.style.transform = '';
   }
 
-  toggle.addEventListener('click', () => {
-    const isOpen = menu.classList.contains('opacity-100') && !menu.classList.contains('hidden');
+  toggleBtn.addEventListener('click', () => {
     isOpen ? closeMenu() : openMenu();
   });
 
   backdrop.addEventListener('click', closeMenu);
+
+  // Optional: ESC key closes menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      closeMenu();
+    }
+  });
 }
