@@ -37,18 +37,21 @@
   </style>
 
   <!-- Bounce-in animation -->
-    <style>
-      @keyframes bounce-in {
-        0%   { opacity: 0; transform: translateY(12px) scale(0.98); }
-        60%  { opacity: 1; transform: translateY(1px) scale(1.005); }
-        100% { transform: translateY(0) scale(1); } }
+  <style>
+  @keyframes bounce-in {
+    0%   { opacity: 0; transform: translateY(12px) scale(0.98); }
+    60%  { opacity: 1; transform: translateY(1px) scale(1.005); }
+    100% { transform: translateY(0) scale(1); }
+  }
 
-      .animate-bounce-in {
-        animation: bounce-in 500ms cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-      .delay-100 { animation-delay: 100ms; }
-      .delay-200 { animation-delay: 200ms; }
-      .delay-300 { animation-delay: 300ms; }
-    </style>
+  .animate-bounce-in {
+    animation: bounce-in 500ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+</style>
 </head>
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
