@@ -43,21 +43,21 @@
 
   <!-- Bounce-in animation -->
   <style>
-    @keyframes fade-in {
-      0%   { opacity: 0; }
-      100% { opacity: 1; }
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    .animate-fade-in {
-      animation: fade-in 500ms ease-out forwards;
-      will-change: opacity;
+    .animate-fade-up {
+      animation: fade-up 500ms ease-out forwards;
+      will-change: opacity, transform;
     }
 
     .delay-100 { animation-delay: 100ms; }
     .delay-200 { animation-delay: 200ms; }
     .delay-300 { animation-delay: 300ms; }
   </style>
-  
+
 </head> <!-- test -->
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
@@ -193,6 +193,7 @@
   </section>
 
     <!-- Prose test -->
+    <!--
     <section class="prose prose-lg mx-auto px-4 py-8">
       <h1>Ohlone Sky</h1>
       <p>This is a test of the <code>.prose</code> class in Tailwind CSS.</p>
@@ -210,9 +211,9 @@
       </blockquote>
 
       <p><a href="#">This link</a> should have a slightly styled underline.</p>
-    </section>
+    </section> -->
 
-    </main>
+  </main>
 
     <!-- Embedded Map -->
     <div class="overflow-hidden -mt-16">
