@@ -1,68 +1,41 @@
 export function initMenu() {
-  const toggleBtn = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const barTop = toggleBtn?.querySelector('.bar-top');
-  const barBottom = toggleBtn?.querySelector('.bar-bottom');
+  const toggleButton = document.getElementById('menuToggle');
 
-  if (!toggleBtn || !mobileMenu || !backdrop || !barTop || !barBottom) return;
+  // Load the mobile menu first
+  fetch('/components/mobileMenu.html')
+    .then(res => res.text())
+    .then(html => {
+      const container = document.getElementById('mobileMenuContainer');
+      if (container) {
+        container.innerHTML = html;
 
-  let isOpen = false;
+        const menu = document.getElementById('mobileMenu');
+        const links = menu.querySelectorAll('a');
+        const closeMenu = () => {
+          menu.classList.add('opacity-0');
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => {
+            menu.classList.add('hidden');
+            backdrop.classList.add('hidden');
+          }, 300);
+        };
 
-  function openMenu() {
-    isOpen = true;
-    toggleBtn.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('overflow-hidden');
+        // Handle toggle open
+        toggleButton.addEventListener('click', () => {
+          menu.classList.remove('hidden');
+          backdrop.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            menu.classList.remove('opacity-0');
+            backdrop.classList.remove('opacity-0');
+          });
+        });
 
-    // Show menu + backdrop
-    mobileMenu.classList.remove('hidden');
-    backdrop.classList.remove('hidden');
+        // Handle backdrop click to close
+        backdrop.addEventListener('click', closeMenu);
 
-    // Trigger opacity transition
-    requestAnimationFrame(() => {
-      mobileMenu.classList.remove('opacity-0');
-      mobileMenu.classList.add('opacity-100');
-      backdrop.classList.remove('opacity-0');
-      backdrop.classList.add('opacity-100');
+        // Optionally: close when a link is tapped
+        links.forEach(link => link.addEventListener('click', closeMenu));
+      }
     });
-
-    // Animate hamburger to X
-    barTop.style.transform = 'rotate(45deg) translateY(4px)';
-    barBottom.style.transform = 'rotate(-45deg) translateY(-4px)';
-  }
-
-  function closeMenu() {
-    isOpen = false;
-    toggleBtn.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('overflow-hidden');
-
-    // Fade out menu + backdrop
-    mobileMenu.classList.add('opacity-0');
-    mobileMenu.classList.remove('opacity-100');
-    backdrop.classList.add('opacity-0');
-    backdrop.classList.remove('opacity-100');
-
-    // Hide after fade completes
-    setTimeout(() => {
-      mobileMenu.classList.add('hidden');
-      backdrop.classList.add('hidden');
-    }, 300);
-
-    // Reset hamburger
-    barTop.style.transform = '';
-    barBottom.style.transform = '';
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    isOpen ? closeMenu() : openMenu();
-  });
-
-  backdrop.addEventListener('click', closeMenu);
-
-  // Optional: ESC key closes menu
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) {
-      closeMenu();
-    }
-  });
 }
