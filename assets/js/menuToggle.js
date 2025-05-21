@@ -1,4 +1,4 @@
-// Enhanced menuToggle.js
+// Enhanced menuToggle.js for full-screen overlay (not slide-up)
 export function initMenuToggle() {
   const menu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
@@ -49,7 +49,8 @@ export function initMenuToggle() {
     document.body.classList.add('overflow-hidden');
 
     requestAnimationFrame(() => {
-      menu.classList.remove('translate-y-full');
+      menu.classList.remove('opacity-0');
+      menu.classList.add('opacity-100');
       backdrop.classList.remove('opacity-0');
       backdrop.classList.add('opacity-100');
 
@@ -66,14 +67,14 @@ export function initMenuToggle() {
 
   function closeMenu() {
     menuButton.setAttribute('aria-expanded', 'false');
-    menu.classList.add('translate-y-full');
+    menu.classList.remove('opacity-100');
+    menu.classList.add('opacity-0');
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
     document.body.classList.remove('overflow-hidden');
 
     animateHamburger(false);
 
-    // Reset menu link animation
     document.querySelectorAll('.menu-link').forEach(link => {
       link.classList.add('opacity-0', 'translate-y-2');
       link.style.transitionDelay = '';
