@@ -43,21 +43,21 @@
 
   <!-- Bounce-in animation -->
   <style>
-    @keyframes bounce-in {
-      0%   { opacity: 0; transform: translateY(4px) scale(0.985); }
-      50%  { opacity: 1; transform: translateY(-0.5px) scale(1.005); }
-      100% { transform: translateY(0) scale(1); }
+    @keyframes fade-in {
+      0%   { opacity: 0; }
+      100% { opacity: 1; }
     }
 
-    .animate-bounce-in {
-      animation: bounce-in 350ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
-      will-change: opacity, transform;
+    .animate-fade-in {
+      animation: fade-in 500ms ease-out forwards;
+      will-change: opacity;
     }
 
     .delay-100 { animation-delay: 100ms; }
     .delay-200 { animation-delay: 200ms; }
     .delay-300 { animation-delay: 300ms; }
   </style>
+  
 </head> <!-- test -->
 
 <body class="bg-white text-gray-800 flex flex-col min-h-screen">
