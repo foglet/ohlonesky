@@ -42,22 +42,22 @@
     }
   </style>
 
-    <!-- Bounce-in animation -->
-    <style>
-      @keyframes fade-in {
-        0%   { opacity: 0; }
-        100% { opacity: 1; }
-      }
+  <!-- Bounce-in animation -->
+  <style>
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-      .animate-fade-in {
-        animation: fade-in 500ms ease-out forwards;
-        will-change: opacity;
-      }
+    .animate-fade-up {
+      animation: fade-up 500ms ease-out forwards;
+      will-change: opacity, transform;
+    }
 
-      .delay-100 { animation-delay: 100ms; }
-      .delay-200 { animation-delay: 200ms; }
-      .delay-300 { animation-delay: 300ms; }
-    </style>
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+  </style>
 
 </head>
 
