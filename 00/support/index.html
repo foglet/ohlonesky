@@ -275,10 +275,13 @@
 
       const pageContent = document.getElementById('pageContent');
       const skipFade = sessionStorage.getItem('skipFadeIn');
+
       if (pageContent) {
         if (skipFade) {
           pageContent.classList.remove('opacity-0');
           sessionStorage.removeItem('skipFadeIn');
+        } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          pageContent.classList.remove('opacity-0');
         } else {
           requestAnimationFrame(() => {
             pageContent.classList.remove('opacity-0');
