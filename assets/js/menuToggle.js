@@ -1,3 +1,4 @@
+// Enhanced menuToggle.js
 export function initMenuToggle() {
   const menu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
@@ -31,13 +32,13 @@ export function initMenuToggle() {
 
   function animateHamburger(opening) {
     if (opening) {
-      barTop.classList.add('rotate-45', 'translate-y-2');
+      barTop.classList.add('rotate-45', 'translate-y-[6px]');
       barMiddle.classList.add('opacity-0');
-      barBottom.classList.add('-rotate-45', '-translate-y-2');
+      barBottom.classList.add('-rotate-45', '-translate-y-[6px]');
     } else {
-      barTop.classList.remove('rotate-45', 'translate-y-2');
+      barTop.classList.remove('rotate-45', 'translate-y-[6px]');
       barMiddle.classList.remove('opacity-0');
-      barBottom.classList.remove('-rotate-45', '-translate-y-2');
+      barBottom.classList.remove('-rotate-45', '-translate-y-[6px]');
     }
   }
 
@@ -53,7 +54,8 @@ export function initMenuToggle() {
       backdrop.classList.add('opacity-100');
 
       // Animate in menu links
-      document.querySelectorAll('.menu-link').forEach(link => {
+      document.querySelectorAll('.menu-link').forEach((link, i) => {
+        link.style.transitionDelay = `${100 + i * 50}ms`;
         link.classList.remove('opacity-0', 'translate-y-2');
       });
     });
@@ -74,13 +76,14 @@ export function initMenuToggle() {
     // Reset menu link animation
     document.querySelectorAll('.menu-link').forEach(link => {
       link.classList.add('opacity-0', 'translate-y-2');
+      link.style.transitionDelay = '';
     });
 
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
       menuButton.focus();
-    }, 300); // match transition duration
+    }, 300);
   }
 
   menuButton.addEventListener('click', () => {
