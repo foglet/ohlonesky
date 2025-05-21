@@ -51,6 +51,11 @@ export function initMenuToggle() {
       menu.classList.remove('translate-y-full');
       backdrop.classList.remove('opacity-0');
       backdrop.classList.add('opacity-100');
+
+      // Animate in menu links
+      document.querySelectorAll('.menu-link').forEach(link => {
+        link.classList.remove('opacity-0', 'translate-y-2');
+      });
     });
 
     animateHamburger(true);
@@ -66,11 +71,16 @@ export function initMenuToggle() {
 
     animateHamburger(false);
 
+    // Reset menu link animation
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.classList.add('opacity-0', 'translate-y-2');
+    });
+
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
       menuButton.focus();
-    }, 300); // Match Tailwind transition
+    }, 300); // match transition duration
   }
 
   menuButton.addEventListener('click', () => {
