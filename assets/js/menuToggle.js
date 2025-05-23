@@ -32,13 +32,13 @@ export function initMenuToggle() {
 
   function animateHamburger(opening) {
     if (opening) {
-      barTop.classList.add('rotate-45', 'translate-y-[6px]');
+      barTop.classList.add('rotate-90', 'translate-y-[6px]');
       barMiddle.classList.add('opacity-0');
-      barBottom.classList.add('-rotate-45', '-translate-y-[6px]');
+      barBottom.classList.add('-rotate-90', '-translate-y-[6px]');
     } else {
-      barTop.classList.remove('rotate-45', 'translate-y-[6px]');
+      barTop.classList.remove('rotate-90', 'translate-y-[6px]');
       barMiddle.classList.remove('opacity-0');
-      barBottom.classList.remove('-rotate-45', '-translate-y-[6px]');
+      barBottom.classList.remove('-rotate-90', '-translate-y-[6px]');
     }
   }
 
