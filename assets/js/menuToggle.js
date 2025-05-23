@@ -38,7 +38,6 @@ export function initMenuToggle() {
     } else {
       barTop.classList.remove('rotate-45', 'translate-y-[6px]');
       barMiddle.classList.remove('opacity-0');
-      barBottom.classList.remove('-rotate-45', '-translate-y-[6px]');
     }
   }
 
