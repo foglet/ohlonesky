@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Primary Meta Tags -->
+    <title>Ohlone Sky</title>
+    <meta name="title" content="Ohlone Sky" />
+    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohlonesky.com" />
+    <meta property="og:title" content="Ohlone Sky" />
+    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ohlonesky.com" />
+    <meta property="twitter:title" content="Ohlone Sky" />
+    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+  <!-- Meta Tags Generated with https://metatags.io -->
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#1d2834',
+            highlight: '#ff5500',
+            neutralText: '#636363',
+          },
+          fontFamily: {
+            adobe: ['freight-sans-pro', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Adobe Fonts (PRODUCTION READY) -->
+  <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
+
+  <!-- Clean paragraph widths -->
+  <!-- Clean paragraph widths -->
+  <style>
+    @layer base {
+      p {
+        @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
+      }
+
+      a {
+        @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+      }
+    }
+  </style>
+
+  <!-- Bounce-in animation -->
+  <style>
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fade-up 500ms ease-out forwards;
+      will-change: opacity, transform;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+  </style>
+
+</head>
+
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow z-50">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 pr-2">
+          <!-- Logo (do not lazy load) -->
+          <a href="/00/" class="flex items-center space-x-2">
+            <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+                 alt="Ohlone Sky Logo"
+                 class="h-[28px] w-auto" />
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+            <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+            <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+            <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+          </nav>
+
+          <!-- Hamburger -->
+          <button id="menuButton"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+            aria-label="Toggle Menu"
+            class="md:hidden flex flex-col justify-center items-center space-y-[3px] w-8 h-8 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 hover:bg-highlight/10 transition-colors duration-300">
+            <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+            <span class="bar-middle block w-8 h-0.5 bg-black transition-opacity duration-300 origin-center"></span>
+            <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Backdrop -->
+<div id="menuBackdrop"
+     class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 ease-out opacity-0 will-change-opacity"></div>
+
+<!-- Mobile Menu Overlay (no logo inside) -->
+<nav id="mobileMenu"
+     class="hidden fixed inset-0 bg-white z-40 opacity-0 transition-opacity duration-300 ease-out will-change-opacity pt-[64px]"
+     aria-label="Mobile Navigation">
+
+     <!-- Centered menu text at ~40% down the viewport -->
+     <div class="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-4">
+         <a href="/00/faqs/"
+         class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+         FAQs
+         </a>
+         <a href="/00/support/"
+         class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+         SUPPORT
+         </a>
+         <a href="/00/contact/"
+         class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+         CONTACT
+         </a>
+     </div>
+
+  <!-- Close Button -->
+  <button id="closeMenu" type="button" aria-label="Close menu" class="absolute top-6 right-6 text-gray-700">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</nav>
+
+    <!-- Hero Image -->
+    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jiachen-lin-q_dNpU4kAKo-unsplash.jpg"
+         alt="Singapore skyline by Jiachen Lin (@jiachenlin) on Unsplash"
+         class="w-full h-auto"
+         loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Jiachen Lin, Unsplash
+    </p>
+    <br>
+
+    <!-- Hero Text: Contact  -->
+
+    <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50">
+      <section class="text-center mb-6">
+
+        <h2 class="text-3xl font-bold text-neutralText mb-0">Welcome to Ohlone Sky!</h2>
+
+        <p> Thank for your support.</p>
+
+
+
+      </section>
+    </main>
+
+    <!-- Secondary Image -->
+    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png"
+     alt="Emirates Air Line cable car, London"
+     class="w-full h-auto"
+     loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Emirates Air Line, Wikipedia
+    </p>
+<br>
+
+    <!-- Tertiary Image -->
+  <!--  <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jan-huber-FuChqSzeCAc-unsplash.jpg"
+     alt="Urban aerial view by Jan Huber on Unsplash"
+     class="w-full h-auto"
+     loading="lazy" />
+<p class="text-xs text-gray-600 text-center mt-2">
+  Source: Jan Huber, Unsplash
+</p><br> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div><a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a></div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+    </footer>
+  <!-- </div> -->
+
+  <script type="module">
+  import { initMenu } from '/assets/js/menuBlitzloader.js';
+  import { initMenuToggle } from '/assets/js/menuToggle.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initMenu();
+    initMenuToggle(); // ✅ Add mobile menu logic
+
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+
+    const pageContent = document.getElementById('pageContent');
+    const skipFade = sessionStorage.getItem('skipFadeIn');
+
+    if (pageContent) {
+      if (skipFade) {
+        pageContent.classList.remove('opacity-0');
+        sessionStorage.removeItem('skipFadeIn');
+      } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        pageContent.classList.remove('opacity-0');
+      } else {
+        requestAnimationFrame(() => {
+          pageContent.classList.remove('opacity-0');
+          pageContent.classList.add('opacity-100');
+        });
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
