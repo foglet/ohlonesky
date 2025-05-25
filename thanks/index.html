@@ -195,7 +195,9 @@
 
     <main id="mainContent" class="flex-grow mx-auto">
       <section class="text-center">
-        <h2 class="text-base font-normal text-lime-800 my-6">We received your message.</h2>
+        <p id="thanksMessage" class="text-lg font-semibold text-brandDark mt-6"></p>
+
+  <!-- <h2 class="text-base font-normal text-lime-800 my-6">We received your message.</h2> -->
         <h2 class="text-4xl font-bold text-lime-600 mb-8">Upward and onward!</h2>
       </section>
     </main>
@@ -229,35 +231,38 @@
     </footer>
   <!-- </div> -->
 
-  <script type="module">
-  import { initMenu } from '/assets/js/menuBlitzloader.js';
-  import { initMenuToggle } from '/assets/js/menuToggle.js';
+  <!-- Scripts -->
+    <script type="module">
+      import { initMenu } from '/assets/js/menuBlitzloader.js';
+      import { initMenuToggle } from '/assets/js/menuToggle.js';
+      import { setThanksMessage } from '/assets/js/formLogic.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initMenu();
-    initMenuToggle(); // ✅ Add mobile menu logic
+      document.addEventListener('DOMContentLoaded', () => {
+        initMenu();
+        initMenuToggle();
+        setThanksMessage(); // 🎯 only runs where included
 
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
+        const year = document.getElementById('year');
+        if (year) year.textContent = new Date().getFullYear();
 
-    const pageContent = document.getElementById('pageContent');
-    const skipFade = sessionStorage.getItem('skipFadeIn');
+        const pageContent = document.getElementById('pageContent');
+        const skipFade = sessionStorage.getItem('skipFadeIn');
 
-    if (pageContent) {
-      if (skipFade) {
-        pageContent.classList.remove('opacity-0');
-        sessionStorage.removeItem('skipFadeIn');
-      } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        pageContent.classList.remove('opacity-0');
-      } else {
-        requestAnimationFrame(() => {
-          pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
-      }
-    }
-  });
-</script>
+        if (pageContent) {
+          if (skipFade) {
+            pageContent.classList.remove('opacity-0');
+            sessionStorage.removeItem('skipFadeIn');
+          } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            pageContent.classList.remove('opacity-0');
+          } else {
+            requestAnimationFrame(() => {
+              pageContent.classList.remove('opacity-0');
+              pageContent.classList.add('opacity-100');
+            });
+          }
+        }
+      });
+    </script>
 
 </body>
 </html>
