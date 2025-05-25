@@ -15,8 +15,8 @@ export function setThanksMessage() {
 
   const messages = {
     contact: "Thanks for reaching out — we’ll be in touch soon.",
-    support: "Thank you for supporting Ohlone Sky. It truly helps!",
-    donate: "Thank you for your donation — your generosity lifts this project skyward.",
+    support: "Thank you for supporting Ohlone Sky.",
+    donate: "Thank you for your donation.",
     faqs: "Thanks for your question! We’ll update the FAQs if needed.",
     home: "Thanks for your interest in Ohlone Sky!"
   };
