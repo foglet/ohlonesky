@@ -157,32 +157,33 @@
     <!-- Hero Image -->
     <main id="mainContent" class="flex-grow mx-auto">
 
-      <section class="relative w-full h-screen text-center text-white overflow-hidden">
-    <!-- Full-screen clickable layer -->
-    <a href="/00/" class="absolute inset-0 z-0" aria-label="Return to homepage"></a>
+      <section class="relative w-screen h-screen text-center text-white overflow-hidden">
+        <!-- Clickable layer -->
+        <a href="/00/" class="absolute inset-0 z-10 cursor-pointer" aria-label="Return to homepage"></a>
 
-    <!-- Background image -->
-    <div class="absolute inset-0 w-full h-full bg-cover bg-center brightness-75"
-         style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg');">
-    </div>
+        <!-- Full background image -->
+        <div class="absolute inset-0 z-0 bg-cover bg-center brightness-75"
+             style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg');">
+        </div>
 
-    <!-- Overlay content -->
-    <div class="relative z-10 max-w-3xl mx-auto px-6 pt-32 space-y-6">
-      <h1 class="text-4xl md:text-5xl font-bold drop-shadow">Lost in the fog?</h1>
+        <!-- Overlay content (z-20 to sit above both background and clickable layer) -->
+        <div class="relative z-20 max-w-3xl mx-auto px-6 pt-32 space-y-6">
+          <h1 class="text-4xl md:text-5xl font-bold drop-shadow">Lost in the fog?</h1>
 
-      <div class="space-y-2 text-lg">
-        <p lang="fr" class="drop-shadow"><span class="font-semibold">Perdu dans le brouillard&nbsp;?</span></p>
-        <p lang="es" class="drop-shadow"><span class="font-semibold">¿Perdido en la niebla?</span></p>
-        <p lang="zh-Hant" class="drop-shadow"><span class="font-semibold">迷失在霧中？</span></p>
-      </div>
-    </div>
-  </section>
+          <div class="space-y-2 text-lg">
+            <p lang="fr" class="drop-shadow"><span class="font-semibold">Perdu dans le brouillard&nbsp;?</span></p>
+            <p lang="es" class="drop-shadow"><span class="font-semibold">¿Perdido en la niebla?</span></p>
+            <p lang="zh-Hant" class="drop-shadow"><span class="font-semibold">迷失在霧中？</span></p>
+          </div>
+        </div>
+      </section>
+
 
   <!-- Attribution -->
   <p class="text-xs text-gray-600 text-center mt-6 px-4">
     Source: Jessica Christian, Unsplash
   </p>
-  
+
 
 
     </main><br>
@@ -192,10 +193,10 @@
     <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
       <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
         <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-        <div><a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a></div>
-        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+        <div class="mt-2">© <!-- <span id="year"></span> --><a href="https://fogday.com" class="font-medium text-blue-950 hover:text-orange-600"> FOGDAY</a>™</div>
       </div>
     </footer>
+
   <!-- </div> -->
 
   <!-- Scripts -->
