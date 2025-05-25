@@ -263,37 +263,10 @@
       </div>
     </footer>
 
-  <!-- Scripts -->
+    <!-- Scripts -->
     <script type="module">
-      import { initMenu } from '/assets/js/menuBlitzloader.js';
-      import { initMenuToggle } from '/assets/js/menuToggle.js';
-      import { setFormRedirect } from '/assets/js/formLogic.js';
-
-      document.addEventListener('DOMContentLoaded', () => {
-        initMenu();
-        initMenuToggle();
-        formLogic(); // 🎯 only runs where included
-
-        const year = document.getElementById('year');
-        if (year) year.textContent = new Date().getFullYear();
-
-        const pageContent = document.getElementById('pageContent');
-        const skipFade = sessionStorage.getItem('skipFadeIn');
-
-        if (pageContent) {
-          if (skipFade) {
-            pageContent.classList.remove('opacity-0');
-            sessionStorage.removeItem('skipFadeIn');
-          } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            pageContent.classList.remove('opacity-0');
-          } else {
-            requestAnimationFrame(() => {
-              pageContent.classList.remove('opacity-0');
-              pageContent.classList.add('opacity-100');
-            });
-          }
-        }
-      });
+      import { initMain } from '/assets/js/mainInit.js';
+      initMain();
     </script>
 
 </body>
