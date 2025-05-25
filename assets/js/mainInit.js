@@ -1,22 +1,29 @@
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 import { initMenuToggle } from '/assets/js/menuToggle.js';
-import { setFormRedirect } from '/assets/js/formLogic.js';
+import { setFormRedirect, setThanksMessage } from '/assets/js/formLogic.js';
 
 export function initMain() {
   document.addEventListener('DOMContentLoaded', () => {
     initMenu();
     initMenuToggle();
 
-    // ✅ Only run form logic if a redirect input is present
+    const pageId = document.body.id;
+
+    // ✅ Only run form redirect logic if on a form page
     if (document.querySelector('input[name="redirect"]')) {
       setFormRedirect();
+    }
+
+    // ✅ Only run thank-you message logic if on thanks page
+    if (pageId === 'thanks') {
+      setThanksMessage();
     }
 
     // ✅ Set footer year
     const year = document.getElementById('year');
     if (year) year.textContent = new Date().getFullYear();
 
-    // ✅ Page fade-in with motion respect
+    // ✅ Fade-in logic with motion preference
     const pageContent = document.getElementById('pageContent');
     const skipFade = sessionStorage.getItem('skipFadeIn');
 
