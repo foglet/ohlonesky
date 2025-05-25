@@ -77,7 +77,7 @@
   </style>
 
 </head>
-<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+<body id="faqs" class="bg-white text-gray-800 flex flex-col min-h-screen">
   <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
   <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
@@ -416,34 +416,36 @@
 
   <!-- Scripts -->
   <script type="module">
-  import { initMenu } from '/assets/js/menuBlitzloader.js';
-  import { initMenuToggle } from '/assets/js/menuToggle.js';
+    import { initMenu } from '/assets/js/menuBlitzloader.js';
+    import { initMenuToggle } from '/assets/js/menuToggle.js';
+    import { setFormRedirect } from '/assets/js/formLogic.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initMenu();
-    initMenuToggle(); // ✅ Add mobile menu logic
+    document.addEventListener('DOMContentLoaded', () => {
+      initMenu();
+      initMenuToggle();
+      formLogic(); // 🎯 only runs where included
 
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
 
-    const pageContent = document.getElementById('pageContent');
-    const skipFade = sessionStorage.getItem('skipFadeIn');
+      const pageContent = document.getElementById('pageContent');
+      const skipFade = sessionStorage.getItem('skipFadeIn');
 
-    if (pageContent) {
-      if (skipFade) {
-        pageContent.classList.remove('opacity-0');
-        sessionStorage.removeItem('skipFadeIn');
-      } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        pageContent.classList.remove('opacity-0');
-      } else {
-        requestAnimationFrame(() => {
+      if (pageContent) {
+        if (skipFade) {
           pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
+          sessionStorage.removeItem('skipFadeIn');
+        } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          pageContent.classList.remove('opacity-0');
+        } else {
+          requestAnimationFrame(() => {
+            pageContent.classList.remove('opacity-0');
+            pageContent.classList.add('opacity-100');
+          });
+        }
       }
-    }
-  });
-</script>
+    });
+  </script>
 
 <!-- Scripts: Accordion -->
 <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
