@@ -154,39 +154,40 @@
   </button>
 </nav>
 
-    <!-- Hero Image -->
-
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg"
-         alt="Back lit ski gondolas in Mammoth Lakes, California"
-         class="w-full h-auto"
-         loading="lazy" />
-    <p class="text-xs text-gray-600 text-center mt-2">
-      Source: Jessica Christian, Unsplash
-    </p>
-
+    <!-- Hero Image -->  
     <main id="mainContent" class="flex-grow mx-auto">
-      <section class="text-center py-16 px-6 bg-sky-50 rounded-lg shadow max-w-3xl mx-auto space-y-6">
-        <h1 class="text-3xl md:text-4xl font-bold text-brandDark">Lost in the fog?</h1>
+      <section class="relative text-center text-white py-24 px-6">
+  <!-- Background image -->
+  <div class="absolute inset-0 bg-cover bg-center brightness-75" alt="Back lit ski gondolas in Mammoth Lakes, California Jessica Christian"
+       style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg');">
+  </div>
+  <p class="text-xs text-gray-600 text-center mt-2">
+    Source: Jessica Christian, Unsplash
+  </p>
 
-        <div class="space-y-4 text-neutralText text-lg">
-          <!-- French -->
-          <p lang="fr"><span class="font-semibold">Perdu dans le brouillard&nbsp;?</span></p>
+  <!-- Overlay content -->
+  <div class="relative max-w-3xl mx-auto space-y-6">
+    <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow">Lost in the fog?</h1>
 
-          <!-- Spanish -->
-          <p lang="es"><span class="font-semibold">¿Perdido en la niebla?</span></p>
+    <div class="space-y-4 text-lg">
+      <p lang="fr" class="drop-shadow"><span class="font-semibold">Perdu dans le brouillard&nbsp;?</span></p>
+      <p lang="es" class="drop-shadow"><span class="font-semibold">¿Perdido en la niebla?</span></p>
+      <p lang="zh-Hant" class="leading-relaxed drop-shadow">
+        <span class="font-semibold">迷失在霧中？</span><br>
+        <span class="block text-sm text-gray-200 mt-1">
+          ㄇㄧˊ　ㄕ　ㄗㄞˋ　ㄨˋ　ㄓㄨㄥ<br>
+          mí  shī zài  wù zhōng
+        </span>
+      </p>
+    </div>
 
-          <!-- Chinese -->
-          <p lang="zh-Hant" class="leading-relaxed">
-            <span class="font-semibold">迷失在霧中？</span>
-          </p>
-        </div>
-
-        <div class="pt-4">
-          <a href="/00/" class="inline-block bg-highlight text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-slate-400 transition-colors duration-200">
-            HOME
-          </a>
-        </div>
-      </section>
+    <div class="pt-4">
+      <a href="/00/" class="inline-block bg-highlight text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-orange-600 transition-colors duration-200">
+        Take me home
+      </a>
+    </div>
+  </div>
+</section>
 
     </main>
 
