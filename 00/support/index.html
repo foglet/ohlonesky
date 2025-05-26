@@ -171,75 +171,69 @@
         <h2 class="text-xl font-semibold text-brandDark">The moment is here. Let’s bring Ohlone Sky to life.</h2>
       </div>
 
+      <form action="https://api.web3forms.com/submit"
+              method="POST"
+              class="w-full max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
 
-      
-      <form action="https://api.web3forms.com/submit" method="POST" class="w-full max-w-xl mx-auto px-4 sm:px-6 space-y-6">
+          <!-- Hidden Fields -->
+          <input type="hidden" name="redirect" value="https://ohlonesky.com/thanks/" />
+          <input type="hidden" name="access_key" value="..." />
+          <input type="hidden" name="subject" value="New Contact Form Submission" />
+          <input type="hidden" name="from_name" value="Ohlone Sky Website" />
 
-        <input type="hidden" name="redirect" value="" />
+          <!-- Grid layout starts -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Required hidden fields -->
-        <input type="hidden" name="access_key" value="52f8a533-544a-4fba-abe2-adb4446f944c" />
-        <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
-        <input type="hidden" name="from_name" value="Ohlone Sky Website" />
-        <!-- <input type="hidden" name="redirect" value="https://ohlonesky.com/thanks/" -->
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <input type="text" id="name" name="name" required
+                     class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+            </div>
 
-        <!-- Name -->
-        <div class="flex flex-col">
-          <label for="name" class="mb-1 text-sm font-medium text-gray-700">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-        </div>
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="email" name="email" required
+                     class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+            </div>
 
-        <!-- Email -->
-        <div class="flex flex-col">
-          <label for="email" class="mb-1 text-sm font-medium text-gray-700">E-mail</label>
-          <input id="email" name="email" type="email" placeholder="Your e-mail" required
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-        </div>
+            <!-- Organization -->
+            <div>
+              <label for="organization" class="block text-sm font-medium text-gray-700 mb-1">Organization</label>
+              <input type="text" id="organization" name="organization"
+                     class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+            </div>
 
-        <!-- Organization -->
-        <div class="flex flex-col">
-          <label for="organization" class="mb-1 text-sm font-medium text-gray-700">Organization</label>
-          <input id="organization" name="organization" type="text" placeholder="Organization"
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-        </div>
+            <!-- Website -->
+            <div>
+              <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
+              <input type="text" id="website" name="website" placeholder="https://"
+                     class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+            </div>
+          </div>
 
-        <div class="flex flex-col">
-          <label for="website" class="mb-1 text-sm font-medium text-gray-700">Website</label>
-          <input id="website" name="website" type="text" placeholder="https://"
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-        </div>
+          <!-- Message (full-width) -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <p class="text-sm text-gray-600 mb-1">
+              Please type <span class="text-red-500 font-semibold">JOIN</span> to be listed as a Coalition Member.
+            </p>
+            <textarea id="message" name="message" rows="4"
+                      class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"
+                      placeholder="Your message"></textarea>
+          </div>
 
-        <!-- Message -->
-      <!--  <div class="flex flex-col">
-          <label for="message" class="mb-1 text-sm font-medium text-gray-700">Message</label>
-          <textarea id="message" name="message" rows="3" placeholder="Type 'Join' to be listed as a Coalition Member. Membership is free."
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
-        </div> -->
-        <div class="flex flex-col">
-          <label for="message" class="mb-1 text-sm font-medium text-gray-700">Message</label>
-          <p class="mb-1 text-sm text-gray-600">
-            Please type <span class="text-red-500 font-semibold">JOIN</span> to be listed as a Coalition Member. Membership has no funding or participation requirement. Coalition members agree to be listed on this website and in promotional materials.
-
-          </p>
-          <textarea
-            id="message"
-            name="message"
-            rows="3"
-            placeholder="Your message"
-            class="rounded-md border border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-highlight transition"
-          ></textarea>
-        </div>
+          <!-- Submit button -->
+          <div class="text-center">
+            <button type="submit"
+                    class="bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-highlight transition-colors duration-200">
+              Send Message
+            </button>
+          </div>
+        </form>
 
 
-        <!-- Submit -->
-        <div class="text-center">
-          <button type="submit"
-            class="bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-highlight transition-colors duration-200">
-            Send Message
-          </button>
-        </div>
-      </form>
 
       <div class="text-center"><!-- initially at top of section -->
         <p class="text-neutralText mt-2">We'll never share your data, and we rarely e-mail.</p>
