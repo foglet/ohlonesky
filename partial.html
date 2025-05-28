@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head include-html="/partials/head.html"></head>
+  <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+      <div include-html="/partials/header.html"></div>
+      <div include-html="/partials/mobile-menu.html"></div>
+
+      <!-- Hero image and content stays inline -->
+      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+           alt="Aerial view of tram line"
+           class="w-full h-auto" loading="lazy" />
+      <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
+
+      <!-- This part varies per page -->
+      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
+        <!-- Unique content block -->
+        <!-- HEADLINE, PROSE, CALLOUTS, ETC. -->
+      </main>
+
+      <!-- Embedded map -->
+      <div style="display:flex; overflow:hidden;">
+        <iframe ...></iframe>
+      </div>
+    </div>
+
+    <div include-html="/partials/footer.html"></div>
+    <div include-html="/partials/scripts.html"></div>
+
+    <!-- Simple include engine -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('[include-html]').forEach(async (el) => {
+          const file = el.getAttribute('include-html');
+          const res = await fetch(file);
+          el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
+        });
+      });
+    </script>
+  </body>
+</html>
