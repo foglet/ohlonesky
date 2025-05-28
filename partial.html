@@ -73,28 +73,29 @@
     <div include-html="assets/partials/footer.html"></div>
     <div include-html="assets/partials/scripts.html"></div>
 
-    <!-- JS Partial Loader -->
+    <!-- JS Partial Loader + Nav Logic -->
       <script type="module">
         import { initMain } from '/assets/js/mainInit.js';
 
         document.addEventListener("DOMContentLoaded", async () => {
           const partials = document.querySelectorAll('[include-html]');
 
-          // Load all partials in parallel
+          // Load partials in parallel
           await Promise.all(Array.from(partials).map(async (el) => {
             const file = el.getAttribute('include-html');
             const res = await fetch(file);
             el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
           }));
 
-          // ✅ Adjust nav links after partials are injected
+          // Dynamically assign hrefs from data-path
           const base = window.location.pathname.includes('/00/') ? './' : '00/';
           document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
             const target = link.getAttribute('data-path');
             link.setAttribute('href', `${base}${target}`);
           });
+          document.querySelector('#homeLink')?.setAttribute('href', `${base}`);
 
-          // Now safely init your JS
+          // Run your site-wide JS init
           initMain();
         });
       </script>
