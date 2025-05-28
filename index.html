@@ -1,7 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <!-- Load shared <head> content -->
-  <head include-html="assets/partials/head.html"></head>
+  <!-- <head include-html="assets/partials/head.html"></head> -->
+
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohlone Sky</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#1d2834',
+            highlight: '#ff5500',
+            neutralText: '#636363',
+          },
+          fontFamily: {
+            adobe: ['freight-sans-pro', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
+
+  <!-- Custom CSS -->
+  <style>
+    @layer base {
+      p {
+        @apply max-w-[60ch];
+      }
+    }
+  </style>
+</head>
+
 
   <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
     <!-- Skip link for screen readers -->
@@ -16,7 +54,7 @@
       <!-- Site header and navigation (desktop + mobile) -->
       <div include-html="assets/partials/header.html"></div>
       <div class="md:hidden" include-html="assets/partials/mobile-menu.html"></div>
-      
+
 
       <!-- Hero Image -->
         <section>
