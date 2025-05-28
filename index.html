@@ -19,60 +19,43 @@
       <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
 
       <!-- Hero Content Block -->
-      <main id="mainContent" class="flex-grow bg-indigo-50">
+      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
+        <section class="text-center mb-6">
+          <h2 class="text-3xl font-bold text-neutralText mb-0">
+            Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
+          </h2>
+          <p class="text-lg leading-relaxed text-gray-800 max-w-2xl mx-auto mb-6">
+            Carry us forward. Bay to Sky.
+          </p>
+        </section>
 
-          <!-- Hero Section -->
-          <section class="px-4 sm:px-6 pt-12 pb-8 text-center bg-white">
-            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
-                 alt="Aerial view of tram line"
-                 class="w-full h-auto mb-4 rounded-lg shadow-sm"
-                 loading="lazy" />
-            <p class="text-xs text-gray-600 text-center mb-6">Source: Fogday Studios</p>
-
-            <h2 class="text-3xl font-bold text-neutralText mb-4 max-w-2xl mx-auto">
-              Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
-            </h2>
-            <p class="text-lg leading-relaxed text-gray-800 max-w-2xl mx-auto">
-              Carry us forward. Bay to Sky.
-            </p>
-          </section>
-
-          <!-- Benefit Blocks -->
-          <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-12 text-left text-gray-800">
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">No Traffic</h3>
-              <p>No cars. No sideshows. No congestion...</p>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">Carbon Neutral</h3>
-              <p>Fully electric. Emission-free. Ohlone Sky helps SF meet its climate goals...</p>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">Connecting Communities</h3>
-              <p>Operating every day, Ohlone Sky links Treasure Island directly to the heart of the city...</p>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">Extraordinary Views</h3>
-              <p>It’s not just transit—it’s a soaring journey...</p>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">Sustainable Development</h3>
-              <p>Clean energy, equitable mobility, climate action...</p>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold text-brandDark mb-2">A Commitment to Giving</h3>
-              <p>Ohlone Sky sets aside 10% of revenue to support communities and climate resilience...</p>
-            </div>
-          </section>
-
-          <!-- Embedded Map (unchanged) -->
-          <div style="display:flex; overflow:hidden;">
-            <iframe style="position:relative; top:-60px; border:none;" loading="lazy"
-              src="https://www.google.com/maps/d/u/0/embed?mid=1OaWF-Ran0XFdpjRAzAW5XMD_IMPU85g&ehbc=2E312F&noprof=1"
-              width="100%" height="600"></iframe>
+        <section class="max-w-4xl mx-auto space-y-8 text-left text-gray-800 px-4 sm:px-6">
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">No Traffic</h2>
+            <p>No cars. No sideshows. No congestion...</p>
           </div>
-
-        </main>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Carbon Neutral</h2>
+            <p>Fully electric. Emission-free. Ohlone Sky helps SF meet its climate goals...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Connecting Communities</h2>
+            <p>Operating every day, Ohlone Sky links Treasure Island directly to the heart of the city...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Extraordinary Views</h2>
+            <p>It’s not just transit—it’s a soaring journey...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Sustainable Development</h2>
+            <p>Clean energy, equitable mobility, climate action...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
+            <p>Ohlone Sky sets aside 10% of revenue to support communities and climate resilience...</p>
+          </div>
+        </section>
+      </main>
 
       <!-- Embedded Map -->
       <div style="display:flex; overflow:hidden;">
@@ -90,28 +73,29 @@
     <div include-html="assets/partials/footer.html"></div>
     <div include-html="assets/partials/scripts.html"></div>
 
-    <!-- JS Partial Loader -->
+    <!-- JS Partial Loader + Nav Logic -->
       <script type="module">
         import { initMain } from '/assets/js/mainInit.js';
 
         document.addEventListener("DOMContentLoaded", async () => {
           const partials = document.querySelectorAll('[include-html]');
 
-          // Load all partials in parallel
+          // Load partials in parallel
           await Promise.all(Array.from(partials).map(async (el) => {
             const file = el.getAttribute('include-html');
             const res = await fetch(file);
             el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
           }));
 
-          // ✅ Adjust nav links after partials are injected
+          // Dynamically assign hrefs from data-path
           const base = window.location.pathname.includes('/00/') ? './' : '00/';
           document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
             const target = link.getAttribute('data-path');
             link.setAttribute('href', `${base}${target}`);
           });
+          document.querySelector('#homeLink')?.setAttribute('href', `${base}`);
 
-          // Now safely init your JS
+          // Run your site-wide JS init
           initMain();
         });
       </script>
