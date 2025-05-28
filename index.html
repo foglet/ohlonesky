@@ -1,14 +1,19 @@
-<!-- /index.html and /00/index.html -->
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Load shared <head> content -->
   <head include-html="assets/partials/head.html"></head>
+
   <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <!-- Skip link for screen readers -->
     <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+
+    <!-- Fallback for users without JS -->
     <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
+    <!-- Main content wrapper with fade-in -->
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-      <!-- Header + Nav -->
+      <!-- Site header and navigation (desktop + mobile) -->
       <div include-html="assets/partials/header.html"></div>
       <div include-html="assets/partials/mobile-menu.html"></div>
 
@@ -18,8 +23,10 @@
            class="w-full h-auto" loading="lazy" />
       <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
 
-      <!-- Hero Content Block -->
+      <!-- Main content starts -->
       <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
+
+        <!-- Intro text -->
         <section class="text-center mb-6">
           <h2 class="text-3xl font-bold text-neutralText mb-0">
             Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
@@ -29,6 +36,7 @@
           </p>
         </section>
 
+        <!-- Benefits list -->
         <section class="max-w-4xl mx-auto space-y-8 text-left text-gray-800 px-4 sm:px-6">
           <div>
             <h2 class="text-2xl font-semibold text-brandDark mb-0">No Traffic</h2>
@@ -56,39 +64,40 @@
           </div>
         </section>
 
-        <!-- Embedded Map -->
+        <!-- Embedded map section -->
         <div style="display:flex; overflow:hidden;">
           <iframe style="position:relative; top:-60px; border:none;" loading="lazy"
             src="https://www.google.com/maps/d/u/0/embed?mid=1OaWF-Ran0XFdpjRAzAW5XMD_IMPU85g&ehbc=2E312F&noprof=1"
             width="100%" height="600"></iframe>
         </div>
       </main>
+
+      <!-- Footer and scripts (loaded as partials) -->
+      <div include-html="assets/partials/footer.html"></div>
+      <div include-html="assets/partials/scripts.html"></div>
     </div>
 
-    <!-- Footer + Scripts -->
-    <div include-html="assets/partials/footer.html"></div>
-    <div include-html="assets/partials/scripts.html"></div>
-
-    <!-- JS Partial Loader + Nav Logic -->
+    <!-- JS: Inject partials, update nav links, initialize site -->
     <script type="module">
       import { initMain } from '/assets/js/mainInit.js';
 
       document.addEventListener("DOMContentLoaded", async () => {
         const partials = document.querySelectorAll('[include-html]');
 
-        await Promise.all(Array.from(partials).map(async (el) => {
-          const file = el.getAttribute('include-html');
-          const res = await fetch(file);
-          el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
+        // Load all partials in parallel
+        await Promise.all([...partials].map(async (el) => {
+          const res = await fetch(el.getAttribute('include-html'));
+          el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${el.getAttribute('include-html')} -->`;
         }));
 
+        // Assign nav link hrefs based on current path
         const base = window.location.pathname.includes('/00/') ? './' : '00/';
         document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
-          const target = link.getAttribute('data-path');
-          link.setAttribute('href', `${base}${target}`);
+          link.setAttribute('href', `${base}${link.getAttribute('data-path')}`);
         });
         document.querySelector('#homeLink')?.setAttribute('href', `${base}`);
 
+        // Run main initialization logic (e.g. menuBlitz)
         initMain();
       });
     </script>
