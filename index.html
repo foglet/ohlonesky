@@ -1,134 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Load shared <head> content -->
-  <!-- <head include-html="assets/partials/head.html"></head> -->
-
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ohlone Sky</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohlone Sky</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brandDark: '#1d2834',
-            highlight: '#ff5500',
-            neutralText: '#636363',
-          },
-          fontFamily: {
-            adobe: ['freight-sans-pro', 'sans-serif'],
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Ohlone Sky" />
+    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohlonesky.com" />
+    <meta property="og:title" content="Ohlone Sky" />
+    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ohlonesky.com" />
+    <meta property="twitter:title" content="Ohlone Sky" />
+    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brandDark: '#1d2834',
+              highlight: '#ff5500',
+              neutralText: '#636363',
+              stormSky: '#374151',
+            },
+            fontFamily: {
+              adobe: ['freight-sans-pro', 'sans-serif'],
+            },
           },
         },
-      },
-    };
-  </script>
+      };
+    </script>
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
 
-  <!-- Custom CSS -->
-  <style>
-    @layer base {
-      p {
-        @apply max-w-[60ch];
+    <!-- Custom Styles -->
+    <style>
+      @layer base {
+        p {
+          @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
+        }
+        a {
+          @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+        }
       }
-    }
-  </style>
-</head>
+      @keyframes fade-up {
+        0% { opacity: 0; transform: translateY(12px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-up {
+        animation: fade-up 500ms ease-out forwards;
+        will-change: opacity, transform;
+      }
+    </style>
+  </head>
 
-
-  <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <!-- Skip link for screen readers -->
+  <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen font-adobe">
     <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-
-    <!-- Fallback for users without JS -->
     <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
-    <!-- Main content wrapper with fade-in -->
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-      <!-- Site header and navigation (desktop + mobile) -->
-      <div include-html="assets/partials/header.html"></div>
-      <div class="md:hidden" include-html="assets/partials/mobile-menu.html"></div>
-
+      <!-- Header Partial -->
+      <div include-html="/assets/partials/header.html"></div>
+      <div class="md:hidden" include-html="/assets/partials/mobile-menu.html"></div>
 
       <!-- Hero Image -->
-        <section>
-          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
-               alt="Aerial view of tram line"
-               class="w-full h-auto" loading="lazy" />
-          <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
-        </section> <!-- ✅ Now closed -->
+      <section>
+        <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+             alt="Aerial view of tram line"
+             class="w-full h-auto" loading="lazy" />
+        <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
+      </section>
 
-      <!-- Main content starts -->
-      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
-
-        <!-- Intro text -->
+      <!-- Main Content -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50">
         <section class="text-center mb-6">
-
           <div class="max-w-3xl mx-auto px-4 sm:px-6">
             <h2 class="text-3xl font-bold text-neutralText mb-0">
               Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
             </h2>
           </div>
+          <p class="text-lg leading-relaxed text-gray-800 max-w-2xl mx-auto mb-6">
+            Carry us forward. Bay to Sky.
+          </p>
+        </section>
 
-
-        <p class="text-lg leading-relaxed text-gray-800 max-w-2xl mx-auto mb-6">
-          Carry us forward. Bay to Sky.
-          <!-- Carry us forward with finesse, grace, and care.
-          Ohlone Sky is built for the City we love, and the future we owe.
-        </p> -->
-      </section>
-
-        <!-- Benefits list -->
+        <!-- Benefits -->
         <section class="max-w-4xl mx-auto space-y-8 text-left text-gray-800 px-4 sm:px-6">
-          <!-- No Traffic -->
           <div>
             <h2 class="text-2xl font-semibold text-brandDark mb-0">No Traffic</h2>
-            <p>
-              No cars. No sideshows. No congestion. Just smooth, reliable, flowing above the Bay—with poetry, purpose, and promise. For cyclists, it's the first-and-last-mile link. For everyone, it’s freedom to move. And just twelve minutes end to end.
-            </p>
+            <p>No cars. No sideshows. No congestion. Just smooth, reliable, flowing above the Bay—with poetry, purpose, and promise. For cyclists, it's the first-and-last-mile link. For everyone, it’s freedom to move. And just twelve minutes end to end.</p>
           </div>
-
-          <!-- Carbon Neutral, Sustainable -->
           <div>
             <h2 class="text-2xl font-semibold text-brandDark mb-0">Carbon Neutral. Sustainable</h2>
-            <p>
-              Ohlone Sky is fully electric and emission-free, helping San Francisco meet its climate commitments with minimal energy use and a compact, near-silent design. Transiting congestion, it reduces greenhouse gases as the island grows and supports resilient infrastructure, equitable mobility, and sustainable development—lifting communities and setting an example for cities everywhere. It’s not just for San Francisco, but for the world we want to live in.
-            </p>
+            <p>Ohlone Sky is fully electric and emission-free, helping San Francisco meet its climate commitments with minimal energy use and a compact, near-silent design...</p>
           </div>
-
-          <!-- Connecting Communities -->
           <div>
             <h2 class="text-2xl font-semibold text-brandDark mb-0">Connecting Communities</h2>
-            <p>
-              Operating every day, Ohlone Sky links Treasure Island directly to the heart of the city—generating tax revenue, creating jobs, and delivering public benefit. With each ride, a car-free trip to and from the island is possible and preferable.
-            </p>
+            <p>Operating every day, Ohlone Sky links Treasure Island directly to the heart of the city...</p>
           </div>
-
-          <!-- Extraordinary Views -->
           <div>
-          <h2 class="text-2xl font-semibold text-brandDark mb-0">Extraordinary Views</h2>
-          <p>
-            As the City’s newest innovation, Ohlone Sky is more than transit—it’s a soaring journey. Cradled above the Bay, we move through light and air, as fog curls in from the Pacific and the water shimmers below. It frames one of the most breathtaking urban panoramas on Earth. Like La Paz, London, Mexico City and Portland, Ohlone Sky will become a new icon on the Bay—a silver thread weaving together our past, present, and future.
-          </p>
-        </div>
-
-          <!-- A Commitment to Giving -->
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Extraordinary Views</h2>
+            <p>As the City’s newest innovation, Ohlone Sky is more than transit—it’s a soaring journey...</p>
+          </div>
           <div>
             <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
-            <p>
-              Ohlone Sky sets aside 10% of its annual revenue to nourish what moves us most: the communities we live in, the climate we share, and the cultures that shape us. As a certified B Corp, we see transit not just as a path from here to there, but as a line of connection that binds purpose to place. As movement with meaning, Ohlone Sky advances society forward.
-
-            </p>
+            <p>Ohlone Sky sets aside 10% of its annual revenue to nourish what moves us most...</p>
           </div>
         </section>
 
-        <!-- Embedded map section -->
+        <!-- Embedded Map -->
         <div style="display:flex; overflow:hidden;">
           <iframe style="position:relative; top:-60px; border:none;" loading="lazy"
             src="https://www.google.com/maps/d/u/0/embed?mid=1OaWF-Ran0XFdpjRAzAW5XMD_IMPU85g&ehbc=2E312F&noprof=1"
@@ -136,12 +130,12 @@
         </div>
       </main>
 
-      <!-- Footer and additional JS partials -->
-  <div include-html="assets/partials/footer.html"></div>
-  <div include-html="assets/partials/scripts.html"></div>
+      <!-- Footer Partials -->
+      <div include-html="/assets/partials/footer.html"></div>
+      <div include-html="/assets/partials/scripts.html"></div>
 
-  <!-- Site init: Load partials, set nav, init sitewide JS -->
-  <script type="module" src="/assets/js/initLoader.js"></script>
-
+      <!-- Init Loader Script -->
+      <script type="module" src="/assets/js/initLoader.js"></script>
+    </div>
   </body>
 </html>
