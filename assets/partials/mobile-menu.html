@@ -7,16 +7,17 @@
      class="hidden fixed inset-0 bg-white z-40 opacity-0 transition-opacity duration-300 ease-out will-change-opacity pt-[64px]"
      aria-label="Mobile Navigation">
 
-  <div class="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-4">
-    <a href="faqs.html"
+  <div id="dynamicNav"
+       class="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-4">
+    <a data-path="faqs"
        class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
       FAQs
     </a>
-    <a href="support.html"
+    <a data-path="support"
        class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
       Support
     </a>
-    <a href="contact.html"
+    <a data-path="contact"
        class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
       Contact
     </a>
