@@ -78,22 +78,29 @@
     <div include-html="assets/partials/scripts.html"></div>
 
     <!-- JS Partial Loader -->
-    <script type="module">
-      import { initMain } from '/assets/js/mainInit.js';
+      <script type="module">
+        import { initMain } from '/assets/js/mainInit.js';
 
-      document.addEventListener("DOMContentLoaded", async () => {
-        const partials = document.querySelectorAll('[include-html]');
+        document.addEventListener("DOMContentLoaded", async () => {
+          const partials = document.querySelectorAll('[include-html]');
 
-        // Load all partials in parallel
-        await Promise.all(Array.from(partials).map(async (el) => {
-          const file = el.getAttribute('include-html');
-          const res = await fetch(file);
-          el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
-        }));
+          // Load all partials in parallel
+          await Promise.all(Array.from(partials).map(async (el) => {
+            const file = el.getAttribute('include-html');
+            const res = await fetch(file);
+            el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
+          }));
 
-        // Now safely init your JS
-        initMain();
-      });
-    </script>
+          // ✅ Adjust nav links after partials are injected
+          const base = window.location.pathname.includes('/00/') ? './' : '00/';
+          document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
+            const target = link.getAttribute('data-path');
+            link.setAttribute('href', `${base}${target}`);
+          });
+
+          // Now safely init your JS
+          initMain();
+        });
+      </script>
   </body>
 </html>
