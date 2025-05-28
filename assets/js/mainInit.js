@@ -1,44 +1,50 @@
+// assets/js/mainInit.js
+
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 import { initMenuToggle } from '/assets/js/menuToggle.js';
 import { setFormRedirect, setThanksMessage } from '/assets/js/formLogic.js';
 
 export function initMain() {
-  document.addEventListener('DOMContentLoaded', () => {
-    initMenu();
-    initMenuToggle();
+  // 🔹 Initialize mobile menu (hamburger slide-out)
+  initMenu();
 
-    const pageId = document.body.id;
+  // 🔹 Initialize legacy or supplemental menu toggling
+  initMenuToggle();
 
-    // ✅ Only run form redirect logic if on a form page
-    if (document.querySelector('input[name="redirect"]')) {
-      setFormRedirect();
-    }
+  // 🔹 Get current page ID (for conditional logic)
+  const pageId = document.body.id;
 
-    // ✅ Only run thank-you message logic if on thanks page
-    if (pageId === 'thanks') {
-      setThanksMessage();
-    }
+  // ✅ Set redirect logic if form is present
+  if (document.querySelector('input[name="redirect"]')) {
+    setFormRedirect();
+  }
 
-    // ✅ Set footer year
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
+  // ✅ Show thank-you message on the thanks page
+  if (pageId === 'thanks') {
+    setThanksMessage();
+  }
 
-    // ✅ Fade-in logic with motion preference
-    const pageContent = document.getElementById('pageContent');
-    const skipFade = sessionStorage.getItem('skipFadeIn');
+  // ✅ Update footer copyright year
+  const year = document.getElementById('year');
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
-    if (pageContent) {
-      if (skipFade) {
+  // ✅ Page fade-in logic, respects motion preferences
+  const pageContent = document.getElementById('pageContent');
+  const skipFade = sessionStorage.getItem('skipFadeIn');
+
+  if (pageContent) {
+    if (skipFade) {
+      pageContent.classList.remove('opacity-0');
+      sessionStorage.removeItem('skipFadeIn');
+    } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      pageContent.classList.remove('opacity-0');
+    } else {
+      requestAnimationFrame(() => {
         pageContent.classList.remove('opacity-0');
-        sessionStorage.removeItem('skipFadeIn');
-      } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        pageContent.classList.remove('opacity-0');
-      } else {
-        requestAnimationFrame(() => {
-          pageContent.classList.remove('opacity-0');
-          pageContent.classList.add('opacity-100');
-        });
-      }
+        pageContent.classList.add('opacity-100');
+      });
     }
-  });
+  }
 }
