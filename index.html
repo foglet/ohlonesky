@@ -18,12 +18,12 @@
       <div include-html="assets/partials/mobile-menu.html"></div>
 
       <!-- Hero Image -->
-      <section>
-      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
-           alt="Aerial view of tram line"
-           class="w-full h-auto" loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
-    </section>
+        <section>
+          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+               alt="Aerial view of tram line"
+               class="w-full h-auto" loading="lazy" />
+          <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
+        </section> <!-- ✅ Now closed -->
 
       <!-- Main content starts -->
       <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
@@ -74,34 +74,12 @@
         </div>
       </main>
 
-      <!-- Footer and scripts (loaded as partials) -->
-      <div include-html="assets/partials/footer.html"></div>
-      <div include-html="assets/partials/scripts.html"></div>
-    </div>
+      <!-- Footer and additional JS partials -->
+  <div include-html="assets/partials/footer.html"></div>
+  <div include-html="assets/partials/scripts.html"></div>
 
-    <!-- JS: Inject partials, update nav links, initialize site -->
-    <script type="module">
-      import { initMain } from '/assets/js/mainInit.js';
+  <!-- Site init: Load partials, set nav, init sitewide JS -->
+  <script type="module" src="/assets/js/initLoader.js"></script>
 
-      document.addEventListener("DOMContentLoaded", async () => {
-        const partials = document.querySelectorAll('[include-html]');
-
-        // Load all partials in parallel
-        await Promise.all([...partials].map(async (el) => {
-          const res = await fetch(el.getAttribute('include-html'));
-          el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${el.getAttribute('include-html')} -->`;
-        }));
-
-        // Assign nav link hrefs based on current path
-        const base = window.location.pathname.includes('/00/') ? './' : '00/';
-        document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
-          link.setAttribute('href', `${base}${link.getAttribute('data-path')}`);
-        });
-        document.querySelector('#homeLink')?.setAttribute('href', `${base}`);
-
-        // Run main initialization logic (e.g. menuBlitz)
-        initMain();
-      });
-    </script>
   </body>
 </html>
