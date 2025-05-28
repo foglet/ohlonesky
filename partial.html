@@ -1,43 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
   <head include-html="/partials/head.html"></head>
+
   <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
     <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
     <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+      <!-- Header + Nav -->
       <div include-html="/partials/header.html"></div>
       <div include-html="/partials/mobile-menu.html"></div>
 
-      <!-- Hero image and content stays inline -->
+      <!-- Hero Image -->
       <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
            alt="Aerial view of tram line"
            class="w-full h-auto" loading="lazy" />
       <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
 
-      <!-- This part varies per page -->
+      <!-- Hero Content Block -->
       <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
-        <!-- Unique content block -->
-        <!-- HEADLINE, PROSE, CALLOUTS, ETC. -->
+        <section class="text-center mb-6">
+          <h2 class="text-3xl font-bold text-neutralText mb-0">
+            Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
+          </h2>
+          <p class="text-lg leading-relaxed text-gray-800 max-w-2xl mx-auto mb-6">
+            Carry us forward. Bay to Sky.
+          </p>
+        </section>
+
+        <section class="max-w-4xl mx-auto space-y-8 text-left text-gray-800 px-4 sm:px-6">
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">No Traffic</h2>
+            <p>No cars. No sideshows. No congestion...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Carbon Neutral</h2>
+            <p>Fully electric. Emission-free. Ohlone Sky helps SF meet its climate goals...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Connecting Communities</h2>
+            <p>Operating every day, Ohlone Sky links Treasure Island directly to the heart of the city...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Extraordinary Views</h2>
+            <p>It’s not just transit—it’s a soaring journey...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Sustainable Development</h2>
+            <p>Clean energy, equitable mobility, climate action...</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
+            <p>Ohlone Sky sets aside 10% of revenue to support communities and climate resilience...</p>
+          </div>
+        </section>
       </main>
 
-      <!-- Embedded map -->
+      <!-- Embedded Map -->
       <div style="display:flex; overflow:hidden;">
-        <iframe ...></iframe>
+        <iframe style="position:relative; top:-60px; border:none;" loading="lazy"
+          src="https://www.google.com/maps/d/u/0/embed?mid=1OaWF-Ran0XFdpjRAzAW5XMD_IMPU85g&ehbc=2E312F&noprof=1"
+          width="100%" height="600"></iframe>
       </div>
     </div>
 
+    <!-- Footer + Scripts -->
     <div include-html="/partials/footer.html"></div>
     <div include-html="/partials/scripts.html"></div>
 
-    <!-- Simple include engine -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll('[include-html]').forEach(async (el) => {
+    <!-- JS Partial Loader -->
+    <script type="module">
+      import { initMain } from '/assets/js/mainInit.js';
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const partials = document.querySelectorAll('[include-html]');
+
+        // Load all partials in parallel
+        await Promise.all(Array.from(partials).map(async (el) => {
           const file = el.getAttribute('include-html');
           const res = await fetch(file);
           el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
-        });
+        }));
+
+        // Now safely init your JS
+        initMain();
       });
     </script>
   </body>
