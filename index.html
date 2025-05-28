@@ -8,7 +8,7 @@
 
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-      <!-- Header + Mobile Nav -->
+      <!-- Header + Nav -->
       <div include-html="assets/partials/header.html"></div>
       <div include-html="assets/partials/mobile-menu.html"></div>
 
@@ -66,32 +66,37 @@
     </div>
 
     <!-- Footer + Scripts -->
+    <!--
+    <div include-html="/partials/footer.html"></div>
+    <div include-html="/partials/scripts.html"></div> -->
+
     <div include-html="assets/partials/footer.html"></div>
     <div include-html="assets/partials/scripts.html"></div>
 
-    <!-- Partial Loader Script -->
-    <script type="module">
-      import { initMain } from '/assets/js/mainInit.js';
+    <!-- JS Partial Loader -->
+      <script type="module">
+        import { initMain } from '/assets/js/mainInit.js';
 
-      document.addEventListener("DOMContentLoaded", async () => {
-        const partials = document.querySelectorAll('[include-html]');
+        document.addEventListener("DOMContentLoaded", async () => {
+          const partials = document.querySelectorAll('[include-html]');
 
-        await Promise.all(Array.from(partials).map(async (el) => {
-          const file = el.getAttribute('include-html');
-          try {
+          // Load all partials in parallel
+          await Promise.all(Array.from(partials).map(async (el) => {
+            const file = el.getAttribute('include-html');
             const res = await fetch(file);
-            if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-            const html = await res.text();
-            el.innerHTML = html;
-            console.log(`✅ Loaded: ${file}`);
-          } catch (err) {
-            el.innerHTML = `<!-- failed to load ${file} -->`;
-            console.warn(`❌ Failed to load: ${file}`, err);
-          }
-        }));
+            el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
+          }));
 
-        initMain();
-      });
-    </script>
+          // ✅ Adjust nav links after partials are injected
+          const base = window.location.pathname.includes('/00/') ? './' : '00/';
+          document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
+            const target = link.getAttribute('data-path');
+            link.setAttribute('href', `${base}${target}`);
+          });
+
+          // Now safely init your JS
+          initMain();
+        });
+      </script>
   </body>
 </html>
