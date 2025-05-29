@@ -41,5 +41,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ initMain() failed:", err);
   }
 
+  // Attempt autoplay for any <video autoplay> elements
+  document.querySelectorAll('video[autoplay]').forEach((vid) => {
+    vid.play().catch(err => {
+      console.warn('⚠️ Autoplay failed:', err);
+    });
+  });
+
   console.log('🎉 initLoader complete');
 });
