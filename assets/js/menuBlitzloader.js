@@ -4,6 +4,11 @@ export function initMenu() {
   const menu = document.getElementById('mobileMenu');
   const closeBtn = document.getElementById('closeMenu');
 
+  if (!toggle || !menu || !backdrop || !closeBtn) {
+    console.warn("⚠️ menuBlitz: Some elements not found, skipping init");
+    return;
+  }
+
   function openMenu() {
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
@@ -30,11 +35,13 @@ export function initMenu() {
     toggle.setAttribute('aria-expanded', 'false');
   }
 
-  toggle?.addEventListener('click', () => {
+  toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     expanded ? closeMenu() : openMenu();
   });
 
-  backdrop?.addEventListener('click', closeMenu);
-  closeBtn?.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  console.log("📱 menuBlitz initialized successfully");
 }
