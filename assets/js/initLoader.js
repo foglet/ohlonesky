@@ -30,12 +30,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   }));
 
   // ✅ Initialize accordion logic (requires DOM updated)
-  try {
-    initAccordion();
-    console.log("✅ Accordion initialized");
-  } catch (err) {
-    console.error("❌ initAccordion failed", err);
-  }
+  // try {
+  //  initAccordion();
+  //  console.log("✅ Accordion initialized");
+  //} catch (err) {
+  //  console.error("❌ initAccordion failed", err);
+  // }
 
   // ✅ Initialize mobile menu (requires menu DOM to exist)
   try {
