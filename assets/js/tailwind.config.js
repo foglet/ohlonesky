@@ -3,12 +3,25 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
   darkMode: 'class',
   content: [
-    "./*.html",
-    "./**/*.html",
-    "./assets/**/*.js"
+    './*.html',
+    './**/*.html',
+    './assets/**/*.js',
+    './assets/css/hero.css', // ✅ Required for @apply to work in hero.css
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brandDark: '#1d2834',
+        brandSky: '#0f172a',
+        stormSky: '#374151',
+        warmRed: '#F54029',
+        highlight: '#ff5500',
+        neutralText: '#636363',
+      },
+      fontFamily: {
+        adobe: ['freight-sans-pro', 'sans-serif'],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
@@ -33,4 +46,4 @@ module.exports = {
       });
     }),
   ],
-}
+};
