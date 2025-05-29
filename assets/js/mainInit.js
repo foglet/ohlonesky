@@ -1,51 +1,42 @@
 // assets/js/mainInit.js
 
-import { initMenu } from '/assets/js/menuBlitzloader.js';
-import { initMenuToggle } from '/assets/js/menuToggle.js';
-import { setFormRedirect, setThanksMessage } from '/assets/js/formLogic.js';
-import { initAccordion } from '/assets/js/modules/initAccordion.js'; // ← NEW
-
 export function initMain() {
-  // 🔹 Initialize mobile menu (hamburger slide-out)
-  initMenu();
+  // 🔹 Mobile menu
+  import('/assets/js/menuBlitzloader.js').then((mod) => mod.initMenu());
+  import('/assets/js/menuToggle.js').then((mod) => mod.initMenuToggle());
 
-  // 🔹 Initialize legacy or supplemental menu toggling
-  initMenuToggle();
-
-  // 🔹 Accordion (if present)
+  // 🔹 Lazy-load accordion only if present
   if (document.querySelector('[data-accordion-target]')) {
-    initAccordion(); // ← CONDITIONAL
+    import('/assets/js/modules/initAccordion.js')
+      .then((mod) => {
+        mod.initAccordion();
+        console.log('🪗 Accordion initialized');
+      })
+      .catch((err) => console.error('⚠️ Accordion failed to load:', err));
   }
 
-  // 🔹 Get current page ID (for conditional logic)
-  const pageId = document.body.id;
-
-  // ✅ Set redirect logic if form is present
+  // 🔹 Redirect form logic
   if (document.querySelector('input[name="redirect"]')) {
-    setFormRedirect();
+    import('/assets/js/formLogic.js').then((mod) => mod.setFormRedirect());
   }
 
-  // ✅ Show thank-you message on the thanks page
-  if (pageId === 'thanks') {
-    setThanksMessage();
+  // 🔹 Thank-you page message
+  if (document.body.id === 'thanks') {
+    import('/assets/js/formLogic.js').then((mod) => mod.setThanksMessage());
   }
 
-  // ✅ Update footer copyright year
+  // 🔹 Footer year
   const year = document.getElementById('year');
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+  if (year) year.textContent = new Date().getFullYear();
 
-  // ✅ Page fade-in logic, respects motion preferences
+  // 🔹 Page fade-in
   const pageContent = document.getElementById('pageContent');
   const skipFade = sessionStorage.getItem('skipFadeIn');
 
   if (pageContent) {
-    if (skipFade) {
+    if (skipFade || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       pageContent.classList.remove('opacity-0');
       sessionStorage.removeItem('skipFadeIn');
-    } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      pageContent.classList.remove('opacity-0');
     } else {
       requestAnimationFrame(() => {
         pageContent.classList.remove('opacity-0');
