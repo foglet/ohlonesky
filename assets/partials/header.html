@@ -3,20 +3,20 @@
     <div class="flex items-center justify-between h-16 pr-2">
 
       <!-- Logo -->
-      <a data-path="" id="homeLink" class="flex items-center space-x-2">
+      <a id="homeLink" href="/" class="flex items-center space-x-2">
         <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
              alt="Ohlone Sky Logo"
              class="h-[28px] w-auto" />
       </a>
 
-      <!-- Desktop Nav -->
-      <nav id="dynamicNav" class="hidden md:flex space-x-4" aria-label="Main Navigation">
+      <!-- Desktop Navigation -->
+      <nav id="desktopNav" class="hidden md:flex space-x-4" aria-label="Main Navigation">
         <a data-path="faqs" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
         <a data-path="support" class="text-brandDark font-bold hover:text-highlight">Support</a>
         <a data-path="contact" class="text-brandDark font-bold hover:text-highlight">Contact</a>
       </nav>
 
-      <!-- Hamburger Menu Button -->
+      <!-- Hamburger Menu Button (Mobile) -->
       <button id="menuToggle"
         aria-expanded="false"
         aria-controls="mobileMenu"
@@ -27,6 +27,7 @@
         <span class="bar-middle block w-8 h-0.5 bg-black transition-opacity duration-300 origin-center"></span>
         <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
       </button>
+
     </div>
   </div>
 </header>
