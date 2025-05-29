@@ -1,5 +1,6 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initAccordion } from '/assets/js/initAccordion.js';
+import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 window.addEventListener("unhandledrejection", (event) => {
   console.error("🚨 Unhandled promise rejection:", event.reason);
@@ -8,7 +9,6 @@ window.addEventListener("unhandledrejection", (event) => {
 document.addEventListener("DOMContentLoaded", async () => {
   console.log('📦 DOMContentLoaded');
 
-  // Load HTML partials
   const partials = document.querySelectorAll('[include-html]');
   console.log(`🔍 Found ${partials.length} partial(s) to load`);
 
@@ -25,28 +25,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }));
 
-  // Init accordion logic — must happen after DOM is updated with partials
   try {
     initAccordion();
     console.log("✅ Accordion initialized");
   } catch (err) {
-    console.error("❌ initAccordion() failed:", err);
+    console.error("❌ initAccordion failed", err);
   }
 
-  // Init main app logic
+  try {
+    initMenu(); // ⬅️ Moved here to run AFTER partials load
+    console.log("✅ initMenu initialized");
+  } catch (err) {
+    console.error("❌ initMenu() failed:", err);
+  }
+
   try {
     initMain();
     console.log("✅ initMain initialized");
   } catch (err) {
     console.error("❌ initMain() failed:", err);
   }
-
-  // Attempt autoplay for any <video autoplay> elements
-  document.querySelectorAll('video[autoplay]').forEach((vid) => {
-    vid.play().catch(err => {
-      console.warn('⚠️ Autoplay failed:', err);
-    });
-  });
 
   console.log('🎉 initLoader complete');
 });
