@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    initMenu(); // ⬅️ Moved here to run AFTER partials load
+    initMenu(); // ✅ Now waits for header/mobile-menu to be injected
     console.log("✅ initMenu initialized");
   } catch (err) {
     console.error("❌ initMenu() failed:", err);
   }
 
   try {
-    initMain();
+    initMain(); // Can remain here if it doesn’t depend on menu elements
     console.log("✅ initMain initialized");
   } catch (err) {
     console.error("❌ initMain() failed:", err);
