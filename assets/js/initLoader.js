@@ -1,5 +1,7 @@
+// assets/js/initLoader.js
+
 import { initMain } from '/assets/js/mainInit.js';
-// import { initDarkToggle } from '/assets/js/darkToggle.js';
+// import { initDarkToggle } from '/assets/js/darkToggle.js'; // removed if dark mode is no longer used
 
 window.addEventListener("unhandledrejection", (event) => {
   console.error("🚨 Unhandled promise rejection:", event.reason);
@@ -47,20 +49,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error('❌ Navigation path error:', navErr);
   }
 
-  // Init app-specific JS
+  // ✅ Re-import Flowbite to activate accordions after dynamic partials
+  try {
+    await import('https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js');
+    console.log('✅ Flowbite re-imported for dynamic content');
+  } catch (flowErr) {
+    console.error('❌ Failed to load Flowbite dynamically:', flowErr);
+  }
+
+  // ✅ Init custom app logic
   try {
     console.log('🧩 initMain()...');
     initMain();
   } catch (err) {
     console.error('❌ initMain() failed:', err);
   }
-
-  // try {
-  //  console.log('🌙 initDarkToggle()...');
-  //  initDarkToggle();
-  // } catch (err) {
-  //  console.error('❌ initDarkToggle() failed:', err);
-  // }
 
   console.log('🎉 initLoader complete');
 });
