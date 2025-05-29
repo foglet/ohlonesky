@@ -3,6 +3,7 @@
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 import { initMenuToggle } from '/assets/js/menuToggle.js';
 import { setFormRedirect, setThanksMessage } from '/assets/js/formLogic.js';
+import { initAccordion } from '/assets/js/modules/initAccordion.js'; // ← NEW
 
 export function initMain() {
   // 🔹 Initialize mobile menu (hamburger slide-out)
@@ -10,6 +11,11 @@ export function initMain() {
 
   // 🔹 Initialize legacy or supplemental menu toggling
   initMenuToggle();
+
+  // 🔹 Accordion (if present)
+  if (document.querySelector('[data-accordion-target]')) {
+    initAccordion(); // ← CONDITIONAL
+  }
 
   // 🔹 Get current page ID (for conditional logic)
   const pageId = document.body.id;
