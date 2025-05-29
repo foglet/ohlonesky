@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   await Promise.all([...partials].map(async (el) => {
     const file = el.getAttribute('include-html');
     try {
-      // ⭐ Cache busting query param to force fresh fetch
       const res = await fetch(`${file}?v=${Date.now()}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       el.innerHTML = await res.text();
@@ -29,16 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }));
 
-  // ✅ Initialize accordion logic (requires DOM updated)
-  // try {
-  //  initAccordion();
-  //  console.log("✅ Accordion initialized");
-  //} catch (err) {
-  //  console.error("❌ initAccordion failed", err);
-  // }
+  // 🔄 Let the DOM process inserted HTML before initializing menu
+  await new Promise(requestAnimationFrame);
 
   // ✅ Initialize mobile menu (requires menu DOM to exist)
   try {
+    const menuEl = document.querySelector('#menuBlitz');
+    console.log("🔎 menuBlitz found:", !!menuEl);
     initMenu();
     console.log("✅ initMenu initialized");
   } catch (err) {
