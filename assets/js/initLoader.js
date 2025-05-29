@@ -1,6 +1,7 @@
+import { initMain } from '/assets/js/mainInit.js';
 import { initDarkToggle } from '/assets/js/darkToggle.js';
 
-window.addEventListener("load", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const partials = document.querySelectorAll('[include-html]');
 
   await Promise.all([...partials].map(async (el) => {
@@ -9,7 +10,7 @@ window.addEventListener("load", async () => {
     el.innerHTML = res.ok ? await res.text() : `<!-- failed to load ${file} -->`;
   }));
 
-  // Adjust base hrefs
+  // Update navigation links based on depth
   const base = window.location.pathname.includes('/00/') ? './' : '00/';
   document.querySelectorAll('#dynamicNav a[data-path]').forEach((link) => {
     const target = link.getAttribute('data-path');
@@ -19,6 +20,7 @@ window.addEventListener("load", async () => {
 
   document.querySelector('#homeLink')?.setAttribute('href', `${base}`);
 
+  // Now that all partials are loaded
   initMain();
-  initDarkToggle(); // ✅ ensures dark toggle works after button loads
+  initDarkToggle(); // ✅ Runs AFTER button is present
 });
