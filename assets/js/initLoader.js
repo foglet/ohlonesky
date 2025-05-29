@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await Promise.all([...partials].map(async (el) => {
     const file = el.getAttribute('include-html');
     try {
-      const res = await fetch(file);
+      const res = await fetch(`${file}?v=${Date.now()}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       el.innerHTML = await res.text();
       console.log(`✅ Loaded: ${file}`);
@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    initMenu(); // ✅ Now waits for header/mobile-menu to be injected
+    initMenu();
     console.log("✅ initMenu initialized");
   } catch (err) {
     console.error("❌ initMenu() failed:", err);
   }
 
   try {
-    initMain(); // Can remain here if it doesn’t depend on menu elements
+    initMain();
     console.log("✅ initMain initialized");
   } catch (err) {
     console.error("❌ initMain() failed:", err);
