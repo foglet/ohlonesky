@@ -6,6 +6,7 @@ module.exports = {
     "./**/*.html",          // nested pages and partials
     "./assets/**/*.js",     // JS files that include Tailwind classes
   ],
+
   theme: {
     extend: {},
   },
