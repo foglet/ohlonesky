@@ -1,7 +1,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById('mobileMenu');
-    const menuButton = document.getElementById('menuButton');
+    const menuToggle = document.getElementById('menuToggle');
     const closeButton = document.getElementById('closeMenu');
     const backdrop = document.getElementById('menuBackdrop');
 
@@ -25,7 +25,7 @@
     }
 
     function openMenu() {
-      menuButton.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-expanded', 'true');
       menu.classList.remove('hidden');
       backdrop.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
@@ -37,18 +37,18 @@
     }
 
     function closeMenu() {
-      menuButton.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-expanded', 'false');
       menu.classList.add('translate-x-full');
       backdrop.classList.add('opacity-0');
       document.body.classList.remove('overflow-hidden');
       setTimeout(() => {
         menu.classList.add('hidden');
         backdrop.classList.add('hidden');
-        menuButton.focus();
+        menuToggle.focus();
       }, 300);
     }
 
-    menuButton.addEventListener('click', openMenu);
+    menuToggle.addEventListener('click', openMenu);
     closeButton.addEventListener('click', closeMenu);
     backdrop.addEventListener('click', closeMenu);
     document.addEventListener('keydown', (e) => {
