@@ -55,12 +55,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error('❌ initMain() failed:', err);
   }
 
-  try {
-    console.log('🌙 initDarkToggle()...');
-    initDarkToggle();
-  } catch (err) {
-    console.error('❌ initDarkToggle() failed:', err);
-  }
+  // try {
+  //  console.log('🌙 initDarkToggle()...');
+  //  initDarkToggle();
+  // } catch (err) {
+  //  console.error('❌ initDarkToggle() failed:', err);
+  // } 
 
   console.log('🎉 initLoader complete');
 });
