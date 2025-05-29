@@ -8,9 +8,9 @@ export function initMain() {
     .then(mod => mod.initMenu())
     .catch(err => console.error('⚠️ Failed to load menuBlitzloader.js:', err));
 
-  import('/assets/js/menuToggle.js')
-    .then(mod => mod.initMenuToggle())
-    .catch(err => console.error('⚠️ Failed to load menuToggle.js:', err));
+  // import('/assets/js/menuToggle.js')
+  //   .then(mod => mod.initMenuToggle())
+//    .catch(err => console.error('⚠️ Failed to load menuToggle.js:', err));
 
   // 🔹 Accordion (lazy load only if present)
   if (document.querySelector('[data-accordion-target]')) {
