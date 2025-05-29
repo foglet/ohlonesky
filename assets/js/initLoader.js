@@ -1,5 +1,5 @@
 import { initMain } from '/assets/js/mainInit.js';
-import { initDarkToggle } from '/assets/js/darkToggle.js';
+// import { initDarkToggle } from '/assets/js/darkToggle.js';
 
 window.addEventListener("unhandledrejection", (event) => {
   console.error("🚨 Unhandled promise rejection:", event.reason);
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   //  initDarkToggle();
   // } catch (err) {
   //  console.error('❌ initDarkToggle() failed:', err);
-  // } 
+  // }
 
   console.log('🎉 initLoader complete');
 });
