@@ -1,49 +1,35 @@
-// /assets/js/mainInit.js
+// assets/js/mainInit.js
 
 export function initMain() {
-  console.log("🚀 initMain: Starting UI initialization");
-
-  // 🔹 Mobile Menu Initialization
-  import('/assets/js/menuBlitzloader.js')
-    .then(mod => mod.initMenu())
-    .catch(err => console.error('⚠️ Failed to load menuBlitzloader.js:', err));
-
-  // import('/assets/js/menuToggle.js')
-  //   .then(mod => mod.initMenuToggle())
-//    .catch(err => console.error('⚠️ Failed to load menuToggle.js:', err));
-
-  // 🔹 Accordion (lazy load only if present)
+  // 🔹 Lazy-load accordion only if present
   if (document.querySelector('[data-accordion-target]')) {
     import('/assets/js/modules/initAccordion.js')
-      .then(mod => {
+      .then((mod) => {
         mod.initAccordion();
         console.log('🪗 Accordion initialized');
       })
-      .catch(err => console.error('⚠️ Failed to load initAccordion.js:', err));
+      .catch((err) => console.error('⚠️ Accordion failed to load:', err));
   }
 
-  // 🔹 Form Redirect Logic
+  // 🔹 Redirect form logic
   if (document.querySelector('input[name="redirect"]')) {
     import('/assets/js/formLogic.js')
-      .then(mod => mod.setFormRedirect())
-      .catch(err => console.error('⚠️ Failed to load setFormRedirect:', err));
+      .then((mod) => mod.setFormRedirect())
+      .catch((err) => console.error('⚠️ setFormRedirect failed:', err));
   }
 
-  // 🔹 Thank-You Page Handling
+  // 🔹 Thank-you page message
   if (document.body.id === 'thanks') {
     import('/assets/js/formLogic.js')
-      .then(mod => mod.setThanksMessage())
-      .catch(err => console.error('⚠️ Failed to load setThanksMessage:', err));
+      .then((mod) => mod.setThanksMessage())
+      .catch((err) => console.error('⚠️ setThanksMessage failed:', err));
   }
 
-  // 🔹 Footer Year Auto-Update
+  // 🔹 Footer year
   const year = document.getElementById('year');
-  if (year) {
-    year.textContent = new Date().getFullYear();
-    console.log('📆 Footer year updated');
-  }
+  if (year) year.textContent = new Date().getFullYear();
 
-  // 🔹 Page Fade-In Animation
+  // 🔹 Page fade-in
   const pageContent = document.getElementById('pageContent');
   const skipFade = sessionStorage.getItem('skipFadeIn');
 
@@ -57,6 +43,7 @@ export function initMain() {
         pageContent.classList.add('opacity-100');
       });
     }
-    console.log('🌅 Page fade-in applied');
   }
+
+  console.log('✅ initMain complete');
 }
