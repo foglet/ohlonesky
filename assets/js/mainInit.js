@@ -15,7 +15,7 @@ export function initMain() {
 
   // 🔹 Load mobile menu if toggle is present
   if (document.getElementById('menuToggle')) {
-    const menuPromise = import('/assets/js/modules/menuBlitzloader.js')
+    const menuPromise = import('/assets/js/menuBlitzloader.js')
       .then((mod) => {
         mod.initMenu();
         console.log('📱 Mobile menu initialized');
