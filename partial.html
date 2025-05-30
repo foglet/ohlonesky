@@ -107,8 +107,20 @@
       <div include-html="/assets/partials/scripts.html"></div>
 
       <!-- Init Loader Script -->
+      <!-- 	•	Use initLoader.js (since it loads header/footer/menu as partials) -->
       <script type="module" src="/assets/js/initLoader.js"></script>
 
     </div>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { initMain } from '/assets/js/mainInit.js';
+      import { initMenu } from '/assets/js/menuBlitzloader.js';
+
+      initMain();
+      initMenu();
+    </script>
+
+
   </body>
 </html>
