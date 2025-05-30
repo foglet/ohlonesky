@@ -274,9 +274,12 @@
 
     <!-- Scripts -->
     <script type="module">
-      import { initMain } from '/assets/js/mainInit.js';
-      initMain();
-    </script>
+    import { initMain } from '/assets/js/mainInit.js';
+    import { initMenu } from '/assets/js/menuBlitzloader.js?v=2';
+
+    initMain();
+    initMenu(); // ← This was missing
+  </script>
 
 </body>
 </html>
