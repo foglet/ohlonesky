@@ -34,6 +34,7 @@ export function initMenu() {
 
   function openMenu() {
     toggle.setAttribute('aria-expanded', 'true');
+    toggle.classList.add('open'); // 🆕 add rotation class
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
@@ -51,6 +52,8 @@ export function initMenu() {
 
   function closeMenu() {
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.classList.remove('open'); // 🆕 remove rotation class
+
     menu.classList.add('translate-x-full');
     menu.classList.remove('opacity-100');
     menu.classList.add('opacity-0');
