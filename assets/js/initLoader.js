@@ -1,6 +1,6 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initAccordion } from '/assets/js/initAccordion.js';
-import { initMenu } from '/assets/js/menuBlitzloader.js';
+import { initMenu } from '/assets/js/menuBlitzloader.js?v=2';
 
 window.addEventListener("unhandledrejection", (event) => {
   console.error("🚨 Unhandled promise rejection:", event.reason);
