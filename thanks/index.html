@@ -50,7 +50,6 @@
   <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
 
   <!-- Clean paragraph widths -->
-  <!-- Clean paragraph widths -->
   <style>
     @layer base {
       p {
@@ -59,6 +58,18 @@
 
       a {
         @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+      }
+
+      #menuToggle.open .bar-top {
+        @apply rotate-45 translate-y-[6px];
+      }
+
+      #menuToggle.open .bar-middle {
+        @apply opacity-0;
+      }
+
+      #menuToggle.open .bar-bottom {
+        @apply -rotate-45 -translate-y-[6px];
       }
     }
   </style>
