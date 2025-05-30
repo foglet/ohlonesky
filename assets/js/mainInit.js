@@ -1,29 +1,51 @@
 // assets/js/mainInit.js
 
 export function initMain() {
-  // 🔹 Lazy-load accordion only if present
+  const promises = [];
+
+  // 🔹 Lazy-load accordion if present
   if (document.querySelector('[data-accordion-target]')) {
-    import('/assets/js/modules/initAccordion.js')
+    const accordionPromise = import('/assets/js/modules/initAccordion.js')
       .then((mod) => {
         mod.initAccordion();
         console.log('🪗 Accordion initialized');
-      })
-      .catch((err) => console.error('⚠️ Accordion failed to load:', err));
+      });
+    promises.push(accordionPromise);
+  }
+
+  // 🔹 Load mobile menu if toggle is present
+  if (document.getElementById('menuToggle')) {
+    const menuPromise = import('/assets/js/modules/menuBlitzloader.js')
+      .then((mod) => {
+        mod.initMenu();
+        console.log('📱 Mobile menu initialized');
+      });
+    promises.push(menuPromise);
   }
 
   // 🔹 Redirect form logic
   if (document.querySelector('input[name="redirect"]')) {
-    import('/assets/js/formLogic.js')
-      .then((mod) => mod.setFormRedirect())
-      .catch((err) => console.error('⚠️ setFormRedirect failed:', err));
+    const redirectPromise = import('/assets/js/formLogic.js')
+      .then((mod) => mod.setFormRedirect());
+    promises.push(redirectPromise);
   }
 
   // 🔹 Thank-you page message
   if (document.body.id === 'thanks') {
-    import('/assets/js/formLogic.js')
-      .then((mod) => mod.setThanksMessage())
-      .catch((err) => console.error('⚠️ setThanksMessage failed:', err));
+    const thanksPromise = import('/assets/js/formLogic.js')
+      .then((mod) => mod.setThanksMessage());
+    promises.push(thanksPromise);
   }
+
+  // 🔹 Wait for all dynamic modules, even if some fail
+  Promise.allSettled(promises).then((results) => {
+    results.forEach((result, i) => {
+      if (result.status === 'rejected') {
+        console.warn(`⚠️ Module ${i} failed:`, result.reason);
+      }
+    });
+    console.log('✅ All dynamic modules settled');
+  });
 
   // 🔹 Footer year
   const year = document.getElementById('year');
