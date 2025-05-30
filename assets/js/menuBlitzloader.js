@@ -39,7 +39,9 @@ export function initMenu() {
     document.body.classList.add('overflow-hidden');
 
     requestAnimationFrame(() => {
-      menu.classList.remove('translate-x-full');
+      menu.classList.remove('translate-x-full', 'opacity-0');
+      menu.classList.add('opacity-100');
+
       backdrop.classList.remove('opacity-0');
       backdrop.classList.add('opacity-100');
     });
@@ -50,6 +52,9 @@ export function initMenu() {
   function closeMenu() {
     toggle.setAttribute('aria-expanded', 'false');
     menu.classList.add('translate-x-full');
+    menu.classList.remove('opacity-100');
+    menu.classList.add('opacity-0');
+
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
     document.body.classList.remove('overflow-hidden');
