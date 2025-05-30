@@ -13,42 +13,41 @@ export function initMenu({
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
   if (!toggle || !menu || !backdrop || !close) {
-    console.warn(`⚠️ initMenu: Missing element(s):`, {
-      toggle,
-      menu,
-      backdrop,
-      close
-    });
+    console.warn('⚠️ initMenu: Missing elements', { toggle, menu, backdrop, close });
     return;
   }
 
   const openMenu = () => {
-    console.log("🍔 Menu opened");
-    menu.classList.remove('hidden');
-    backdrop.classList.remove('hidden');
+    console.log('🍔 Menu opened');
 
-    requestAnimationFrame(() => {
-      menu.classList.add('opacity-100');
-      menu.classList.remove('opacity-0');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.classList.add('open');
 
-      backdrop.classList.add('opacity-100');
-      backdrop.classList.remove('opacity-0');
+    menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
+    menu.classList.add('translate-x-0', 'opacity-100');
 
-      links.forEach((link, i) => {
-        setTimeout(() => {
-          link.classList.remove('opacity-0', 'translate-y-2');
-          link.classList.add('opacity-100', 'translate-y-0');
-        }, i * 75);
-      });
+    backdrop.classList.remove('hidden', 'opacity-0');
+    backdrop.classList.add('opacity-100');
 
-      document.body.classList.add('overflow-hidden');
+    document.body.classList.add('overflow-hidden');
+
+    links.forEach((link, i) => {
+      setTimeout(() => {
+        link.classList.remove('opacity-0', 'translate-y-2');
+        link.classList.add('opacity-100', 'translate-y-0');
+      }, i * 75);
     });
   };
 
   const closeMenu = () => {
-    console.log("❌ Menu closed");
-    menu.classList.remove('opacity-100');
-    menu.classList.add('opacity-0');
+    console.log('❌ Menu closed');
+
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.classList.remove('open');
+
+    menu.classList.remove('opacity-100', 'translate-x-0');
+    menu.classList.add('opacity-0', 'translate-x-full');
+
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
@@ -65,33 +64,33 @@ export function initMenu({
   };
 
   toggle.addEventListener('click', () => {
-    console.log("🖱️ toggle clicked");
+    console.log('🖱️ toggle clicked');
     openMenu();
   });
 
   close.addEventListener('click', () => {
-    console.log("🖱️ close clicked");
+    console.log('🖱️ close clicked');
     closeMenu();
   });
 
   backdrop.addEventListener('click', () => {
-    console.log("🖱️ backdrop clicked");
+    console.log('🖱️ backdrop clicked');
     closeMenu();
   });
 
-  links.forEach(link =>
+  links.forEach(link => {
     link.addEventListener('click', () => {
-      console.log("🖱️ nav link clicked");
+      console.log('🖱️ nav link clicked');
       closeMenu();
-    })
-  );
+    });
+  });
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      console.log("🔑 Escape key");
+      console.log('🔑 Escape key');
       closeMenu();
     }
   });
 
-  console.log(`✅ initMenu complete for #${menuId}`);
+  console.log(`✅ initMenu initialized for #${menuId}`);
 }
