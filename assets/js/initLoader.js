@@ -1,5 +1,3 @@
-// assets/js/initLoader.js
-
 import { initMain } from '/assets/js/mainInit.js';
 import { initAccordion } from '/assets/js/initAccordion.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
@@ -28,20 +26,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }));
 
-  // 🔄 Let the DOM process inserted HTML before initializing menu
-  await new Promise(requestAnimationFrame);
+  await new Promise(requestAnimationFrame); // Let DOM render
 
-  // ✅ Initialize mobile menu (requires menu DOM to exist)
-  try {
-    const menuEl = document.querySelector('#menuBlitz');
-    console.log("🔎 menuBlitz found:", !!menuEl);
+  // ✅ Initialize menu if element exists
+  const menuEl = document.querySelector('#menuBlitz');
+  if (menuEl) {
+    console.log("🔎 menuBlitz found:", true);
     initMenu();
     console.log("✅ initMenu initialized");
-  } catch (err) {
-    console.error("❌ initMenu() failed:", err);
+  } else {
+    console.warn("⚠️ menuBlitz not found. Skipping initMenu.");
   }
 
-  // ✅ Initialize all remaining app logic
   try {
     initMain();
     console.log("✅ initMain initialized");
