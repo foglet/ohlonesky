@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   await new Promise(requestAnimationFrame); // Let DOM render
 
   // ✅ Initialize menu if element exists
-  const menuEl = document.querySelector('#menuBlitz');
+  const menuEl = document.querySelector('#mobileMenu');
   if (menuEl) {
-    console.log("🔎 menuBlitz found:", true);
+    console.log("🔎 mobileMenu found:", true);
     initMenu();
     console.log("✅ initMenu initialized");
   } else {
-    console.warn("⚠️ menuBlitz not found. Skipping initMenu.");
+    console.warn("⚠️ mobileMenu not found. Skipping initMenu.");
   }
 
   try {
