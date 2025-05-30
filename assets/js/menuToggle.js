@@ -2,12 +2,12 @@
 export function initMenuToggle() {
   const menu = document.getElementById('mobileMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const menuButton = document.getElementById('menuButton');
+  const menuToggle = document.getElementById('menuToggle');
   const closeButton = document.getElementById('closeMenu');
 
-  const barTop = menuButton.querySelector('.bar-top');
-  const barMiddle = menuButton.querySelector('.bar-middle');
-  const barBottom = menuButton.querySelector('.bar-bottom');
+  const barTop = menuToggle.querySelector('.bar-top');
+  const barMiddle = menuToggle.querySelector('.bar-middle');
+  const barBottom = menuToggle.querySelector('.bar-bottom');
 
   function trapFocus(element) {
     const focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select';
@@ -43,7 +43,7 @@ export function initMenuToggle() {
   }
 
   function openMenu() {
-    menuButton.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-expanded', 'true');
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
@@ -66,7 +66,7 @@ export function initMenuToggle() {
   }
 
   function closeMenu() {
-    menuButton.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-expanded', 'false');
     menu.classList.remove('opacity-100');
     menu.classList.add('opacity-0');
     backdrop.classList.remove('opacity-100');
@@ -83,12 +83,12 @@ export function initMenuToggle() {
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-      menuButton.focus();
+      menuToggle.focus();
     }, 300);
   }
 
-  menuButton.addEventListener('click', () => {
-    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
     expanded ? closeMenu() : openMenu();
   });
 
