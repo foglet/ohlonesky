@@ -1,12 +1,19 @@
-export function initMenu() {
-  const toggle = document.getElementById('menuToggle');
-  const close = document.getElementById('closeMenu');
-  const backdrop = document.getElementById('menuBackdrop');
-  const menu = document.getElementById('mobileMenu');
-  const links = document.querySelectorAll('#mobileMenu .menu-link');
+export function initMenu({
+  menuId = 'mobileMenu',
+  toggleId = 'menuToggle',
+  closeId = 'closeMenu',
+  backdropId = 'menuBackdrop',
+  linkSelector = '.menu-link',
+  transitionDuration = 300
+} = {}) {
+  const toggle = document.getElementById(toggleId);
+  const close = document.getElementById(closeId);
+  const backdrop = document.getElementById(backdropId);
+  const menu = document.getElementById(menuId);
+  const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
   if (!toggle || !menu || !backdrop || !close) {
-    console.warn("⚠️ initMenu: Missing one or more required elements.");
+    console.warn(`⚠️ initMenu: Missing one or more required elements (${menuId}, ${toggleId}, etc.)`);
     return;
   }
 
@@ -14,7 +21,6 @@ export function initMenu() {
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
 
-    // Let the DOM register visibility
     requestAnimationFrame(() => {
       menu.classList.add('opacity-100');
       menu.classList.remove('opacity-0');
@@ -28,6 +34,8 @@ export function initMenu() {
           link.classList.add('opacity-100', 'translate-y-0');
         }, i * 75);
       });
+
+      document.body.classList.add('overflow-hidden');
     });
   };
 
@@ -38,7 +46,7 @@ export function initMenu() {
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
-    links.forEach((link) => {
+    links.forEach(link => {
       link.classList.remove('opacity-100', 'translate-y-0');
       link.classList.add('opacity-0', 'translate-y-2');
     });
@@ -46,10 +54,17 @@ export function initMenu() {
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-    }, 300); // match your Tailwind transition duration
+      document.body.classList.remove('overflow-hidden');
+    }, transitionDuration);
   };
 
   toggle.addEventListener('click', openMenu);
   close.addEventListener('click', closeMenu);
   backdrop.addEventListener('click', closeMenu);
+  links.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  console.log(`✅ menuBlitz initialized for #${menuId}`);
 }
