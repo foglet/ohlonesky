@@ -37,7 +37,7 @@ export function initMenu({
 
       document.body.classList.add('overflow-hidden');
     });
-  };
+  };  
 
   const closeMenu = () => {
     menu.classList.remove('opacity-100');
