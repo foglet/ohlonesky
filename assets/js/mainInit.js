@@ -5,7 +5,7 @@ export function initMain() {
 
   // 🔹 Lazy-load accordion if present
   if (document.querySelector('[data-accordion-target]')) {
-    const accordionPromise = import('/assets/js/modules/initAccordion.js')
+    const accordionPromise = import('/assets/js/initAccordion.js')
       .then((mod) => {
         mod.initAccordion();
         console.log('🪗 Accordion initialized');
