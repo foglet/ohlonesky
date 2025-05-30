@@ -13,11 +13,17 @@ export function initMenu({
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
   if (!toggle || !menu || !backdrop || !close) {
-    console.warn(`⚠️ initMenu: Missing one or more required elements (${menuId}, ${toggleId}, etc.)`);
+    console.warn(`⚠️ initMenu: Missing element(s):`, {
+      toggle,
+      menu,
+      backdrop,
+      close
+    });
     return;
   }
 
   const openMenu = () => {
+    console.log("🍔 Menu opened");
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
 
@@ -37,9 +43,10 @@ export function initMenu({
 
       document.body.classList.add('overflow-hidden');
     });
-  };  
+  };
 
   const closeMenu = () => {
+    console.log("❌ Menu closed");
     menu.classList.remove('opacity-100');
     menu.classList.add('opacity-0');
     backdrop.classList.remove('opacity-100');
@@ -57,13 +64,34 @@ export function initMenu({
     }, transitionDuration);
   };
 
-  toggle.addEventListener('click', openMenu);
-  close.addEventListener('click', closeMenu);
-  backdrop.addEventListener('click', closeMenu);
-  links.forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
+  toggle.addEventListener('click', () => {
+    console.log("🖱️ toggle clicked");
+    openMenu();
   });
 
-  console.log(`✅ menuBlitz initialized for #${menuId}`);
+  close.addEventListener('click', () => {
+    console.log("🖱️ close clicked");
+    closeMenu();
+  });
+
+  backdrop.addEventListener('click', () => {
+    console.log("🖱️ backdrop clicked");
+    closeMenu();
+  });
+
+  links.forEach(link =>
+    link.addEventListener('click', () => {
+      console.log("🖱️ nav link clicked");
+      closeMenu();
+    })
+  );
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      console.log("🔑 Escape key");
+      closeMenu();
+    }
+  });
+
+  console.log(`✅ initMenu complete for #${menuId}`);
 }
