@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const partials = document.querySelectorAll('[include-html]');
   console.log(`🔍 Found ${partials.length} partial(s) to load`);
 
-  await Promise.all([...partials].map(async (el) => {
+  const promises = [...partials].map(async (el) => {
     const file = el.getAttribute('include-html');
     try {
       const res = await fetch(`${file}?v=${Date.now()}`);
@@ -24,20 +24,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error(`❌ Failed to load ${file}:`, err);
       el.innerHTML = `<!-- Failed to load ${file} -->`;
     }
-  }));
+  });
 
-  await new Promise(requestAnimationFrame); // Let DOM render
+  // 🔹 Wait for all dynamic modules, even if some fail
+  await Promise.allSettled(promises);
+  console.log('✅ All partials settled');
+
+  // 🔹 Wait one animation frame for DOM update
+  await new Promise(requestAnimationFrame);
 
   // ✅ Initialize menu if element exists
   const menuEl = document.querySelector('#mobileMenu');
   if (menuEl) {
     console.log("🔎 mobileMenu found:", true);
-    initMenu();
+    initMenu(); // ← YOUR BINDING HAPPENS HERE
     console.log("✅ initMenu initialized");
   } else {
     console.warn("⚠️ mobileMenu not found. Skipping initMenu.");
   }
 
+  // ✅ Initialize other scripts
   try {
     initMain();
     console.log("✅ initMain initialized");
