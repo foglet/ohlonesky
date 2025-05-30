@@ -9,9 +9,8 @@ window.addEventListener("unhandledrejection", (event) => {
 document.addEventListener("DOMContentLoaded", async () => {
   console.log('📦 DOMContentLoaded');
 
-  // 🔍 Load HTML partials
   const partials = document.querySelectorAll('[include-html]');
-  console.log(`🔍 Found ${partials.length} partial(s) to load`);
+  console.log(`🔍 Found ${partials.length} partial(s)`);
 
   const promises = [...partials].map(async (el) => {
     const file = el.getAttribute('include-html');
@@ -25,21 +24,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
 
       if (file.includes('mobile-menu.html')) {
-        console.warn('🚫 Mobile menu partial failed to load or was omitted.');
+        console.warn('🚫 mobile-menu.html failed to load or is missing from this page.');
       }
     }
   });
 
   await Promise.allSettled(promises);
-  await new Promise(requestAnimationFrame); // let DOM update
+  await new Promise(requestAnimationFrame); // Let DOM update
 
-  // ✅ Initialize mobile menu if it exists
   const menuEl = document.getElementById('mobileMenu');
+  console.log("🔎 After partials: mobileMenu exists?", !!menuEl);
+
   if (menuEl) {
-    console.log("🔎 Found #mobileMenu");
-    initMenu(); // use default config
+    try {
+      initMenu();
+      console.log("✅ initMenu initialized");
+    } catch (err) {
+      console.error("❌ initMenu() threw an error:", err);
+    }
   } else {
-    console.log("ℹ️ No mobile menu found on this page.");
+    console.log("ℹ️ No #mobileMenu found — skipping initMenu.");
   }
 
   try {
