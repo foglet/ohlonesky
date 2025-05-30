@@ -42,7 +42,6 @@ export function initMenu({
   const closeMenu = () => {
     menu.classList.remove('opacity-100');
     menu.classList.add('opacity-0');
-
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
 
