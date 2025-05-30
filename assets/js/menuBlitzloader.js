@@ -1,87 +1,55 @@
-// menuBlitzloader.js — unified mobile menu controller
-
 export function initMenu() {
   const toggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('mobileMenu');
+  const close = document.getElementById('closeMenu');
   const backdrop = document.getElementById('menuBackdrop');
-  const closeBtn = document.getElementById('closeMenu');
+  const menu = document.getElementById('mobileMenu');
+  const links = document.querySelectorAll('#mobileMenu .menu-link');
 
-  if (!toggle || !menu || !backdrop || !closeBtn) {
-    console.warn("⚠️ menuBlitz: Some elements not found, skipping init");
+  if (!toggle || !menu || !backdrop || !close) {
+    console.warn("⚠️ initMenu: Missing one or more required elements.");
     return;
   }
 
-  function trapFocus(container) {
-    const focusable = container.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-    );
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
-    container.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-    first?.focus();
-  }
-
-  function openMenu() {
-    toggle.setAttribute('aria-expanded', 'true');
-    toggle.classList.add('open'); // 🆕 add rotation class
+  const openMenu = () => {
     menu.classList.remove('hidden');
     backdrop.classList.remove('hidden');
-    document.body.classList.add('overflow-hidden');
 
+    // Let the DOM register visibility
     requestAnimationFrame(() => {
-      menu.classList.remove('translate-x-full', 'opacity-0');
       menu.classList.add('opacity-100');
+      menu.classList.remove('opacity-0');
 
-      backdrop.classList.remove('opacity-0');
       backdrop.classList.add('opacity-100');
+      backdrop.classList.remove('opacity-0');
+
+      links.forEach((link, i) => {
+        setTimeout(() => {
+          link.classList.remove('opacity-0', 'translate-y-2');
+          link.classList.add('opacity-100', 'translate-y-0');
+        }, i * 75);
+      });
     });
+  };
 
-    trapFocus(menu);
-  }
-
-  function closeMenu() {
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.classList.remove('open'); // 🆕 remove rotation class
-
-    menu.classList.add('translate-x-full');
+  const closeMenu = () => {
     menu.classList.remove('opacity-100');
     menu.classList.add('opacity-0');
 
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
-    document.body.classList.remove('overflow-hidden');
 
-    menu.addEventListener('transitionend', () => {
+    links.forEach((link) => {
+      link.classList.remove('opacity-100', 'translate-y-0');
+      link.classList.add('opacity-0', 'translate-y-2');
+    });
+
+    setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
-      toggle.focus();
-    }, { once: true });
-  }
+    }, 300); // match your Tailwind transition duration
+  };
 
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    expanded ? closeMenu() : openMenu();
-  });
-
+  toggle.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
   backdrop.addEventListener('click', closeMenu);
-  closeBtn.addEventListener('click', closeMenu);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-      closeMenu();
-    }
-  });
-
-  console.log("📱 menuBlitz initialized successfully");
 }
