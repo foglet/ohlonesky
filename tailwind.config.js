@@ -8,6 +8,8 @@ module.exports = {
     './assets/**/*.js',
     './assets/partials/**/*.html', // ✅ partials supported
     './assets/css/hero.css',        // ✅ ensure custom @apply works
+    './404.html',
+
   ],
   theme: {
     extend: {
