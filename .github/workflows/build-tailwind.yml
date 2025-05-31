@@ -1,8 +1,10 @@
 name: Build Tailwind CSS
 
 on:
+  # Trigger on push to main branch
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -28,7 +30,7 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add assets/css/output.css
-        git commit -m "⚡ Build Tailwind CSS"
+        git commit -m "⚡ Build Tailwind CSS" --allow-empty
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
