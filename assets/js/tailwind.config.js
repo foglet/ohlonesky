@@ -16,7 +16,7 @@ module.exports = {
         brandSky: '#0f172a',
         stormSky: '#374151',
         warmRed: '#F54029',
-        highlight: '#ff5500',
+        highlight: '#ffffff',
         neutralText: '#636363',
       },
       fontFamily: {
