@@ -49,21 +49,6 @@
       <link rel="stylesheet" href="/assets/css/hero.css" />
     </noscript>
 
-    <script>
-    (function loadCSSAssets() {
-      const depth = window.location.pathname.split('/').filter(Boolean).length;
-      const prefix = '../'.repeat(depth);
-      const version = `?v=${Date.now()}`;
-
-      ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = `${prefix}${file}${version}`;
-        document.head.appendChild(link);
-      });
-    })();
-    </script>
-
   </head>
 
   <body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
