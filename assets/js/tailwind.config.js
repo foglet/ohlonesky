@@ -6,7 +6,8 @@ module.exports = {
     './*.html',
     './**/*.html',
     './assets/**/*.js',
-    './assets/css/hero.css', // ✅ Required for @apply to work in hero.css
+    './assets/partials/**/*.html',      // ✅ Include partials explicitly
+    './assets/css/hero.css',            // ✅ Required for @apply in hero.css
   ],
   theme: {
     extend: {
@@ -26,22 +27,22 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
-    plugin(function ({ addUtilities }) {
+    plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
           fontSize: 'clamp(0.875rem, 2vw, 1.125rem)', // ~14–18px
         },
         '.text-fluid-base': {
-          fontSize: 'clamp(1rem, 3vw, 1.25rem)', // ~16–20px
+          fontSize: 'clamp(1rem, 3vw, 1.25rem)',     // ~16–20px
         },
         '.text-fluid-md': {
-          fontSize: 'clamp(1.25rem, 4vw, 2rem)', // ~20–32px
+          fontSize: 'clamp(1.25rem, 4vw, 2rem)',     // ~20–32px
         },
         '.text-fluid-lg': {
-          fontSize: 'clamp(1.75rem, 6vw, 3rem)', // ~28–48px
+          fontSize: 'clamp(1.75rem, 6vw, 3rem)',     // ~28–48px
         },
         '.text-fluid-xl': {
-          fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', // ~40–72px
+          fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',    // ~40–72px
         },
       });
     }),
