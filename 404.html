@@ -31,14 +31,15 @@
     <meta name="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
     <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
-
-
-    <!-- Stylesheets: not loading...  -->
-  <!--  <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" /> -->
+    <!-- Adobe Fonts -->
+    <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
 
     <!-- Tailwind CSS: dynamically inserted -->
-    <script src="/assets/js/cssLoader.js"></script>
+
+    <!-- Stylesheets: not loading...  -->
+    <!--  <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="stylesheet" href="/assets/css/hero.css" /> -->
 
     <!-- Fallback for no-JS users -->
     <noscript>
@@ -46,10 +47,21 @@
       <link rel="stylesheet" href="/assets/css/hero.css" />
     </noscript>
 
+    <script>
+    (function loadCSSAssets() {
+      const depth = window.location.pathname.split('/').filter(Boolean).length;
+      const prefix = '../'.repeat(depth);
+      const version = `?v=${Date.now()}`;
 
-    <!-- Adobe Fonts -->
-    <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
+      ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = `${prefix}${file}${version}`;
+        document.head.appendChild(link);
+      });
+    })();
+    </script>
+
   </head>
 
   <body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
@@ -61,7 +73,7 @@
 
 <!-- ||||||||||||||||||||||||||||||  CSS or broke |||||||||||||||||||||| -->
     <!-- reinsert if necessary -->
-    
+
 <!-- ||||||||||||||||||||||||||||||  end of CSS or broke ||||||||||||||| -->
 
     <!-- |||||||||||||||||||| Hero Image: the only stuff to change  ||||||||||||||||||||| -->
