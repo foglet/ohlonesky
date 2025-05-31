@@ -3,12 +3,12 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
   darkMode: 'class',
   content: [
-    './*.html',
-    './**/*.html',
-    './assets/**/*.js',
-    './assets/partials/**/*.html', // ✅ partials supported
-    './assets/css/hero.css',        // ✅ ensure custom @apply works
-    './404.html',
+    './404.html',               // ✅ explicitly needed!
+    './*.html',                 // covers root-level files
+    './**/*.html',              // catches all nested pages
+    './assets/**/*.js',         // for class names in JS
+    './assets/css/hero.css',    // for @apply to work
+    './assets/partials/**/*.html',
 
   ],
   theme: {
