@@ -23,12 +23,12 @@ jobs:
     - name: Build Tailwind CSS
       run: npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
 
-    - name: Commit and Push built CSS
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git add assets/css/output.css
-        git commit -m "⚡ Build Tailwind CSS"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  - name: Commit and Push built CSS
+  run: |
+    git config user.name "GitHub Actions"
+    git config user.email "actions@github.com"
+    git add assets/css/output.css
+    git commit -m "⚡ Build Tailwind CSS" --allow-empty
+    git push
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
