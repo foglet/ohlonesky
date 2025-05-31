@@ -1,45 +1,53 @@
-/* Base Element Overrides (Tailwind Layer) */
+/* Base Element Overrides */
 @layer base {
-  p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
-  a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
-  #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
-  #menuToggle.open .bar-middle{@apply opacity-0;}
-  #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];} }
+  p {
+    @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
+  }
+
+  a {
+    @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+  }
+
+  #menuToggle.open .bar-top {
+    @apply rotate-45 translate-y-[6px];
+  }
+
+  #menuToggle.open .bar-middle {
+    @apply opacity-0;
+  }
+
+  #menuToggle.open .bar-bottom {
+    @apply -rotate-45 -translate-y-[6px];
+  }
+}
 
 /* Fade-up Animation */
-@keyframes fade-up {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }}
+@layer utilities {
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-.animate-fade-up {
-  animation: fade-up 500ms ease-out forwards;
-  will-change: opacity, transform; }
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
+  .animate-fade-up {
+    animation: fade-up 500ms ease-out forwards;
+    will-change: opacity, transform;
+  }
 
-/* Hero Section Styles (Charlotte wrote this) */
-.hero-section {
-  background: linear-gradient(to bottom, #f0f4f8, #ffffff);
-  padding-top: 6rem;
-  padding-bottom: 6rem; }
+  .delay-100 {
+    animation-delay: 100ms;
+  }
 
-.hero-heading {
-  font-family: 'freight-sans-pro', sans-serif;
-  font-size: 2.5rem; font-weight: 700; color: #1d2834;
-  line-height: 1.2; max-width: 40rem; }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
 
-.hero-subheading {
-  font-size: 1.125rem; color: #636363;
-  margin-top: 1rem; max-width: 36rem; }
-
-/* Button Styles */
-.btn-primary {
-  background-color: #ff5500;
-  color: white;
-  padding: 0.75rem 1.5rem; border-radius: 0.5rem;
-  font-weight: 600; text-transform: uppercase;
-  transition: background-color 200ms ease; }
-
-.btn-primary:hover {
-  background-color: #e64500; }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+}
