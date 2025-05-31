@@ -8,7 +8,7 @@ module.exports = {
     './**/*.html',              // catches all nested pages
     './assets/**/*.js',         // for class names in JS
     './assets/css/hero.css',    // for @apply to work
-    './assets/partials/**/*.html',
+    './assets/partials/**/*.html', //trigger rebuild
 
   ],
   theme: {
