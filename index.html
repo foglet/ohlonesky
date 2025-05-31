@@ -94,8 +94,6 @@
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-  <div include-html="/assets/partials/header.html"></div>
-
     <!-- Header -->
     <header class="sticky top-0 bg-white shadow z-50">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +105,11 @@
                  class="h-[28px] w-auto" />
           </a>
 
-      
+    <!-- Header Partials -->
+    <div include-html="/assets/partials/header.html"></div>
+    <div class="md:hidden" include-html="/assets/partials/mobile-menu.html"></div>
+
+
     <!-- Hero Image -->
     <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
          alt="Aerial view of tram line"
