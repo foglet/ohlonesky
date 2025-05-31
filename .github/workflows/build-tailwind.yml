@@ -2,7 +2,7 @@ name: Build Tailwind CSS
 
 on:
   push:
-    branches: [main] # change if you're using a different branch
+    branches: [main]
 
 jobs:
   build:
@@ -17,8 +17,8 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install Tailwind CLI
-      run: npm install -D tailwindcss
+    - name: Install dependencies
+      run: npm install
 
     - name: Build Tailwind CSS
       run: npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
