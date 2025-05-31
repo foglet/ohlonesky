@@ -2,10 +2,20 @@ import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const partials = document.querySelectorAll('[include-html]');
   const timestamp = `?v=${Date.now()}`;
+  const depth = window.location.pathname.split('/').filter(Boolean).length;
+  const prefix = '../'.repeat(depth);
 
-  // === Load HTML partials ===
+  // ✅ Inject CSS immediately
+  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${prefix}${file}${timestamp}`;
+    document.head.appendChild(link);
+  });
+
+  // ✅ Load partials
+  const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
     try {
@@ -18,27 +28,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // === Inject CSS after partials ===
-  injectCSSAssets(timestamp);
-
-  // === Initialize modules after layout is ready ===
+  // ✅ Initialize modules
   requestAnimationFrame(() => {
     initMain();
     if (document.getElementById('mobileMenu')) initMenu();
   });
 });
-
-// === Dynamically inject stylesheets ===
-function injectCSSAssets(version) {
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  const prefix = '../'.repeat(depth);
-
-  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `${prefix}${file}${version}`;
-    document.head.appendChild(link);
-  });
-
-  console.log('🎨 CSS injected after partials');
-}
