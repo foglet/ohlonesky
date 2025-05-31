@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // ✅ Inject CSS immediately
+  // ✅ Inject CSS into <head>
   ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -28,9 +28,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Initialize modules
+  // ✅ Init modules after layout
   requestAnimationFrame(() => {
     initMain();
     if (document.getElementById('mobileMenu')) initMenu();
   });
+
+  // ✅ Reveal content
+  document.getElementById('pageContent')?.classList.remove('opacity-0');
 });
