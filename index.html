@@ -25,7 +25,7 @@
 
   <!-- Meta Tags Generated with https://metatags.io -->
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS -->   <!-- highlight: '#ff5500', -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,7 +33,6 @@
         extend: {
           colors: {
             brandDark: '#1d2834',
-            highlight: '#ff5500',
             neutralText: '#636363',
           },
           fontFamily: {
@@ -51,7 +50,8 @@
   <style>
   @layer base {
     p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
-    a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
+
+    a{@apply underline text-brandDark transition-colors duration-200;}
     #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
     #menuToggle.open .bar-middle{@apply opacity-0;}
     #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];}
