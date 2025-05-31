@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Meta Charset and Viewport -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Primary Meta Tags -->
-  <title>Ohlone Sky</title>
-  <meta name="title" content="Ohlone Sky" />
-  <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands." />
-  <link rel="canonical" href="https://ohlonesky.com" />
-  <link rel="icon" href="/favicon.ico" />
+    <head>
+      <!-- Charset & Responsive -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Social Meta -->
-  <meta property="og:title" content="Ohlone Sky" />
-  <meta property="og:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ohlonesky.com" />
+      <!-- SEO & Metadata -->
+      <title>Ohlone Sky</title>
+      <meta name="description" content="Ohlone Sky – Aerial Tram Project" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ohlone Sky" />
-  <meta name="twitter:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta name="twitter:url" content="https://ohlonesky.com" />
+      <!-- Adobe Fonts -->
+      <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
 
-  <!-- Adobe Fonts -->
-  <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
+      <!-- Preload & Load Tailwind CSS -->
+      <link rel="preload" href="/assets/css/output.css" as="style">
+      <link rel="stylesheet" href="/assets/css/output.css" />
 
-  <!-- ||||||||||||  CSS run from here: Terminal rebuild ||||||||||||| -->
-  <link rel="stylesheet" href="/assets/css/output.css" />
-  <link rel="stylesheet" href="/assets/css/hero.css" />
+      <!-- Optional additional styles -->
+      <link rel="preload" href="/assets/css/hero.css" as="style">
+      <link rel="stylesheet" href="/assets/css/hero.css" />
 
-  <!-- Fallback for no-JS users -->
-  <noscript>
-    <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" />
-  </noscript>
-  <!-- ||||||||||| CSS yippee ||||||| -->
+      <!-- Hide content until CSS loads to prevent FOUC -->
+      <style>
+        body { visibility: hidden; }
+      </style>
 
-</head>
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          document.body.style.visibility = 'visible';
+        });
+      </script>
+
+      <!-- Fallback: Dynamically inject CSS if static link fails -->
+      <script>
+        if (!document.querySelector('link[href*="output.css"]')) {
+          const version = `?v=${Date.now()}`;
+          ['output.css', 'hero.css'].forEach(file => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `/assets/css/${file}${version}`;
+            document.head.appendChild(link);
+          });
+        }
+      </script>
+    </head>
+
 
   <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
     <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
@@ -63,8 +68,10 @@
 
         <!-- Full-screen background -->
           <div class="absolute inset-0 z-0 bg-cover bg-center brightness-75"
-               style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg');">
+               style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg');">
           </div>
+
+            
 
         <!-- Overlay content -->
         <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
@@ -81,9 +88,9 @@
         </div>
 
         <!-- Attribution -->
-          <p class="text-xs text-gray-600 text-center mt-6 px-4">
-            Source: Jessica Christian, Unsplash
-          </p>
+        <p class="text-xs text-gray-600 text-center mt-2">
+          Source: Alexander Voronov, Unsplash
+        </p>
       </section>
     </main><br>
 
