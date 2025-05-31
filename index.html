@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <head>
-    <!-- Meta Charset and Viewport -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Primary Meta Tags -->
-    <title>Ohlone Sky</title> <!-- Override this per page if needed -->
+  <!-- Primary Meta Tags -->
+    <title>Ohlone Sky</title>
     <meta name="title" content="Ohlone Sky" />
     <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://ohlonesky.com" />
-
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -24,30 +16,15 @@
     <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
     <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ohlonesky.com" />
-    <meta name="twitter:title" content="Ohlone Sky" />
-    <meta name="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-    <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ohlonesky.com" />
+    <meta property="twitter:title" content="Ohlone Sky" />
+    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
-    <!-- Stylesheets: not loading...  -->
-    <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" />
+  <!-- Meta Tags Generated with https://metatags.io -->
 
-    <!-- Adobe Fonts -->
-    <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
-  </head>
-
-  <body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
-
-    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-      <header include-html="/assets/partials/header.html"></header>
-
-<!-- ||||||||||||||||||||||||||||||  CSS or broke |||||||||||||||||||||| -->
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -111,15 +88,16 @@
 
 </head>
 
-<body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
+<body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
   <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
   <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
   <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-    <header include-html="/assets/partials/header.html"></header>
+
+    <!-- Header -->
+    <div include-html="/assets/partials/header.html"></div>
 
     <!-- |||||||||||||||||||| Hero Image: the only stuff to change  ||||||||||||||||||||| -->
-
     <!-- Hero Image -->
     <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
          alt="Aerial view of tram line"
@@ -219,22 +197,8 @@
 </div> <!-- end of page content -->
 
 
-    <!-- Footer -->
-    <footer class="bg-zinc-50 border-t border-gray-200 py-10 mt-auto">
-      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-brandDark">
-        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
-        <div class="text-sm mt-2">Copyright © <!-- <span id="year"></span> --><a href="https://fogday.com" class="font-medium text-blue-950 hover:text-orange-600"> FOGDAY</a></div>
-      </div>
-    </footer>
-
-    <!-- Scripts: Ditch this IF using partials. -->
-    <!-- <script type="module">
-    import { initMain } from '/assets/js/mainInit.js';
-    import { initMenu } from '/assets/js/menuBlitzloader.js';
-
-    initMain();
-    initMenu();
-  </script> -->
+  <!-- Footer -->
+  <footer include-html="/assets/partials/footer.html"></footer>
 
   <script type="module" src="/assets/js/initLoader.js"></script>
 
