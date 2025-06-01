@@ -19,7 +19,7 @@ module.exports = {
         brandSky: '#0f172a',
         stormSky: '#374151',
         warmRed: '#F54029',
-        highlight: '#FFF',
+        highlight: '#FF5500',
         neutralText: '#636363',
       },
       fontFamily: {
