@@ -1,101 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta Charset and Viewport -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary Meta Tags -->
-    <title>Ohlone Sky</title>
-    <meta name="title" content="Ohlone Sky" />
-    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+  <title>Ohlone Sky</title>
+  <meta name="title" content="Ohlone Sky" />
+  <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands." />
+  <link rel="canonical" href="https://ohlonesky.com" />
+  <link rel="icon" href="/favicon.ico" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ohlonesky.com" />
-    <meta property="og:title" content="Ohlone Sky" />
-    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+  <!-- Social Meta -->
+  <meta property="og:title" content="Ohlone Sky" />
+  <meta property="og:description" content="A visionary project for a connected, carbon-neutral future." />
+  <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ohlonesky.com" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://ohlonesky.com" />
-    <meta property="twitter:title" content="Ohlone Sky" />
-    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ohlone Sky" />
+  <meta name="twitter:description" content="A visionary project for a connected, carbon-neutral future." />
+  <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+  <meta name="twitter:url" content="https://ohlonesky.com" />
 
-  <!-- Meta Tags Generated with https://metatags.io -->
+  <!-- Adobe Fonts -->
+  <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brandDark: '#1d2834',
-            highlight: '#ff5500',
-            neutralText: '#636363',
-          },
-          fontFamily: {
-            adobe: ['freight-sans-pro', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <!-- ||||||||||||  CSS run from here: Terminal rebuild ||||||||||||| -->
+  <link rel="stylesheet" href="/assets/css/output.css" />
+  <link rel="stylesheet" href="/assets/css/hero.css" />
 
-  <!-- Adobe Fonts (PRODUCTION READY) -->
-  <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
-
-  <!-- Clean paragraph widths -->
-  <style>
-  @layer base {
-    p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
-    a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
-    #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
-    #menuToggle.open .bar-middle{@apply opacity-0;}
-    #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];}
-  }
-
-  @layer utilities {
-    @keyframes fade-up {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-up {
-      animation: fade-up 500ms ease-out forwards;
-      will-change: opacity, transform;
-    }
-  }
-</style>
-
-  <!-- Bounce-in animation -->
-  <style>
-    @keyframes fade-up {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate-fade-up {
-      animation: fade-up 500ms ease-out forwards;
-      will-change: opacity, transform;
-    }
-
-    .delay-100 { animation-delay: 100ms; }
-    .delay-200 { animation-delay: 200ms; }
-    .delay-300 { animation-delay: 300ms; }
-  </style>
+  <!-- Fallback for no-JS users -->
+  <noscript>
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <link rel="stylesheet" href="/assets/css/hero.css" />
+  </noscript>
+  <!-- ||||||||||| CSS yippee ||||||| -->
 
 </head>
 
-<body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen">
-  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+  <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
-  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+      <header include-html="/assets/partials/header.html"></header>
 
-    <!-- Header -->
-    <div include-html="/assets/partials/header.html"></div>
+      
 
     <!-- |||||||||||||||||||| Hero Image: the only stuff to change  ||||||||||||||||||||| -->
     <!-- Hero Image -->
