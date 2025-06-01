@@ -51,14 +51,31 @@
 
     <!-- |||||||||||||||||||| Hero Image: the only stuff to change  ||||||||||||||||||||| -->
 
-    <!-- Hero Image -->
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
-         alt="Aerial view of tram line"
-         class="w-full h-auto"
-         loading="lazy" />
-    <p class="text-xs text-gray-600 text-center mt-2">
-      Source: UNStudio
-    </p><br>
+    <!-- Hero Image with overlay-->
+    <div class="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
+      <!-- Image -->
+      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
+           alt="Aerial view of tram line"
+           class="w-full h-full object-cover"
+           loading="lazy" />
+
+      <!-- Optional Overlay -->
+      <div class="absolute inset-0 bg-black/30"></div>
+
+      <!-- Bottom-Centered Text -->
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-white text-xs sm:text-sm">
+        Source: UNStudio
+      </div>
+    </div>
+
+    <!-- Hero Image with normal-->
+      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
+           alt="Aerial view of tram line"
+           class="w-full h-auto"
+           loading="lazy" />
+      <p class="text-xs text-gray-600 text-center mt-2">
+        Source: UNStudio
+      </p><br>
 
     <!-- Hero Text: Support-Coalition Text Goes Here  -->
     <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50 rounded-xl p-6 shadow">
