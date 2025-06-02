@@ -1,4 +1,21 @@
 <!-- /assets/partials/header.html -->
+
+<!-- Fallback hamburger-to-X styles in case Tailwind build fails -->
+<style>
+  #menuToggle.open .bar-top {
+    transform: rotate(45deg) translateY(6px);
+    transition: transform 0.3s ease;
+  }
+  #menuToggle.open .bar-middle {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #menuToggle.open .bar-bottom {
+    transform: rotate(-45deg) translateY(-6px);
+    transition: transform 0.3s ease;
+  }
+</style>
+
 <header class="sticky top-0 bg-white shadow z-50">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 pr-2">
@@ -47,21 +64,3 @@
     </svg>
   </button>
 </nav>
-
-
-
-<!-- Fallback hamburger-to-X styles in case Tailwind build fails -->
-<style>
-  #menuToggle.open .bar-top {
-    transform: rotate(45deg) translateY(6px);
-    transition: transform 0.3s ease;
-  }
-  #menuToggle.open .bar-middle {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  #menuToggle.open .bar-bottom {
-    transform: rotate(-45deg) translateY(-6px);
-    transition: transform 0.3s ease;
-  }
-</style>
