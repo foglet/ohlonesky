@@ -27,21 +27,6 @@
   /* ⚠️ You had a misplaced closing brace here earlier — fixed now */
 }
 
-/* 🗑️ This entire commented-out section can be deleted — it's a duplicate of what's above */
-/*
-#menuToggle.open .bar-top {
-  @apply rotate-45 translate-y-[6px];
-}
-
-#menuToggle.open .bar-middle {
-  @apply opacity-0;
-}
-
-#menuToggle.open .bar-bottom {
-  @apply -rotate-45 -translate-y-[6px];
-}
-*/
-
 /* Fade-up Animation */
 /* ✅ Well-organized and scoped correctly in the 'utilities' layer */
 @layer utilities {

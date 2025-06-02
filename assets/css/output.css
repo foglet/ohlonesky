@@ -1928,6 +1928,11 @@ video {
   background-color: rgb(250 250 250 / var(--tw-bg-opacity, 1));
 }
 
+.bg-brandDark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 40 52 / var(--tw-bg-opacity, 1));
+}
+
 .bg-opacity-30 {
   --tw-bg-opacity: 0.3;
 }
