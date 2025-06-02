@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import './hero.css'; /* ✅ This pulls in your custom @layer rules */
+
+@layer utilities {
+  .bg-checker {
+    @apply bg-yellow-200 border-4 border-dashed border-red-500;
+  }
+}
