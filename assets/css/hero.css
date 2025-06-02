@@ -1,13 +1,17 @@
 /* Base Element Overrides */
 @layer base {
+  /* ✅ Paragraph styling is solid and mobile-first */
   p {
     @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
   }
 
+  /* ✅ Anchor link styling is simple and uses semantic highlighting */
   a {
     @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
   }
 
+  /* ⚠️ This section is CORRECTLY placed — it styles the animated hamburger bars */
+  /* ✅ Class names and structure match what Tailwind expects */
   #menuToggle.open .bar-top {
     @apply rotate-45 translate-y-[6px];
   }
@@ -19,9 +23,27 @@
   #menuToggle.open .bar-bottom {
     @apply -rotate-45 -translate-y-[6px];
   }
+
+  /* ⚠️ You had a misplaced closing brace here earlier — fixed now */
 }
 
-/* Fade-up Animation */ /* small change */
+/* 🗑️ This entire commented-out section can be deleted — it's a duplicate of what's above */
+/*
+#menuToggle.open .bar-top {
+  @apply rotate-45 translate-y-[6px];
+}
+
+#menuToggle.open .bar-middle {
+  @apply opacity-0;
+}
+
+#menuToggle.open .bar-bottom {
+  @apply -rotate-45 -translate-y-[6px];
+}
+*/
+
+/* Fade-up Animation */
+/* ✅ Well-organized and scoped correctly in the 'utilities' layer */
 @layer utilities {
   @keyframes fade-up {
     0% {
@@ -34,11 +56,13 @@
     }
   }
 
+  /* ✅ Custom animation class using the above keyframes */
   .animate-fade-up {
     animation: fade-up 500ms ease-out forwards;
     will-change: opacity, transform;
   }
 
+  /* ✅ Stagger utility classes for entrance delays */
   .delay-100 {
     animation-delay: 100ms;
   }
