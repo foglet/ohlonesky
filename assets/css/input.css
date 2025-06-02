@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 @import './hero.css'; /* ✅ This pulls in your custom @layer rules */
-
-@layer components {
-  .debug-bg {
-    @apply bg-pink-300;
-  }
-}
