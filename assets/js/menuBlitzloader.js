@@ -1,19 +1,17 @@
 export function initMenu({
   menuId = 'mobileMenu',
   toggleId = 'menuToggle',
-  closeId = 'closeMenu',
   backdropId = 'menuBackdrop',
   linkSelector = '.menu-link',
   transitionDuration = 300
 } = {}) {
   const toggle = document.getElementById(toggleId);
-  const close = document.getElementById(closeId);
-  const backdrop = document.getElementById(backdropId);
   const menu = document.getElementById(menuId);
+  const backdrop = document.getElementById(backdropId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
-  if (!toggle || !menu || !backdrop || !close) {
-    console.warn('⚠️ initMenu: Missing elements', { toggle, menu, backdrop, close });
+  if (!toggle || !menu || !backdrop) {
+    console.warn('⚠️ initMenu: Required elements missing', { toggle, menu, backdrop });
     return;
   }
 
@@ -66,7 +64,6 @@ export function initMenu({
 
   // Event listeners
   toggle.addEventListener('click', toggleMenu);
-  close.addEventListener('click', closeMenu);
   backdrop.addEventListener('click', closeMenu);
   links.forEach(link => link.addEventListener('click', closeMenu));
 
