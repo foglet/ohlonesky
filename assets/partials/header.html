@@ -47,3 +47,21 @@
     </svg>
   </button>
 </nav>
+
+<!-- Fallback hamburger-to-X styles in case Tailwind build fails -->
+<style>
+  #menuToggle.open .bar-top {
+    transform: rotate(45deg) translateY(6px);
+  }
+  #menuToggle.open .bar-middle {
+    opacity: 0;
+  }
+  #menuToggle.open .bar-bottom {
+    transform: rotate(-45deg) translateY(-6px);
+  }
+
+  #menuToggle span {
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+</style>
