@@ -6,15 +6,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // ✅ Inject CSS with cache-busting
-  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+  // ✅ Inject Tailwind CSS files with cache busting
+  const cssFiles = ['assets/css/output.css', 'assets/css/hero.css'];
+  cssFiles.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${timestamp}`;
     document.head.appendChild(link);
   });
 
-  // ✅ Load partials
+  // ✅ Load HTML partials dynamically
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
@@ -28,7 +29,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Initialize after partials are loaded
-  initMenu();
-  initMain();
+  // ✅ Initialize JS modules AFTER partials are rendered
+  requestAnimationFrame(() => {
+    initMenu();  // 🍔 Initialize mobile menu
+    initMain();  // 🔧 App-specific logic
+  });
 });
