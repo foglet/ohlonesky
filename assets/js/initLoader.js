@@ -1,3 +1,4 @@
+// initLoader.js
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
@@ -6,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // ✅ Inject CSS into <head>
+  // ✅ Inject CSS into <head> dynamically
   ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(link);
   });
 
-  // ✅ Load partials
+  // ✅ Load HTML partials
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
@@ -28,12 +29,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Init modules after layout
+  // ✅ After layout is ready
   requestAnimationFrame(() => {
     initMain();
-    if (document.getElementById('mobileMenu')) initMenu();
-  });
 
-  // ✅ Reveal content
-  document.getElementById('pageContent')?.classList.remove('opacity-0');
+    const requiredMenuIds = ['menuToggle', 'mobileMenu', 'menuBackdrop', 'closeMenu'];
+    const hasAllMenuElements = requiredMenuIds.every(id => document.getElementById(id));
+
+    if (hasAllMenuElements) {
+      initMenu();
+      console.log('✅ initMenu loaded successfully');
+    } else {
+      console.warn('⚠️ initMenu skipped: missing element(s)', requiredMenuIds.filter(id => !document.getElementById(id)));
+    }
+
+    // ✅ Fade in main content
+    document.getElementById('pageContent')?.classList.remove('opacity-0');
+  });
 });
