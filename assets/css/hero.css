@@ -12,17 +12,9 @@
 
   /* ⚠️ This section is CORRECTLY placed — it styles the animated hamburger bars */
   /* ✅ Class names and structure match what Tailwind expects */
-  #menuToggle.open .bar-top {
-    @apply rotate-45 translate-y-[6px];
-  }
-
-  #menuToggle.open .bar-middle {
-    @apply opacity-0;
-  }
-
-  #menuToggle.open .bar-bottom {
-    @apply -rotate-45 -translate-y-[6px];
-  }
+  #menuToggle.open .bar-top { @apply rotate-45 translate-y-[6px]; }
+  #menuToggle.open .bar-middle { @apply opacity-0; }
+  #menuToggle.open .bar-bottom { @apply -rotate-45 -translate-y-[6px]; }
 
   /* ⚠️ You had a misplaced closing brace here earlier — fixed now */
 }
