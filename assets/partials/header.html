@@ -54,16 +54,14 @@
 <style>
   #menuToggle.open .bar-top {
     transform: rotate(45deg) translateY(6px);
+    transition: transform 0.3s ease;
   }
   #menuToggle.open .bar-middle {
     opacity: 0;
+    transition: opacity 0.3s ease;
   }
   #menuToggle.open .bar-bottom {
     transform: rotate(-45deg) translateY(-6px);
-  }
-
-  #menuToggle span {
-    transition: all 0.3s ease;
-    transform-origin: center;
+    transition: transform 0.3s ease;
   }
 </style>
