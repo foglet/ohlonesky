@@ -26,9 +26,9 @@
 
 
 <!-- <header class="sticky top-0 bg-white shadow z-50"> -->
-<header class="relative sticky top-0 bg-white shadow z-50 bg-pink-50">
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 pr-2">
+<header class="sticky top-0 bg-white shadow z-50">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="flex items-center justify-between h-16 w-full pr-2">
       <!-- Logo -->
       <a href="/00/" class="flex items-center space-x-2">
         <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
@@ -42,20 +42,17 @@
         <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
       </nav>
 
-<div class="flex items-center justify-between h-16 border border-red-500">
-      <!-- Single clean hamburger button -->
-  <button id="menuToggle"
-    class="md:hidden flex flex-col justify-between items-center w-8 h-6 z-50"
-    aria-label="Toggle Menu"
-    aria-expanded="false"
-    aria-controls="mobileMenu">
+      <!-- Hamburger Menu Button (hidden on desktop) -->
+      <button id="menuToggle"
+        class="md:hidden flex flex-col justify-between items-center w-8 h-6 z-50"
+        aria-label="Toggle Menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu">
 
-    <span class="bar-top block w-full h-0.5 bg-brandDark transition-transform duration-300 origin-center"></span>
-    <span class="bar-middle block w-full h-0.5 bg-brandDark transition-opacity duration-300 origin-center"></span>
-    <span class="bar-bottom block w-full h-0.5 bg-brandDark transition-transform duration-300 origin-center"></span>
-  </button>
-
-
+        <span class="bar-top block w-full h-0.5 bg-brandDark transition-transform duration-300 origin-center"></span>
+        <span class="bar-middle block w-full h-0.5 bg-brandDark transition-opacity duration-300 origin-center"></span>
+        <span class="bar-bottom block w-full h-0.5 bg-brandDark transition-transform duration-300 origin-center"></span>
+      </button>
     </div>
   </div>
 </header>
