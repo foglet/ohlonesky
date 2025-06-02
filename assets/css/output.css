@@ -1873,6 +1873,11 @@ video {
   background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
 }
 
+.bg-brandDark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 40 52 / var(--tw-bg-opacity, 1));
+}
+
 .bg-brandSky {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1));
@@ -1926,11 +1931,6 @@ video {
 .bg-zinc-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity, 1));
-}
-
-.bg-brandDark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 40 52 / var(--tw-bg-opacity, 1));
 }
 
 .bg-opacity-30 {
