@@ -18,8 +18,6 @@ export function initMenu({
   }
 
   const openMenu = () => {
-    console.log('🍔 Menu opened');
-
     toggle.setAttribute('aria-expanded', 'true');
     toggle.classList.add('open');
 
@@ -40,8 +38,6 @@ export function initMenu({
   };
 
   const closeMenu = () => {
-    console.log('❌ Menu closed');
-
     toggle.setAttribute('aria-expanded', 'false');
     toggle.classList.remove('open');
 
@@ -63,33 +59,19 @@ export function initMenu({
     }, transitionDuration);
   };
 
-  toggle.addEventListener('click', () => {
-    console.log('🖱️ toggle clicked');
-    openMenu();
-  });
+  const toggleMenu = () => {
+    const isOpen = toggle.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  };
 
-  close.addEventListener('click', () => {
-    console.log('🖱️ close clicked');
-    closeMenu();
-  });
-
-  backdrop.addEventListener('click', () => {
-    console.log('🖱️ backdrop clicked');
-    closeMenu();
-  });
-
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      console.log('🖱️ nav link clicked');
-      closeMenu();
-    });
-  });
+  // Event listeners
+  toggle.addEventListener('click', toggleMenu);
+  close.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  links.forEach(link => link.addEventListener('click', closeMenu));
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      console.log('🔑 Escape key');
-      closeMenu();
-    }
+    if (e.key === 'Escape') closeMenu();
   });
 
   console.log(`✅ initMenu initialized for #${menuId}`);
