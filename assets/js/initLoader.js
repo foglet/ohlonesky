@@ -1,78 +1,91 @@
+// initLoader.js
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 (async function initApp() {
   const version = `?v=${Date.now()}`;
-  const prefix = '../'.repeat(getPathDepth());
+  const depth = getPathDepth();
+  const prefix = '../'.repeat(depth);
 
+  // ✅ Inject global styles
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
   ], prefix, version);
 
+  // ✅ Inject HTML partials (header, footer, etc)
   await injectPartials('[include-html]', prefix, version);
 
-  // Wait for #menuToggle (in header.html) to exist before initializing menu
-  waitForElement('#menuToggle', () => {
-    console.log('✅ #menuToggle found — initializing menu');
+  // ✅ Wait for all necessary menu elements to exist
+  waitForAllElements(['#menuToggle', '#mobileMenu', '#menuBackdrop'], ([toggle, menu, backdrop]) => {
+    console.log('✅ All menu elements found — initializing menu');
     initMenu();
-  });
+  }, 5000);
 
+  // ✅ Run remaining scripts (non-critical)
   initMain();
 })();
 
-// Get current path depth (e.g. /00/contact/ → 2)
+// 📏 Determine page depth for relative asset prefixing
 function getPathDepth() {
   return window.location.pathname.split('/').filter(Boolean).length;
 }
 
-// Inject CSS <link> tags
+// 🎨 Inject CSS <link> tags into <head>
 function injectStyles(files, prefix, version) {
-  for (const file of files) {
+  files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
-  }
+  });
 }
 
-// Load HTML into elements with [include-html]
+// 🧩 Replace [include-html] elements with fetched HTML
 async function injectPartials(selector, prefix, version) {
-  const elements = document.querySelectorAll(selector);
-  if (!elements.length) return;
+  const nodes = document.querySelectorAll(selector);
+  if (!nodes.length) return;
 
-  console.log(`🧩 Found ${elements.length} partial(s)`);
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
 
-  await Promise.all([...elements].map(async el => {
-    const file = el.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html:', el);
+  await Promise.all([...nodes].map(async node => {
+    const file = node.getAttribute('include-html');
+    if (!file) {
+      console.warn('⚠️ Skipping node with missing include-html:', node);
+      return;
+    }
 
-    const url = file.startsWith('/') ? `${file}${version}` : `${prefix}${file}${version}`;
+    const url = file.startsWith('/')
+      ? `${file}${version}`
+      : `${prefix}${file}${version}`;
 
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
-      el.insertAdjacentHTML('afterend', html);
-      el.remove();
+      node.insertAdjacentHTML('afterend', html);
+      node.remove();
       console.log(`✅ Injected: ${url}`);
     } catch (err) {
-      el.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Error loading partial: ${url}`, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Failed to inject: ${url}`, err);
     }
   }));
 }
 
-// Observe DOM for element until found (then run callback)
-function waitForElement(selector, callback, timeout = 5000) {
-  const existing = document.querySelector(selector);
-  if (existing) return callback(existing);
+// ⏳ Wait until ALL specified elements appear in DOM
+function waitForAllElements(selectors, callback, timeout = 3000) {
+  const found = selectors.map(sel => document.querySelector(sel));
+  if (found.every(Boolean)) {
+    callback(found);
+    return;
+  }
 
   const observer = new MutationObserver(() => {
-    const found = document.querySelector(selector);
-    if (found) {
+    const updated = selectors.map(sel => document.querySelector(sel));
+    if (updated.every(Boolean)) {
       observer.disconnect();
-      callback(found);
+      callback(updated);
     }
   });
 
