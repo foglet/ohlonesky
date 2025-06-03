@@ -2,25 +2,56 @@
    Base Element Overrides
    ------------------------ */
 @layer base {
-  /* Paragraphs: mobile-first, responsive widths, improved readability */
   p {
     @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
   }
 
-  /* Anchor links: underline, color, and hover transition */
   a {
     @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
   }
+}
 
-  /* Hamburger → X animation */
-  #menuToggle.open .bar-top {
-    @apply rotate-45 translate-y-[6px];
+
+/* ------------------------
+   Hamburger → X (Tham) Animation
+   ------------------------ */
+@layer components {
+  .tham {
+    @apply cursor-pointer transition-all duration-300 ease-in-out;
   }
-  #menuToggle.open .bar-middle {
-    @apply opacity-0;
+
+  .tham-box {
+    @apply relative w-full h-full;
   }
-  #menuToggle.open .bar-bottom {
-    @apply -rotate-45 -translate-y-[6px];
+
+  .tham-inner {
+    @apply absolute top-1/2 -mt-[1px] w-full h-[2px] rounded bg-brandDark transition-all duration-300 ease-in-out;
+  }
+
+  .tham-e-squeeze .tham-inner::before,
+  .tham-e-squeeze .tham-inner::after {
+    content: "";
+    @apply block absolute w-full h-[2px] rounded bg-brandDark transition-all duration-300 ease-in-out;
+  }
+
+  .tham-e-squeeze .tham-inner::before {
+    top: -8px;
+  }
+
+  .tham-e-squeeze .tham-inner::after {
+    bottom: -8px;
+  }
+
+  .tham-active .tham-inner {
+    background-color: transparent;
+  }
+
+  .tham-active .tham-inner::before {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .tham-active .tham-inner::after {
+    transform: translateY(-8px) rotate(-45deg);
   }
 }
 
@@ -45,7 +76,6 @@
     will-change: opacity, transform;
   }
 
-  /* Animation delay utilities */
   .delay-100 {
     animation-delay: 100ms;
   }
