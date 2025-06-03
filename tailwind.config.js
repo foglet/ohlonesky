@@ -2,16 +2,29 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   darkMode: 'class',
-  content: [
-    './404.html',               // ✅ explicitly needed!
-    './*.html',                 // covers root-level files
-    './**/*.html',              // catches all nested pages
-    './assets/**/*.js',         // for class names in JS
-    './assets/css/hero.css',    // for @apply to work
-    './assets/partials/**/*.html', //trigger rebuild again and again.
-    '!./node_modules/**/*', // ❗ exclude this explicitly
 
+  // 🔍 Scan these files for class names to include in the build
+  content: [
+    './404.html',
+    './*.html',
+    './**/*.html',
+    './assets/**/*.js',
+    './assets/css/hero.css',
+    './assets/partials/**/*.html',
+    '!./node_modules/**/*',
   ],
+
+  // 🔐 Prevent purging of dynamically-used classes (like menu transitions)
+  safelist: [
+    'hidden',
+    'translate-x-full',
+    'translate-x-0',
+    'opacity-0',
+    'opacity-100',
+    'open',
+    'tham-active',
+  ],
+
   theme: {
     extend: {
       colors: {
@@ -27,25 +40,26 @@ module.exports = {
       },
     },
   },
+
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
-          fontSize: 'clamp(0.875rem, 2vw, 1.125rem)', // 14–18px
+          fontSize: 'clamp(0.875rem, 2vw, 1.125rem)',
         },
         '.text-fluid-base': {
-          fontSize: 'clamp(1rem, 3vw, 1.25rem)',      // 16–20px
+          fontSize: 'clamp(1rem, 3vw, 1.25rem)',
         },
         '.text-fluid-md': {
-          fontSize: 'clamp(1.25rem, 4vw, 2rem)',       // 20–32px
+          fontSize: 'clamp(1.25rem, 4vw, 2rem)',
         },
         '.text-fluid-lg': {
-          fontSize: 'clamp(1.75rem, 6vw, 3rem)',       // 28–48px
+          fontSize: 'clamp(1.75rem, 6vw, 3rem)',
         },
         '.text-fluid-xl': {
-          fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',      // 40–72px
+          fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
         },
       });
     }),
