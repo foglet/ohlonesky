@@ -46,57 +46,60 @@
       </script>
     </head>
 
-  <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
     <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
     <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
-      <section include-html="/assets/partials/mobile-menu.html"></section>
+      <!-- MOBILE BACKDROP -->
+      <div id="menuBackdrop"
+          class="hidden fixed inset-0 bg-midnight bg-opacity-100 z-40 opacity-0 transition-opacity duration-300 ease-out"></div>
+
+      <!-- MOBILE MENU OVERLAY -->
+      <nav id="mobileMenu"
+           class="hidden fixed top-0 right-0 h-full w-full bg-white z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-out pt-16 px-6 space-y-6"
+           aria-label="Mobile Navigation">
+        <a href="/00/faqs/" class="block text-brandDark text-lg font-semibold menu-link">FAQs</a>
+        <a href="/00/support/" class="block text-brandDark text-lg font-semibold menu-link">Support</a>
+        <a href="/00/contact/" class="block text-brandDark text-lg font-semibold menu-link">Contact</a>
+      </nav>
+
+      <!-- ✅ Only ONE HEADER -->
       <header include-html="/assets/partials/header.html"></header>
 
-    <!-- |||||||||||| Hero Image: the only stuff to change  ||||||||| -->
-    <!-- |||||||||||| Hero Image: the only stuff to change  ||||||||| -->
-    <main id="mainContent" class="flex-grow mx-auto">
+      <!-- Hero Section -->
+      <main id="mainContent" class="flex-grow mx-auto">
+        <section class="relative w-screen h-screen text-center text-white overflow-hidden">
+          <a href="/00/" class="absolute inset-0 z-10 cursor-pointer" aria-label="Return to homepage"></a>
 
-      <section class="relative w-screen h-screen text-center text-white overflow-hidden">
-        <!-- Clickable layer -->
-        <a href="/00/" class="absolute inset-0 z-10 cursor-pointer" aria-label="Return to homepage"></a>
-
-        <!-- Full-screen background -->
           <div class="absolute inset-0 z-0 bg-cover bg-center brightness-75"
                style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg');">
           </div>
 
-        <!-- Overlay content -->
-        <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
-          <div class="max-w-3xl text-center space-y-2 text-lg">
-            <p lang="zh-Hant" class="drop-shadow"><span class="font-medium">迷失在霧中？</span></p>
-            <p lang="it" class="drop-shadow"><span class="font-medium">Perso nella nebbia?</span></p>
-            <p lang="ar" class="drop-shadow"><span class="font-medium">ضائع في الضباب؟</span></p>
-            <p lang="es" class="drop-shadow"><span class="font-medium">¿Perdido en la niebla?</span></p>
-            <p lang="en" class="drop-shadow"><span class="font-medium">Lost in the fog?</span></p>
-            <p lang="ru" class="drop-shadow"><span class="font-medium">Затерялся в тумане?</span></p>
-            <p lang="de" class="drop-shadow"><span class="font-medium">Verloren im Nebel?</span></p>
-            <p lang="fr" class="drop-shadow"><span class="font-medium">Perdu dans le brouillard?</span></p>
+          <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
+            <div class="max-w-3xl text-center space-y-2 text-lg">
+              <p lang="zh-Hant" class="drop-shadow"><span class="font-medium">迷失在霧中？</span></p>
+              <p lang="it" class="drop-shadow"><span class="font-medium">Perso nella nebbia?</span></p>
+              <p lang="ar" class="drop-shadow"><span class="font-medium">ضائع في الضباب؟</span></p>
+              <p lang="es" class="drop-shadow"><span class="font-medium">¿Perdido en la niebla?</span></p>
+              <p lang="en" class="drop-shadow"><span class="font-medium">Lost in the fog?</span></p>
+              <p lang="ru" class="drop-shadow"><span class="font-medium">Затерялся в тумане?</span></p>
+              <p lang="de" class="drop-shadow"><span class="font-medium">Verloren im Nebel?</span></p>
+              <p lang="fr" class="drop-shadow"><span class="font-medium">Perdu dans le brouillard?</span></p>
+            </div>
           </div>
-        </div>
 
-        <!-- Attribution -->
-        <p class="text-xs text-gray-600 text-center mt-2">
-          Source: Alexander Voronov, Unsplash
-        </p>
-      </section>
-    </main>
+          <p class="text-xs text-gray-600 text-center mt-2">
+            Source: Alexander Voronov, Unsplash
+          </p>
+        </section>
+      </main>
 
-    <!-- ||||||||| end end end end end end end of change |||||| -->
+      <footer include-html="/assets/partials/footer.html"></footer>
+    </div>
 
-    <!-- Footer -->
-    <footer include-html="/assets/partials/footer.html"></footer>
-  </div>
-
-  <!-- Load partials and init scripts -->
-  <script type="module" src="/assets/js/initLoader.js"></script>
-
-</body>
+    <!-- Init Scripts -->
+    <script type="module" src="/assets/js/initLoader.js"></script>
+  </body>
 </html>
