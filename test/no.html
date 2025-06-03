@@ -1,109 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohlone Sky</title>
 
-  <head>
-    <body>
-      <!-- STYLE BLOCK: Fallback for Tham hamburger -->
-<style>
-  .tham {
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
+  <!-- STYLE BLOCK: Fallback for Tham hamburger -->
+  <style>
+    .tham {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
 
-  .tham-box {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+    .tham-box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-  .tham-inner {
-    display: block;
-    top: 50%;
-    margin-top: -2px;
-    width: 100%;
-    height: 2px;
-    background-color: #1d2834; /* Tailwind brandDark */
-    border-radius: 2px;
-    position: absolute;
-    transition: all 0.3s ease-in-out;
-  }
+    .tham-inner {
+      display: block;
+      top: 50%;
+      margin-top: -2px;
+      width: 100%;
+      height: 2px;
+      background-color: #1d2834;
+      border-radius: 2px;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+    }
 
-  .tham-e-squeeze .tham-inner::before,
-  .tham-e-squeeze .tham-inner::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #1d2834;
-    border-radius: 2px;
-    position: absolute;
-    transition: all 0.3s ease-in-out;
-  }
+    .tham-e-squeeze .tham-inner::before,
+    .tham-e-squeeze .tham-inner::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #1d2834;
+      border-radius: 2px;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+    }
 
-  .tham-e-squeeze .tham-inner::before {
-    top: -8px;
-  }
+    .tham-e-squeeze .tham-inner::before {
+      top: -8px;
+    }
 
-  .tham-e-squeeze .tham-inner::after {
-    bottom: -8px;
-  }
+    .tham-e-squeeze .tham-inner::after {
+      bottom: -8px;
+    }
 
-  .tham-active .tham-inner {
-    background-color: transparent;
-  }
+    .tham-active .tham-inner {
+      background-color: transparent;
+    }
 
-  .tham-active .tham-inner::before {
-    transform: translateY(8px) rotate(45deg);
-  }
+    .tham-active .tham-inner::before {
+      transform: translateY(8px) rotate(45deg);
+    }
 
-  .tham-active .tham-inner::after {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-</style>
+    .tham-active .tham-inner::after {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  </style>
 </head>
 
-<!-- BACKDROP -->
-<div id="menuBackdrop"
-     class="hidden fixed inset-0 bg-black bg-opacity-40 z-40 opacity-0 transition-opacity duration-300 ease-out"></div>
+<body>
 
-<!-- MOBILE MENU -->
-<nav id="mobileMenu"
-     class="hidden fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-out pt-16 px-6 space-y-6"
-     aria-label="Mobile Navigation">
-  <a href="/00/faqs/" class="block text-brandDark text-lg font-semibold menu-link">FAQs</a>
-  <a href="/00/support/" class="block text-brandDark text-lg font-semibold menu-link">Support</a>
-  <a href="/00/contact/" class="block text-brandDark text-lg font-semibold menu-link">Contact</a>
-</nav>
+  <!-- BACKDROP -->
+  <div id="menuBackdrop"
+       class="hidden fixed inset-0 bg-black bg-opacity-40 z-40 opacity-0 transition-opacity duration-300 ease-out"></div>
 
-<!-- STICKY HEADER -->
-<header class="sticky top-0 bg-white shadow z-50">
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+  <!-- MOBILE MENU -->
+  <nav id="mobileMenu"
+       class="hidden fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-out pt-16 px-6 space-y-6"
+       aria-label="Mobile Navigation">
+    <a href="/00/faqs/" class="block text-brandDark text-lg font-semibold menu-link">FAQs</a>
+    <a href="/00/support/" class="block text-brandDark text-lg font-semibold menu-link">Support</a>
+    <a href="/00/contact/" class="block text-brandDark text-lg font-semibold menu-link">Contact</a>
+  </nav>
 
-    <!-- Logo -->
-    <a href="/00/" class="flex items-center space-x-2">
-      <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
-           alt="Ohlone Sky Logo"
-           class="h-[28px] w-auto" />
-    </a>
+  <!-- STICKY HEADER -->
+  <header class="sticky top-0 bg-white shadow z-50">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
-      <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
-      <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
-      <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
-    </nav>
+      <!-- Logo -->
+      <a href="/00/" class="flex items-center space-x-2">
+        <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+             alt="Ohlone Sky Logo"
+             class="h-[28px] w-auto" />
+      </a>
 
-    <!-- Hamburger Icon (mobile only) -->
-    <button id="menuToggle"
-            aria-label="Toggle menu"
-            class="tham tham-e-squeeze tham-w-6 h-8 z-50 md:hidden">
-      <div class="tham-box">
-        <div class="tham-inner"></div>
-      </div>
-    </button>
-  </div>
-</header>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+        <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+        <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+        <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+      </nav>
 
-<script type="module" src="/assets/js/initLoader.js"></script>
+      <!-- Hamburger Icon (mobile only) -->
+      <button id="menuToggle"
+              aria-label="Toggle menu"
+              class="tham tham-e-squeeze tham-w-6 h-8 z-50 md:hidden">
+        <div class="tham-box">
+          <div class="tham-inner"></div>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <script type="module" src="/assets/js/initLoader.js"></script>
 </body>
 </html>
