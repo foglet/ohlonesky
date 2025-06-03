@@ -6,7 +6,6 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   const depth = getPathDepth();
   const prefix = '../'.repeat(depth);
 
-  // 🚀 Inject CSS files with cache-busting
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
@@ -15,14 +14,13 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   // 🔄 Load HTML partials and wait for them to finish
   await loadPartials('[include-html]', version);
 
-  // ✅ Confirm menuToggle exists before initializing
-  // Watch DOM for when #menuToggle appears, then run initMenu()
+  // ✅ Wait for #menuToggle using MutationObserver
   const observer = new MutationObserver(() => {
     const toggle = document.getElementById('menuToggle');
     if (toggle) {
-      console.log('✅ Detected #menuToggle — initializing menu');
+      console.log('✅ #menuToggle found — calling initMenu()');
       initMenu();
-      observer.disconnect(); // Stop watching
+      observer.disconnect();
     }
   });
 
@@ -31,20 +29,14 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
     subtree: true
   });
 
-  initMain(); // Run other page JS regardless
-
+  // ✅ Always run initMain
+  initMain();
 })();
 
-/**
- * Returns how deep the current page is in the directory structure.
- */
 function getPathDepth() {
   return window.location.pathname.split('/').filter(Boolean).length;
 }
 
-/**
- * Injects external CSS files with version cache-busting.
- */
 function injectStyles(files, prefix, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -54,9 +46,6 @@ function injectStyles(files, prefix, version) {
   });
 }
 
-/**
- * Loads all HTML partials marked with [include-html].
- */
 async function loadPartials(selector, version) {
   const elements = document.querySelectorAll(selector);
 
@@ -82,33 +71,12 @@ async function loadPartials(selector, version) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
-
-      // Create a wrapper div so we can re-evaluate scripts
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = html;
-
-      reevalScripts(wrapper); // ✅ Optional: execute any <script> tags
-      el.replaceWith(...wrapper.childNodes); // Replace <header> or other tag cleanly
-
+      el.insertAdjacentHTML('afterend', html);
+      el.remove();
       console.log(`✅ Injected ${file}`);
     } catch (err) {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
       console.error(`❌ Could not load partial: ${file}`, err);
     }
   }));
-}
-
-/**
- * Re-evaluates all <script> tags inside a DOM node to ensure they execute.
- */
-function reevalScripts(container) {
-  const scripts = container.querySelectorAll('script');
-  scripts.forEach(oldScript => {
-    const newScript = document.createElement('script');
-    [...oldScript.attributes].forEach(attr =>
-      newScript.setAttribute(attr.name, attr.value)
-    );
-    newScript.textContent = oldScript.textContent;
-    oldScript.replaceWith(newScript);
-  });
 }
