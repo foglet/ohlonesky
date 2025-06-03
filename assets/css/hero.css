@@ -1,0 +1,60 @@
+/* ------------------------
+   Base Element Overrides
+   ------------------------ */
+@layer base {
+  /* Paragraphs: mobile-first, responsive widths, improved readability */
+  p {
+    @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
+  }
+
+  /* Anchor links: underline, color, and hover transition */
+  a {
+    @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+  }
+
+  /* Hamburger → X animation */
+  #menuToggle.open .bar-top {
+    @apply rotate-45 translate-y-[6px];
+  }
+  #menuToggle.open .bar-middle {
+    @apply opacity-0;
+  }
+  #menuToggle.open .bar-bottom {
+    @apply -rotate-45 -translate-y-[6px];
+  }
+}
+
+
+/* ------------------------
+   Custom Animations
+   ------------------------ */
+@layer utilities {
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 500ms ease-out forwards;
+    will-change: opacity, transform;
+  }
+
+  /* Animation delay utilities */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+}

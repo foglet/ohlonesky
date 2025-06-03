@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohlone Sky</title>
+  <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Treasure Island. A visionary project for a connected, carbon-neutral future.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#1d2834',
+            brandSky: '#0f172a', <!-- sky-900 -->
+            stormSky: '#374151', <!-- slate-700 -->
+            warmRed: '#F54029', <!-- ~red-500 -->
+            highlight: '#ff5500',
+            neutralText: '#636363',
+          },
+          fontFamily: {
+            adobe: ['freight-sans-pro', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- test -->
+
+  <!-- Adobe Fonts (PRODUCTION READY) -->
+  <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
+
+  <!-- Clean paragraph widths -->
+  <style>
+    @layer base {
+      p {
+        @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
+      }
+
+      a {
+        @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
+      }
+    }
+  </style>
+
+  <!-- Bounce-in animation -->
+  <style>
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fade-up 500ms ease-out forwards;
+      will-change: opacity, transform;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+  </style>
+
+</head>
+
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow z-50">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 pr-2">
+          <!-- Logo (do not lazy load) -->
+          <a href="/00/" class="flex items-center space-x-2">
+            <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+                 alt="Ohlone Sky Logo"
+                 class="h-[28px] w-auto" />
+          </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+        <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+        <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+        <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <button id="menuButton"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        aria-label="Toggle Menu"
+        class="md:hidden flex flex-col justify-center items-center space-y-[3px] w-8 h-8 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 hover:bg-highlight/10 transition-colors duration-300">
+        <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+        <span class="bar-middle block w-8 h-0.5 bg-black transition-opacity duration-300 origin-center"></span>
+        <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Backdrop -->
+<div id="menuBackdrop"
+ class="hidden fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity duration-300 ease-out opacity-0 will-change-opacity"></div>
+
+<!-- Mobile Menu Overlay (no logo inside) -->
+<nav id="mobileMenu"
+ class="hidden fixed inset-0 bg-white z-40 opacity-0 transition-opacity duration-300 ease-out will-change-opacity pt-[64px]"
+ aria-label="Mobile Navigation">
+
+ <!-- Centered menu text at ~40% down the viewport -->
+ <div class="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-4">
+     <a href="/00/faqs/"
+     class="menu-link block text-2xl font-semibold text-brandDarkopacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     FAQs
+     </a>
+     <a href="/00/support/"
+     class="menu-link block text-2xl font-semibold text-brandDarkopacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     SUPPORT
+     </a>
+     <a href="/00/contact/"
+     class="menu-link block text-2xl font-semibold text-brandDarkopacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     CONTACT
+     </a>
+ </div>
+
+<!-- Close Button -->
+<button id="closeMenu" type="button" aria-label="Close menu" class="absolute top-6 right-6 text-gray-700">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
+</button>
+</nav>
+
+    <!-- Hero Image -->
+    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
+         alt="Aerial view of tram line"
+         class="w-full h-auto"
+         loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: UNStudio
+    </p><br>
+
+    <!-- Hero Text: Support-Coalition Text Goes Here  -->
+    <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50 rounded-xl p-6 shadow">
+
+      <section class="bg-white py-8 px-4 sm:px-6 lg:px-8 text-left">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-brandDark mb-6">Join the Ohlone Sky Coalition
+          </h1>
+        </div>
+
+        <div class="space-y-5 text-neutralText text-lg leading-relaxed">
+          <p>The Ohlone Sky Coalition is a growing alliance of visionaries, advocates, and organizations committed to shaping a more connected, more sustainable Bay. We champion clean, swift, and equitable transit—linking the waterfront, Yerba Buena, and Treasure Island by way of a soaring, zero-emissions aerial gondola.</p>
+          <p>Our mission is to bring this future to life—by building support among city leaders, regional partners, and state and federal agencies. Together, we can turn a bold idea into a lasting legacy.</p>
+          <p>This is a once-in-a-generation chance to reimagine how we move—not just across the Bay, but toward a more just and resilient future. We're seeking visionaries, donors, and community members who believe in sustainable, equitable transit. Your support moves the project forward.</p>
+          <p class="font-semibold text-brandDark text-xl">The moment is here. Let’s bring Ohlone Sky to life.</p>
+        </div>
+
+        <section class"countMeIn">
+            <div class="my-4">
+              <a href="mailto:ohlonesky@fogday.com?subject=Join%20the%20Coalition&body=Hello!%0A%0APlease%20add%20my%20name%20to%20the%20coalition."
+                 role="button"
+                 class="inline-block bg-blue-500 hover:bg-warmRed text-white font-semibold text-center px-6 py-3 rounded-lg shadow transition-colors duration-200">
+                Count Me In
+              </a>
+            </div>
+            <p class="font-medium text-sm text-stormSky uppercase">We'll never share your data, and we don't e-mail.</p>
+          </section
+
+      </div>
+    </section>
+
+      <hr class="my-12 border-t border-gray-300" />
+    <!--  <section class="text-center mb-6max-w-4xl mx-auto space-y-8 text-left text-gray-800"> -->
+
+    <section class="text-left mb-6 max-w-4xl mx-auto text-gray-800">
+      <div class="mt-8">
+        <h3 class="text-2xl font-semibold text-brandDark">Coalition Members</h3>
+        <ul class="mt-2 space-y-1">
+          <li>Sue Averell, Gallery Sausalito</li>
+          <li>Gregory Dawson, Dawson Dance SF</li>
+        </ul>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-2xl font-semibold text-brandDark">Coalition Supporters</h3>
+        <ul class="mt-2 space-y-1">
+          <li>Adryenn Ashley, Slay Ventures</li>
+          <li>Michael Terpin, Transform Group</li>
+        </ul>
+      </div>
+
+      <hr class="my-12 border-t border-gray-300" />
+
+      <div class="mt-8">
+        <h3 class="text-2xl font-semibold text-brandDark">A Commitment to Giving</h3>
+        <p class="mt-2">
+          Ohlone Sky sets aside 10% of its annual revenue to nourish what moves us most: the communities we live in, the climate we share, and the cultures that shape us. As a certified B Corp, we see transit not just as a path from here to there, but as a thread that binds purpose to place. This is movement with meaning—designed to move society forward.
+        </p>
+      </div>
+    </section>
+    </main>
+
+    <!-- Hero Image -->
+    <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+         alt="Two cable cars traveling during sunset by Tbel Abuseridze"
+         class="w-full h-auto" loading="lazy" />
+
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Tbel Abuseridze, Unsplash</p><br>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-10 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-gray-600">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div><a href="mailto:ohsky@fogday.com" class="hover:text-indigo-600">ohsky@fogday.com</a></div>
+        <div class="mt-2">© <span id="year"></span> FOGDAY</div>
+      </div>
+    </footer>
+
+
+  <!-- Scripts -->
+  <script type="module">
+  import { initMenu } from '/assets/js/menuBlitzloader.js';
+  import { initMenuToggle } from '/assets/js/menuToggle.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initMenu();
+    initMenuToggle(); // ✅ Add mobile menu logic
+
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+
+    const pageContent = document.getElementById('pageContent');
+    const skipFade = sessionStorage.getItem('skipFadeIn');
+
+    if (pageContent) {
+      if (skipFade) {
+        pageContent.classList.remove('opacity-0');
+        sessionStorage.removeItem('skipFadeIn');
+      } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        pageContent.classList.remove('opacity-0');
+      } else {
+        requestAnimationFrame(() => {
+          pageContent.classList.remove('opacity-0');
+          pageContent.classList.add('opacity-100');
+        });
+      }
+    }
+  });
+</script>
+</body>
+</html>

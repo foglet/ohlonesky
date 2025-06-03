@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Primary Meta Tags -->
+    <title>Ohlone Sky</title>
+    <meta name="title" content="Ohlone Sky" />
+    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohlonesky.com" />
+    <meta property="og:title" content="Ohlone Sky" />
+    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ohlonesky.com" />
+    <meta property="twitter:title" content="Ohlone Sky" />
+    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+  <!-- Meta Tags Generated with https://metatags.io -->
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#1d2834',
+            highlight: '#ff5500',
+            neutralText: '#636363',
+          },
+          fontFamily: {
+            adobe: ['freight-sans-pro', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Adobe Fonts (PRODUCTION READY) -->
+  <!--  <link rel="stylesheet" href="https://use.typekit.net/abc4def.css"> -->
+
+  <!-- Clean paragraph widths -->
+  <style>
+    @layer base {
+      p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
+      a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
+      #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
+      #menuToggle.open .bar-middle{@apply opacity-0;}
+      #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];}
+    }
+
+    @layer utilities {
+      @keyframes fade-up {
+        0% { opacity: 0; transform: translateY(12px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-up {
+        animation: fade-up 500ms ease-out forwards;
+        will-change: opacity, transform;
+      }
+    }
+  </style>
+
+  <!-- Bounce-in animation -->
+  <style>
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fade-up 500ms ease-out forwards;
+      will-change: opacity, transform;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+  </style>
+
+</head>
+<body id="faqs" class="bg-white text-gray-800 flex flex-col min-h-screen">
+  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+<div include-html="/assets/partials/header.html"></div>
+
+    <!-- Header -->
+<header class="sticky top-0 bg-white shadow z-50">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 pr-2">
+      <!-- Logo -->
+      <a href="/00/" class="flex items-center space-x-2">
+        <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+             alt="Ohlone Sky Logo"
+             class="h-[28px] w-auto" />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+        <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+        <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+        <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <button id="menuButton"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        aria-label="Toggle Menu"
+        class="md:hidden flex flex-col justify-center items-center space-y-[3px] w-8 h-8 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 hover:bg-highlight/10 transition-colors duration-300">
+        <span class="bar-top block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+        <span class="bar-middle block w-8 h-0.5 bg-black transition-opacity duration-300 origin-center"></span>
+        <span class="bar-bottom block w-8 h-0.5 bg-black transition-transform duration-300 origin-center"></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Backdrop -->
+<div id="menuBackdrop"
+ class="hidden fixed inset-0 bg-black bg-opacity-30 z-30 transition-opacity duration-300 ease-out opacity-0 will-change-opacity"></div>
+
+<!-- Mobile Menu Overlay (no logo inside) -->
+<nav id="mobileMenu"
+ class="hidden fixed inset-0 bg-white z-40 opacity-0 transition-opacity duration-300 ease-out will-change-opacity pt-[64px]"
+ aria-label="Mobile Navigation">
+
+ <!-- Centered menu text at ~40% down the viewport -->
+ <div class="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-4">
+     <a href="/00/faqs/"
+     class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     FAQs
+     </a>
+     <a href="/00/support/"
+     class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     SUPPORT
+     </a>
+     <a href="/00/contact/"
+     class="menu-link block text-2xl font-semibold text-brandDark opacity-0 translate-y-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2">
+     CONTACT
+     </a>
+ </div>
+
+<!-- Close Button -->
+<button id="closeMenu" type="button" aria-label="Close menu" class="absolute top-6 right-6 text-gray-700">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
+</button>
+</nav>
+
+    <!-- Hero image -->
+
+    <img src="https://images.unsplash.com/photo-1508449311527-313da8823205?auto=format&fit=crop&w=1350&q=80"
+       alt="Tian Tan Buddha in Hong Kong by Joe Green"
+       class="w-full h-auto"
+       loading="lazy" />
+    <p class="text-xs text-gray-600 text-center mt-2">
+      Source: Joe Green, Unsplash
+    </p>
+
+  <br>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50">
+      <section class="text-center mb-6">
+
+        <p> We support solving challenges aligned with the
+        <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">United Nations’ 17 Sustainable Development Goals</a>.</p><br>
+
+        <h2 class="text-3xl font-bold text-neutralText mb-2">
+          Frequently Asked Questions</h2>
+
+      </section>
+
+      <!-- Accordion --><!-- adjust section bg here -->
+      <section class="max-w-4xl mx-auto space-y-10 text-left text-gray-800 bg-indigo-50">
+
+            <div id="accordion-open" data-accordion="open">
+              <!-- Accordion: content 1-->
+              <h2 id="accordion-open-heading-1">
+                <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-1" aria-expanded="true" aria-controls="accordion-open-body-1">
+                  <span class="flex items-center"></path></svg> What is Ohlone Sky?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                </button>
+              </h2>
+              <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Ohlone Sky is a privately funded aerial gondola connecting San Francisco’s Pier 24 to Yerba Buena and Treasure Island. It’s fast, electric, and emissions-free—a soaring link that complements existing systems while bridging a critical transit gap.</p>
+                  <p class="text-gray-500 dark:text-gray-400">We choose gondolas because they’re quick to build, offer high-frequency service every 20–30 seconds, and glide above congestion without the footprint of roads or rails. They’re cost-effective, climate-friendly, and when powered by renewables entirely carbon-free.</p>
+                </div>
+              </div>
+
+          <!-- Accordion: content 2-->
+              <h2 id="accordion-open-heading-2">
+                <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-2" aria-expanded="false" aria-controls="accordion-open-body-2">
+                  <span class="flex items-center"></path></svg>Why here?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                </button>
+              </h2>
+              <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Treasure Island is undergoing a major revitalization, with up to 8,000 new homes planned. Ohlone Sky is designed to meet the island’s growing transit needs offering a scenic, zero-emission alternative to driving. It doesn’t replace existing systems; it complements them. By expanding mobility, we can help transform Treasure Island into a thriving, well-connected neighborhood.</p>
+
+                </div>
+              </div>
+
+          <!-- Accordion: content 3-->
+              <h2 id="accordion-open-heading-3">
+                <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-3" aria-expanded="false" aria-controls="accordion-open-body-3">
+                  <span class="flex items-center"></path></svg> Who benefits?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                </button>
+              </h2>
+              <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
+                <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Ohlone Sky is designed for scale from day one—serving an estimated two million roundtrip riders annually, including commuters, visitors, and the 20,000 future residents of Treasure Island. It offers fast, car-free access to jobs, retail, and major transit hubs like BART and Muni.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">  The Pier 24 station is steps from the Ferry Building, downtown and our iconic cable cars not to mention all other locales along the waterfront. This system isn’t just for tourists—it’s built for the daily needs of a growing, connected city.</p>
+                </div>
+              </div>
+
+              <!-- Accordion: content 4-->
+                  <h2 id="accordion-open-heading-4">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-4" aria-expanded="false" aria-controls="accordion-open-body-4">
+                      <span class="flex items-center"></path></svg>What's the ride like?</span>
+                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
+                    <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                      <p class="mb-2 text-gray-500 dark:text-gray-400">The ride takes just twelve minutes end to end—faster than driving or taking a bus—embark and go. It’s smooth, quiet, and designed for comfort in all weather. 3S gondolas are engineered to operate in fog, rain, and winds up to 68 mph, keeping riders above the fray, even when the fog rolls in. Cabins are fully ADA accessible, stroller- and bike-friendly, easy to board for riders of all ages and abilities.</p>
+                    </div>
+                  </div>
+
+              <!-- Accordion: content 5 -->
+                  <h2 id="accordion-open-heading-5">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-5" aria-expanded="false" aria-controls="accordion-open-body-5">
+                      <span class="flex items-center"></path></svg>What about the view?</span>
+                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-open-body-5" class="hidden" aria-labelledby="accordion-open-heading-5">
+                    <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                      <p class="mb-2 text-gray-500 dark:text-gray-400"> Breathtaking. Ohlone Sky lifts you into a rare perspective—suspended between sea and city, sky and shoreline. Below, the Bay flickers with sailboats and tides; ahead, the skyline rises in soft silhouette. You’ll see the open Pacific, five bridges, Mount Tamalpais, and Mount Diablo. Sometimes, the fog rolls in like a living tide, cloaking the city in silver, softening the edges from bay to sky.</p>
+                      <p class="mb-2 text-gray-500 dark:text-gray-400"> Designed with restraint and purpose, the gondola towers are sculptural markers—framing the landscape rather than intruding on it. Each journey offers a brief stillness, a moment to see the city not as backdrop but as living terrain. This isn’t just infrastructure. It’s a quiet vantage. A moving meditation. A reminder that beauty and movement can rise together—and that transit can serve not just the present, but the future. Sustainable, generational, unforgettable.</p>
+                    </div>
+                  </div>
+
+
+                <!-- Ruth Asawa quote -->
+                    <section ID="ruth" class="text-center my-8">
+                      <blockquote class="italic text-sm text-brandDark max-w-2xl mx-auto">
+                        “I am able to take a wire and go into the air and define the air without stealing it from anyone.
+                        A line can enclose and define space while letting the air remain air.”
+                        <br />
+                        <span class="not-italic font-sm text-gray-600 block mt-2">~ Ruth Asawa</span>
+                      </blockquote>
+                    </section>
+
+              <!-- Accordion: content 6 -->
+                  <h2 id="accordion-open-heading-6">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-6" aria-expanded="false" aria-controls="accordion-open-body-6">
+                      <span class="flex items-center"></path></svg>How much will the project cost?</span>
+                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-open-body-6" class="hidden" aria-labelledby="accordion-open-heading-6">
+                    <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                      <p class="mb-2 text-gray-500 dark:text-gray-400">As of spring 2025, the estimated project cost is $325 million. Capital will come primarily from bond financing, backed by private investors and repaid through project revenue—including fares and sponsorships. Operations and maintenance will be covered entirely by fare revenue, making Ohlone Sky self-sustaining from day one. There is no burden on taxpayers.</p>
+                    </div>
+                  </div>
+
+                  <!-- Accordion: content 7 -->
+                      <h2 id="accordion-open-heading-7">
+                        <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-7" aria-expanded="false" aria-controls="accordion-open-body-7">
+                          <span class="flex items-center"></path></svg>A Commitment to Giving</span>
+                          <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                          </svg>
+                        </button>
+                      </h2>
+                      <div id="accordion-open-body-7" class="hidden" aria-labelledby="accordion-open-heading-7">
+                        <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">Ohlone Sky sets aside 10% of its annual revenue to nourish what moves us most: the communities we live in, the climate we share, and the cultures that shape us. As a certified B Corp, we see transit not just as a path from here to there, but as a thread that binds purpose to place. This is movement with meaning—designed to move society forward.</p>
+                        </div>
+                      </div>
+
+                <!-- Accordion: content 8 -->
+                    <h2 id="accordion-open-heading-8">
+                      <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-8" aria-expanded="false" aria-controls="accordion-open-body-8">
+                        <span class="flex items-center"></path></svg>Why Ohlone?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                      </button>
+                    </h2>
+                    <div id="accordion-open-body-8" class="hidden" aria-labelledby="accordion-open-heading-8">
+                      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">We acknowledge the <a href="https://www.ramaytush.org" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Ramaytush Ohlone</a> people, who are the traditional custodians of this land. We pay our respects to the Ramaytush Ohlone elders—past, present, and future—who call this place, the lands that this project sits upon, their home. Ohlone Sky takes its name in recognition of that history—a gesture of respect, not replacement.</p>
+                      </div>
+                    </div>
+
+
+
+                <!-- Oakland Zoo Video -->
+                <section id="zoo" class="my-8">
+                  <div>
+                    <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full rounded-lg shadow">
+                      <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                    <p class="text-xs text-gray-600 text-center mt-2">
+                      Source: Fogday Studios
+                    </p>
+                  </div>
+
+                  <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                      const video = document.getElementById('zooVideo');
+
+                      if (!video) return;
+
+                      const observer = new IntersectionObserver(entries => {
+                        entries.forEach(entry => {
+                          if (entry.isIntersecting) {
+                            video.play().catch(() => {});
+                          } else {
+                            video.pause();
+                          }
+                        });
+                      }, { threshold: 0.5 });
+
+                      observer.observe(video);
+                    });
+                  </script>
+                </section> <!-- end Zoo -->
+
+                <!-- Accordion: content 9 -->
+                    <h2 id="accordion-open-heading-9">
+                      <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-9" aria-expanded="false" aria-controls="accordion-open-body-9">
+                        <span class="flex items-center"></path></svg>What are some examples of aerial transit in urban areas?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                      </button>
+                    </h2>
+                    <div id="accordion-open-body-9" class="hidden" aria-labelledby="accordion-open-heading-9">
+                      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Locally, Oakland has the super cool <a href="https://www.oaklandzoo.org/blog/gondola" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Oakland Zoo Gondola</a> (above during Glowfari) with a six-county bird's-eye view over live oak trees, bison, camels and elephants. San Francisco sports a one-cabin system to Salesforce Park from Mission Street. In Napa, <a href="https://www.sterlingvineyards.com/en/blog/sterling-aerial-gondola-facts.html" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Sterling Vineyards</a> lays claim to "the only winery in the world with an aerial gondola." In Oregon, the <a href="http://www.gobytram.com" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Portland Aerial Tram</a> connects South Waterfront to Marquam Hill with 10,000 daily riders. In New York, the
+                          <a href="https://rioc.ny.gov/302/Tram/" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Roosevelt Island Tramway</a> connects the Upper East Side to Roosevelt Island.</p>
+                          <p class="text-gray-500 dark:text-gray-400">Meanwhile in Paris, our sister city, they are in the homestretch of their first urban cable car <a href="https://www.simagazin.com/en/si-urban-en/topics-urban/cities/cable-c1-in-paris-cable-car-on-the-home-stretch/" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Câble C1</a>. The busiest gondola system worldwide is Mi Teleférico in La Paz, Bolivia, serving more than 300,000 passengers daily. There are more than 10,000 installations worldwide.</p>
+                      </div>
+                    </div>
+
+                <!-- Accordion: content 10 -->
+                    <h2 id="accordion-open-heading-10">
+                      <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-10" aria-expanded="false" aria-controls="accordion-open-body-10">
+                        <span class="flex items-center"></path></svg>How do aerial gondolas work?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                      </button>
+                    </h2>
+
+                    <div id="accordion-open-body-10" class="hidden" aria-labelledby="accordion-open-heading-10">
+                      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">The Ohlone Sky aerial gondola system, as with all aerial gondola systems, includes cables, passenger stations, towers, and gondola cabins. In an aerial transit system, cabins are suspended above grade by cables strung between stations and towers.</p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">When a cabin enters a station it is mechanically detached from the main cable and slowed to 1 mile per hour as it travels into, and out of the station. At this speed people-who walk at an average speed of 3 miles per hour-can easily walk into or out of the cabin. As cabins enter the boarding area, the doors open and passengers exit, then new passengers get on board. The doors close, the cabin accelerates, and is clipped back onto the cable for its trip across the Bay. </p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Ohlone Sky is proposing a Tricable Detachable Gondola (3S) system (the most advanced technology currently available and invented 25 years ago), utilizing high-capacity cabins to efficiently transport passengers. 3S systems use three steel cables to support and move cabins. Two stationary cables provide stabilizing support, while a third cable continuously circulates the cabins.</p>
+
+                      </div>
+                    </div>
+
+                <!-- Accordion: content 11 -->
+                    <h2 id="accordion-open-heading-11">
+                      <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white" data-accordion-target="#accordion-open-body-11" aria-expanded="false" aria-controls="accordion-open-body-11">
+                        <span class="flex items-center">What are some websites on aerial transit?</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        </svg>
+                      </button>
+                    </h2>
+                    <div id="accordion-open-body-11" class="hidden" aria-labelledby="accordion-open-heading-11">
+                      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">The <a href="http://gondolaproject.com" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">Gondola Project</a>,
+
+                          <a href="https://en.isr.at" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">ISR</a>,
+
+                           and <a href="https://liftblog.com" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent"> Liftblog</a> are excellent resources for the latest proposals and openings around the globe. For an in-depth read, see the WTPPJ <a href="https://static1.squarespace.com/static/619593021331d42c0b62a1c6/t/6570b93f0dbef06ba98c1ce5/1701886321835/wtpp+28.2+-+low+res%2812.6.23%29+-+3MB.pdf" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">issue on aerial cable cars, Nov. 2023</a>.</p>
+                      </div>
+                    </div>
+
+            </div><!-- Accordion-open heading close div -->
+      </section><!-- Accordion section -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-50 border-t border-gray-200 py-10 mt-auto">
+      <div class="max-w-screen-xl mx-auto px-4 py-6 text-center text-sm text-brandDark">
+        <div class="text-xl font-bold text-slate-800">Ohlone Sky</div>
+        <div class="text-sm mt-2">Copyright © <!-- <span id="year"></span> --><a href="https://fogday.com" class="font-medium text-blue-950 hover:text-orange-600"> FOGDAY</a></div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { initMain } from '/assets/js/mainInit.js';
+      import { initMenu } from '/assets/js/menuBlitzloader.js';
+
+      initMain();
+      initMenu();
+    </script>
+
+    <script type="module" src="/assets/js/initLoader.js"></script>
+
+    <!-- Scripts: Accordion -->
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+
+
+</body>
+</html>

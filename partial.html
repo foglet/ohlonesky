@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohlone Sky</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Ohlone Sky" />
+    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohlonesky.com" />
+    <meta property="og:title" content="Ohlone Sky" />
+    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ohlonesky.com" />
+    <meta property="twitter:title" content="Ohlone Sky" />
+    <meta property="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brandDark: '#1d2834',
+              highlight: '#ff5500',
+              neutralText: '#636363',
+              stormSky: '#374151',
+            },
+            fontFamily: {
+              adobe: ['freight-sans-pro', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
+
+    <!-- Custom Styles -->
+    <style>
+          @layer base {
+        p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
+        a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
+        #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
+        #menuToggle.open .bar-middle{@apply opacity-0;}
+        #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];}
+      }
+      @keyframes fade-up{0%{opacity:0;transform:translateY(12px);}100%{opacity:1;transform:translateY(0);}}
+      .animate-fade-up{animation:fade-up 500ms ease-out forwards;will-change:opacity,transform;}
+    </style>
+  </head>
+
+  <body id="home" class="bg-white text-gray-800 flex flex-col min-h-screen font-adobe">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+      <!-- Header Partial -->
+      <div include-html="/assets/partials/header.html"></div>
+      <div class="md:hidden" include-html="/assets/partials/mobile-menu.html"></div>
+
+      <!-- Hero Image -->
+      <section>
+        <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+             alt="Aerial view of tram line"
+             class="w-full h-auto" loading="lazy" />
+        <p class="text-xs text-gray-600 text-center mt-2 mb-6">Source: Fogday Studios</p>
+      </section>
+
+      <!-- Main Content -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50">
+        <section class="text-center mb-6">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl font-bold text-neutralText mb-0">
+              Ohlone Sky is a proposal for a gondola from Pier 24 to Yerba Buena and Treasure Island.
+            </h2>
+          </div>
+          <p class="bg-white text-gray-800 text-lg leading-relaxed max-w-2xl mx-auto mb-6">
+            Hero text.
+          </p>
+        </section>
+
+        <section>
+          <p class="text-fluid-md text-gray-700">
+          A soaring connection above the Bay.
+          </p>
+        </section>
+
+      </main>
+
+      <!-- Footer Partials -->
+      <div include-html="/assets/partials/footer.html"></div>
+      <div include-html="/assets/partials/scripts.html"></div>
+
+      <!-- Init Loader Script -->
+      <!-- 	•	Use initLoader.js (since it loads header/footer/menu as partials) -->
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { initMain } from '/assets/js/mainInit.js';
+      import { initMenu } from '/assets/js/menuBlitzloader.js';
+
+      initMain();
+      initMenu();
+    </script>
+
+
+  </body>
+</html>

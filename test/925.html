@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <!-- Charset & Responsive -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!-- SEO & Metadata -->
+      <title>Ohlone Sky</title>
+      <meta name="description" content="Ohlone Sky – Aerial Tram Project" />
+
+      <!-- Adobe Fonts -->
+      <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
+
+      <!-- Preload & Load Tailwind CSS -->
+      <link rel="preload" href="/assets/css/output.css" as="style">
+      <link rel="stylesheet" href="/assets/css/output.css" />
+
+      <!-- Optional additional styles -->
+      <link rel="preload" href="/assets/css/hero.css" as="style">
+      <link rel="stylesheet" href="/assets/css/hero.css" />
+
+      <!-- Hide content until CSS loads to prevent FOUC -->
+      <style>
+        body { visibility: hidden; }
+      </style>
+
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          document.body.style.visibility = 'visible';
+        });
+      </script>
+
+      <!-- Fallback: Dynamically inject CSS if static link fails -->
+      <script>
+        if (!document.querySelector('link[href*="output.css"]')) {
+          const version = `?v=${Date.now()}`;
+          ['output.css', 'hero.css'].forEach(file => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `/assets/css/${file}${version}`;
+            document.head.appendChild(link);
+          });
+        }
+      </script>
+    </head>
+
+  <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+      <header include-html="/assets/partials/header.html"></header>
+
+    <!-- |||||||||||| Hero Image: the only stuff to change  ||||||||| -->
+    <!-- |||||||||||| Hero Image: the only stuff to change  ||||||||| -->
+    <main id="mainContent" class="flex-grow mx-auto">
+
+      <section class="relative w-screen h-screen text-center text-white overflow-hidden">
+        <!-- Clickable layer -->
+        <a href="/00/" class="absolute inset-0 z-10 cursor-pointer" aria-label="Return to homepage"></a>
+
+        <!-- Full-screen background -->
+          <div class="absolute inset-0 z-0 bg-cover bg-center brightness-75"
+               style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg');">
+          </div>
+
+        <!-- Overlay content -->
+        <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
+          <div class="max-w-3xl text-center space-y-2 text-lg">
+            <p lang="zh-Hant" class="drop-shadow"><span class="font-medium">迷失在霧中？</span></p>
+            <p lang="it" class="drop-shadow"><span class="font-medium">Perso nella nebbia?</span></p>
+            <p lang="ar" class="drop-shadow"><span class="font-medium">ضائع في الضباب؟</span></p>
+            <p lang="es" class="drop-shadow"><span class="font-medium">¿Perdido en la niebla?</span></p>
+            <p lang="en" class="drop-shadow"><span class="font-medium">Lost in the fog?</span></p>
+            <p lang="ru" class="drop-shadow"><span class="font-medium">Затерялся в тумане?</span></p>
+            <p lang="de" class="drop-shadow"><span class="font-medium">Verloren im Nebel?</span></p>
+            <p lang="fr" class="drop-shadow"><span class="font-medium">Perdu dans le brouillard?</span></p>
+          </div>
+        </div>
+
+        <!-- Attribution -->
+        <p class="text-xs text-gray-600 text-center mt-2">
+          Source: Alexander Voronov, Unsplash
+        </p>
+      </section>
+    </main>
+
+    <!-- ||||||||| end end end end end end end of change |||||| -->
+
+    <!-- Footer -->
+    <footer include-html="/assets/partials/footer.html"></footer>
+  </div>
+
+  <!-- Load partials and init scripts -->
+  <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
+</html>
