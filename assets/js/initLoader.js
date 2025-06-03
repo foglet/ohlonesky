@@ -50,21 +50,37 @@ function injectStyles(files, prefix, version) {
 /**
  * Loads all HTML partials marked with [include-html].
  */
-async function loadPartials(selector, version) {
-  const elements = document.querySelectorAll(selector);
+ async function loadPartials(selector, version) {
+   const elements = document.querySelectorAll(selector);
 
-  await Promise.all([...elements].map(async el => {
-    const file = el.getAttribute('include-html');
-    if (!file) return;
+   if (!elements.length) {
+     console.warn(`⚠️ No elements found for selector: ${selector}`);
+     return;
+   }
 
-    try {
-      const res = await fetch(`${file}${version}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      el.innerHTML = await res.text();
-      console.log(`✅ Loaded partial: ${file}`);
-    } catch (err) {
-      el.innerHTML = `<!-- Failed to load ${file} -->`;
-      console.error(`❌ Could not load partial: ${file}`, err);
-    }
-  }));
-}
+   console.log(`🧩 Found ${elements.length} element(s) with ${selector}`);
+
+   await Promise.all([...elements].map(async el => {
+     const file = el.getAttribute('include-html');
+     if (!file) {
+       console.warn('⚠️ Element missing include-html attribute:', el);
+       return;
+     }
+
+     const url = `${file}${version}`;
+     console.log(`🔄 Fetching: ${url}`);
+
+     try {
+       const res = await fetch(url);
+       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+       const html = await res.text();
+       el.outerHTML = html;  // ✅ Replaces <header include-html="..."> with actual <header> markup
+
+       console.log(`✅ Injected ${file}`);
+     } catch (err) {
+       el.innerHTML = `<!-- Failed to load ${file} -->`;
+       console.error(`❌ Could not load partial: ${file}`, err);
+     }
+   }));
+ }
