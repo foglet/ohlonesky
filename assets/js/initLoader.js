@@ -2,52 +2,63 @@ import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 (async function initApp() {
-  const timestamp = `?v=${Date.now()}`;
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
+  const version = `?v=${Date.now()}`;
+  const depth = getPathDepth();
   const prefix = '../'.repeat(depth);
 
-  injectCSS([
+  // 🚀 Inject CSS files with cache-busting
+  injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
-  ], prefix, timestamp);
+  ], prefix, version);
 
-  await loadPartials('[include-html]', timestamp);
+  // 🔄 Load all HTML partials
+  await loadPartials('[include-html]', version);
 
-  // Initialize app-specific JS after partials are fully loaded
+  // ✅ Run initializers after DOM is ready and partials are rendered
   requestAnimationFrame(() => {
-    initMenu();  // 🍔 mobile menu toggle logic
-    initMain();  // 🔧 additional page logic
+    initMenu();
+    initMain();
   });
 })();
 
 /**
- * Dynamically injects CSS <link> tags with cache busting.
+ * Returns how deep the current page is in the directory structure.
+ * Example: /00/contact/ = depth 2 → "../../"
  */
-function injectCSS(files, prefix, timestamp) {
+function getPathDepth() {
+  return window.location.pathname.split('/').filter(Boolean).length;
+}
+
+/**
+ * Dynamically injects CSS files into <head> with version cache-busting.
+ */
+function injectStyles(files, prefix, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${prefix}${file}${timestamp}`;
+    link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
   });
 }
 
 /**
- * Loads all HTML partials marked with a specific selector.
+ * Loads all elements with an `include-html` attribute.
  */
-async function loadPartials(selector, timestamp) {
-  const partials = document.querySelectorAll(selector);
-  await Promise.all([...partials].map(async el => {
+async function loadPartials(selector, version) {
+  const elements = document.querySelectorAll(selector);
+
+  await Promise.all([...elements].map(async el => {
     const file = el.getAttribute('include-html');
     if (!file) return;
 
     try {
-      const res = await fetch(`${file}${timestamp}`);
+      const res = await fetch(`${file}${version}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       el.innerHTML = await res.text();
     } catch (err) {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
-      console.error(`❌ Error loading partial: ${file}`, err);
+      console.error(`❌ Could not load ${file}`, err);
     }
   }));
 }
