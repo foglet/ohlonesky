@@ -1,37 +1,27 @@
-// initLoader.js
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 (async function initApp() {
   const version = `?v=${Date.now()}`;
-  const depth = getPathDepth();
+  const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // ✅ Inject global styles
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
   ], prefix, version);
 
-  // ✅ Inject HTML partials (header, footer, etc)
   await injectPartials('[include-html]', prefix, version);
 
-  // ✅ Wait for all necessary menu elements to exist
-  waitForAllElements(['#menuToggle', '#mobileMenu', '#menuBackdrop'], ([toggle, menu, backdrop]) => {
-    console.log('✅ All menu elements found — initializing menu');
-    initMenu();
-  }, 5000);
+  // 🔁 Retry menu init until elements are found
+  waitForElement('#menuToggle', () => {
+    console.log('✅ menuToggle found');
+    initMenu(); // init after header has been inserted
+  }, 3000);
 
-  // ✅ Run remaining scripts (non-critical)
   initMain();
 })();
 
-// 📏 Determine page depth for relative asset prefixing
-function getPathDepth() {
-  return window.location.pathname.split('/').filter(Boolean).length;
-}
-
-// 🎨 Inject CSS <link> tags into <head>
 function injectStyles(files, prefix, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -41,51 +31,36 @@ function injectStyles(files, prefix, version) {
   });
 }
 
-// 🧩 Replace [include-html] elements with fetched HTML
 async function injectPartials(selector, prefix, version) {
   const nodes = document.querySelectorAll(selector);
-  if (!nodes.length) return;
-
-  console.log(`🧩 Found ${nodes.length} partial(s)`);
-
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) {
-      console.warn('⚠️ Skipping node with missing include-html:', node);
-      return;
-    }
-
-    const url = file.startsWith('/')
-      ? `${file}${version}`
-      : `${prefix}${file}${version}`;
-
+    const url = file.startsWith('/') ? `${file}${version}` : `${prefix}${file}${version}`;
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected: ${url}`);
     } catch (err) {
       node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Failed to inject: ${url}`, err);
     }
   }));
 }
 
-// ⏳ Wait until ALL specified elements appear in DOM
-function waitForAllElements(selectors, callback, timeout = 3000) {
-  const found = selectors.map(sel => document.querySelector(sel));
-  if (found.every(Boolean)) {
-    callback(found);
+// Waits for element and runs callback
+function waitForElement(selector, callback, timeout = 3000) {
+  const existing = document.querySelector(selector);
+  if (existing) {
+    callback(existing);
     return;
   }
 
   const observer = new MutationObserver(() => {
-    const updated = selectors.map(sel => document.querySelector(sel));
-    if (updated.every(Boolean)) {
+    const found = document.querySelector(selector);
+    if (found) {
       observer.disconnect();
-      callback(updated);
+      callback(found);
     }
   });
 

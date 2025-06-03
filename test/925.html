@@ -56,18 +56,35 @@
 
 
       <!-- TEMP HARDCODED HEADER -->
-      <header>
-          <button id="menuToggle" class="tham tham-e-squeeze tham-w-6 block z-1000">
-          <div class="tham-box"><div class="tham-inner"></div></div>
-          </button>
-          <div id="menuBackdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden opacity-0 transition-opacity"></div>
-          <nav id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden opacity-0 translate-x-full transition-all pt-16 px-6">
-          <a href="/00/faqs/" class="menu-link block text-lg text-brandDark">FAQs</a>
-          <a href="/00/support/" class="menu-link block text-lg text-brandDark">Support</a>
-          <a href="/00/contact/" class="menu-link block text-lg text-brandDark">Contact</a>
-          </nav>
-      </header>
+          <header class="sticky top-0 bg-white shadow z-50">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
+              <!-- Logo -->
+              <a href="/00/" class="flex items-center space-x-2">
+                <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+                     alt="Ohlone Sky Logo"
+                     class="h-[28px] w-auto" />
+              </a>
+
+              <!-- Desktop Navigation -->
+              <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+                <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+                <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+                <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+              </nav>
+
+              <!-- Hamburger -->
+              <button id="menuToggle"
+                      aria-label="Toggle menu"
+                      class="tham tham-e-squeeze tham-w-6 md:hidden block z-50"
+                      style="background: red;">
+                <div class="tham-box">
+                  <div class="tham-inner"></div>
+                </div>
+              </button>
+
+            </div>
+          </header>
       <!-- TEMP HARDCODED HEADER -->
 
 
