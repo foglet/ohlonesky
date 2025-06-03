@@ -2,12 +2,14 @@ export function initMenu({
   menuId = 'mobileMenu',
   toggleId = 'menuToggle',
   backdropId = 'menuBackdrop',
+  closeId = 'closeMenu',
   linkSelector = '.menu-link',
   transitionDuration = 300
 } = {}) {
   const toggle = document.getElementById(toggleId);
   const menu = document.getElementById(menuId);
   const backdrop = document.getElementById(backdropId);
+  const close = document.getElementById(closeId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
   if (!toggle || !menu || !backdrop) {
@@ -48,6 +50,7 @@ export function initMenu({
   });
 
   backdrop.addEventListener('click', closeMenu);
+  close?.addEventListener('click', closeMenu); // ✅ Optional chaining for robustness
 
   links.forEach(link => {
     link.addEventListener('click', closeMenu);
