@@ -10,19 +10,12 @@ export function initMenu({
   const backdrop = document.getElementById(backdropId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
-  console.groupCollapsed('🔧 initMenu Debug');
-  console.log('menuToggle:', toggle);
-  console.log('mobileMenu:', menu);
-  console.log('menuBackdrop:', backdrop);
-  console.groupEnd();
-
   if (!toggle || !menu || !backdrop) {
-    console.warn('⚠️ initMenu: Missing required elements');
+    console.warn('⚠️ initMenu: Missing required elements', { toggle, menu, backdrop });
     return;
   }
 
   const openMenu = () => {
-    console.log('📂 Opening menu');
     toggle.classList.add('tham-active');
     toggle.setAttribute('aria-expanded', 'true');
 
@@ -34,7 +27,6 @@ export function initMenu({
   };
 
   const closeMenu = () => {
-    console.log('📁 Closing menu');
     toggle.classList.remove('tham-active');
     toggle.setAttribute('aria-expanded', 'false');
 
@@ -52,7 +44,6 @@ export function initMenu({
 
   toggle.addEventListener('click', () => {
     const isOpen = toggle.classList.contains('tham-active');
-    console.log(`📲 menuToggle clicked → isOpen: ${isOpen}`);
     isOpen ? closeMenu() : openMenu();
   });
 

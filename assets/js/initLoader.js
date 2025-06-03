@@ -6,39 +6,42 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   const depth = getPathDepth();
   const prefix = '../'.repeat(depth);
 
+  // Inject global styles
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
   ], prefix, version);
 
-  await injectPartials('[include-html]', version);
+  // Inject HTML partials
+  await injectPartials('[include-html]', prefix, version);
 
-  // ✅ Wait for #menuToggle only after partials are injected
+  // Wait for the menu toggle only after partials are injected
   waitForElement('#menuToggle', () => {
     console.log('✅ #menuToggle found — initializing menu');
     initMenu();
-  }, 5000); // optional: longer timeout
+  }, 5000);
 
+  // Run any remaining logic
   initMain();
 })();
 
-// 🧭 Determines path depth (for prefixing asset URLs)
+// 🧭 Determines page depth for relative asset calculation
 function getPathDepth() {
   return window.location.pathname.split('/').filter(Boolean).length;
 }
 
-// 🎨 Injects CSS <link> tags into <head>
+// 🎨 Injects <link> tags into <head>
 function injectStyles(files, prefix, version) {
-  for (const file of files) {
+  files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
-  }
+  });
 }
 
-// 🧩 Loads HTML partials into matching elements
-async function injectPartials(selector, version) {
+// 🧩 Replaces elements with include-html attr with fetched partials
+async function injectPartials(selector, prefix, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
@@ -47,26 +50,29 @@ async function injectPartials(selector, version) {
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
     if (!file) {
-      console.warn('⚠️ Missing include-html attribute:', node);
+      console.warn('⚠️ Skipping node with missing include-html:', node);
       return;
     }
 
-    const url = `${file}${version}`;
+    const url = file.startsWith('/')
+      ? `${file}${version}`         // absolute path — use as-is
+      : `${prefix}${file}${version}`; // relative path — add prefix
+
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected: ${file}`);
+      console.log(`✅ Injected: ${url}`);
     } catch (err) {
-      node.innerHTML = `<!-- Failed to load ${file} -->`;
-      console.error(`❌ Failed to inject: ${file}`, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Failed to inject: ${url}`, err);
     }
   }));
 }
 
-// ⏳ Waits for an element to appear before running a callback
+// ⏳ Waits for an element to appear in the DOM
 function waitForElement(selector, callback, timeout = 3000) {
   const existing = document.querySelector(selector);
   if (existing) {

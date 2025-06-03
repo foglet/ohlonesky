@@ -21,8 +21,10 @@ module.exports = {
     'translate-x-0',
     'opacity-0',
     'opacity-100',
-    'open',
     'tham-active',
+    'transition-all',
+    'duration-300',
+    'ease-in-out'
   ],
 
   theme: {
