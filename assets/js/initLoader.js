@@ -51,36 +51,36 @@ function injectStyles(files, prefix, version) {
  * Loads all HTML partials marked with [include-html].
  */
  async function loadPartials(selector, version) {
-   const elements = document.querySelectorAll(selector);
+  const elements = document.querySelectorAll(selector);
 
-   if (!elements.length) {
-     console.warn(`⚠️ No elements found for selector: ${selector}`);
-     return;
-   }
+  if (!elements.length) {
+    console.warn(`⚠️ No elements found for selector: ${selector}`);
+    return;
+  }
 
-   console.log(`🧩 Found ${elements.length} element(s) with ${selector}`);
+  console.log(`🧩 Found ${elements.length} element(s) with ${selector}`);
 
-   await Promise.all([...elements].map(async el => {
-     const file = el.getAttribute('include-html');
-     if (!file) {
-       console.warn('⚠️ Element missing include-html attribute:', el);
-       return;
-     }
+  await Promise.all([...elements].map(async el => {
+    const file = el.getAttribute('include-html');
+    if (!file) {
+      console.warn('⚠️ Element missing include-html attribute:', el);
+      return;
+    }
 
-     const url = `${file}${version}`;
-     console.log(`🔄 Fetching: ${url}`);
+    const url = `${file}${version}`;
+    console.log(`🔄 Fetching: ${url}`);
 
-     try {
-       const res = await fetch(url);
-       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-       const html = await res.text();
-       el.outerHTML = html;  // ✅ Replaces <header include-html="..."> with actual <header> markup
-
-       console.log(`✅ Injected ${file}`);
-     } catch (err) {
-       el.innerHTML = `<!-- Failed to load ${file} -->`;
-       console.error(`❌ Could not load partial: ${file}`, err);
-     }
-   }));
- }
+      const html = await res.text();
+      el.insertAdjacentHTML('afterend', html); // ✅ safer than outerHTML
+      el.remove(); // ✅ clean up original
+      console.log(`✅ Injected ${file}`);
+    } catch (err) {
+      el.innerHTML = `<!-- Failed to load ${file} -->`;
+      console.error(`❌ Could not load partial: ${file}`, err);
+    }
+  }));
+}
