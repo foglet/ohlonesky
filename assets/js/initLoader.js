@@ -3,82 +3,70 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 (async function initApp() {
   const version = `?v=${Date.now()}`;
-  const depth = getPathDepth();
-  const prefix = '../'.repeat(depth);
+  const prefix = '../'.repeat(getPathDepth());
 
-  // Inject global styles
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
   ], prefix, version);
 
-  // Inject HTML partials
   await injectPartials('[include-html]', prefix, version);
 
-  // Wait for the menu toggle only after partials are injected
+  // Wait for #menuToggle (in header.html) to exist before initializing menu
   waitForElement('#menuToggle', () => {
     console.log('✅ #menuToggle found — initializing menu');
     initMenu();
-  }, 5000);
+  });
 
-  // Run any remaining logic
   initMain();
 })();
 
-// 🧭 Determines page depth for relative asset calculation
+// Get current path depth (e.g. /00/contact/ → 2)
 function getPathDepth() {
   return window.location.pathname.split('/').filter(Boolean).length;
 }
 
-// 🎨 Injects <link> tags into <head>
+// Inject CSS <link> tags
 function injectStyles(files, prefix, version) {
-  files.forEach(file => {
+  for (const file of files) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
-  });
+  }
 }
 
-// 🧩 Replaces elements with include-html attr with fetched partials
+// Load HTML into elements with [include-html]
 async function injectPartials(selector, prefix, version) {
-  const nodes = document.querySelectorAll(selector);
-  if (!nodes.length) return;
+  const elements = document.querySelectorAll(selector);
+  if (!elements.length) return;
 
-  console.log(`🧩 Found ${nodes.length} partial(s)`);
+  console.log(`🧩 Found ${elements.length} partial(s)`);
 
-  await Promise.all([...nodes].map(async node => {
-    const file = node.getAttribute('include-html');
-    if (!file) {
-      console.warn('⚠️ Skipping node with missing include-html:', node);
-      return;
-    }
+  await Promise.all([...elements].map(async el => {
+    const file = el.getAttribute('include-html');
+    if (!file) return console.warn('⚠️ Missing include-html:', el);
 
-    const url = file.startsWith('/')
-      ? `${file}${version}`         // absolute path — use as-is
-      : `${prefix}${file}${version}`; // relative path — add prefix
+    const url = file.startsWith('/') ? `${file}${version}` : `${prefix}${file}${version}`;
 
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
-      node.insertAdjacentHTML('afterend', html);
-      node.remove();
+      el.insertAdjacentHTML('afterend', html);
+      el.remove();
       console.log(`✅ Injected: ${url}`);
     } catch (err) {
-      node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Failed to inject: ${url}`, err);
+      el.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Error loading partial: ${url}`, err);
     }
   }));
 }
 
-// ⏳ Waits for an element to appear in the DOM
-function waitForElement(selector, callback, timeout = 3000) {
+// Observe DOM for element until found (then run callback)
+function waitForElement(selector, callback, timeout = 5000) {
   const existing = document.querySelector(selector);
-  if (existing) {
-    callback(existing);
-    return;
-  }
+  if (existing) return callback(existing);
 
   const observer = new MutationObserver(() => {
     const found = document.querySelector(selector);

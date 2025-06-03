@@ -16,8 +16,8 @@ export function initMenu({
   }
 
   const openMenu = () => {
-    toggle.classList.add('tham-active');
     toggle.setAttribute('aria-expanded', 'true');
+    toggle.classList.add('tham-active');
 
     menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
     menu.classList.add('translate-x-0', 'opacity-100');
@@ -27,8 +27,8 @@ export function initMenu({
   };
 
   const closeMenu = () => {
-    toggle.classList.remove('tham-active');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.classList.remove('tham-active');
 
     menu.classList.remove('translate-x-0', 'opacity-100');
     menu.classList.add('translate-x-full', 'opacity-0');
@@ -48,5 +48,8 @@ export function initMenu({
   });
 
   backdrop.addEventListener('click', closeMenu);
-  links.forEach(link => link.addEventListener('click', closeMenu));
+
+  links.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 }
