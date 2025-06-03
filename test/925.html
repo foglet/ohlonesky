@@ -53,40 +53,7 @@
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
 
       <!-- ✅ Only ONE HEADER -->
-
-
-      <!-- TEMP HARDCODED HEADER -->
-          <header class="sticky top-0 bg-white shadow z-50">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-
-              <!-- Logo -->
-              <a href="/00/" class="flex items-center space-x-2">
-                <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
-                     alt="Ohlone Sky Logo"
-                     class="h-[28px] w-auto" />
-              </a>
-
-              <!-- Desktop Navigation -->
-              <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
-                <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
-                <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
-                <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
-              </nav>
-
-              <!-- Hamburger -->
-              <button id="menuToggle"
-                      aria-label="Toggle menu"
-                      class="tham tham-e-squeeze tham-w-6 md:hidden block z-50"
-                      style="background: red;">
-                <div class="tham-box">
-                  <div class="tham-inner"></div>
-                </div>
-              </button>
-
-            </div>
-          </header>
-      <!-- TEMP HARDCODED HEADER -->
-
+      <section include-html="/assets/partials/header.html"></section>
 
       <!-- Hero Section -->
       <main id="mainContent" class="flex-grow mx-auto">
