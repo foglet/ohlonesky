@@ -12,8 +12,21 @@ export function initMenu({
   const close = document.getElementById(closeId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
-  if (!toggle || !menu || !backdrop) {
-    console.warn('⚠️ initMenu: Missing required elements', { toggle, menu, backdrop });
+  console.log('📦 initMenu — Elements:', {
+    toggle,
+    menu,
+    backdrop,
+    close,
+    links: links.length
+  });
+
+  if (!toggle || !menu || !backdrop || !close) {
+    console.warn('⚠️ initMenu: Missing one or more required elements:', {
+      toggle,
+      menu,
+      backdrop,
+      close
+    });
     return;
   }
 
@@ -50,9 +63,11 @@ export function initMenu({
   });
 
   backdrop.addEventListener('click', closeMenu);
-  close?.addEventListener('click', closeMenu); // ✅ Optional chaining for robustness
+  close.addEventListener('click', closeMenu);
 
   links.forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+
+  console.log('✅ Mobile menu initialized.');
 }
