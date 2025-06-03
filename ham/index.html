@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hamburger Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @layer base {
+        #menuToggle.open .bar-top {
+          @apply rotate-45 translate-y-[6px];
+        }
+        #menuToggle.open .bar-middle {
+          @apply opacity-0;
+        }
+        #menuToggle.open .bar-bottom {
+          @apply -rotate-45 -translate-y-[6px];
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <header class="flex items-center justify-between p-4 shadow-md sticky top-0 z-50 bg-white">
+      <h1 class="text-xl font-bold">Ohlone Sky</h1>
+      <button id="menuToggle" class="md:hidden flex flex-col items-center justify-center h-8 w-8">
+        <span class="bar-top block h-0.5 w-6 bg-black mb-1 transition-transform duration-300"></span>
+        <span class="bar-middle block h-0.5 w-6 bg-black mb-1 transition-opacity duration-300"></span>
+        <span class="bar-bottom block h-0.5 w-6 bg-black transition-transform duration-300"></span>
+      </button>
+    </header>
+
+    <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 transition-opacity duration-300"></div>
+
+    <nav id="mobileMenu" class="hidden fixed top-0 right-0 w-2/3 max-w-sm h-full bg-white z-50 shadow-lg transform translate-x-full opacity-0 transition-all duration-300 pt-20 px-6 space-y-6">
+      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">FAQs</a>
+      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Support</a>
+      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Contact</a>
+    </nav>
+
+    <script>
+      const toggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobileMenu');
+      const backdrop = document.getElementById('menuBackdrop');
+
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.classList.toggle('open');
+
+        if (isOpen) {
+          menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
+          menu.classList.add('translate-x-0', 'opacity-100');
+
+          backdrop.classList.remove('hidden', 'opacity-0');
+          backdrop.classList.add('opacity-100');
+        } else {
+          menu.classList.add('translate-x-full', 'opacity-0');
+          menu.classList.remove('translate-x-0', 'opacity-100');
+
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+      });
+
+      backdrop.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.add('translate-x-full', 'opacity-0');
+        menu.classList.remove('translate-x-0', 'opacity-100');
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => backdrop.classList.add('hidden'), 300);
+      });
+    </script>
+  </body>
+</html>
