@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
   darkMode: 'class',
 
-  // 🔍 Scan these files for class names to include in the build
+  // 📦 Scan for class names in all HTML/JS/CSS partials
   content: [
     './404.html',
     './*.html',
@@ -14,19 +14,30 @@ module.exports = {
     '!./node_modules/**/*',
   ],
 
-  // 🔐 Prevent purging of dynamically-used classes (like menu transitions)
+  // 🛡️ Safelist dynamic classes used in JS or external components (e.g. hamburger)
   safelist: [
+    {
+      pattern: /^tham(-[\w]+)*$/, // Preserve all Tham hamburger animation classes
+    },
+    {
+      pattern: /^(translate-x|opacity)-\d+$/, // Keep Tailwind transforms and fades
+    },
+    {
+      pattern: /^(transition|duration|ease)-?.*$/, // Transitions & animations
+    },
     'hidden',
-    'translate-x-full',
-    'translate-x-0',
+    'block',
+    'z-50',
+    'z-1000',
+    'md:hidden',
     'opacity-0',
     'opacity-100',
-    'tham-active',
-    'transition-all',
-    'duration-300',
-    'ease-in-out'
+    'translate-x-0',
+    'translate-x-full',
+    'tham-active'
   ],
 
+  // 🎨 Extend default theme
   theme: {
     extend: {
       colors: {
@@ -43,26 +54,17 @@ module.exports = {
     },
   },
 
+  // 🔌 Plugins: Typography, Forms, and Fluid Type Utilities
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
     plugin(({ addUtilities }) => {
       addUtilities({
-        '.text-fluid-sm': {
-          fontSize: 'clamp(0.875rem, 2vw, 1.125rem)',
-        },
-        '.text-fluid-base': {
-          fontSize: 'clamp(1rem, 3vw, 1.25rem)',
-        },
-        '.text-fluid-md': {
-          fontSize: 'clamp(1.25rem, 4vw, 2rem)',
-        },
-        '.text-fluid-lg': {
-          fontSize: 'clamp(1.75rem, 6vw, 3rem)',
-        },
-        '.text-fluid-xl': {
-          fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
-        },
+        '.text-fluid-sm': { fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' },
+        '.text-fluid-base': { fontSize: 'clamp(1rem, 3vw, 1.25rem)' },
+        '.text-fluid-md': { fontSize: 'clamp(1.25rem, 4vw, 2rem)' },
+        '.text-fluid-lg': { fontSize: 'clamp(1.75rem, 6vw, 3rem)' },
+        '.text-fluid-xl': { fontSize: 'clamp(2.5rem, 8vw, 4.5rem)' },
       });
     }),
   ],
