@@ -8,39 +8,46 @@ export function initMenu({
   const toggle = document.getElementById(toggleId);
   const menu = document.getElementById(menuId);
   const backdrop = document.getElementById(backdropId);
-  const links = document.querySelectorAll(linkSelector);
+  const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
   if (!toggle || !menu || !backdrop) {
-    console.warn('❌ Missing elements in initMenu:', { toggle, menu, backdrop });
+    console.warn('⚠️ initMenu: Missing elements', { toggle, menu, backdrop });
     return;
   }
 
-  console.log('✅ initMenu elements found');
-
-  const open = () => {
-    console.log('🍔 Opening menu');
-    toggle.classList.add('open');
+  const openMenu = () => {
+    toggle.classList.add('tham-active');
     toggle.setAttribute('aria-expanded', 'true');
+
     menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
     menu.classList.add('translate-x-0', 'opacity-100');
+
     backdrop.classList.remove('hidden', 'opacity-0');
     backdrop.classList.add('opacity-100');
   };
 
-  const close = () => {
-    console.log('❌ Closing menu');
-    toggle.classList.remove('open');
+  const closeMenu = () => {
+    toggle.classList.remove('tham-active');
     toggle.setAttribute('aria-expanded', 'false');
+
     menu.classList.remove('translate-x-0', 'opacity-100');
     menu.classList.add('translate-x-full', 'opacity-0');
+
+    backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
+
     setTimeout(() => {
       menu.classList.add('hidden');
       backdrop.classList.add('hidden');
     }, transitionDuration);
   };
 
-  toggle.addEventListener('click', () => toggle.classList.contains('open') ? close() : open());
-  backdrop.addEventListener('click', close);
-  links.forEach(link => link.addEventListener('click', close));
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.classList.contains('tham-active');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  links.forEach(link => link.addEventListener('click', closeMenu));
 }
