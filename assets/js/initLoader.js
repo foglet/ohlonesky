@@ -6,31 +6,33 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // Inject CSS
-  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+  injectStyles([
+    'assets/css/output.css',
+    'assets/css/hero.css'
+  ], prefix, version);
+
+  await injectPartials('[include-html]', prefix, version);
+
+  // Wait for the menu toggle to be available before initializing the menu
+  waitForElement('#menuToggle', () => {
+    console.log('✅ menuToggle found');
+    initMenu(); // Initialize after header has been inserted
+  }, 3000);
+
+  initMain();
+})();
+
+function injectStyles(files, prefix, version) {
+  files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
   });
+}
 
-  // Load HTML partials
-  await injectPartials('[include-html]', prefix, version);
-
-  // Now wait for ALL required elements
-  waitForElements(['#menuToggle', '#mobileMenu', '#menuBackdrop'], () => {
-    console.log('✅ All menu elements loaded');
-    initMenu(); // Safe to init now
-  });
-
-  initMain(); // Other page logic
-})();
-
-// Inject HTML partials
 async function injectPartials(selector, prefix, version) {
   const nodes = document.querySelectorAll(selector);
-  if (!nodes.length) return;
-
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
     const url = file.startsWith('/') ? `${file}${version}` : `${prefix}${file}${version}`;
@@ -41,24 +43,24 @@ async function injectPartials(selector, prefix, version) {
       node.insertAdjacentHTML('afterend', html);
       node.remove();
     } catch (err) {
-      console.error(`❌ Failed to load ${url}`, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
     }
   }));
 }
 
-// Wait for multiple elements to exist before firing callback
-function waitForElements(selectors, callback, timeout = 3000) {
-  const allExist = () => selectors.every(sel => document.querySelector(sel));
-
-  if (allExist()) {
-    callback();
+// Waits for element and runs callback
+function waitForElement(selector, callback, timeout = 3000) {
+  const existing = document.querySelector(selector);
+  if (existing) {
+    callback(existing);
     return;
   }
 
   const observer = new MutationObserver(() => {
-    if (allExist()) {
+    const found = document.querySelector(selector);
+    if (found) {
       observer.disconnect();
-      callback();
+      callback(found);
     }
   });
 
