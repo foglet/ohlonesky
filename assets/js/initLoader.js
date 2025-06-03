@@ -6,6 +6,7 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   const depth = getPathDepth();
   const prefix = '../'.repeat(depth);
 
+  // 🚀 Inject CSS files with cache-busting
   injectStyles([
     'assets/css/output.css',
     'assets/css/hero.css'
@@ -50,7 +51,7 @@ function injectStyles(files, prefix, version) {
 /**
  * Loads all HTML partials marked with [include-html].
  */
- async function loadPartials(selector, version) {
+async function loadPartials(selector, version) {
   const elements = document.querySelectorAll(selector);
 
   if (!elements.length) {
@@ -75,12 +76,33 @@ function injectStyles(files, prefix, version) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
-      el.insertAdjacentHTML('afterend', html); // ✅ safer than outerHTML
-      el.remove(); // ✅ clean up original
+
+      // Create a wrapper div so we can re-evaluate scripts
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+
+      reevalScripts(wrapper); // ✅ Optional: execute any <script> tags
+      el.replaceWith(...wrapper.childNodes); // Replace <header> or other tag cleanly
+
       console.log(`✅ Injected ${file}`);
     } catch (err) {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
       console.error(`❌ Could not load partial: ${file}`, err);
     }
   }));
+}
+
+/**
+ * Re-evaluates all <script> tags inside a DOM node to ensure they execute.
+ */
+function reevalScripts(container) {
+  const scripts = container.querySelectorAll('script');
+  scripts.forEach(oldScript => {
+    const newScript = document.createElement('script');
+    [...oldScript.attributes].forEach(attr =>
+      newScript.setAttribute(attr.name, attr.value)
+    );
+    newScript.textContent = oldScript.textContent;
+    oldScript.replaceWith(newScript);
+  });
 }
