@@ -5,28 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hamburger Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @layer base {
-        #menuToggle.open .bar-top {
-          @apply rotate-45 translate-y-[6px];
-        }
-        #menuToggle.open .bar-middle {
-          @apply opacity-0;
-        }
-        #menuToggle.open .bar-bottom {
-          @apply -rotate-45 -translate-y-[6px];
-        }
-      }
-    </style>
   </head>
-  <body class="bg-green text-gray-800">
+  <body class="bg-white text-gray-800">
     <header class="flex items-center justify-between p-4 shadow-md sticky top-0 z-50 bg-white">
       <h1 class="text-xl font-bold">Ohlone Sky</h1>
       <button id="menuToggle" class="md:hidden group flex flex-col items-center justify-center h-8 w-8">
-    <span class="bar-top block h-0.5 w-6 bg-black mb-1 transition-transform duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-[6px]"></span>
-    <span class="bar-middle block h-0.5 w-6 bg-black mb-1 transition-opacity duration-300 group-[.open]:opacity-0"></span>
-    <span class="bar-bottom block h-0.5 w-6 bg-black transition-transform duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-[6px]"></span>
-  </button>
+        <span class="bar-top block h-0.5 w-6 bg-black mb-1 transition-transform duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-[6px]"></span>
+        <span class="bar-middle block h-0.5 w-6 bg-black mb-1 transition-opacity duration-300 group-[.open]:opacity-0"></span>
+        <span class="bar-bottom block h-0.5 w-6 bg-black transition-transform duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-[6px]"></span>
+      </button>
     </header>
 
     <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 transition-opacity duration-300"></div>
