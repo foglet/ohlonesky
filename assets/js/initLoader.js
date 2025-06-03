@@ -13,10 +13,10 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
 
   await injectPartials('[include-html]', prefix, version);
 
-  // 🔁 Retry menu init until elements are found
+  // Wait for the menu toggle to be available before initializing the menu
   waitForElement('#menuToggle', () => {
     console.log('✅ menuToggle found');
-    initMenu(); // init after header has been inserted
+    initMenu(); // Initialize after header has been inserted
   }, 3000);
 
   initMain();
