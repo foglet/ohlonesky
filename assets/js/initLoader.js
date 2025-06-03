@@ -16,17 +16,23 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
   await loadPartials('[include-html]', version);
 
   // ✅ Confirm menuToggle exists before initializing
-  requestAnimationFrame(() => {
+  // Watch DOM for when #menuToggle appears, then run initMenu()
+  const observer = new MutationObserver(() => {
     const toggle = document.getElementById('menuToggle');
-    if (!toggle) {
-      console.warn('⛔ Skipping initMenu — #menuToggle not found in DOM');
-    } else {
-      console.log('✅ #menuToggle found — calling initMenu()');
+    if (toggle) {
+      console.log('✅ Detected #menuToggle — initializing menu');
       initMenu();
+      observer.disconnect(); // Stop watching
     }
-
-    initMain(); // 💡 Still safe to run general logic
   });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  initMain(); // Run other page JS regardless
+
 })();
 
 /**
