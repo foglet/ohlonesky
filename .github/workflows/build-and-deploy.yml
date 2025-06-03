@@ -37,3 +37,15 @@ jobs:
         publish_dir: ./deploy
         publish_branch: gh-pages
         force_orphan: true
+
+    - name: Stash local changes
+  run: |
+    git config user.name "GitHub Actions"
+    git config user.email "actions@github.com"
+    git stash --include-untracked
+
+- name: Pull with rebase
+  run: git pull --rebase origin main
+
+- name: Apply stash
+  run: git stash pop || true  # continue if no stash was made
