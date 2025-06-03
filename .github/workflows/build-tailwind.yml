@@ -1,17 +1,20 @@
 name: Build Tailwind CSS
 
 on:
-  # Trigger on push to main branch
   push:
     branches:
       - main
+
+concurrency:
+  group: tailwind-build
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Setup Node.js
@@ -25,12 +28,19 @@ jobs:
     - name: Build Tailwind CSS
       run: npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
 
-    - name: Commit and Push built CSS
+    - name: Pull latest from remote (to prevent push conflicts)
+      run: git pull --rebase origin main
+
+    - name: Commit and push built CSS
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add assets/css/output.css
         git commit -m "⚡ Build Tailwind CSS" --allow-empty
-        git push
+        git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # OPTIONAL DEPLOY BLOCK
+    # - name: Deploy to Pages or Custom Host
+    #   run: echo "✅ You can insert deployment logic here if needed."
