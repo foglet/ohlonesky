@@ -10,16 +10,20 @@ export function initMenu({
   const backdrop = document.getElementById(backdropId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
+  console.groupCollapsed('🔧 initMenu Debug');
+  console.log('menuToggle:', toggle);
+  console.log('mobileMenu:', menu);
+  console.log('menuBackdrop:', backdrop);
+  console.groupEnd();
+
   if (!toggle || !menu || !backdrop) {
-    console.warn('⚠️ initMenu: Missing elements', { toggle, menu, backdrop });
+    console.warn('⚠️ initMenu: Missing required elements');
     return;
   }
 
-  console.log('✅ initMenu: Ready');
-
   const openMenu = () => {
     console.log('📂 Opening menu');
-    toggle.classList.add('open'); // or 'tham-active' if defined
+    toggle.classList.add('tham-active');
     toggle.setAttribute('aria-expanded', 'true');
 
     menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
@@ -31,7 +35,7 @@ export function initMenu({
 
   const closeMenu = () => {
     console.log('📁 Closing menu');
-    toggle.classList.remove('open');
+    toggle.classList.remove('tham-active');
     toggle.setAttribute('aria-expanded', 'false');
 
     menu.classList.remove('translate-x-0', 'opacity-100');
@@ -47,11 +51,11 @@ export function initMenu({
   };
 
   toggle.addEventListener('click', () => {
-    const isOpen = toggle.classList.contains('open');
+    const isOpen = toggle.classList.contains('tham-active');
+    console.log(`📲 menuToggle clicked → isOpen: ${isOpen}`);
     isOpen ? closeMenu() : openMenu();
   });
 
   backdrop.addEventListener('click', closeMenu);
-
   links.forEach(link => link.addEventListener('click', closeMenu));
 }
