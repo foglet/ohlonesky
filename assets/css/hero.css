@@ -10,14 +10,18 @@
     @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
   }
 
-  /* ⚠️ This section is CORRECTLY placed — it styles the animated hamburger bars */
-  /* ✅ Class names and structure match what Tailwind expects */
-  #menuToggle.open .bar-top { @apply rotate-45 translate-y-[6px]; }
-  #menuToggle.open .bar-middle { @apply opacity-0; }
-  #menuToggle.open .bar-bottom { @apply -rotate-45 -translate-y-[6px]; }
+  @layer base {
+    #menuToggle.open .bar-top {
+      @apply rotate-45 translate-y-[6px];
+    }
+    #menuToggle.open .bar-middle {
+      @apply opacity-0;
+    }
+    #menuToggle.open .bar-bottom {
+      @apply -rotate-45 -translate-y-[6px];
+    }
+  }
 
-  /* ⚠️ You had a misplaced closing brace here earlier — fixed now */
-}
 
 /* Fade-up Animation */
 /* ✅ Well-organized and scoped correctly in the 'utilities' layer */
