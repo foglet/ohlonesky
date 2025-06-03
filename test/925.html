@@ -55,6 +55,37 @@
       <!-- ✅ Only ONE HEADER -->
       <div include-html="/assets/partials/header.html"></div>
 
+      <!-- TEMP HARDCODED HEADER -->
+          <header class="sticky top-0 bg-white shadow z-50">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+              <!-- Logo -->
+              <a href="/00/" class="flex items-center space-x-2">
+                <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+                     alt="Ohlone Sky Logo"
+                     class="h-[28px] w-auto" />
+              </a>
+
+              <!-- Desktop Navigation -->
+              <nav class="hidden md:flex space-x-4" aria-label="Main Navigation">
+                <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+                <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+                <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+              </nav>
+
+              <!-- Hamburger -->
+              <button id="menuToggle"
+                      aria-label="Toggle menu"
+                      class="tham tham-e-squeeze tham-w-6 md:hidden z-1000">
+                <div class="tham-box">
+                  <div class="tham-inner"></div>
+                </div>
+              </button>
+            </div>
+          </header>
+      <!-- TEMP HARDCODED HEADER -->
+
+
       <!-- Hero Section -->
       <main id="mainContent" class="flex-grow mx-auto">
         <section class="relative w-screen h-screen text-center text-white overflow-hidden">
@@ -64,7 +95,7 @@
                style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg');">
           </div>
 
-        
+
           <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
             <div class="max-w-3xl text-center space-y-2 text-lg">
               <p lang="zh-Hant" class="drop-shadow"><span class="font-medium">迷失在霧中？</span></p>
