@@ -1,63 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamburger X Demo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-white text-gray-800">
-    <header class="flex items-center justify-between p-4 shadow-md sticky top-0 z-50 bg-white">
-      <h1 class="text-xl font-bold">Ohlone Sky</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tham Hamburger Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Toggle (squeeze) animation */
+    .tham {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-      <button id="menuToggle" class="group md:hidden relative w-8 h-8">
-        <span class="absolute left-1/2 top-[25%] w-6 h-0.5 bg-black -translate-x-1/2 transition-transform duration-300 group-open:rotate-45 group-open:top-1/2"></span>
-        <span class="absolute left-1/2 top-1/2 w-6 h-0.5 bg-black -translate-x-1/2 transition-opacity duration-300 group-open:opacity-0"></span>
-        <span class="absolute left-1/2 bottom-[25%] w-6 h-0.5 bg-black -translate-x-1/2 transition-transform duration-300 group-open:-rotate-45 group-open:bottom-1/2"></span>
-      </button>
-    </header>
+    .tham-box {
+      position: relative;
+      width: 1.5rem;
+      height: 1.2rem;
+    }
 
-    <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 transition-opacity duration-300"></div>
+    .tham-inner,
+    .tham-inner::before,
+    .tham-inner::after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      content: '';
+    }
 
-    <nav id="mobileMenu" class="hidden fixed top-0 right-0 w-2/3 max-w-sm h-full bg-white z-50 shadow-lg transform translate-x-full opacity-0 transition-all duration-300 pt-20 px-6 space-y-6">
-      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">FAQs</a>
-      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Support</a>
-      <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Contact</a>
-    </nav>
+    .tham-inner {
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-    <script>
-      const toggle = document.getElementById('menuToggle');
-      const menu = document.getElementById('mobileMenu');
-      const backdrop = document.getElementById('menuBackdrop');
+    .tham-inner::before {
+      top: -8px;
+    }
 
-      toggle.addEventListener('click', () => {
-        const isOpen = toggle.classList.toggle('open');
-        if (isOpen) {
-          toggle.setAttribute('data-group-open', '');
-          menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
-          menu.classList.add('translate-x-0', 'opacity-100');
+    .tham-inner::after {
+      bottom: -8px;
+    }
 
-          backdrop.classList.remove('hidden', 'opacity-0');
-          backdrop.classList.add('opacity-100');
-        } else {
-          toggle.removeAttribute('data-group-open');
-          menu.classList.add('translate-x-full', 'opacity-0');
-          menu.classList.remove('translate-x-0', 'opacity-100');
+    .tham-active .tham-inner {
+      background-color: transparent;
+    }
 
-          backdrop.classList.add('opacity-0');
-          setTimeout(() => backdrop.classList.add('hidden'), 300);
-        }
-      });
+    .tham-active .tham-inner::before {
+      transform: translateY(8px) rotate(45deg);
+    }
 
-      backdrop.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        toggle.removeAttribute('data-group-open');
+    .tham-active .tham-inner::after {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
 
+  <!-- Header with hamburger -->
+  <header class="flex items-center justify-between p-4 shadow-md sticky top-0 bg-white z-50">
+    <h1 class="text-xl font-bold">Ohlone Sky</h1>
+    <div class="md:hidden">
+      <div class="tham tham-e-squeeze tham-w-6" id="hamburgerToggle">
+        <div class="tham-box">
+          <div class="tham-inner"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Backdrop -->
+  <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Slide-in Mobile Menu -->
+  <nav id="mobileMenu" class="hidden fixed top-0 right-0 w-2/3 max-w-sm h-full bg-white z-50 shadow-lg transform translate-x-full opacity-0 transition-all duration-300 pt-20 px-6 space-y-6">
+    <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">FAQs</a>
+    <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Support</a>
+    <a href="#" class="block text-xl font-semibold text-gray-800 hover:text-orange-600">Contact</a>
+  </nav>
+
+  <script>
+    const tham = document.getElementById("hamburgerToggle");
+    const menu = document.getElementById("mobileMenu");
+    const backdrop = document.getElementById("menuBackdrop");
+
+    tham.addEventListener('click', () => {
+      const isActive = tham.classList.toggle('tham-active');
+
+      if (isActive) {
+        menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
+        menu.classList.add('translate-x-0', 'opacity-100');
+
+        backdrop.classList.remove('hidden', 'opacity-0');
+        backdrop.classList.add('opacity-100');
+      } else {
         menu.classList.add('translate-x-full', 'opacity-0');
         menu.classList.remove('translate-x-0', 'opacity-100');
+
         backdrop.classList.add('opacity-0');
         setTimeout(() => backdrop.classList.add('hidden'), 300);
-      });
-    </script>
-  </body>
+      }
+    });
+
+    backdrop.addEventListener('click', () => {
+      tham.classList.remove('tham-active');
+      menu.classList.add('translate-x-full', 'opacity-0');
+      menu.classList.remove('translate-x-0', 'opacity-100');
+      backdrop.classList.add('opacity-0');
+      setTimeout(() => backdrop.classList.add('hidden'), 300);
+    });
+  </script>
+</body>
 </html>
