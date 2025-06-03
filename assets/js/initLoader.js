@@ -13,10 +13,11 @@ import { initMenu } from '/assets/js/menuBlitzloader.js';
 
   await injectPartials('[include-html]', version);
 
+  // ✅ Wait for #menuToggle only after partials are injected
   waitForElement('#menuToggle', () => {
     console.log('✅ #menuToggle found — initializing menu');
     initMenu();
-  });
+  }, 5000); // optional: longer timeout
 
   initMain();
 })();
