@@ -1,57 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Charset and Viewport -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tham Hamburger Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Toggle (squeeze) animation */
+    .tham {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-  <!-- Primary Meta Tags -->
-  <title>Ohlone Sky</title>
-  <meta name="title" content="Ohlone Sky" />
-  <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands." />
-  <link rel="canonical" href="https://ohlonesky.com" />
-  <link rel="icon" href="/favicon.ico" />
+    .tham-box {
+      position: relative;
+      width: 1.5rem;
+      height: 1.2rem;
+    }
 
-  <!-- Social Meta -->
-  <meta property="og:title" content="Ohlone Sky" />
-  <meta property="og:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ohlonesky.com" />
+    .tham-inner,
+    .tham-inner::before,
+    .tham-inner::after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      content: '';
+    }
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ohlone Sky" />
-  <meta name="twitter:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta name="twitter:url" content="https://ohlonesky.com" />
+    .tham-inner {
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-  <!-- Adobe Fonts -->
-  <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
+    .tham-inner::before {
+      top: -8px;
+    }
 
-  <!-- ||||||||||||  CSS run from here: Terminal rebuild ||||||||||||| -->
-  <link rel="stylesheet" href="/assets/css/output.css" />
-  <link rel="stylesheet" href="/assets/css/hero.css" />
+    .tham-inner::after {
+      bottom: -8px;
+    }
 
-  <!-- Fallback for no-JS users -->
-  <noscript>
-    <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" />
-  </noscript>
-  <!-- ||||||||||| CSS yippee ||||||| -->
+    .tham-active .tham-inner {
+      background-color: transparent;
+    }
 
+    .tham-active .tham-inner::before {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .tham-active .tham-inner::after {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  </style>
 </head>
+<div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+  <header include-html="/assets/partials/header.html"></header>
+  
+<body class="bg-white text-gray-800">
 
-  <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
-    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-      <header include-html="/assets/partials/header.html"></header>
-      
+
+  <!-- Header with hamburger -->
+  <header class="flex items-center justify-between p-4 shadow-md sticky top-0 bg-white z-50">
+    <h1 class="text-xl font-bold">Ohlone Sky</h1>
+    <div class="md:hidden">
+      <div class="tham tham-e-squeeze tham-w-6" id="hamburgerToggle">
+        <div class="tham-box">
+          <div class="tham-inner"></div>
+        </div> <!-- test -->
+      </div>
+    </div>
+  </header>
 
   <!-- Backdrop -->
-  <div id="menuBackdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 transition-opacity duration-300"></div>
+  <div id="menuBackdrop" class="hidden fixed inset-0 bg-sky-50 bg-opacity-100 z-40 opacity-0 transition-opacity duration-300"></div>
 
   <!-- Slide-in Mobile Menu -->
   <nav ID="mobileMenu" class="hidden md:flex space-x-4" aria-label="Main Navigation">
