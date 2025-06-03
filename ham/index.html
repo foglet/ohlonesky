@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamburger Demo</title>
+    <title>Hamburger X Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white text-gray-800">
     <header class="flex items-center justify-between p-4 shadow-md sticky top-0 z-50 bg-white">
       <h1 class="text-xl font-bold">Ohlone Sky</h1>
-      <button id="menuToggle" class="group md:hidden flex flex-col items-center justify-center h-8 w-8">
-        <span class="block h-0.5 w-6 bg-black mb-1 transition-transform duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-[6px]"></span>
-        <span class="block h-0.5 w-6 bg-black mb-1 transition-opacity duration-300 group-[.open]:opacity-0"></span>
-        <span class="block h-0.5 w-6 bg-black transition-transform duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-[6px]"></span>
+
+      <button id="menuToggle" class="group md:hidden relative w-8 h-8">
+        <span class="absolute left-1/2 top-[25%] w-6 h-0.5 bg-black -translate-x-1/2 transition-transform duration-300 group-open:rotate-45 group-open:top-1/2"></span>
+        <span class="absolute left-1/2 top-1/2 w-6 h-0.5 bg-black -translate-x-1/2 transition-opacity duration-300 group-open:opacity-0"></span>
+        <span class="absolute left-1/2 bottom-[25%] w-6 h-0.5 bg-black -translate-x-1/2 transition-transform duration-300 group-open:-rotate-45 group-open:bottom-1/2"></span>
       </button>
     </header>
 
@@ -31,14 +32,15 @@
 
       toggle.addEventListener('click', () => {
         const isOpen = toggle.classList.toggle('open');
-
         if (isOpen) {
+          toggle.setAttribute('data-group-open', '');
           menu.classList.remove('hidden', 'translate-x-full', 'opacity-0');
           menu.classList.add('translate-x-0', 'opacity-100');
 
           backdrop.classList.remove('hidden', 'opacity-0');
           backdrop.classList.add('opacity-100');
         } else {
+          toggle.removeAttribute('data-group-open');
           menu.classList.add('translate-x-full', 'opacity-0');
           menu.classList.remove('translate-x-0', 'opacity-100');
 
@@ -49,6 +51,8 @@
 
       backdrop.addEventListener('click', () => {
         toggle.classList.remove('open');
+        toggle.removeAttribute('data-group-open');
+
         menu.classList.add('translate-x-full', 'opacity-0');
         menu.classList.remove('translate-x-0', 'opacity-100');
         backdrop.classList.add('opacity-0');
