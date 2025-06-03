@@ -1,4 +1,4 @@
-name: Build and Deploy Tailwind CSS
+name: Build and Deploy Tailwind
 
 on:
   push:
@@ -6,47 +6,47 @@ on:
       - main
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Stash local changes (if any)
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git stash --include-untracked || true
+      - name: Build Tailwind CSS
+        run: |
+          npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
 
-    - name: Pull latest changes with rebase
-      run: git pull --rebase origin main || true
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
 
-    - name: Apply stashed changes
-      run: git stash pop || true
+      - name: Stash and rebase
+        run: |
+          git stash --include-untracked || true
+          git pull --rebase origin main || true
+          git stash pop || true
 
-    - name: Build Tailwind CSS
-      run: npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
+      - name: Commit and push built CSS
+        run: |
+          git add assets/css/output.css
+          git commit -m "⚡ Auto-build Tailwind CSS" --allow-empty
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Commit and push built CSS
-      run: |
-        git add assets/css/output.css
-        git commit -m "⚡ Auto-build Tailwind CSS" --allow-empty
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-        cname: ohlonesky.com
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: . # or `./deploy` if using a deploy/ staging dir
+          cname: ohlonesky.com  # optional if using custom domain
