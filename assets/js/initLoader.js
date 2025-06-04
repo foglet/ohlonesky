@@ -1,76 +1,82 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
+// 👇 Expose globally for debugging and timing guarantees
+window.initMenu = initMenu;
+
 (async function initApp() {
   const version = `?v=${Date.now()}`;
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  const prefix = '../'.repeat(depth);
 
-  injectStyles(['assets/css/output.css', 'assets/css/hero.css'], prefix, version);
+  // 🔹 Inject CSS (non-relative, hardcoded absolute)
+  injectStyles([
+    '/assets/css/output.css',
+    '/assets/css/hero.css'
+  ], version);
 
-  await injectPartials('[include-html]', prefix, version);
+  // 🔹 Inject all include-html partials
+  await injectPartials('[include-html]', version);
 
-  // Now that partials are injected, guarantee initMenu runs when ready
-  waitForElement('#menuToggle', () => {
-    console.log('✅ #menuToggle found — initializing menu');
-    initMenu();
-  }, 3000);
+  // 🔹 Wait until ALL menu elements are guaranteed in DOM
+  await waitForAndInitMenu();
 
-  initMain(); // Optional: rest of your app init
+  // 🔹 Run remaining initialization
+  initMain();
 })();
 
-// Inject CSS dynamically
-function injectStyles(files, prefix, version) {
+// 🧠 Injects <link> tags
+function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${prefix}${file}${version}`;
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 }
 
-// Inject HTML partials by include-html attribute
-async function injectPartials(selector, prefix, version) {
+// 🧩 Replaces all include-html nodes
+async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(`🧩 Injecting ${nodes.length} partial(s)`);
-
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return;
+    if (!file) {
+      console.warn('⚠️ Missing include-html attribute:', node);
+      return;
+    }
 
-    const url = file.startsWith('/')
-      ? `${file}${version}`
-      : `${prefix}${file}${version}`;
-
+    const url = `${file}${version}`;
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected ${url}`);
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
       node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Error loading ${url}:`, err);
+      console.error(`❌ Could not inject ${url}`, err);
     }
   }));
 }
 
-// Wait for element to appear
-function waitForElement(selector, callback, timeout = 3000) {
-  const existing = document.querySelector(selector);
-  if (existing) return callback(existing);
+// ⏳ Waits for all mobile menu elements, then runs initMenu
+async function waitForAndInitMenu(maxTries = 20, interval = 250) {
+  for (let i = 0; i < maxTries; i++) {
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('menuBackdrop');
+    const close = document.getElementById('closeMenu');
 
-  const observer = new MutationObserver(() => {
-    const el = document.querySelector(selector);
-    if (el) {
-      observer.disconnect();
-      callback(el);
+    if (toggle && menu && backdrop && close) {
+      console.log('✅ All mobile menu elements loaded');
+      initMenu();
+      return;
     }
-  });
 
-  observer.observe(document.body, { childList: true, subtree: true });
-  setTimeout(() => observer.disconnect(), timeout);
+    await new Promise(res => setTimeout(res, interval));
+  }
+
+  console.warn('⚠️ Mobile menu elements not found after timeout');
 }
