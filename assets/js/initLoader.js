@@ -1,79 +1,71 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
-// 👇 Expose globally for debugging and timing guarantees
-window.initMenu = initMenu;
+window.initMenu = initMenu; // Expose for manual debugging if needed
 
 (async function initApp() {
   const version = `?v=${Date.now()}`;
 
-  // 🔹 Inject CSS (non-relative, hardcoded absolute)
   injectStyles([
     '/assets/css/output.css',
     '/assets/css/hero.css'
   ], version);
 
-  // 🔹 Inject all include-html partials
   await injectPartials('[include-html]', version);
 
-  // 🔹 Wait until ALL menu elements are guaranteed in DOM
-  await waitForAndInitMenu();
+  await waitForMenuElementsAndInit();
 
-  // 🔹 Run remaining initialization
   initMain();
-
-  // 🔹 Scroll-aware header behavior
   setupScrollAwareHeader();
 })();
 
-// 🧠 Injects <link> tags
-function injectStyles(files, version) {
-  files.forEach(file => {
+// 📦 Inject CSS link tags
+function injectStyles(paths, version) {
+  paths.forEach(path => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${file}${version}`;
+    link.href = `${path}${version}`;
     document.head.appendChild(link);
   });
 }
 
-// 🧩 Replaces all include-html nodes
+// 🧩 Replace [include-html] elements with fetched HTML
 async function injectPartials(selector, version) {
-  const nodes = document.querySelectorAll(selector);
-  if (!nodes.length) return;
+  const elements = document.querySelectorAll(selector);
+  if (!elements.length) return;
 
-  console.log(`🧩 Found ${nodes.length} partial(s)`);
-  await Promise.all([...nodes].map(async node => {
-    const file = node.getAttribute('include-html');
+  console.log(`🧩 Found ${elements.length} partial(s)`);
+
+  await Promise.all([...elements].map(async el => {
+    const file = el.getAttribute('include-html');
     if (!file) {
-      console.warn('⚠️ Missing include-html attribute:', node);
+      console.warn('⚠️ Missing include-html attribute:', el);
       return;
     }
 
-    const url = `${file}${version}`;
     try {
+      const url = `${file}${version}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const html = await res.text();
-      node.insertAdjacentHTML('afterend', html);
-      node.remove();
+      el.insertAdjacentHTML('afterend', await res.text());
+      el.remove();
       console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
-      node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Could not inject ${url}`, err);
+      el.innerHTML = `<!-- Failed to load ${file} -->`;
+      console.error(`❌ Could not inject ${file}`, err);
     }
   }));
 }
 
-// ⏳ Waits for all mobile menu elements, then runs initMenu
-async function waitForAndInitMenu(maxTries = 20, interval = 250) {
+// 📱 Wait for all menu elements and initialize menu
+async function waitForMenuElementsAndInit(maxTries = 20, interval = 250) {
   for (let i = 0; i < maxTries; i++) {
-    const toggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('mobileMenu');
-    const backdrop = document.getElementById('menuBackdrop');
-    const close = document.getElementById('closeMenu');
+    const ready = ['menuToggle', 'mobileMenu', 'menuBackdrop', 'closeMenu']
+      .map(id => document.getElementById(id))
+      .every(Boolean);
 
-    if (toggle && menu && backdrop && close) {
-      console.log('✅ All mobile menu elements loaded');
+    if (ready) {
+      console.log('✅ Mobile menu elements loaded');
       initMenu();
       return;
     }
@@ -84,38 +76,38 @@ async function waitForAndInitMenu(maxTries = 20, interval = 250) {
   console.warn('⚠️ Mobile menu elements not found after timeout');
 }
 
-// ⬇️ Hide header on scroll down, show on scroll up or pause
+// 🔽 Hide on scroll down, show on pause or scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
 
   let lastScrollY = window.scrollY;
   let ticking = false;
-  let isScrolling;
+  let pauseTimeout;
 
-  function updateHeader() {
-    const currentScrollY = window.scrollY;
+  const handleScroll = () => {
+    const currentY = window.scrollY;
 
-    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    if (currentY > lastScrollY && currentY > 50) {
       header.style.transform = 'translateY(-100%)';
     } else {
       header.style.transform = 'translateY(0)';
     }
 
-    lastScrollY = currentScrollY;
+    lastScrollY = currentY;
     ticking = false;
-  }
+  };
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
-      window.requestAnimationFrame(updateHeader);
+      window.requestAnimationFrame(handleScroll);
       ticking = true;
     }
 
-    clearTimeout(isScrolling);
-    isScrolling = setTimeout(() => {
+    clearTimeout(pauseTimeout);
+    pauseTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
-    }, 150); // Delay before reappearing
+    }, 150);
   });
 
   console.log('🎯 Scroll-aware header initialized');

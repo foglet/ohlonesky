@@ -1,41 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Test Menu</title>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('menuToggle');
-      const menu = document.getElementById('mobile-menu');
+<!-- /assets/partials/header-ham.html -->
+<header id="mainHeader" class="md:sticky top-0 bg-white shadow z-50 transition-transform duration-300">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/00/" class="flex items-center space-x-2">
+      <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+           alt="Ohlone Sky Logo"
+           class="h-[28px] w-auto" />
+    </a>
 
-      if (btn && menu) {
-        btn.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !expanded);
-          menu.classList.toggle('hidden');
-        });
-      }
-    });
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50">
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
+      <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a>
+      <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a>
+      <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a>
+    </nav>
 
-  <header class="bg-white shadow p-4">
-    <div class="flex justify-between items-center max-w-xl mx-auto">
-      <span class="font-bold text-xl">Logo</span>
-      <div class="flex flex-col items-end md:hidden">
-        <button id="menuToggle" aria-label="Toggle menu" aria-expanded="false"
-                class="bg-gray-100 p-2 rounded-md">
-          ☰
-        </button>
-        <div id="mobile-menu" class="hidden mt-2 space-y-2">
-          <a href="#" class="block">FAQs</a>
-          <a href="#" class="block">Support</a>
-        </div>
+    <!-- Mobile Menu Toggle + Menu -->
+    <div class="md:hidden flex flex-col items-end">
+      <button id="menuToggle"
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-gray-600 hover:bg-gray-200 focus:outline-none">
+        <!-- Hamburger icon -->
+        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden mt-2 space-y-1">
+        <a href="/00/faqs/" class="block text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-base font-medium">FAQs</a>
+        <a href="/00/support/" class="block text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-base font-medium">Support</a>
+        <a href="/00/contact/" class="block text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-base font-medium">Contact</a>
       </div>
     </div>
-  </header>
-
-</body>
-</html>
+  </div>
+</header>
