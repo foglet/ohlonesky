@@ -22,5 +22,8 @@
     "url": "https://github.com/foglet/ohlonesky/issues"
   },
   "homepage": "https://github.com/foglet/ohlonesky#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "tailwind-hamburgers": "^1.3.5"
+  }
 }
