@@ -4,41 +4,37 @@ module.exports = {
   darkMode: 'class',
 
   content: [
-    './*.html',                  // All root-level HTML files
-    './**/*.html',               // All nested HTML (includes /00/)
-    './assets/**/*.js',          // All JS files using class names
-    './assets/css/**/*.css',     // All custom CSS (hero.css, etc.)
-    './assets/partials/**/*.html', // Partials like header.html
-    '!./node_modules/**/*',      // Ignore node_modules
+    './*.html',
+    './**/*.html',
+    './assets/**/*.js',
+    './assets/css/**/*.css',
+    './assets/partials/**/*.html',
+    '!./node_modules/**/*',
   ],
 
   safelist: [
-    // Transition + Visibility
+    // Visibility & transform classes used in JS
     'hidden',
     'block',
-    'opacity-0',
-    'opacity-100',
     'translate-x-full',
     'translate-x-0',
+    'opacity-0',
+    'opacity-100',
+    'tham-active',
     'transition-all',
+    'transition-opacity',
     'duration-300',
     'ease-in-out',
 
-    // z-index levels for menu layers
-    'z-40',
-    'z-50',
-    'z-1000',
-
-    // Tham hamburger animation support
+    // Used by tham hamburger styles
     'tham',
-    'tham-inner',
     'tham-box',
+    'tham-inner',
     'tham-e-squeeze',
-    'tham-active',
-
-    // Optional: mobile nav text sizing
-    'text-lg',
-    'text-2xl',
+    'tham-w-6',
+    'z-50',
+    'z-40',
+    'z-1000',
   ],
 
   theme: {
@@ -60,7 +56,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
-
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
