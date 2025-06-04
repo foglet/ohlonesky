@@ -42,10 +42,13 @@
 </header>
 
 <script>
-  const btn = document.querySelector('button');
-  const menu = document.getElementById('mobile-menu');
-
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
   });
 </script>
