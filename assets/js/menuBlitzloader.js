@@ -57,11 +57,15 @@ export function initMenu({
     }, transitionDuration);
   };
 
+  // 🚫 Disabled menu toggle on button click — using standalone script instead
+  /*
   toggle.addEventListener('click', () => {
     const isOpen = toggle.classList.contains('open');
     isOpen ? closeMenu() : openMenu();
   });
+  */
 
+  // Still respond to backdrop, close button, and nav link clicks
   backdrop.addEventListener('click', closeMenu);
   close.addEventListener('click', closeMenu);
 
@@ -69,5 +73,5 @@ export function initMenu({
     link.addEventListener('click', closeMenu);
   });
 
-  console.log('✅ Mobile menu initialized.');
+  console.log('✅ Mobile menu initialized (toggle disabled).');
 }
