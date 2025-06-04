@@ -1,7 +1,7 @@
 import { initMain } from '/assets/js/mainInit.js';
 
-// 👇 Expose for debugging
-window.initMenu = initMenu;
+// 👇 Expose for debugging if needed
+window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
   const version = `?v=${Date.now()}`;
@@ -12,19 +12,20 @@ window.initMenu = initMenu;
     '/assets/css/hero.css'
   ], version);
 
-  // Inject partials (like header-ham.html)
+  // Inject HTML partials (like header-ham.html)
   await injectPartials('[include-html]', version);
 
-  // Wait for mobile menu to exist and attach listener
+  // Wait until mobile menu exists, then attach listener
   await waitForAndInitMenu();
 
-  // Start scroll-aware header behavior
+  // Enable scroll-aware header hide/show
   setupScrollAwareHeader();
 
-  // Call other site-specific logic
+  // Run remaining site logic
   initMain();
 })();
 
+// 🔹 Dynamically inject stylesheets into <head>
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -34,6 +35,7 @@ function injectStyles(files, version) {
   });
 }
 
+// 🔹 Replace elements with include-html attribute
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -59,6 +61,7 @@ async function injectPartials(selector, version) {
   }));
 }
 
+// 🔹 Attach event listener to mobile menu toggle
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -82,6 +85,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Mobile menu elements not found after retries');
 }
 
+// 🔹 Show/hide sticky header on scroll pause/direction
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
