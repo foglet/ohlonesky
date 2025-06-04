@@ -2566,6 +2566,11 @@ video {
   inset: 0px;
 }
 
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -2600,6 +2605,10 @@ video {
 
 .top-\[40\%\] {
   top: 40%;
+}
+
+.top-16 {
+  top: 4rem;
 }
 
 .z-0 {
@@ -2685,10 +2694,6 @@ video {
 
 .me-2 {
   margin-inline-end: 0.5rem;
-}
-
-.ml-auto {
-  margin-left: auto;
 }
 
 .mr-auto {
@@ -4188,11 +4193,6 @@ video {
 
   .sm\:scroll-smooth {
     scroll-behavior: smooth;
-  }
-
-  .sm\:px-3 {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
   }
 
   .sm\:px-6 {
