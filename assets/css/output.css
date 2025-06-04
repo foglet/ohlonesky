@@ -2723,6 +2723,10 @@ video {
   margin-right: -0.5rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .block {
   display: block;
 }
