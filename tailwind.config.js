@@ -4,37 +4,25 @@ module.exports = {
   darkMode: 'class',
 
   content: [
+    './404.html',
     './*.html',
     './**/*.html',
     './assets/**/*.js',
-    './assets/css/**/*.css',
+    './assets/css/hero.css',
     './assets/partials/**/*.html',
     '!./node_modules/**/*',
   ],
 
   safelist: [
-    // Visibility & transform classes used in JS
     'hidden',
-    'block',
     'translate-x-full',
     'translate-x-0',
     'opacity-0',
     'opacity-100',
     'tham-active',
     'transition-all',
-    'transition-opacity',
     'duration-300',
-    'ease-in-out',
-
-    // Used by tham hamburger styles
-    'tham',
-    'tham-box',
-    'tham-inner',
-    'tham-e-squeeze',
-    'tham-w-6',
-    'z-50',
-    'z-40',
-    'z-1000',
+    'ease-in-out'
   ],
 
   theme: {
@@ -56,6 +44,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
+    require('tailwind-hamburgers'),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
