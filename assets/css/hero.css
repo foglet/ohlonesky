@@ -1,19 +1,5 @@
 /* ------------------------
-   Base Element Overrides
-   ------------------------ */
-@layer base {
-  p {
-    @apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;
-  }
-
-  a {
-    @apply underline text-brandDark hover:text-highlight transition-colors duration-200;
-  }
-}
-
-
-/* ------------------------
-   Hamburger → X (Tham) Animation
+   Hamburger → X (Tham) Animation with Fallback
    ------------------------ */
 @layer components {
   .tham {
@@ -42,49 +28,25 @@
     bottom: -8px;
   }
 
-  .tham-active .tham-inner {
+  /* When menu is open — transform to X */
+  .open .tham-inner {
     background-color: transparent;
   }
 
-  .tham-active .tham-inner::before {
+  .open .tham-inner::before {
     transform: translateY(8px) rotate(45deg);
   }
 
-  .tham-active .tham-inner::after {
+  .open .tham-inner::after {
     transform: translateY(-8px) rotate(-45deg);
   }
-}
 
-
-/* ------------------------
-   Custom Animations
-   ------------------------ */
-@layer utilities {
-  @keyframes fade-up {
-    0% {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-up {
-    animation: fade-up 500ms ease-out forwards;
-    will-change: opacity, transform;
-  }
-
-  .delay-100 {
-    animation-delay: 100ms;
-  }
-
-  .delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .delay-300 {
-    animation-delay: 300ms;
+  /* Fallback: If JS fails, always show plain hamburger */
+  noscript .tham-inner,
+  noscript .tham-inner::before,
+  noscript .tham-inner::after {
+    @apply bg-brandDark;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
