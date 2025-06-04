@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Menu</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('menuToggle');
+      const menu = document.getElementById('mobile-menu');
+
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', !expanded);
+          menu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <header class="bg-white shadow p-4">
+    <div class="flex justify-between items-center max-w-xl mx-auto">
+      <span class="font-bold text-xl">Logo</span>
+      <div class="flex flex-col items-end md:hidden">
+        <button id="menuToggle" aria-label="Toggle menu" aria-expanded="false"
+                class="bg-gray-100 p-2 rounded-md">
+          ☰
+        </button>
+        <div id="mobile-menu" class="hidden mt-2 space-y-2">
+          <a href="#" class="block">FAQs</a>
+          <a href="#" class="block">Support</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</body>
+</html>
