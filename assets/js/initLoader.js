@@ -21,6 +21,9 @@ window.initMenu = initMenu;
 
   // 🔹 Run remaining initialization
   initMain();
+
+  // 🔹 Scroll-aware header behavior
+  setupScrollAwareHeader();
 })();
 
 // 🧠 Injects <link> tags
@@ -79,4 +82,41 @@ async function waitForAndInitMenu(maxTries = 20, interval = 250) {
   }
 
   console.warn('⚠️ Mobile menu elements not found after timeout');
+}
+
+// ⬇️ Hide header on scroll down, show on scroll up or pause
+function setupScrollAwareHeader() {
+  const header = document.getElementById('mainHeader');
+  if (!header) return;
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  let isScrolling;
+
+  function updateHeader() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      header.style.transform = 'translateY(0)';
+    }, 150); // Delay before reappearing
+  });
+
+  console.log('🎯 Scroll-aware header initialized');
 }
