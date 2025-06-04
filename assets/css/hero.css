@@ -21,7 +21,7 @@
   }
 
   .tham-box {
-    @apply relative w-full h-full;
+    @apply relative w-6 h-6;
   }
 
   .tham-inner {
