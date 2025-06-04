@@ -12,7 +12,7 @@ export function initMenu({
   const close = document.getElementById(closeId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
-  console.log('📦 initMenu — Elements:', {
+  console.log('📦 initMenu — Elements found:', {
     toggle,
     menu,
     backdrop,
@@ -21,7 +21,7 @@ export function initMenu({
   });
 
   if (!toggle || !menu || !backdrop || !close) {
-    console.warn('⚠️ initMenu: Missing one or more required elements:', {
+    console.warn('⚠️ initMenu: Missing required elements', {
       toggle,
       menu,
       backdrop,
