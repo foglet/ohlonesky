@@ -29,15 +29,15 @@
   }
 
   #menuToggle {
-    @apply transition-transform duration-300 ease-in-out transform;
-    transform: rotate(0deg); /* base state */
+    @apply transform transition-transform duration-300 ease-in-out;
+    transform: rotate(0deg);
   }
 
   #menuToggle.open {
-    transform: rotate(45deg); /* animate to 45deg */
+    transform: rotate(45deg);
   }
 
-  /* Open state: transform to X */
+  /* Inner bars disappear and rotate when open */
   .open .tham-inner {
     background-color: transparent;
   }
@@ -50,12 +50,6 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* Entire toggle rotates 45deg */
-  #menuToggle.open {
-    transform: rotate(45deg);
-    transition: transform 300ms ease-in-out;
-  }
-
   /* Fallback for JS-disabled environments */
   noscript .tham-inner,
   noscript .tham-inner::before,
@@ -65,12 +59,12 @@
     opacity: 1 !important;
   }
 
-  /* Ensure mobile menu is visible when toggled */
+  /* Force mobile menu visibility when toggled */
   #mobile-menu {
     opacity: 1 !important;
   }
 
-  /* Gondola animation (fade/slide control) */
+  /* Gondola animation for fade and slide */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
