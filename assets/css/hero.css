@@ -47,11 +47,14 @@
   noscript .tham-inner::after {
     @apply bg-brandDark;
     transform: none !important;
-    opacity: 1 !important;
-  }
+    opacity: 1 !important; }
 
   #mobile-menu {
-    opacity: 1 !important;
-  }
-  
+    opacity: 1 !important; }
+
+  #gondola {
+  transition: transform 300ms ease-in-out;
+  position: absolute; /* or fixed if full-page */
+  width: 100%; }
+
 }

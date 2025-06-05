@@ -6,22 +6,17 @@ window.initMenu = waitForAndInitMenu;
 (async function initApp() {
   const version = `?v=${Date.now()}`;
 
-  // Load stylesheets
   injectStyles([
     '/assets/css/output.css',
     '/assets/css/hero.css'
   ], version);
 
-  // Inject HTML partials (like header-ham.html)
   await injectPartials('[include-html]', version);
 
-  // Wait until mobile menu exists, then attach listener
   await waitForAndInitMenu();
 
-  // Enable scroll-aware header hide/show
   setupScrollAwareHeader();
 
-  // Run remaining site logic
   initMain();
 })();
 
@@ -76,12 +71,16 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
 
-        // Hide/show gondola section as needed
+        // Move gondola offscreen or return it
         if (gondola) {
-          gondola.style.display = expanded ? 'block' : 'none';
+          gondola.style.transition = 'transform 300ms ease-in-out';
+          gondola.style.transform = expanded ? 'translateY(0)' : 'translateY(200%)';
         }
 
-        // Ensure menu is fully opaque
+        // Prevent page scrolling while menu is open
+        document.body.style.overflow = expanded ? '' : 'hidden';
+
+        // Ensure menu opacity is 100%
         menu.style.opacity = '1';
       });
 
