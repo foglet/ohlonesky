@@ -1,6 +1,5 @@
 import { initMain } from '/assets/js/mainInit.js';
 
-// 👇 Expose for debugging if needed
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
@@ -17,7 +16,7 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
-// 🔹 Dynamically inject stylesheets
+// 🔹 Inject CSS files with versioning
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -27,7 +26,7 @@ function injectStyles(files, version) {
   });
 }
 
-// 🔹 Inject HTML partials
+// 🔹 Replace include-html nodes with partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -36,7 +35,7 @@ async function injectPartials(selector, version) {
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html:', node);
+    if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
 
     const url = `${file}${version}`;
     try {
@@ -45,15 +44,15 @@ async function injectPartials(selector, version) {
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected: ${url}`);
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
       node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Could not inject ${url}`, err);
+      console.error(`❌ Error injecting ${url}`, err);
     }
   }));
 }
 
-// 🔹 Toggle mobile menu and fade gondola
+// 🔹 Mobile menu toggle + gondola fade
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -61,8 +60,9 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     const gondola = document.getElementById('gondola');
 
     if (btn && menu) {
-      console.log('✅ Mobile menu elements found');
+      console.log('✅ Found mobile menu toggle and panel');
 
+      // Setup initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
@@ -70,17 +70,20 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
 
       btn.addEventListener('click', () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', !expanded);
-        menu.classList.toggle('hidden');
-        btn.classList.toggle('open');
+        const willOpen = !expanded;
 
-        // 🔹 Fade gondola only (no slide)
+        btn.setAttribute('aria-expanded', willOpen);
+        btn.classList.toggle('open');
+        menu.classList.toggle('hidden');
+        menu.style.opacity = '1';
+
+        // Fade gondola
         if (gondola) {
-          gondola.style.opacity = expanded ? '1' : '0';
+          gondola.style.opacity = willOpen ? '0' : '1';
         }
 
-        document.body.classList.toggle('overflow-hidden', !expanded);
-        menu.style.opacity = '1';
+        // Prevent background scroll
+        document.body.classList.toggle('overflow-hidden', willOpen);
       });
 
       return;
@@ -89,10 +92,10 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     await new Promise(resolve => setTimeout(resolve, interval));
   }
 
-  console.warn('⚠️ Mobile menu elements not found after retries');
+  console.warn('⚠️ Menu toggle not found after retrying');
 }
 
-// 🔹 Scroll-aware sticky header
+// 🔹 Show/hide header on scroll
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -126,5 +129,5 @@ function setupScrollAwareHeader() {
     }, 150);
   });
 
-  console.log('🎯 Scroll-aware header initialized');
+  console.log('🎯 Sticky header scroll tracking enabled');
 }
