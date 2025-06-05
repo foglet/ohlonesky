@@ -16,7 +16,9 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
-// Inject CSS files
+/* ------------------------
+   Inject CSS
+------------------------ */
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -26,7 +28,9 @@ function injectStyles(files, version) {
   });
 }
 
-// Replace include-html placeholders with partials
+/* ------------------------
+   Inject Partials
+------------------------ */
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -52,7 +56,9 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// Menu toggle logic
+/* ------------------------
+   Mobile Menu Toggle
+------------------------ */
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -62,15 +68,14 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
-      // Initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
 
       btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        const willOpen = !expanded;
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const willOpen = !isExpanded;
 
         btn.setAttribute('aria-expanded', willOpen);
         btn.classList.toggle('open');
@@ -102,35 +107,41 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Menu elements not found after retrying');
 }
 
-// Header hides on scroll down, reappears on scroll up
+/* ------------------------
+   Scroll-aware Header
+------------------------ */
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
 
-  let lastY = window.scrollY;
+  let lastScrollY = window.scrollY;
   let ticking = false;
-  let scrollTimeout;
+  let resetTimeout;
 
-  function updateHeader() {
+  function onScroll() {
     const currentY = window.scrollY;
-    header.style.transform = (currentY > lastY && currentY > 50)
-      ? 'translateY(-100%)'
-      : 'translateY(0)';
-    lastY = currentY;
+
+    if (currentY > lastScrollY && currentY > 50) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentY;
     ticking = false;
   }
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
-      requestAnimationFrame(updateHeader);
+      requestAnimationFrame(onScroll);
       ticking = true;
     }
 
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
+    clearTimeout(resetTimeout);
+    resetTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
     }, 150);
   });
 
-  console.log('🎯 Sticky header scroll tracking enabled');
+  console.log('🎯 Scroll-in header initialized');
 }
