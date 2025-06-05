@@ -3,56 +3,70 @@ import { initMain } from '/assets/js/mainInit.js';
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
-  const version = ?v=${Date.now()};
+
+  // const version = `?v=${Date.now()}`; //
+
+//  const version = ?v=${Date.now()};  was working //
+
+const IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+const version = IS_DEV
+  ? `?v=${Date.now()}`
+  : '?v=1.0.0'; // Replace with your build version
+
+// end of const verion //
+
 
   injectStyles([
     '/assets/css/output.css',
-    '/assets/css/hero.css'
+    '/assets/css/hero.css',
   ], version);
 
   await injectPartials('[include-html]', version);
   await waitForAndInitMenu();
-  setupScrollAwareHeader();
   initMain();
 })();
 
-// Inject CSS files
+// Inject CSS files with version query to prevent caching
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = ${file}${version};
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 }
 
-// Replace include-html placeholders with partials
+// Inject HTML partials from include-html attributes
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(🧩 Found ${nodes.length} partial(s));
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
+    if (!file) {
+      console.warn('⚠️ Missing include-html attribute:', node);
+      return;
+    }
 
-    const url = ${file}${version};
+    const url = `${file}${version}`;
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(HTTP ${res.status});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(✅ Injected partial: ${url});
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
-      node.innerHTML = <!-- Failed to load ${url} -->;
-      console.error(❌ Error injecting ${url}, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Error injecting ${url}`, err);
     }
   }));
 }
 
-// Menu toggle logic
+// Wait for menu elements to exist, then initialize toggling logic
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -62,7 +76,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
-      // Initial gondola state
+      // Fade in gondola after load
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
@@ -100,37 +114,4 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   }
 
   console.warn('⚠️ Menu elements not found after retrying');
-}
-
-// Header hides on scroll down, reappears on scroll up
-function setupScrollAwareHeader() {
-  const header = document.getElementById('mainHeader');
-  if (!header) return;
-
-  let lastY = window.scrollY;
-  let ticking = false;
-  let scrollTimeout;
-
-  function updateHeader() {
-    const currentY = window.scrollY;
-    header.style.transform = (currentY > lastY && currentY > 50)
-      ? 'translateY(-100%)'
-      : 'translateY(0)';
-    lastY = currentY;
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      header.style.transform = 'translateY(0)';
-    }, 150);
-  });
-
-  console.log('🎯 Sticky header scroll tracking enabled');
 }
