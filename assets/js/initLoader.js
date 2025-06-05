@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     ? '?v=dev'
     : `?v=${typeof BUILD_VERSION !== 'undefined' ? BUILD_VERSION : '1.0.0'}`;
 
-  // Auto-detect nesting depth for subpages
+  // Auto-detect nesting depth
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   const prefix = '../'.repeat(depth);
 
-  // Dynamically inject styles
+  // ✅ Inject CSS
   ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(link);
   });
 
-  // Load HTML partials
+  // ✅ Load HTML partials
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
@@ -36,6 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
+  // ✅ Ensure DOM is updated after innerHTML replacements
+  await new Promise(requestAnimationFrame);
+
+  // ✅ Initialize your scripts
+  console.log('🧩 All partials loaded. Initializing scripts...');
   initMain();
   initMenu();
 });
