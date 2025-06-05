@@ -5,17 +5,13 @@ window.initMenu = waitForAndInitMenu;
 (async function initApp() {
   const version = `?v=${Date.now()}`;
 
-  // Load CSS stylesheets
   injectStyles([
     '/assets/css/output.css',
     '/assets/css/hero.css',
   ], version);
 
-  // Inject HTML partials, then initialize menu
   await injectPartials('[include-html]', version);
   await waitForAndInitMenu();
-
-  // Initialize site-specific logic
   initMain();
 })();
 
