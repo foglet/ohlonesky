@@ -1,30 +1,31 @@
 @layer components {
   #menuToggle {
-    @apply relative w-8 h-8;
+    @apply relative w-8 h-8 cursor-pointer;
   }
 
   #menuToggle .bar {
-    @apply absolute w-full h-0.5 bg-brandDark rounded;
+    @apply absolute w-full bg-brandDark rounded;
+    height: 2px;
     left: 0;
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
   }
 
-  #menuToggle .top-bar {
+  #menuToggle .bar:first-child {
     top: 50%;
-    transform: translateY(-6px); /* moves up */
+    transform: translateY(-6px);
   }
 
-  #menuToggle .bottom-bar {
+  #menuToggle .bar:last-child {
     top: 50%;
-    transform: translateY(6px); /* moves down */
+    transform: translateY(6px);
   }
 
-  #menuToggle.open .top-bar {
+  #menuToggle.open .bar:first-child {
     transform: rotate(45deg);
   }
 
-  #menuToggle.open .bottom-bar {
+  #menuToggle.open .bar:last-child {
     transform: rotate(-45deg);
   }
 
