@@ -22,8 +22,7 @@
   /* Open state transforms */
   @layer components {
     #menuToggle .bar {
-      transform-origin: center;
-      @apply transition-transform duration-500 ease-in-out; }
+      transform-origin: center; }
 
     #menuToggle.open .bar:first-child {
       transform: translateY(6px) rotate(45deg); }
