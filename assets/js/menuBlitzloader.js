@@ -1,34 +1,47 @@
 export function initMenu({
-  menuId = 'mobileMenu',
+  menuId = 'mobile-menu',
   toggleId = 'menuToggle',
   backdropId = 'menuBackdrop',
   closeId = 'closeMenu',
   linkSelector = '.menu-link',
   transitionDuration = 300
 } = {}) {
+  // 🧩 Fetch elements from DOM
   const toggle = document.getElementById(toggleId);
   const menu = document.getElementById(menuId);
   const backdrop = document.getElementById(backdropId);
   const close = document.getElementById(closeId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
+  // 🧪 Log what was found
   console.log('📦 initMenu — Elements found:', {
     toggle,
     menu,
     backdrop,
     close,
-    links: links.length
+    linkCount: links.length
   });
 
   if (!toggle || !menu || !backdrop) {
-    console.warn('⚠️ initMenu: Missing core elements', { toggle, menu, backdrop });
+    console.warn('⚠️ initMenu: Missing core elements', {
+      toggle,
+      menu,
+      backdrop
+    });
+
+    // 🧰 Bonus: dump header if in dev
+    if (location.hostname === 'localhost') {
+      console.debug('🧱 Partial DOM snapshot:\n', document.body.innerHTML.slice(0, 800));
+    }
+
     return;
   }
-  // Optional: log if close button is absent
+
   if (!close) {
-    console.info('ℹ️ initMenu: No #closeMenu found — will rely on backdrop and toggle to close.');
+    console.info('ℹ️ initMenu: No #closeMenu found — relying on backdrop and nav links.');
   }
 
+  // ✅ Open menu
   const openMenu = () => {
     toggle.setAttribute('aria-expanded', 'true');
     toggle.classList.add('open');
@@ -40,6 +53,7 @@ export function initMenu({
     backdrop.classList.add('opacity-100');
   };
 
+  // ✅ Close menu
   const closeMenu = () => {
     toggle.setAttribute('aria-expanded', 'false');
     toggle.classList.remove('open');
@@ -56,21 +70,14 @@ export function initMenu({
     }, transitionDuration);
   };
 
-  // 🚫 Disabled menu toggle on button click — using standalone script instead
-  /*
-  toggle.addEventListener('click', () => {
-    const isOpen = toggle.classList.contains('open');
-    isOpen ? closeMenu() : openMenu();
-  });
-  */
+  // ✅ Event listeners
+  if (backdrop) backdrop.addEventListener('click', closeMenu);
+  if (close) close.addEventListener('click', closeMenu);
 
-  // Still respond to backdrop, close button, and nav link clicks
-  backdrop.addEventListener('click', closeMenu);
-  close.addEventListener('click', closeMenu);
+  links.forEach(link => link.addEventListener('click', closeMenu));
 
-  links.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  // ❌ Hamburger click is handled elsewhere, so skip it here
+  // toggle.addEventListener('click', ...) is intentionally omitted
 
-  console.log('✅ Mobile menu initialized (toggle disabled).');
+  console.log('✅ Mobile menu initialized (toggle logic external).');
 }
