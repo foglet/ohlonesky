@@ -5,18 +5,21 @@ window.initMenu = waitForAndInitMenu;
 (async function initApp() {
   const version = `?v=${Date.now()}`;
 
+  // Load CSS stylesheets
   injectStyles([
     '/assets/css/output.css',
-    '/assets/css/hero.css'
+    '/assets/css/hero.css',
   ], version);
 
+  // Inject HTML partials, then initialize menu
   await injectPartials('[include-html]', version);
   await waitForAndInitMenu();
-  setupScrollAwareHeader();
+
+  // Initialize site-specific logic
   initMain();
 })();
 
-// Inject CSS files
+// Inject CSS files with version query to prevent caching
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -26,7 +29,7 @@ function injectStyles(files, version) {
   });
 }
 
-// Replace include-html placeholders with partials
+// Inject HTML partials from include-html attributes
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -55,7 +58,7 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// Menu toggle logic
+// Wait for menu elements to exist, then initialize toggling logic
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -65,7 +68,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
-      // Initial gondola state
+      // Fade in gondola after load
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
