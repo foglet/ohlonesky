@@ -4,23 +4,23 @@
     @apply relative w-8 h-8 cursor-pointer;
   }
 
-  /* Base bars */
+  /* Base hamburger bars */
   #menuToggle .bar {
     @apply absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
     transform-origin: center;
   }
 
-  /* Top bar placement */
+  /* Top bar position */
   #menuToggle .bar:first-child {
     @apply top-2;
   }
 
-  /* Bottom bar placement */
+  /* Bottom bar position */
   #menuToggle .bar:last-child {
     @apply bottom-2;
   }
 
-  /* Open state transforms */
+  /* X transform on open */
   #menuToggle.open .bar:first-child {
     transform: translateY(6px) rotate(45deg);
   }
@@ -39,7 +39,7 @@
     overflow: hidden;
   }
 
-  /* Optional gondola animation */
+  /* Gondola fade/slide transition */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
