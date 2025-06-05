@@ -13,11 +13,11 @@
 
   /* Default (hamburger) state */
   #menuToggle .bar:first-child {
-    top: 6px;
+    top: 5px;
   }
 
   #menuToggle .bar:last-child {
-    bottom: 6px;
+    bottom: 5px;
   }
 
   /* Open (X) state */
