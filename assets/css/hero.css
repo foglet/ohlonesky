@@ -1,70 +1,47 @@
-/* ------------------------
-   Hamburger → X (Tham) Animation with Fallback
-   ------------------------ */
 @layer components {
-  .tham {
-    @apply cursor-pointer transition-all duration-300 ease-in-out;
-  }
-
-  .tham-box {
-    @apply relative w-6 h-6;
-  }
-
-  .tham-inner {
-    @apply absolute top-1/2 -mt-[1px] w-full h-[2px] rounded bg-brandDark transition-all duration-300 ease-in-out;
-  }
-
-  .tham-e-squeeze .tham-inner::before,
-  .tham-e-squeeze .tham-inner::after {
-    content: "";
-    @apply block absolute w-full h-[2px] rounded bg-brandDark transition-all duration-300 ease-in-out;
-  }
-
-  .tham-e-squeeze .tham-inner::before {
-    @apply -top-2;
-  }
-
-  .tham-e-squeeze .tham-inner::after {
-    @apply -bottom-2;
-  }
-
+  /* Mobile menu toggle container */
   #menuToggle {
-    @apply transform transition-transform duration-300 ease-in-out;
-    transform: rotate(0deg);
+    @apply relative w-8 h-8 flex flex-col justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out;
   }
 
-  #menuToggle.open {
-    transform: rotate(45deg);
+  /* Bar lines (top and bottom) */
+  #menuToggle .bar {
+    @apply absolute w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
   }
 
-  /* Inner bars disappear and rotate when open */
-  .open .tham-inner {
-    background-color: transparent;
+  #menuToggle .bar:first-child {
+    @apply top-[10px];
   }
 
-  .open .tham-inner::before {
-    transform: translateY(8px) rotate(45deg);
+  #menuToggle .bar:last-child {
+    @apply bottom-[10px];
   }
 
-  .open .tham-inner::after {
-    transform: translateY(-8px) rotate(-45deg);
+  /* OPEN STATE: transform bars into X */
+  #menuToggle.open .bar:first-child {
+    transform: rotate(45deg) translateY(0);
   }
 
-  /* Fallback for JS-disabled environments */
-  noscript .tham-inner,
-  noscript .tham-inner::before,
-  noscript .tham-inner::after {
-    @apply bg-brandDark;
-    transform: none !important;
-    opacity: 1 !important;
+  #menuToggle.open .bar:last-child {
+    transform: rotate(-45deg) translateY(0);
   }
 
-  /* Force mobile menu visibility when toggled */
+  /* Optional: visually hide middle bar if added later */
+  #menuToggle .bar.middle {
+    @apply hidden;
+  }
+
+  /* Ensure mobile menu is visible when toggled */
   #mobile-menu {
-    opacity: 1 !important;
+    @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
-  /* Gondola animation for fade and slide */
+  /* Prevent body scroll when menu is open (handled in JS) */
+  body.overflow-hidden {
+    overflow: hidden;
+  }
+
+  /* Gondola fade/slide if present */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
