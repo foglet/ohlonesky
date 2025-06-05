@@ -1,31 +1,32 @@
 @layer components {
   #menuToggle {
-    @apply relative w-8 h-8 cursor-pointer;
+    @apply relative w-8 h-8;
   }
 
   #menuToggle .bar {
-    @apply absolute left-0 w-full bg-brandDark rounded;
-    height: 2px;
+    @apply absolute w-full h-0.5 bg-brandDark rounded;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
   }
 
-  #menuToggle .bar:first-child {
-    top: 10px;
+  #menuToggle .top-bar {
+    /* nothing extra needed */
   }
 
-  #menuToggle .bar:last-child {
-    bottom: 10px;
+  #menuToggle .bottom-bar {
+    /* slightly offset vertically to look like two bars */
+    transform: translateY(6px);
   }
 
-  #menuToggle.open .bar:first-child {
+  #menuToggle.open .top-bar {
     transform: rotate(45deg);
-    top: 16px;
   }
 
-  #menuToggle.open .bar:last-child {
+  #menuToggle.open .bottom-bar {
     transform: rotate(-45deg);
-    bottom: 16px;
   }
 
   /* Mobile menu visibility */
