@@ -7,40 +7,29 @@
     @apply absolute w-full bg-brandDark rounded;
     height: 2px;
     left: 0;
-    transition: transform 0.3s ease-in-out;
     transform-origin: center;
+    transition: transform 0.3s ease-in-out;
   }
 
+  /* Default (hamburger) state */
   #menuToggle .bar:first-child {
-    top: 50%;
-    transform: translateY(-6px);
+    top: 6px;
   }
 
   #menuToggle .bar:last-child {
+    bottom: 6px;
+  }
+
+  /* Open (X) state */
+  #menuToggle.open .bar:first-child {
     top: 50%;
-    transform: translateY(6px);
-  }
-
-  #menuToggle.open .bar:first-child {
-    transform: rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
   }
 
   #menuToggle.open .bar:last-child {
-    transform: rotate(-45deg);
-  }
-
-  #menuToggle .bar:first-child {
-  top: 8px;
-  }
-  #menuToggle .bar:last-child {
-    bottom: 8px;
-  }
-
-  #menuToggle.open .bar:first-child {
-    transform: translateY(6px) rotate(45deg);
-  }
-  #menuToggle.open .bar:last-child {
-    transform: translateY(-6px) rotate(-45deg);
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%) rotate(-45deg);
   }
 
   /* Mobile menu visibility */
