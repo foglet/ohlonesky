@@ -14,18 +14,11 @@ module.exports = {
   ],
 
   safelist: [
-    'bar', // mobile menu bars
-    'hidden',
-    'opacity-0',
-    'opacity-100',
-    'tham-active',
-    'translate-x-0',
-    'translate-x-full',
-    'translate-y-0',
-    'translate-y-full',
-    'transition-all',
-    'duration-300',
-    'ease-in-out',
+    'hidden', 'opacity-0', 'opacity-100',
+    'translate-x-full', 'translate-x-0',
+    'translate-y-full', 'translate-y-0',
+    'transition-all', 'duration-300', 'ease-in-out',
+    'z-30', 'z-40'
   ],
 
   theme: {
