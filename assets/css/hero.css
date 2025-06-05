@@ -12,11 +12,11 @@
   }
 
   #menuToggle .bar:first-child {
-    top: 3px;
+    top: 5px;
   }
 
   #menuToggle .bar:last-child {
-    bottom: 3px;
+    bottom: 5px;
   }
 
   #menuToggle.open .bar:first-child {
