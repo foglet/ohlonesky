@@ -1,6 +1,7 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
+// Wait for any selector to appear in the DOM
 function waitForElement(selector, timeout = 4000) {
   return new Promise((resolve, reject) => {
     const el = document.querySelector(selector);
@@ -30,19 +31,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     ? '?v=dev'
     : `?v=${typeof BUILD_VERSION !== 'undefined' ? BUILD_VERSION : '1.0.0'}`;
 
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  const prefix = '../'.repeat(depth);
-
-  // ✅ Inject CSS
-  //  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+  // ✅ Inject global CSS from root-relative paths
   ['/assets/css/output.css', '/assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${prefix}${file}${version}`;
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 
-  // ✅ Load HTML partials and log header content
+  // ✅ Inject HTML partials
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
@@ -55,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (file.includes('header')) {
         console.log(`🧩 Loaded header partial: ${file}`);
-        console.log('📦 Partial content preview:\n', html.slice(0, 800));
+        console.log('📦 Partial content preview:', html.slice(0, 800));
       }
     } catch (err) {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
@@ -63,21 +60,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Confirm injection result
-  const testEl = document.getElementById('mobile-menu');
-  console.log('🔎 Post-injection check: mobile-menu =', testEl);
-
-  // ✅ Wait for critical menu elements
+  // ✅ Wait for core menu elements
   try {
-    console.log('⏳ Waiting for core menu elements...');
+    console.log('⏳ Waiting for menu elements...');
     await Promise.all([
       waitForElement('#menuToggle'),
       waitForElement('#mobile-menu'),
       waitForElement('#menuBackdrop')
     ]);
-    console.log('✅ All core menu elements found.');
+    console.log('✅ All menu elements found. Initializing...');
 
-    // 🟢 Proceed with script initialization
     initMain();
     initMenu();
   } catch (err) {
