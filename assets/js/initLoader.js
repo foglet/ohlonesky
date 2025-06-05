@@ -2,21 +2,23 @@ import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Determine environment
   const IS_DEV =
     location.hostname === 'localhost' ||
     location.hostname === '127.0.0.1';
 
-  // Use fixed version for cache-busting (no Date.now() in dev)
   const version = IS_DEV
     ? '?v=dev'
     : `?v=${typeof BUILD_VERSION !== 'undefined' ? BUILD_VERSION : '1.0.0'}`;
 
-  // Dynamically inject CSS
+  // Auto-detect nesting depth for subpages
+  const depth = window.location.pathname.split('/').filter(Boolean).length;
+  const prefix = '../'.repeat(depth);
+
+  // Dynamically inject styles
   ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `/${file}${version}`;
+    link.href = `${prefix}${file}${version}`;
     document.head.appendChild(link);
   });
 
@@ -34,7 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // Init scripts after partials load
   initMain();
   initMenu();
 });
