@@ -2859,6 +2859,10 @@ video {
   width: 100vw;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -3142,6 +3146,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .rounded-t-md {
@@ -3921,6 +3929,11 @@ video {
 .after\:content-\[\'\\201D\'\]::after {
   --tw-content: '\201D';
   content: var(--tw-content);
+}
+
+.hover\:border-highlight:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 85 0 / var(--tw-border-opacity, 1));
 }
 
 .hover\:bg-blue-50:hover {
