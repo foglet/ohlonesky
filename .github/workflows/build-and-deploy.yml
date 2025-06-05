@@ -1,4 +1,4 @@
-name: Build and Deploy Tailwind
+name: Build and Deploy Tailwind + Version
 
 on:
   push:
@@ -10,43 +10,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🛠 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Build Tailwind CSS
+      - name: 🎨 Build Tailwind CSS
         run: |
           npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify
 
-      - name: Configure Git
+      - name: 🧾 Generate version.js from Git hash
+        run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          echo "const BUILD_VERSION = '$COMMIT_HASH';" > assets/js/version.js
+
+      - name: ⚙️ Configure Git
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-      - name: Stash and rebase
+      - name: 🔄 Stash changes and pull latest
         run: |
           git stash --include-untracked || true
           git pull --rebase origin main || true
           git stash pop || true
 
-      - name: Commit and push built CSS
+      - name: ✅ Commit and push built files
         run: |
-          git add assets/css/output.css
-          git commit -m "⚡ Auto-build Tailwind CSS" --allow-empty
+          git add assets/css/output.css assets/js/version.js
+          git commit -m "⚡ Auto-build Tailwind + version.js" --allow-empty
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: . # or `./deploy` if using a deploy/ staging dir
-          cname: ohlonesky.com  # optional if using custom domain
+          publish_dir: . # Use ./deploy or ./dist if needed
+          cname: ohlonesky.com  # Set this only if you're using a custom domain
