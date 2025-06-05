@@ -2606,10 +2606,6 @@ video {
   top: 40%;
 }
 
-.top-\[60px\] {
-  top: 60px;
-}
-
 .top-\[68px\] {
   top: 68px;
 }
@@ -3326,14 +3322,6 @@ video {
   --tw-bg-opacity: 0.4;
 }
 
-.bg-opacity-95 {
-  --tw-bg-opacity: 0.95;
-}
-
-.bg-opacity-90 {
-  --tw-bg-opacity: 0.9;
-}
-
 .bg-cover {
   background-size: cover;
 }
@@ -3457,10 +3445,6 @@ video {
 
 .ps-5 {
   padding-inline-start: 1.25rem;
-}
-
-.pt-12 {
-  padding-top: 3rem;
 }
 
 .pt-16 {

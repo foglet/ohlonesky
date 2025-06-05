@@ -72,6 +72,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
+        btn.classList.toggle('open');
 
         // 🔹 Fade gondola only (no slide)
         if (gondola) {
