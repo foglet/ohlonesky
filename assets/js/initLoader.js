@@ -2,7 +2,7 @@ import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 // 🕵️‍♂️ Wait for any selector to appear in the DOM
-function waitForElement(selector, timeout = 2000) {
+function waitForElement(selector, timeout = 5000) {
   return new Promise((resolve, reject) => {
     const el = document.querySelector(selector);
     if (el) return resolve(el);
@@ -59,8 +59,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
+  // ✅ Give the browser a brief moment to settle DOM
+await new Promise(resolve => setTimeout(resolve, 100));
+
   // ✅ Wait for mobile menu element to exist
-  await waitForElement('#mobile-menu');
+  await Promise.all([
+  waitForElement('#menuToggle'),
+  waitForElement('#mobile-menu'),
+  waitForElement('#menuBackdrop')
+]);
 
   // ✅ Now initialize scripts safely
   console.log('🧩 All partials + menu loaded. Initializing...');
