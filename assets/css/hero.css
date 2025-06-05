@@ -21,14 +21,14 @@
   }
 
   .tham-e-squeeze .tham-inner::before {
-    top: -8px;
+    @apply -top-2;
   }
 
   .tham-e-squeeze .tham-inner::after {
-    bottom: -8px;
+    @apply -bottom-2;
   }
 
-  /* When menu is open — transform to X */
+  /* Open state: transform to X */
   .open .tham-inner {
     background-color: transparent;
   }
@@ -41,20 +41,24 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* Fallback: If JS fails, always show plain hamburger */
+  /* Fallback for JS-disabled environments */
   noscript .tham-inner,
   noscript .tham-inner::before,
   noscript .tham-inner::after {
     @apply bg-brandDark;
     transform: none !important;
-    opacity: 1 !important; }
+    opacity: 1 !important;
+  }
 
+  /* Ensure mobile menu is visible when toggled */
   #mobile-menu {
-    opacity: 1 !important; }
+    opacity: 1 !important;
+  }
 
+  /* Gondola animation (fade/slide control) */
   #gondola {
-  transition: transform 300ms ease-in-out;
-  position: absolute; /* or fixed if full-page */
-  width: 100%; }
-
+    @apply w-full;
+    @apply absolute; /* Or 'fixed' depending on stacking context */
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  }
 }
