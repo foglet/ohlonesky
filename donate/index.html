@@ -1,54 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/output.css">
-    <link rel="stylesheet" href="/assets/css/hero.css">
-    <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css"></noscript>
-  </head>
+    <head>
+      <!-- Charset & Responsive -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
-  <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-  <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+      <!-- SEO & Metadata -->
+      <title>Ohlone Sky</title>
+      <meta name="description" content="Ohlone Sky – Aerial Tram Project" />
 
-  <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+      <!-- Adobe Fonts -->
+      <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
 
-    <!-- Hero Image -->
+      <!-- Preload & Load Tailwind CSS -->
+      <link rel="preload" href="/assets/css/output.css" as="style">
+      <link rel="stylesheet" href="/assets/css/output.css" />
 
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg"
-         alt="Tbilisi, Georgia"
-         class="w-full h-auto"
-         loading="lazy" />
-    <p class="text-xs text-gray-600 text-center mt-2">
-      Source: Alexander Voronov, Unsplash
-    </p>
+      <!-- Optional additional styles -->
+      <link rel="preload" href="/assets/css/hero.css" as="style">
+      <link rel="stylesheet" href="/assets/css/hero.css" />
 
-    <!-- Hero Text: Contact  -->
-    <main id="mainContent" class="flex-grow mx-auto">
-      <section class="text-center">
-        <!-- message input fro formLogic.js -->
-        <p id="thanksMessage" class="text-base font-normal text-lime-800 my-6">Thank you for your donation!</p>
-        <h2 class="text-4xl font-bold text-lime-600 mb-8">Upward and onward!</h2>
-      </section>
+      <!-- Hide content until CSS loads to prevent FOUC -->
+      <style>
+        body { visibility: hidden; }
+      </style>
+
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          document.body.style.visibility = 'visible';
+        });
+      </script>
+
+      <!-- Fallback: Dynamically inject CSS if static link fails -->
+      <script>
+        if (!document.querySelector('link[href*="output.css"]')) {
+          const version = `?v=${Date.now()}`;
+          ['output.css', 'hero.css'].forEach(file => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `/assets/css/${file}${version}`;
+            document.head.appendChild(link);
+          });
+        }
+      </script>
+    </head>
+
+    <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+      <!-- Header Section -->
+      <div include-html="/assets/partials/header-ham.html"></div>
+
+      <!-- Hero Image -->
+
+      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg"
+           alt="Tbilisi, Georgia"
+           class="w-full h-auto"
+           loading="lazy" />
+      <p class="text-xs text-gray-600 text-center mt-2">
+        Source: Alexander Voronov, Unsplash
+      </p>
+
+
+<!-- Main Content **** Hero Text: Index SDG  -->
+<!-- Main Content **** Hero Text: Index SDG  -->
+  <!-- Main Content **** Hero Text: Index SDG  -->
+      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
+        <section class="text-center mb-6">
+
+
+
+      <!-- A Commitment to Giving -->
+      <div>
+        <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
+        <p>
+          Ohlone Sky donates...
+        </p>
+      </div>
+    </section>
+
     </main>
 
-  <!-- Footer -->
-  <div include-html="/assets/partials/footer.html"></div>
 
-  <!-- Scripts: Ditch this IF using partials. -->
-    <!-- <script type="module">
-    import { initMain } from '/assets/js/mainInit.js';
-    import { initMenu } from '/assets/js/menuBlitzloader.js';
 
-    initMain();
-    initMenu();
-  </script> -->
+  </div> <!-- end of page content -->
 
-  <!-- Load partials and init scripts -->
-  <script type="module" src="/assets/js/initLoader.js"></script>
 
-</body>
+      <footer include-html="/assets/partials/footer.html"></footer>
+    </div>
+
+    <!-- Init Scripts -->
+    <script type="module" src="/assets/js/initLoader.js"></script>
+  </body>
 </html>
