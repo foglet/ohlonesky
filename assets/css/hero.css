@@ -1,18 +1,16 @@
 @layer components {
-  /* Menu Toggle Container */
   #menuToggle {
     @apply relative w-8 h-8 cursor-pointer;
   }
 
-  /* Base Bars */
   #menuToggle .bar {
-    @apply absolute left-0 w-full bg-brandDark rounded;
-    height: 3px;
-    transition: transform 300ms ease-in-out, top 300ms ease-in-out, bottom 300ms ease-in-out;
+    @apply absolute w-full bg-brandDark rounded;
+    height: 2px;
+    left: 0;
+    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
     transform-origin: center;
   }
 
-  /* Initial Positions */
   #menuToggle .bar:first-child {
     top: 5px;
   }
@@ -21,41 +19,27 @@
     bottom: 5px;
   }
 
-  /* Subtle Overshoot Keyframes */
-  @keyframes rotateSoftPos {
-    0%   { transform: translateY(-50%) rotate(0deg); }
-    80%  { transform: translateY(-50%) rotate(47deg); }
-    100% { transform: translateY(-50%) rotate(45deg); }
-  }
-
-  @keyframes rotateSoftNeg {
-    0%   { transform: translateY(-50%) rotate(0deg); }
-    80%  { transform: translateY(-50%) rotate(-47deg); }
-    100% { transform: translateY(-50%) rotate(-45deg); }
-  }
-
   #menuToggle.open .bar:first-child {
     top: 50%;
-    animation: rotateSoftPos 250ms ease-out forwards;
+    transform: translateY(-50%) rotate(45deg);
+    height: 3px;
   }
 
   #menuToggle.open .bar:last-child {
-    top: 50%;
     bottom: auto;
-    animation: rotateSoftNeg 250ms ease-out forwards;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    height: 3px;
   }
 
-  /* Mobile menu visibility */
   #mobile-menu {
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
-  /* Prevent background scroll when mobile menu is active */
   body.overflow-hidden {
     overflow: hidden;
   }
 
-  /* Gondola animation */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
