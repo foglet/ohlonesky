@@ -21,7 +21,7 @@ function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = ${file}${version};
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 }
@@ -35,7 +35,10 @@ async function injectPartials(selector, version) {
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
+    if (!file) {
+      console.warn('⚠️ Missing include-html attribute:', node);
+      return;
+    }
 
     const url = `${file}${version}`;
     try {
@@ -47,7 +50,7 @@ async function injectPartials(selector, version) {
       console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
       node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(❌ Error injecting ${url}, err);
+      console.error(`❌ Error injecting ${url}`, err);
     }
   }));
 }
