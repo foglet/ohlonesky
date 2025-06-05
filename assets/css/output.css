@@ -2618,6 +2618,22 @@ video {
   top: 33.333333%;
 }
 
+.bottom-\[30\%\] {
+  bottom: 30%;
+}
+
+.top-\[30\%\] {
+  top: 30%;
+}
+
+.bottom-\[10px\] {
+  bottom: 10px;
+}
+
+.top-\[10px\] {
+  top: 10px;
+}
+
 .z-0 {
   z-index: 0;
 }
