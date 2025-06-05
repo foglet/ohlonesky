@@ -6,18 +6,19 @@
 
   /* Base hamburger bars */
   #menuToggle .bar {
-    @apply absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
-    transform-origin: center;
+    @apply absolute left-0 w-full rounded bg-brandDark transition-transform duration-300 ease-in-out;
+    height: 2px;                  /* Override Tailwind's h-0.5 (2px is safer for consistency) */
+    transform-origin: center;     /* Ensure smooth X transforms */
   }
 
   /* Top bar position */
   #menuToggle .bar:first-child {
-    @apply top-2;
+    @apply top-[8px];             /* Tailwind’s top-2 = 8px */
   }
 
   /* Bottom bar position */
   #menuToggle .bar:last-child {
-    @apply bottom-2;
+    @apply bottom-[8px];
   }
 
   /* X transform on open */
