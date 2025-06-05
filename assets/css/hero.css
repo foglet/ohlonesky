@@ -13,12 +13,12 @@
 
   /* Top bar position */
   #menuToggle .bar:first-child {
-    @apply top-[8px];             /* Tailwind’s top-2 = 8px */
+    @apply top-2;             /* Tailwind’s top-2 = 8px */
   }
 
   /* Bottom bar position */
   #menuToggle .bar:last-child {
-    @apply bottom-[8px];
+    @apply bottom-2;
   }
 
   /* X transform on open */
