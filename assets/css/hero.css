@@ -1,17 +1,18 @@
 @layer components {
+  /* Menu Toggle Container */
   #menuToggle {
     @apply relative w-8 h-8 cursor-pointer;
   }
 
+  /* Base bars */
   #menuToggle .bar {
-    @apply absolute w-full bg-brandDark rounded;
-    height: 2px;
-    left: 0;
+    @apply absolute left-0 w-full bg-brandDark rounded;
+    height: 3px;
+    transition: transform 300ms ease-in-out, top 300ms ease-in-out, bottom 300ms ease-in-out;
     transform-origin: center;
-    transition: transform 0.3s ease-in-out;
   }
 
-  /* Default (hamburger) state */
+  /* Initial top and bottom placement */
   #menuToggle .bar:first-child {
     top: 5px;
   }
@@ -20,16 +21,28 @@
     bottom: 5px;
   }
 
-  /* Open (X) state */
+  /* Open state with overshoot rotation */
+  @keyframes rotateOvershootPos {
+    0%   { transform: translateY(-50%) rotate(0deg); }
+    70%  { transform: translateY(-50%) rotate(50deg); }
+    100% { transform: translateY(-50%) rotate(45deg); }
+  }
+
+  @keyframes rotateOvershootNeg {
+    0%   { transform: translateY(-50%) rotate(0deg); }
+    70%  { transform: translateY(-50%) rotate(-50deg); }
+    100% { transform: translateY(-50%) rotate(-45deg); }
+  }
+
   #menuToggle.open .bar:first-child {
     top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+    animation: rotateOvershootPos 300ms ease-out forwards;
   }
 
   #menuToggle.open .bar:last-child {
     top: 50%;
     bottom: auto;
-    transform: translateY(-50%) rotate(-45deg);
+    animation: rotateOvershootNeg 300ms ease-out forwards;
   }
 
   /* Mobile menu visibility */
@@ -37,14 +50,14 @@
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
-  /* Prevent background scroll when mobile menu is active */
+  /* Prevent background scroll when menu is active */
   body.overflow-hidden {
     overflow: hidden;
   }
 
-  /* Gondola fade/slide transition */
+  /* Gondola fade/slide animation */
   #gondola {
     @apply w-full absolute;
-    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
   }
 }
