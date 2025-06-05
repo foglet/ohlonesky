@@ -31,7 +31,7 @@ async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(🧩 Found ${nodes.length} partial(s));
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
@@ -40,13 +40,13 @@ async function injectPartials(selector, version) {
     const url = `${file}${version}`;
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(HTTP ${res.status});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(✅ Injected partial: ${url});
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
-      node.innerHTML = <!-- Failed to load ${url} -->;
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
       console.error(❌ Error injecting ${url}, err);
     }
   }));
