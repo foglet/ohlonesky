@@ -22,10 +22,15 @@
       <!-- Hamburger Button (2-bar toggle, centered with smooth animation) -->
 
       <!-- Hamburger Button (2-bar toggle to X) -->
-      <button id="menuToggle"
+      <!-- <button id="menuToggle"
           aria-label="Toggle menu"
           aria-expanded="false"
-          class="w-8 h-8 relative flex items-center justify-center focus:outline-none">
+          class="w-8 h-8 relative flex items-center justify-center focus:outline-none"> -->
+          <button id="menuToggle"
+            class="md:hidden relative w-8 h-8 cursor-pointer flex items-center justify-center transition-colors duration-200 ease-in-out"
+            aria-label="Toggle menu">
+              
+
             <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
             <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
       </button>
@@ -41,13 +46,7 @@
       </div>
 
       <!-- Clean Circle X Close Button -->
-      <button id="closeMenu" aria-label="Close menu"
-        class="mx-auto mt-2 flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 text-brandDark hover:text-highlight hover:border-highlight transition-colors duration-200">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+
 
     </div>
   </div>
