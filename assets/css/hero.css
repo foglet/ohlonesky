@@ -49,4 +49,9 @@
     transform: none !important;
     opacity: 1 !important;
   }
+
+  #mobile-menu {
+    opacity: 1 !important;
+  }
+  
 }

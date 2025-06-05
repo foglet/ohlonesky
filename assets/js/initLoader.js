@@ -66,6 +66,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
     const menu = document.getElementById('mobile-menu');
+    const gondola = document.getElementById('gondola');
 
     if (btn && menu) {
       console.log('✅ Mobile menu elements found');
@@ -74,6 +75,14 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
+
+        // Hide/show gondola section as needed
+        if (gondola) {
+          gondola.style.display = expanded ? 'block' : 'none';
+        }
+
+        // Ensure menu is fully opaque
+        menu.style.opacity = '1';
       });
 
       return;
