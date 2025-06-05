@@ -20,14 +20,13 @@ export function initMenu({
     links: links.length
   });
 
-  if (!toggle || !menu || !backdrop || !close) {
-    console.warn('⚠️ initMenu: Missing required elements', {
-      toggle,
-      menu,
-      backdrop,
-      close
-    });
+  if (!toggle || !menu || !backdrop) {
+    console.warn('⚠️ initMenu: Missing core elements', { toggle, menu, backdrop });
     return;
+  }
+  // Optional: log if close button is absent
+  if (!close) {
+    console.info('ℹ️ initMenu: No #closeMenu found — will rely on backdrop and toggle to close.');
   }
 
   const openMenu = () => {
