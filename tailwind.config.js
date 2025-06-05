@@ -14,6 +14,7 @@ module.exports = {
   ],
 
   safelist: [
+    'bar', // Ensure bar visibility
     'hidden',
     'translate-x-full',
     'translate-x-0',
@@ -22,7 +23,7 @@ module.exports = {
     'tham-active',
     'transition-all',
     'duration-300',
-    'ease-in-out'
+    'ease-in-out',
   ],
 
   theme: {
@@ -45,6 +46,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
     require('tailwind-hamburgers'),
+
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
