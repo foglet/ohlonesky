@@ -29,6 +29,20 @@
     transform: rotate(-45deg);
   }
 
+  #menuToggle .bar:first-child {
+  top: 8px;
+  }
+  #menuToggle .bar:last-child {
+    bottom: 8px;
+  }
+
+  #menuToggle.open .bar:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+  #menuToggle.open .bar:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
   /* Mobile menu visibility */
   #mobile-menu {
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
