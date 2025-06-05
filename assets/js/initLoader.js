@@ -1,6 +1,6 @@
 import { initMain } from '/assets/js/mainInit.js';
 
-// 👇 Expose for debugging if needed
+// 👇 Expose for debugging
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
@@ -12,15 +12,12 @@ window.initMenu = waitForAndInitMenu;
   ], version);
 
   await injectPartials('[include-html]', version);
-
   await waitForAndInitMenu();
-
   setupScrollAwareHeader();
-
   initMain();
 })();
 
-// 🔹 Dynamically inject stylesheets into <head>
+// 🔹 Dynamically inject stylesheets
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -30,7 +27,7 @@ function injectStyles(files, version) {
   });
 }
 
-// 🔹 Replace elements with include-html attribute
+// 🔹 Inject HTML partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -66,21 +63,26 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Mobile menu elements found');
 
+      // Prepare gondola fade animation
+      if (gondola) {
+        gondola.style.transition = 'opacity 500ms ease';
+        gondola.style.opacity = '1';
+      }
+
       btn.addEventListener('click', () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
 
-        // 🔹 Move gondola offscreen / return
+        // 🔹 Fade gondola
         if (gondola) {
-          gondola.style.transition = 'transform 750ms ease-in-out';
-          gondola.style.transform = expanded ? 'translateY(0)' : 'translateY(200%)';
+          gondola.style.opacity = expanded ? '1' : '0';
         }
 
-        // 🔹 Prevent scrolling when menu is open
+        // 🔹 Prevent scroll
         document.body.classList.toggle('overflow-hidden', !expanded);
 
-        // 🔹 Force menu opacity to 100%
+        // 🔹 Ensure visibility
         menu.style.opacity = '1';
       });
 
@@ -93,7 +95,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Mobile menu elements not found after retries');
 }
 
-// 🔹 Show/hide sticky header on scroll pause/direction
+// 🔹 Scroll-aware header
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
