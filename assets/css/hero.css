@@ -4,7 +4,7 @@
     @apply relative w-8 h-8 cursor-pointer;
   }
 
-  /* Base bars */
+  /* Base Bars */
   #menuToggle .bar {
     @apply absolute left-0 w-full bg-brandDark rounded;
     height: 3px;
@@ -12,24 +12,37 @@
     transform-origin: center;
   }
 
-  /* Initial top and bottom placement */
+  /* Initial Positions */
   #menuToggle .bar:first-child {
-    top: 4px;
+    top: 5px;
   }
 
   #menuToggle .bar:last-child {
-    bottom: 4px;
+    bottom: 5px;
+  }
+
+  /* Subtle Overshoot Keyframes */
+  @keyframes rotateSoftPos {
+    0%   { transform: translateY(-50%) rotate(0deg); }
+    80%  { transform: translateY(-50%) rotate(47deg); }
+    100% { transform: translateY(-50%) rotate(45deg); }
+  }
+
+  @keyframes rotateSoftNeg {
+    0%   { transform: translateY(-50%) rotate(0deg); }
+    80%  { transform: translateY(-50%) rotate(-47deg); }
+    100% { transform: translateY(-50%) rotate(-45deg); }
   }
 
   #menuToggle.open .bar:first-child {
     top: 50%;
-    animation: rotateOvershootPos 300ms ease-out forwards;
+    animation: rotateSoftPos 250ms ease-out forwards;
   }
 
   #menuToggle.open .bar:last-child {
     top: 50%;
     bottom: auto;
-    animation: rotateOvershootNeg 300ms ease-out forwards;
+    animation: rotateSoftNeg 250ms ease-out forwards;
   }
 
   /* Mobile menu visibility */
@@ -37,12 +50,12 @@
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
-  /* Prevent background scroll when menu is active */
+  /* Prevent background scroll when mobile menu is active */
   body.overflow-hidden {
     overflow: hidden;
   }
 
-  /* Gondola fade/slide animation */
+  /* Gondola animation */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
