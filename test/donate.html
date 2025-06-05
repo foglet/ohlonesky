@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <!-- Charset & Responsive -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!-- SEO & Metadata -->
+      <title>Ohlone Sky</title>
+      <meta name="description" content="Ohlone Sky – Aerial Tram Project" />
+
+      <!-- Adobe Fonts -->
+      <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
+
+      <!-- Preload & Load Tailwind CSS -->
+      <link rel="preload" href="/assets/css/output.css" as="style">
+      <link rel="stylesheet" href="/assets/css/output.css" />
+
+      <!-- Optional additional styles -->
+      <link rel="preload" href="/assets/css/hero.css" as="style">
+      <link rel="stylesheet" href="/assets/css/hero.css" />
+
+      <!-- Hide content until CSS loads to prevent FOUC -->
+      <style>
+        body { visibility: hidden; }
+      </style>
+
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          document.body.style.visibility = 'visible';
+        });
+      </script>
+
+      <!-- Fallback: Dynamically inject CSS if static link fails -->
+      <script>
+        if (!document.querySelector('link[href*="output.css"]')) {
+          const version = `?v=${Date.now()}`;
+          ['output.css', 'hero.css'].forEach(file => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `/assets/css/${file}${version}`;
+            document.head.appendChild(link);
+          });
+        }
+      </script>
+    </head>
+
+    <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
+    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+
+    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
+
+      <!-- Header Section -->
+      <div include-html="/assets/partials/header-ham.html"></div>
+
+      <!-- Hero Image -->
+
+      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg"
+           alt="Tbilisi, Georgia"
+           class="w-full h-auto"
+           loading="lazy" />
+      <p class="text-xs text-gray-600 text-center mt-2">
+        Source: Alexander Voronov, Unsplash
+      </p>
+
+
+<!-- Main Content **** Hero Text: Index SDG  -->
+<!-- Main Content **** Hero Text: Index SDG  -->
+  <!-- Main Content **** Hero Text: Index SDG  -->
+      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
+        <section class="text-center mb-6">
+
+
+
+      <!-- A Commitment to Giving -->
+      <div>
+        <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
+        <p>
+          Ohlone Sky dedicates 10% of its annual revenue to what moves us most: the communities we live in, the climate we share, and the cultures that shape us. As a certified B Corp, we see transit not just as travel, but as a thread that binds purpose to place. It moves us—physically, culturally, and collectively.
+        </p>
+      </div>
+    </section>
+
+    </main>
+
+
+
+  </div> <!-- end of page content -->
+
+
+      <footer include-html="/assets/partials/footer.html"></footer>
+    </div>
+
+    <!-- Init Scripts -->
+    <script type="module" src="/assets/js/initLoader.js"></script>
+  </body>
+</html>
