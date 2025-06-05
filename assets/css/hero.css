@@ -23,13 +23,13 @@
   #menuToggle.open .bar:first-child {
     @apply rotate-45;
     transform-origin: top left;
-    transform: rotate(45deg) translateY(0.375rem);
+    transform: rotate(45deg) translateY(0.5rem);
   }
 
   #menuToggle.open .bar:last-child {
     @apply -rotate-45;
     transform-origin: bottom left;
-    transform: rotate(-45deg) translateY(-0.375rem);
+    transform: rotate(-45deg) translateY(-0.5rem);
   }
 
   /* Mobile menu visibility */
