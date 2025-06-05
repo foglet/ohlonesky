@@ -7,32 +7,27 @@
   /* Base bars */
   #menuToggle .bar {
     @apply absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
+    transform-origin: center;
   }
 
-  /* Top bar — placed using Tailwind spacing */
+  /* Top bar placement */
   #menuToggle .bar:first-child {
-    @apply top-2; /* tailwind spacing = 0.5rem = 8px */
+    @apply top-2;
   }
 
-  /* Bottom bar — placed using Tailwind spacing */
+  /* Bottom bar placement */
   #menuToggle .bar:last-child {
-    @apply bottom-2; /* same as above for symmetry */
+    @apply bottom-2;
   }
 
   /* Open state transforms */
-  @layer components {
-    #menuToggle .bar {
-      transform-origin: center; }
+  #menuToggle.open .bar:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
 
-    #menuToggle.open .bar:first-child {
-      transform: translateY(6px) rotate(45deg); }
-
-    #menuToggle.open .bar:last-child {
-      transform: translateY(-6px) rotate(-45deg); }
-
-    /* Optional: prevent twitching on toggle */
-    #menuToggle .bar {
-      transform-origin: center; }
+  #menuToggle.open .bar:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
 
   /* Mobile menu visibility */
   #mobile-menu {
