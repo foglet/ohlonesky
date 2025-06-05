@@ -3,7 +3,7 @@ import { initMain } from '/assets/js/mainInit.js';
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
-  const version = ?v=${Date.now()};
+  const version = `?v=${Date.now()}`;
 
   injectStyles([
     '/assets/css/output.css',
