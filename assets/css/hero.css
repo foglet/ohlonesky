@@ -14,24 +14,11 @@
 
   /* Initial top and bottom placement */
   #menuToggle .bar:first-child {
-    top: 5px;
+    top: 4px;
   }
 
   #menuToggle .bar:last-child {
-    bottom: 5px;
-  }
-
-  /* Open state with overshoot rotation */
-  @keyframes rotateOvershootPos {
-    0%   { transform: translateY(-50%) rotate(0deg); }
-    70%  { transform: translateY(-50%) rotate(50deg); }
-    100% { transform: translateY(-50%) rotate(45deg); }
-  }
-
-  @keyframes rotateOvershootNeg {
-    0%   { transform: translateY(-50%) rotate(0deg); }
-    70%  { transform: translateY(-50%) rotate(-50deg); }
-    100% { transform: translateY(-50%) rotate(-45deg); }
+    bottom: 4px;
   }
 
   #menuToggle.open .bar:first-child {
