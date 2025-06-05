@@ -1,33 +1,31 @@
 @layer components {
-  /* Menu toggle container */
   #menuToggle {
     @apply relative w-8 h-8 cursor-pointer;
   }
 
-  /* Base hamburger bars */
   #menuToggle .bar {
-    @apply absolute left-0 w-full rounded bg-brandDark transition-transform duration-300 ease-in-out;
-    height: 2px;                  /* Override Tailwind's h-0.5 (2px is safer for consistency) */
-    transform-origin: center;     /* Ensure smooth X transforms */
+    @apply absolute left-0 w-full bg-brandDark rounded;
+    height: 2px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
   }
 
-  /* Top bar position */
   #menuToggle .bar:first-child {
-    @apply top-2;             /* Tailwind’s top-2 = 8px */
+    top: 10px;
   }
 
-  /* Bottom bar position */
   #menuToggle .bar:last-child {
-    @apply bottom-2;
+    bottom: 10px;
   }
 
-  /* X transform on open */
   #menuToggle.open .bar:first-child {
-    transform: translateY(6px) rotate(45deg);
+    transform: rotate(45deg);
+    top: 16px;
   }
 
   #menuToggle.open .bar:last-child {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: rotate(-45deg);
+    bottom: 16px;
   }
 
   /* Mobile menu visibility */
