@@ -19,11 +19,11 @@
 
   /* OPEN STATE: transform bars into X */
   #menuToggle.open .bar:first-child {
-    transform: rotate(45deg) translateY(0);
+    transform: rotate(45deg) translateY(0.3rem);
   }
 
   #menuToggle.open .bar:last-child {
-    transform: rotate(-45deg) translateY(0);
+    transform: rotate(-45deg) translateY(-0.3rem);
   }
 
   /* Optional: visually hide middle bar if added later */
