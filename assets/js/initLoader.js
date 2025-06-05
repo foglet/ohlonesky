@@ -1,7 +1,7 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
-// Wait for any selector to appear in the DOM
+// 🔍 Utility: Wait until a DOM element is present or timeout
 function waitForElement(selector, timeout = 4000) {
   return new Promise((resolve, reject) => {
     const el = document.querySelector(selector);
@@ -31,15 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ? '?v=dev'
     : `?v=${typeof BUILD_VERSION !== 'undefined' ? BUILD_VERSION : '1.0.0'}`;
 
-  // ✅ Inject global CSS from root-relative paths
-  ['/assets/css/output.css', '/assets/css/hero.css'].forEach(file => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `${file}${version}`;
-    document.head.appendChild(link);
-  });
-
-  // ✅ Inject HTML partials
+  // ✅ Load HTML partials
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
@@ -52,27 +44,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (file.includes('header')) {
         console.log(`🧩 Loaded header partial: ${file}`);
-        console.log('📦 Partial content preview:', html.slice(0, 800));
+        console.log('📦 Partial preview:', html.slice(0, 400));
       }
     } catch (err) {
-      el.innerHTML = `<!-- Failed to load ${file} -->`;
+      el.innerHTML = `
+        <div style="color:red; font-weight:bold; padding:1rem;">
+          ⚠️ Failed to load: ${file}
+        </div>`;
       console.error('🚫 Error loading partial:', err);
     }
   }));
 
-  // ✅ Wait for core menu elements
+  // ✅ Wait for all critical menu elements before initializing
   try {
-    console.log('⏳ Waiting for menu elements...');
+    console.log('⏳ Waiting for #menuToggle, #mobile-menu, #menuBackdrop...');
     await Promise.all([
       waitForElement('#menuToggle'),
       waitForElement('#mobile-menu'),
       waitForElement('#menuBackdrop')
     ]);
-    console.log('✅ All menu elements found. Initializing...');
 
+    console.log('✅ All elements found. Initializing...');
     initMain();
     initMenu();
   } catch (err) {
-    console.error('❌ Menu setup failed:', err.message);
+    console.error('❌ Initialization failed:', err.message);
   }
 });
