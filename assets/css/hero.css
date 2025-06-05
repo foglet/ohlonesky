@@ -41,6 +41,12 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 
+  /* Entire toggle rotates 45deg */
+  #menuToggle.open {
+    transform: rotate(45deg);
+    transition: transform 300ms ease-in-out;
+  }
+
   /* Fallback for JS-disabled environments */
   noscript .tham-inner,
   noscript .tham-inner::before,
@@ -57,8 +63,7 @@
 
   /* Gondola animation (fade/slide control) */
   #gondola {
-    @apply w-full;
-    @apply absolute; /* Or 'fixed' depending on stacking context */
-    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+    @apply w-full absolute;
+    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
   }
 }
