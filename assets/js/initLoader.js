@@ -1,6 +1,29 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
+// 🕵️‍♂️ Wait for any selector to appear in the DOM
+function waitForElement(selector, timeout = 2000) {
+  return new Promise((resolve, reject) => {
+    const el = document.querySelector(selector);
+    if (el) return resolve(el);
+
+    const observer = new MutationObserver((_, obs) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        obs.disconnect();
+        resolve(el);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`Timeout: ${selector} not found`));
+    }, timeout);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const IS_DEV =
     location.hostname === 'localhost' ||
@@ -36,11 +59,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Ensure DOM is updated after innerHTML replacements
-  await new Promise(requestAnimationFrame);
+  // ✅ Wait for mobile menu element to exist
+  await waitForElement('#mobile-menu');
 
-  // ✅ Initialize your scripts
-  console.log('🧩 All partials loaded. Initializing scripts...');
+  // ✅ Now initialize scripts safely
+  console.log('🧩 All partials + menu loaded. Initializing...');
   initMain();
   initMenu();
 });
