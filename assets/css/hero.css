@@ -20,11 +20,16 @@
   }
 
   /* Open state transforms */
-  #menuToggle.open .bar:first-child {
-    transform: rotate(45deg) translateY(6px); }
+  @layer components {
+    #menuToggle .bar {
+      transform-origin: center;
+      @apply transition-transform duration-500 ease-in-out; }
 
-  #menuToggle.open .bar:last-child {
-    transform: rotate(-45deg) translateY(-6px); }
+    #menuToggle.open .bar:first-child {
+      transform: translateY(6px) rotate(45deg); }
+
+    #menuToggle.open .bar:last-child {
+      transform: translateY(-6px) rotate(-45deg); }
 
     /* Optional: prevent twitching on toggle */
     #menuToggle .bar {
