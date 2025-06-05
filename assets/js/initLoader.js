@@ -1,6 +1,6 @@
 import { initMain } from '/assets/js/mainInit.js';
 
-// 👇 Expose for debugging
+// 👇 Expose for debugging if needed
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
@@ -53,7 +53,7 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// 🔹 Attach event listener to mobile menu toggle
+// 🔹 Toggle mobile menu and fade gondola
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -63,7 +63,6 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Mobile menu elements found');
 
-      // Prepare gondola fade animation
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
@@ -74,15 +73,12 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
 
-        // 🔹 Fade gondola
+        // 🔹 Fade gondola only (no slide)
         if (gondola) {
           gondola.style.opacity = expanded ? '1' : '0';
         }
 
-        // 🔹 Prevent scroll
         document.body.classList.toggle('overflow-hidden', !expanded);
-
-        // 🔹 Ensure visibility
         menu.style.opacity = '1';
       });
 
@@ -95,7 +91,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Mobile menu elements not found after retries');
 }
 
-// 🔹 Scroll-aware header
+// 🔹 Scroll-aware sticky header
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
