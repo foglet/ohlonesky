@@ -21,10 +21,14 @@
 
   /* Open state transforms */
   #menuToggle.open .bar:first-child {
-    transform: rotate(45deg) translateY(0.25rem); }
+    transform: rotate(45deg) translateY(6px); }
 
   #menuToggle.open .bar:last-child {
-    transform: rotate(-45deg) translateY(-0.25rem); }
+    transform: rotate(-45deg) translateY(-6px); }
+
+    /* Optional: prevent twitching on toggle */
+    #menuToggle .bar {
+      transform-origin: center; }
 
   /* Mobile menu visibility */
   #mobile-menu {
