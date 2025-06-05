@@ -73,7 +73,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
 
         // 🔹 Move gondola offscreen / return
         if (gondola) {
-          gondola.style.transition = 'transform 300ms ease-in-out';
+          gondola.style.transition = 'transform 750ms ease-in-out';
           gondola.style.transform = expanded ? 'translateY(0)' : 'translateY(200%)';
         }
 
