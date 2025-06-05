@@ -28,6 +28,15 @@
     @apply -bottom-2;
   }
 
+  #menuToggle {
+    @apply transition-transform duration-300 ease-in-out transform;
+    transform: rotate(0deg); /* base state */
+  }
+
+  #menuToggle.open {
+    transform: rotate(45deg); /* animate to 45deg */
+  }
+
   /* Open state: transform to X */
   .open .tham-inner {
     background-color: transparent;
