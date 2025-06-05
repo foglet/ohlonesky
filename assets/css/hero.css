@@ -49,10 +49,16 @@
   #menuBackdrop {
     transition: opacity 0.3s ease-out;
   }
-  
+
+  #mobile-menu { z-index: 50; }
+  #menuBackdrop {z-index: 40;}
+  #menuToggle.open {z-index: 60; }
+
   body.overflow-hidden {
     overflow: hidden;
   }
+
+
 
   #gondola {
     @apply w-full absolute;

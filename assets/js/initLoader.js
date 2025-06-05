@@ -16,7 +16,6 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
-// Inject CSS files
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -26,7 +25,6 @@ function injectStyles(files, version) {
   });
 }
 
-// Replace include-html placeholders with partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -52,7 +50,6 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// Menu toggle logic
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -62,37 +59,12 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
-      // Initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
 
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        const willOpen = !expanded;
-
-        btn.setAttribute('aria-expanded', willOpen);
-        btn.classList.toggle('open');
-        document.body.classList.toggle('overflow-hidden', willOpen);
-
-        if (willOpen) {
-          menu.classList.remove('hidden');
-          requestAnimationFrame(() => {
-            menu.classList.remove('translate-y-full', 'opacity-0');
-            menu.classList.add('translate-y-0', 'opacity-100');
-          });
-        } else {
-          menu.classList.remove('translate-y-0', 'opacity-100');
-          menu.classList.add('translate-y-full', 'opacity-0');
-          setTimeout(() => menu.classList.add('hidden'), 300);
-        }
-
-        if (gondola) {
-          gondola.style.opacity = willOpen ? '0' : '1';
-        }
-      });
-
+      btn.addEventListener('click', () => toggleMobileMenu({ btn, menu, gondola }));
       return;
     }
 
@@ -102,7 +74,31 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Menu elements not found after retrying');
 }
 
-// Header hides on scroll down, reappears on scroll up
+function toggleMobileMenu({ btn, menu, gondola }) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  const willOpen = !expanded;
+
+  btn.setAttribute('aria-expanded', willOpen);
+  btn.classList.toggle('open');
+  document.body.classList.toggle('overflow-hidden', willOpen);
+
+  if (willOpen) {
+    menu.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      menu.classList.remove('translate-y-full', 'opacity-0');
+      menu.classList.add('translate-y-0', 'opacity-100');
+    });
+  } else {
+    menu.classList.remove('translate-y-0', 'opacity-100');
+    menu.classList.add('translate-y-full', 'opacity-0');
+    setTimeout(() => menu.classList.add('hidden'), 300);
+  }
+
+  if (gondola) {
+    gondola.style.opacity = willOpen ? '0' : '1';
+  }
+}
+
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -113,9 +109,11 @@ function setupScrollAwareHeader() {
 
   function updateHeader() {
     const currentY = window.scrollY;
-    header.style.transform = (currentY > lastY && currentY > 50)
-      ? 'translateY(-100%)'
-      : 'translateY(0)';
+    const goingDown = currentY > lastY && currentY > 50;
+
+    header.style.transform = goingDown ? 'translateY(-100%)' : 'translateY(0)';
+    header.style.pointerEvents = goingDown ? 'none' : 'auto';
+
     lastY = currentY;
     ticking = false;
   }
@@ -129,6 +127,8 @@ function setupScrollAwareHeader() {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
+      header.style.pointerEvents = 'auto';
+      waitForAndInitMenu(); // Ensures menu works even after scroll
     }, 150);
   });
 
