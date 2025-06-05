@@ -45,6 +45,6 @@
   /* Gondola fade/slide transition */
   #gondola {
     @apply w-full absolute;
-    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
   }
 }
