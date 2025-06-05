@@ -24,9 +24,7 @@ function waitForElement(selector, timeout = 4000) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const IS_DEV =
-    location.hostname === 'localhost' ||
-    location.hostname === '127.0.0.1';
+  const IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 
   const version = IS_DEV
     ? '?v=dev'
@@ -43,38 +41,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.head.appendChild(link);
   });
 
-  // ✅ Load HTML partials
+  // ✅ Load HTML partials and log header content
   const partials = document.querySelectorAll('[include-html]');
   await Promise.all([...partials].map(async el => {
     const file = el.getAttribute('include-html');
     try {
       const res = await fetch(`${file}${version}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      el.innerHTML = await res.text();
+      const html = await res.text();
+
+      el.innerHTML = html;
+
+      if (file.includes('header')) {
+        console.log(`🧩 Loaded header partial: ${file}`);
+        console.log('📦 Partial content preview:\n', html.slice(0, 800));
+      }
     } catch (err) {
       el.innerHTML = `<!-- Failed to load ${file} -->`;
       console.error('🚫 Error loading partial:', err);
     }
   }));
 
-  // 🧩 Optional: Confirm that HTML was injected
-  console.log('🧩 Verifying include-html elements...');
-  [...document.querySelectorAll('[include-html]')].forEach(el => {
-    console.log('→ innerHTML length:', el.innerHTML.length);
-  });
+  // ✅ Confirm injection result
+  const testEl = document.getElementById('mobile-menu');
+  console.log('🔎 Post-injection check: mobile-menu =', testEl);
 
-  // ✅ Wait for menu elements to appear
+  // ✅ Wait for critical menu elements
   try {
-    console.log('⏳ Waiting for menu elements to exist...');
+    console.log('⏳ Waiting for core menu elements...');
     await Promise.all([
       waitForElement('#menuToggle'),
       waitForElement('#mobile-menu'),
       waitForElement('#menuBackdrop')
     ]);
-    console.log('✅ All menu elements found. Initializing...');
+    console.log('✅ All core menu elements found.');
+
+    // 🟢 Proceed with script initialization
     initMain();
     initMenu();
   } catch (err) {
-    console.error('❌ Menu elements not found in time:', err.message);
+    console.error('❌ Menu setup failed:', err.message);
   }
 });
