@@ -1,47 +1,48 @@
 @layer components {
-  /* Mobile menu toggle container */
+  /* Menu toggle container */
   #menuToggle {
-    @apply relative w-8 h-8 flex flex-col justify-center items-center cursor-pointer transition-transform duration-300 ease-in-out;
+    @apply relative w-8 h-8 cursor-pointer;
   }
 
-  /* Bar lines (top and bottom) */
+  /* Base bars */
   #menuToggle .bar {
-    @apply absolute w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
+    @apply absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out;
   }
 
+  /* Top bar — placed using Tailwind spacing */
   #menuToggle .bar:first-child {
-    @apply top-[10px];
+    @apply top-2; /* tailwind spacing = 0.5rem = 8px */
   }
 
+  /* Bottom bar — placed using Tailwind spacing */
   #menuToggle .bar:last-child {
-    @apply bottom-[10px];
+    @apply bottom-2; /* same as above for symmetry */
   }
 
-  /* OPEN STATE: transform bars into X */
+  /* Open state transforms */
   #menuToggle.open .bar:first-child {
-    transform: rotate(45deg) translateY(0.3rem);
+    @apply rotate-45;
+    transform-origin: top left;
+    transform: rotate(45deg) translateY(0.375rem);
   }
 
   #menuToggle.open .bar:last-child {
-    transform: rotate(-45deg) translateY(-0.3rem);
+    @apply -rotate-45;
+    transform-origin: bottom left;
+    transform: rotate(-45deg) translateY(-0.375rem);
   }
 
-  /* Optional: visually hide middle bar if added later */
-  #menuToggle .bar.middle {
-    @apply hidden;
-  }
-
-  /* Ensure mobile menu is visible when toggled */
+  /* Mobile menu visibility */
   #mobile-menu {
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
-  /* Prevent body scroll when menu is open (handled in JS) */
+  /* Prevent background scroll when mobile menu is active */
   body.overflow-hidden {
     overflow: hidden;
   }
 
-  /* Gondola fade/slide if present */
+  /* Optional gondola animation */
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
