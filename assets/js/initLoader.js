@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const prefix = '../'.repeat(depth);
 
   // ✅ Inject CSS
-  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+  //  ['assets/css/output.css', 'assets/css/hero.css'].forEach(file => {
+  ['/assets/css/output.css', '/assets/css/hero.css'].forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${prefix}${file}${version}`;
