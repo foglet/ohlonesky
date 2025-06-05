@@ -21,16 +21,10 @@
 
   /* Open state transforms */
   #menuToggle.open .bar:first-child {
-    @apply rotate-45;
-    transform-origin: top left;
-    transform: rotate(45deg) translateY(0.25rem);
-  }
+    transform: rotate(45deg) translateY(0.25rem); }
 
   #menuToggle.open .bar:last-child {
-    @apply -rotate-45;
-    transform-origin: bottom left;
-    transform: rotate(-45deg) translateY(-0.25rem);
-  }
+    transform: rotate(-45deg) translateY(-0.25rem); }
 
   /* Mobile menu visibility */
   #mobile-menu {
