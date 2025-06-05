@@ -11,6 +11,7 @@
     transform-origin: center;
   }
 
+  /* Closed positions */
   #menuToggle .bar:first-child {
     top: 11px;
   }
@@ -19,16 +20,17 @@
     bottom: 11px;
   }
 
+  /* Open state transforms */
   #menuToggle.open .bar:first-child {
     top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg) scaleX(0.8);
     height: 3px;
   }
 
   #menuToggle.open .bar:last-child {
-    bottom: auto;
     top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
+    bottom: auto;
+    transform: translateY(-50%) rotate(-45deg) scaleX(0.8);
     height: 3px;
   }
 
