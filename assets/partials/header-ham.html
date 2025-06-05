@@ -1,3 +1,8 @@
+<!-- MOBILE MENU OVERLAY (appears behind mobile menu when open) -->
+<div id="menuBackdrop"
+     class="hidden fixed inset-0 bg-black bg-opacity-50 z-30 opacity-0 transition-opacity duration-300 ease-out">
+</div>
+
 <!-- STICKY HEADER -->
 <header id="mainHeader" class="md:sticky top-0 bg-white shadow z-50 transition-transform duration-300">
 
@@ -20,16 +25,13 @@
     <!-- Mobile Menu & Toggle -->
     <div class="md:hidden flex flex-col items-end">
 
-      <!-- Hamburger Button (2-bar toggle, centered with smooth animation) -->
-
-      <!-- Hamburger Button (2-bar toggle to X) -->
+      <!-- Hamburger Button -->
       <button id="menuToggle"
           aria-label="Toggle menu"
           aria-expanded="false"
           class="w-8 h-8 relative flex items-center justify-center focus:outline-none">
-
-            <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
-            <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
+        <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
+        <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
       </button>
 
       <!-- Mobile Dropdown Menu -->
