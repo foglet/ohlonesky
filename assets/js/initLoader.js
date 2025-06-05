@@ -6,7 +6,16 @@ window.initMenu = waitForAndInitMenu;
 
   // const version = `?v=${Date.now()}`; //
 
-  const version = ?v=${Date.now()};
+//  const version = ?v=${Date.now()};  was working //
+
+const IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+const version = IS_DEV
+  ? `?v=${Date.now()}`
+  : '?v=1.0.0'; // Replace with your build version
+
+// end of const verion //
+
 
   injectStyles([
     '/assets/css/output.css',
