@@ -71,16 +71,16 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
         btn.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('hidden');
 
-        // Move gondola offscreen or return it
+        // 🔹 Move gondola offscreen / return
         if (gondola) {
           gondola.style.transition = 'transform 300ms ease-in-out';
           gondola.style.transform = expanded ? 'translateY(0)' : 'translateY(200%)';
         }
 
-        // Prevent page scrolling while menu is open
-        document.body.style.overflow = expanded ? '' : 'hidden';
+        // 🔹 Prevent scrolling when menu is open
+        document.body.classList.toggle('overflow-hidden', !expanded);
 
-        // Ensure menu opacity is 100%
+        // 🔹 Force menu opacity to 100%
         menu.style.opacity = '1';
       });
 
