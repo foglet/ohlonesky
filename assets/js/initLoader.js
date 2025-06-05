@@ -101,36 +101,3 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
 
   console.warn('⚠️ Menu elements not found after retrying');
 }
-
-// Header hides on scroll down, reappears on scroll up
-function setupScrollAwareHeader() {
-  const header = document.getElementById('mainHeader');
-  if (!header) return;
-
-  let lastY = window.scrollY;
-  let ticking = false;
-  let scrollTimeout;
-
-  function updateHeader() {
-    const currentY = window.scrollY;
-    header.style.transform = (currentY > lastY && currentY > 50)
-      ? 'translateY(-100%)'
-      : 'translateY(0)';
-    lastY = currentY;
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      header.style.transform = 'translateY(0)';
-    }, 150);
-  });
-
-  console.log('🎯 Sticky header scroll tracking enabled');
-}
