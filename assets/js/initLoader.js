@@ -37,7 +37,7 @@ async function injectPartials(selector, version) {
     const file = node.getAttribute('include-html');
     if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
 
-    const url = ${file}${version};
+    const url = `${file}${version}`;
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(HTTP ${res.status});
