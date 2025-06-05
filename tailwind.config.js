@@ -10,14 +10,16 @@ module.exports = {
     './assets/**/*.js',
     './assets/css/hero.css',
     './assets/partials/**/*.html',
-    '!./node_modules/**/*',
+    '!./node_modules/**/*', // Exclude node_modules
   ],
 
   safelist: [
-    'bar', // Ensure bar visibility
+    'bar',                   // Ensure menu bars are preserved in purge
     'hidden',
     'translate-x-full',
     'translate-x-0',
+    'translate-y-full',
+    'translate-y-0',
     'opacity-0',
     'opacity-100',
     'tham-active',
@@ -47,6 +49,7 @@ module.exports = {
     require('@tailwindcss/forms')({ strategy: 'class' }),
     require('tailwind-hamburgers'),
 
+    // Add fluid typography utilities
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': {
@@ -64,7 +67,7 @@ module.exports = {
         '.text-fluid-xl': {
           fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
         },
-      });
+      }, { variants: ['responsive'] });
     }),
   ],
 };

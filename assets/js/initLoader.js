@@ -16,7 +16,7 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
-// 🔹 Inject CSS files with versioning
+// Inject CSS files
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -26,7 +26,7 @@ function injectStyles(files, version) {
   });
 }
 
-// 🔹 Replace include-html nodes with partials
+// Replace include-html placeholders with partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -52,7 +52,7 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// 🔹 Mobile menu toggle + gondola fade
+// Menu toggle logic
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -60,9 +60,9 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     const gondola = document.getElementById('gondola');
 
     if (btn && menu) {
-      console.log('✅ Found mobile menu toggle and panel');
+      console.log('✅ Menu elements found');
 
-      // Setup initial gondola state
+      // Initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
@@ -74,16 +74,23 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
 
         btn.setAttribute('aria-expanded', willOpen);
         btn.classList.toggle('open');
-        menu.classList.toggle('hidden');
-        menu.style.opacity = '1';
+        document.body.classList.toggle('overflow-hidden', willOpen);
 
-        // Fade gondola
+        if (willOpen) {
+          menu.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            menu.classList.remove('translate-y-full', 'opacity-0');
+            menu.classList.add('translate-y-0', 'opacity-100');
+          });
+        } else {
+          menu.classList.remove('translate-y-0', 'opacity-100');
+          menu.classList.add('translate-y-full', 'opacity-0');
+          setTimeout(() => menu.classList.add('hidden'), 300);
+        }
+
         if (gondola) {
           gondola.style.opacity = willOpen ? '0' : '1';
         }
-
-        // Prevent background scroll
-        document.body.classList.toggle('overflow-hidden', willOpen);
       });
 
       return;
@@ -92,10 +99,10 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     await new Promise(resolve => setTimeout(resolve, interval));
   }
 
-  console.warn('⚠️ Menu toggle not found after retrying');
+  console.warn('⚠️ Menu elements not found after retrying');
 }
 
-// 🔹 Show/hide header on scroll
+// Header hides on scroll down, reappears on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -106,13 +113,9 @@ function setupScrollAwareHeader() {
 
   function updateHeader() {
     const currentY = window.scrollY;
-
-    if (currentY > lastY && currentY > 50) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-
+    header.style.transform = (currentY > lastY && currentY > 50)
+      ? 'translateY(-100%)'
+      : 'translateY(0)';
     lastY = currentY;
     ticking = false;
   }
