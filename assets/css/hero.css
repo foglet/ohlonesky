@@ -46,6 +46,10 @@
     @apply opacity-100 transition-opacity duration-300 ease-in-out;
   }
 
+  #menuBackdrop {
+    transition: opacity 0.3s ease-out;
+  }
+  
   body.overflow-hidden {
     overflow: hidden;
   }
