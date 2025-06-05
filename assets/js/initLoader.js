@@ -3,7 +3,7 @@ import { initMain } from '/assets/js/mainInit.js';
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
-  const version = `?v=${Date.now()}`;
+  const version = ?v=${Date.now()};
 
   injectStyles([
     '/assets/css/output.css',
@@ -16,49 +16,43 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
-/* ------------------------
-   Inject CSS
------------------------- */
+// Inject CSS files
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${file}${version}`;
+    link.href = ${file}${version};
     document.head.appendChild(link);
   });
 }
 
-/* ------------------------
-   Inject Partials
------------------------- */
+// Replace include-html placeholders with partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(`🧩 Found ${nodes.length} partial(s)`);
+  console.log(🧩 Found ${nodes.length} partial(s));
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
     if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
 
-    const url = `${file}${version}`;
+    const url = ${file}${version};
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) throw new Error(HTTP ${res.status});
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected partial: ${url}`);
+      console.log(✅ Injected partial: ${url});
     } catch (err) {
-      node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Error injecting ${url}`, err);
+      node.innerHTML = <!-- Failed to load ${url} -->;
+      console.error(❌ Error injecting ${url}, err);
     }
   }));
 }
 
-/* ------------------------
-   Mobile Menu Toggle
------------------------- */
+// Menu toggle logic
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
@@ -68,14 +62,15 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
+      // Initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
 
       btn.addEventListener('click', () => {
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        const willOpen = !isExpanded;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const willOpen = !expanded;
 
         btn.setAttribute('aria-expanded', willOpen);
         btn.classList.toggle('open');
@@ -107,41 +102,35 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Menu elements not found after retrying');
 }
 
-/* ------------------------
-   Scroll-aware Header
------------------------- */
+// Header hides on scroll down, reappears on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
 
-  let lastScrollY = window.scrollY;
+  let lastY = window.scrollY;
   let ticking = false;
-  let resetTimeout;
+  let scrollTimeout;
 
-  function onScroll() {
+  function updateHeader() {
     const currentY = window.scrollY;
-
-    if (currentY > lastScrollY && currentY > 50) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-
-    lastScrollY = currentY;
+    header.style.transform = (currentY > lastY && currentY > 50)
+      ? 'translateY(-100%)'
+      : 'translateY(0)';
+    lastY = currentY;
     ticking = false;
   }
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
-      requestAnimationFrame(onScroll);
+      requestAnimationFrame(updateHeader);
       ticking = true;
     }
 
-    clearTimeout(resetTimeout);
-    resetTimeout = setTimeout(() => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
     }, 150);
   });
 
-  console.log('🎯 Scroll-in header initialized');
+  console.log('🎯 Sticky header scroll tracking enabled');
 }
