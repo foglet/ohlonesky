@@ -1,6 +1,28 @@
 import { initMain } from '/assets/js/mainInit.js';
 import { initMenu } from '/assets/js/menuBlitzloader.js';
 
+function waitForElement(selector, timeout = 4000) {
+  return new Promise((resolve, reject) => {
+    const el = document.querySelector(selector);
+    if (el) return resolve(el);
+
+    const observer = new MutationObserver((_, obs) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        obs.disconnect();
+        resolve(el);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`Timeout: ${selector} not found`));
+    }, timeout);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const IS_DEV =
     location.hostname === 'localhost' ||
@@ -35,26 +57,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }));
 
-  // ✅ Give DOM time to integrate partials
-  await new Promise(resolve => setTimeout(resolve, 100));
-
-  // 🔍 Debug: verify partials populated
+  // 🧩 Optional: Confirm that HTML was injected
   console.log('🧩 Verifying include-html elements...');
   [...document.querySelectorAll('[include-html]')].forEach(el => {
     console.log('→ innerHTML length:', el.innerHTML.length);
   });
 
-  // ✅ Final DOM settle
-  await new Promise(resolve => setTimeout(resolve, 100));
-
-  // ✅ Now initialize scripts safely
-  console.log('🧩 All partials + menu loaded. Initializing...');
-
-  initMain();
-
-  if (document.getElementById('mobile-menu')) {
+  // ✅ Wait for menu elements to appear
+  try {
+    console.log('⏳ Waiting for menu elements to exist...');
+    await Promise.all([
+      waitForElement('#menuToggle'),
+      waitForElement('#mobile-menu'),
+      waitForElement('#menuBackdrop')
+    ]);
+    console.log('✅ All menu elements found. Initializing...');
+    initMain();
     initMenu();
-  } else {
-    console.warn('⚠️ Skipping initMenu(): #mobile-menu not found in DOM');
+  } catch (err) {
+    console.error('❌ Menu elements not found in time:', err.message);
   }
 });
