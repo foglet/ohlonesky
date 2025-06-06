@@ -3913,6 +3913,10 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
   .sm\:max-w-\[65ch\] {
     max-width: 65ch;
   }
@@ -3978,6 +3982,11 @@ video {
 
   .md\:justify-center {
     justify-content: center;
+  }
+
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .md\:pt-0 {

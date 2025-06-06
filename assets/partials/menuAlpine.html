@@ -1,7 +1,6 @@
-<!-- Alpine-powered hamburger + overlay -->
 <div x-data="{ open: false }" x-effect="document.body.classList.toggle('overflow-hidden', open)">
 
-  <!-- Toggle Button -->
+  <!-- Toggle button -->
   <button @click="open = !open"
           :aria-expanded="open"
           aria-controls="menuOverlay"
@@ -20,7 +19,7 @@
     </div>
   </button>
 
-  <!-- Overlay Menu -->
+  <!-- Overlay menu -->
   <div id="menuOverlay"
        x-show="open"
        x-transition:enter="transition-opacity duration-500"
@@ -33,9 +32,9 @@
 
     <nav class="flex flex-col items-center space-y-10 text-2xl font-adobe">
       <a href="/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Home</a>
-      <a href="/about/" @click="open = false" class="hover:text-highlight transition-colors duration-200">About</a>
-      <a href="/donate/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Donate</a>
-      <a href="/support/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Support</a>
+      <a href="/00/faqs/" @click="open = false" class="hover:text-highlight transition-colors duration-200">FAQs</a>
+      <a href="/00/support/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Support</a>
+      <a href="/00/contact/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Contact</a>
     </nav>
 
   </div>
