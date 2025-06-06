@@ -1,4 +1,6 @@
 console.log('🚀 initLoader.js started');
+console.log('🧪 INIT START', window.location.pathname, Date.now());
+
 
 import { initMain } from '/assets/js/mainInit.js';
 
