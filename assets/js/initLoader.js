@@ -16,9 +16,9 @@ window.initMenu = waitForAndInitMenu;
 
     await injectPartials('[include-html]', version);
 
-    await new Promise(requestAnimationFrame); // let DOM settle
+    await new Promise(requestAnimationFrame); // Let DOM stabilize
 
-    await waitForAndInitMenu(); // wait for elements before binding
+    await waitForAndInitMenu(); // Ensure mobile menu is ready
 
     setupScrollAwareHeader();
     initMain();
@@ -66,7 +66,7 @@ async function injectPartials(selector, version) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🍔 Toggle mobile menu (slide & fade)
+// 🍔 Toggle mobile menu visibility
 function toggleMobileMenu({ btn, menu, gondola }) {
   const isOpen = btn.getAttribute('aria-expanded') === 'true';
   const nextState = !isOpen;
@@ -91,7 +91,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧠 Wait for menu elements and bind behavior
+// 🧠 Wait for menu to be ready and bind toggle
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
@@ -160,7 +160,7 @@ function setupScrollAwareHeader() {
 
       const btn = document.getElementById('menuToggle');
       if (btn && !btn.__menuBound) {
-        waitForAndInitMenu(); // Retry if menu wasn't yet bound
+        waitForAndInitMenu(); // Retry if unbound
       }
     }, 150);
   });
