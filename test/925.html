@@ -93,17 +93,22 @@
     <footer include-html="/assets/partials/footer.html"></footer>
 
     <!-- Init Scripts -->
-    <script type="module" src="/assets/js/initLoader.js"></script>
+    <!-- <script type="module" src="/assets/js/initLoader.js"></script> -->
 
     <script>
-      console.log("🧪 menu fallback JS loaded");
+        console.log("🧪 fallback menu script loaded");
+
         document.addEventListener('DOMContentLoaded', () => {
           const btn = document.getElementById('menuToggle');
           const menu = document.getElementById('mobile-menu');
           const backdrop = document.getElementById('menuBackdrop');
 
+          console.log("🧪 menuToggle:", btn);
+          console.log("🧪 mobile-menu:", menu);
+          console.log("🧪 menuBackdrop:", backdrop);
+
           if (!btn || !menu || !backdrop) {
-            console.warn('❌ Fallback header missing critical elements.');
+            console.warn('❌ One or more menu elements not found.');
             return;
           }
 
