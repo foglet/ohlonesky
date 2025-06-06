@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <!-- ✅ Backdrop -->
+  <!-- ✅ Backdrop (No blur) -->
   <div x-show="open"
        x-transition:enter="transition-opacity duration-500"
        x-transition:enter-start="opacity-0"
@@ -47,10 +47,12 @@
        x-transition:leave="transition-opacity duration-500"
        x-transition:leave-start="opacity-40"
        x-transition:leave-end="opacity-0"
-       class="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden pointer-events-none">
+       class="fixed inset-0 z-30 bg-black/40 md:hidden"
+       @click="open = false"
+       x-cloak>
   </div>
 
-  <!-- ✅ Slide-Up Mobile Overlay (INSIDE header) -->
+  <!-- ✅ Slide-Up Mobile Overlay -->
   <nav id="menuOverlay"
        x-show="open"
        x-transition:enter="transition duration-500 ease-out"
@@ -59,13 +61,42 @@
        x-transition:leave="transition duration-500 ease-in"
        x-transition:leave-start="opacity-100 translate-y-0"
        x-transition:leave-end="opacity-0 translate-y-full"
-       class="fixed inset-x-0 top-[64px] bottom-[56px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
-       tabindex="0">
+       class="fixed top-[64px] bottom-[56px] inset-x-0 bg-white z-40 px-4 py-8 overflow-y-auto md:hidden"
+       tabindex="0"
+       x-cloak>
 
     <div class="flex flex-col items-center justify-center space-y-6 h-full">
-      <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">FAQs</a>
-      <a @click="open = false" href="/00/support/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Support</a>
-      <a @click="open = false" href="/00/contact/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Contact</a>
+
+      <a @click="open = false"
+         x-show="open"
+         x-transition:enter="transition transform duration-500 ease-out"
+         x-transition:enter-start="translate-y-6 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         style="transition-delay: 100ms"
+         class="block text-3xl font-bold text-brandDark hover:text-highlight">
+        FAQs
+      </a>
+
+      <a @click="open = false"
+         x-show="open"
+         x-transition:enter="transition transform duration-500 ease-out"
+         x-transition:enter-start="translate-y-6 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         style="transition-delay: 200ms"
+         class="block text-3xl font-bold text-brandDark hover:text-highlight">
+        Support
+      </a>
+
+      <a @click="open = false"
+         x-show="open"
+         x-transition:enter="transition transform duration-500 ease-out"
+         x-transition:enter-start="translate-y-6 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         style="transition-delay: 300ms"
+         class="block text-3xl font-bold text-brandDark hover:text-highlight">
+        Contact
+      </a>
+
     </div>
   </nav>
 
