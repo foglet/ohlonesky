@@ -13,7 +13,7 @@
 
   <!-- Page Content -->
   <main class="px-4 py-16 max-w-screen-md mx-auto text-center">
-    <h1 class="text-3xl font-bold mb-4">00/apline Test Page</h1>
+    <h1 class="text-3xl font-bold mb-4">00/alpine Test Page</h1>
     <p class="text-lg text-gray-700"> lorem ipsum ya!</p>
 
     <!-- Hero Image -->
@@ -57,18 +57,17 @@
     }));
   }
 
-  document.addEventListener('DOMContentLoaded', async () => {
+  async function initPage() {
     await injectPartials();
 
-    // Wait a microtick before Alpine init
-    setTimeout(() => {
-      const alpine = document.createElement('script');
-      alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
-      alpine.defer = true;
-      document.head.appendChild(alpine);
-    }, 100);
-  });
-</script>
+    // ✅ Load Alpine after header is injected
+    const alpine = document.createElement('script');
+    alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+    alpine.defer = true;
+    document.head.appendChild(alpine);
+  }
 
+  document.addEventListener('DOMContentLoaded', initPage);
+</script>
 </body>
 </html>
