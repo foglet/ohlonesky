@@ -1,6 +1,9 @@
 <!-- headerAlpine.html -->
 
-<header x-data="menuOverlay()" x-init="init()" x-effect="document.body.classList.toggle('overflow-hidden', open)" class="sticky top-0 z-50 w-full bg-white shadow-sm">
+<header x-data="menuOverlay()"
+        x-init="init()"
+        x-effect="document.body.classList.toggle('overflow-hidden', open)"
+        class="sticky top-0 z-50 w-full bg-white shadow-sm">
 
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
 
@@ -52,51 +55,34 @@
        x-cloak>
   </div>
 
-  <!-- ✅ Slide-Up Mobile Overlay -->
+  <!-- ✅ Slide-Up Mobile Overlay (INSIDE header) -->
   <nav id="menuOverlay"
        x-show="open"
-       x-transition:enter="transition duration-500 ease-out"
-       x-transition:enter-start="opacity-0 translate-y-full"
-       x-transition:enter-end="opacity-100 translate-y-0"
-       x-transition:leave="transition duration-500 ease-in"
-       x-transition:leave-start="opacity-100 translate-y-0"
-       x-transition:leave-end="opacity-0 translate-y-full"
-       class="fixed top-[64px] bottom-[56px] inset-x-0 bg-white z-40 px-4 py-8 overflow-y-auto md:hidden"
+       x-transition:enter="transition-opacity duration-500 ease-out"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-100"
+       x-transition:leave="transition-opacity duration-500 ease-in"
+       x-transition:leave-start="opacity-100"
+       x-transition:leave-end="opacity-0"
+       class="fixed inset-x-0 top-[64px] bottom-[56px] z-40 bg-white md:hidden"
        tabindex="0"
        x-cloak>
 
-    <div class="flex flex-col items-center justify-center space-y-6 h-full">
+    <div class="relative h-full flex items-start justify-center pt-[80vh]">
+      <div class="flex flex-col items-center space-y-6"
+           x-show="open"
+           x-transition:enter="transition-all duration-500 ease-out"
+           x-transition:enter-start="translate-y-12 opacity-0"
+           x-transition:enter-end="translate-y-[-30vh] opacity-100"
+           x-transition:leave="transition-all duration-400 ease-in"
+           x-transition:leave-start="translate-y-[-30vh] opacity-100"
+           x-transition:leave-end="translate-y-12 opacity-0">
 
-      <a @click="open = false"
-         x-show="open"
-         x-transition:enter="transition transform duration-500 ease-out"
-         x-transition:enter-start="translate-y-6 opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         style="transition-delay: 100ms"
-         class="block text-3xl font-bold text-brandDark hover:text-highlight">
-        FAQs
-      </a>
+        <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">FAQs</a>
+        <a @click="open = false" href="/00/support/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Support</a>
+        <a @click="open = false" href="/00/contact/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Contact</a>
 
-      <a @click="open = false"
-         x-show="open"
-         x-transition:enter="transition transform duration-500 ease-out"
-         x-transition:enter-start="translate-y-6 opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         style="transition-delay: 200ms"
-         class="block text-3xl font-bold text-brandDark hover:text-highlight">
-        Support
-      </a>
-
-      <a @click="open = false"
-         x-show="open"
-         x-transition:enter="transition transform duration-500 ease-out"
-         x-transition:enter-start="translate-y-6 opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         style="transition-delay: 300ms"
-         class="block text-3xl font-bold text-brandDark hover:text-highlight">
-        Contact
-      </a>
-
+      </div>
     </div>
   </nav>
 
