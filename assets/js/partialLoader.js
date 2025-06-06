@@ -1,3 +1,5 @@
+// assets/js/partialLoader.js //
+
 console.log('🚀 partialLoader.js script running');
 
 async function injectPartials(selector = '[include-html]') {
