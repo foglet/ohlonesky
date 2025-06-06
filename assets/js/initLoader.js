@@ -18,7 +18,7 @@ window.initMenu = waitForAndInitMenu;
       '/assets/css/hero.css'
     ], version);
 
-    await injectPartials('[include-html]', version);
+    await injectPartials('[data-include-html]', version);
     await new Promise(requestAnimationFrame); // Let DOM stabilize
 
     await waitForAndInitMenu(); // 🍔 Bind menu toggle
@@ -50,8 +50,8 @@ async function injectPartials(selector, version) {
   console.log(`🧩 Found ${nodes.length} partial(s)`);
 
   await Promise.all([...nodes].map(async node => {
-    const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html:', node);
+    const file = node.getAttribute('data-include-html');
+    if (!file) return console.warn('⚠️ Missing data-include-html:', node);
 
     const url = `${file}${version}`;
     try {
