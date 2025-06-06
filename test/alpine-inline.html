@@ -1,0 +1,92 @@
+<!-- /test/alpine-inline.html  -->
+
+<!DOCTYPE html>
+<html lang="en" class="bg-white scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohlone Sky – Alpine Inline Test</title>
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <style>
+      @font-face {
+        font-family: 'freight-sans-pro';
+        src: local('freight-sans-pro');
+      }
+    </style>
+  </head>
+
+  <body class="font-adobe text-brandDark" x-data="{ open: false }" x-effect="document.body.classList.toggle('overflow-hidden', open)" x-init="console.log('✅ Alpine menu initialized')">
+
+    <!-- ✅ Sticky Header -->
+    <header class="sticky top-0 z-50 w-full bg-white shadow-sm">
+      <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+        <!-- Logo -->
+        <a href="/" class="flex items-center">
+          <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
+               alt="Ohlone Sky logo"
+               class="h-8 w-auto sm:h-10" />
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
+          <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">FAQs</a>
+          <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Support</a>
+          <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Contact</a>
+        </nav>
+
+        <!-- Hamburger (mobile only) -->
+        <button @click="open = !open"
+                :aria-expanded="open"
+                aria-controls="menuOverlay"
+                aria-label="Toggle menu"
+                id="menuToggle"
+                class="relative z-50 w-8 h-8 md:hidden">
+          <div :class="open
+              ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-70 h-[3px]'
+              : 'top-[11px] h-[2px]'"
+               class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out">
+          </div>
+          <div :class="open
+              ? 'top-1/2 transform -translate-y-1/2 -rotate-45 scale-x-70 h-[3px]'
+              : 'bottom-[11px] h-[2px]'"
+               class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out">
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <!-- ✅ Mobile Overlay Menu -->
+    <div id="menuOverlay"
+         x-show="open"
+         x-transition:enter="transition-opacity duration-500"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity duration-500"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed top-16 bottom-16 left-0 right-0 z-40 bg-brandDark/95 text-white overflow-y-auto flex justify-center items-center pointer-events-auto">
+
+      <nav class="flex flex-col items-center space-y-10 text-2xl font-adobe">
+        <a href="/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Home</a>
+        <a href="/00/faqs/" @click="open = false" class="hover:text-highlight transition-colors duration-200">FAQs</a>
+        <a href="/00/support/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Support</a>
+        <a href="/00/contact/" @click="open = false" class="hover:text-highlight transition-colors duration-200">Contact</a>
+      </nav>
+    </div>
+
+    <!-- Main content -->
+    <main class="min-h-screen flex flex-col items-center justify-center px-4 pt-24 text-center">
+      <h1 class="text-4xl font-semibold mb-4">🧪 Alpine Inline Menu</h1>
+      <p class="text-lg text-neutralText max-w-xl leading-relaxed">
+        This version uses no partials — just plain inline HTML and Alpine. Try toggling the mobile menu and resizing the window.
+      </p>
+    </main>
+
+    <footer class="h-16 flex items-center justify-center text-sm text-gray-500">
+      © Ohlone Sky · Inline Alpine Test
+    </footer>
+
+    <!-- ✅ Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </body>
+</html>
