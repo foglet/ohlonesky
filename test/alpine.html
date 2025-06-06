@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alpine Test – Ohlone Sky</title>
+
+    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/assets/css/output.css" />
   </head>
 
   <body class="relative font-adobe text-brandDark">
 
-    <!-- 🧩 Inject header (logo, nav, hamburger, includes menuAlpine.html) -->
+    <!-- ✅ Sticky Header (logo + nav) -->
     <div include-html="/assets/partials/headerAlpine.html"></div>
 
+    <!-- ✅ Mobile Menu Overlay (must be separate from header) -->
+    <div include-html="/assets/partials/menuAlpine.html"></div>
+
+    <!-- Main content -->
     <main class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24">
       <h1 class="text-4xl font-semibold mb-4">🧪 Alpine.js Test</h1>
       <p class="max-w-xl text-lg text-neutralText leading-relaxed">
@@ -19,22 +25,15 @@
       </p>
     </main>
 
+    <!-- Footer -->
     <footer class="h-16 flex items-center justify-center text-sm text-gray-500">
       © Ohlone Sky · Test Footer
     </footer>
 
+    <!-- 🧩 Load partials first -->
     <script src="/assets/js/partialLoader.js"></script>
-  <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-  <!-- Instead of defer-loading Alpine, do this inline -->
-      <script>
-        // Wait until partials are injected, then load Alpine manually
-        injectPartials().then(() => {
-          const alpineScript = document.createElement('script');
-          alpineScript.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
-          alpineScript.defer = true;
-          document.body.appendChild(alpineScript);
-        });
-      </script>
 
+    <!-- 🌱 Load Alpine.js AFTER partials are injected -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </body>
 </html>
