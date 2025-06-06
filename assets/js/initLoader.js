@@ -55,8 +55,8 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// Wait for menu elements and bind toggle
-async function waitForAndInitMenu(maxTries = 20, interval = 200) {
+// Wait for mobile menu and bind toggle
+async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
   for (let i = 0; i < maxTries; i++) {
@@ -64,10 +64,9 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     const menu = document.getElementById('mobile-menu');
     const gondola = document.getElementById('gondola');
 
-    if (btn && menu) {
+    if (btn && menu && menu.children.length > 0) {
       console.log('✅ Menu elements found');
 
-      // Remove previous handler if any
       if (menuClickHandler) {
         btn.removeEventListener('click', menuClickHandler);
       }
@@ -75,7 +74,6 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
       menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
       btn.addEventListener('click', menuClickHandler);
 
-      // Reset gondola opacity if present
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
@@ -88,10 +86,10 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     await new Promise(resolve => setTimeout(resolve, interval));
   }
 
-  console.warn('⚠️ Menu elements not found after retrying');
+  console.warn('⚠️ Menu elements not fully ready (missing or empty)');
 }
 
-// Toggle mobile menu open/close
+// Handle menu toggle behavior
 function toggleMobileMenu({ btn, menu, gondola }) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   const willOpen = !expanded;
@@ -117,7 +115,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
   }
 }
 
-// Hide header on scroll down, show on scroll up
+// Header hides on scroll down, shows on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -148,8 +146,9 @@ function setupScrollAwareHeader() {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
 
-      // Only retry menu binding if not already done
-      if (!menuIsInitialized) waitForAndInitMenu();
+      if (!menuIsInitialized) {
+        waitForAndInitMenu(); // Safe retry if menu wasn't ready before
+      }
     }, 150);
   });
 
