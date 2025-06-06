@@ -1,11 +1,50 @@
 <!-- headerAlpine.html -->
 
-<header x-data="{ open: false }"
-        x-effect="document.body.classList.toggle('overflow-hidden', open)"
-        class="sticky top-0 z-50 w-full bg-white shadow-sm">
+<script>
+  function menuOverlay() {
+    return {
+      open: false,
+      init() {
+        this.$watch('open', (val) => {
+          if (val) {
+            document.addEventListener('keydown', this.escHandler);
+            this.$nextTick(() => this.trapFocus());
+          } else {
+            document.removeEventListener('keydown', this.escHandler);
+          }
+        });
+      },
+      escHandler(e) {
+        if (e.key === 'Escape') this.open = false;
+      },
+      trapFocus() {
+        const overlay = document.getElementById('menuOverlay');
+        if (!overlay) return;
+        const focusables = overlay.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        overlay.addEventListener('keydown', (e) => {
+          if (!this.open || e.key !== 'Tab') return;
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+          }
+        });
+      }
+    };
+  }
+</script>
+
+<header
+  x-data="menuOverlay()"
+  x-init="init()"
+  x-effect="document.body.classList.toggle('overflow-hidden', open)"
+  class="sticky top-0 z-50 w-full bg-white shadow-sm">
 
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
-
     <!-- Logo -->
     <a href="/" class="flex items-center shrink-0">
       <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
@@ -13,9 +52,8 @@
            class="h-8 w-auto sm:h-10" />
     </a>
 
-    <!-- Right side: Desktop nav + Mobile hamburger -->
+    <!-- Right: Desktop nav + Mobile hamburger -->
     <div class="flex items-center space-x-4">
-
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
         <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">FAQs</a>
@@ -23,7 +61,7 @@
         <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Contact</a>
       </nav>
 
-      <!-- ✅ Mobile-only hamburger button, in header, top-right -->
+      <!-- Mobile Hamburger -->
       <button @click="open = !open"
               :aria-expanded="open"
               aria-controls="menuOverlay"
@@ -33,32 +71,43 @@
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-70 h-[3px]'
             : 'top-[11px] h-[2px]'"
-             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out">
-        </div>
+             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out"></div>
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 -rotate-45 scale-x-70 h-[3px]'
             : 'bottom-[11px] h-[2px]'"
-             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out">
-        </div>
+             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out"></div>
       </button>
-
     </div>
   </div>
 
-  <!-- ✅ Mobile Overlay Menu -->
+  <!-- Dimmed Backdrop -->
+  <div x-show="open"
+       x-transition:enter="transition-opacity duration-500"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-40"
+       x-transition:leave="transition-opacity duration-500"
+       x-transition:leave-start="opacity-40"
+       x-transition:leave-end="opacity-0"
+       class="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden pointer-events-none">
+  </div>
+
+  <!-- Slide-Up Mobile Menu -->
   <nav id="menuOverlay"
        x-show="open"
-       x-transition:enter="transition ease-out duration-500"
-       x-transition:enter-start="opacity-0 -translate-y-4"
+       x-transition:enter="transition duration-500 ease-out"
+       x-transition:enter-start="opacity-0 translate-y-full"
        x-transition:enter-end="opacity-100 translate-y-0"
-       x-transition:leave="transition ease-in duration-500"
+       x-transition:leave="transition duration-500 ease-in"
        x-transition:leave-start="opacity-100 translate-y-0"
-       x-transition:leave-end="opacity-0 -translate-y-4"
-       class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg z-40 px-4 py-6 space-y-4">
+       x-transition:leave-end="opacity-0 translate-y-full"
+       class="fixed top-[60px] bottom-[60px] inset-x-0 bg-white z-40 px-4 py-8 overflow-y-auto md:hidden"
+       tabindex="0">
 
-    <a href="/" class="block text-lg font-semibold text-brandDark hover:text-highlight transition-colors duration-200">Home</a>
-    <a href="/00/faqs/" class="block text-lg font-semibold text-brandDark hover:text-highlight transition-colors duration-200">FAQs</a>
-    <a href="/00/support/" class="block text-lg font-semibold text-brandDark hover:text-highlight transition-colors duration-200">Support</a>
-    <a href="/00/contact/" class="block text-lg font-semibold text-brandDark hover:text-highlight transition-colors duration-200">Contact</a>
+    <div class="flex flex-col items-center justify-center space-y-6 h-full">
+      <a @click="open = false" href="/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Home</a>
+      <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">FAQs</a>
+      <a @click="open = false" href="/00/support/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Support</a>
+      <a @click="open = false" href="/00/contact/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition">Contact</a>
+    </div>
   </nav>
 </header>
