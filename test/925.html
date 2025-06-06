@@ -92,53 +92,10 @@
     </div>
     <footer include-html="/assets/partials/footer.html"></footer>
 
-    <!-- Init Scripts -->
-    <!-- <script type="module" src="/assets/js/initLoader.js"></script> -->
+      <!-- Init Scripts -->
+      <!-- <script type="module" src="/assets/js/initLoader.js"></script> -->
+      <!-- <script type="module" src="/assets/js/initLoader-H937.js"></script> -->
+      <script src="/assets/js/menu-toggle.js"></script>
 
-    <script>
-        console.log("🧪 fallback menu script loaded");
-
-        document.addEventListener('DOMContentLoaded', () => {
-          const btn = document.getElementById('menuToggle');
-          const menu = document.getElementById('mobile-menu');
-          const backdrop = document.getElementById('menuBackdrop');
-
-          console.log("🧪 menuToggle:", btn);
-          console.log("🧪 mobile-menu:", menu);
-          console.log("🧪 menuBackdrop:", backdrop);
-
-          if (!btn || !menu || !backdrop) {
-            console.warn('❌ One or more menu elements not found.');
-            return;
-          }
-
-          const toggleMenu = () => {
-            const isOpen = btn.classList.contains('open');
-            btn.classList.toggle('open');
-            btn.setAttribute('aria-expanded', String(!isOpen));
-
-            if (!isOpen) {
-              menu.classList.remove('hidden', 'translate-y-full', 'opacity-0');
-              menu.classList.add('translate-y-0', 'opacity-100');
-              backdrop.classList.remove('hidden', 'opacity-0');
-              backdrop.classList.add('opacity-100');
-            } else {
-              menu.classList.remove('translate-y-0', 'opacity-100');
-              menu.classList.add('translate-y-full', 'opacity-0');
-              backdrop.classList.add('opacity-0');
-
-              setTimeout(() => {
-                menu.classList.add('hidden');
-                backdrop.classList.add('hidden');
-              }, 300);
-            }
-          };
-
-          btn.addEventListener('click', toggleMenu);
-          backdrop.addEventListener('click', toggleMenu);
-        });
-      </script>
-
-    <!-- <script type="module" src="/assets/js/initLoader-H937.js"></script> -->
   </body>
 </html>
