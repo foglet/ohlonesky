@@ -2,22 +2,18 @@
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
 
     <!-- Left: Logo -->
-    <a href="/" class="flex items-center">
+    <a href="/" class="flex items-center shrink-0">
       <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
            alt="Ohlone Sky logo"
            class="h-8 w-auto sm:h-10" />
     </a>
 
-    <!-- Right: Desktop nav + mobile hamburger -->
-    <div class="flex items-center space-x-4">
+    <!-- Right: Desktop nav -->
+    <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
+      <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>FAQs</a>
+      <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>Support</a>
+      <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>Contact</a>
+    </nav>
 
-      <!-- ✅ Desktop nav (now properly closed) -->
-      <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
-        <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>FAQs</a>
-        <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>Support</a>
-        <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200" data-nav>Contact</a>
-      </nav>
-
-    </div>
   </div>
 </header>
