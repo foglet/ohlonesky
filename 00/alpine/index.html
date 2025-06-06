@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ohlone Sky – Alpine Test</title>
   <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Header Partial (Alpine version) -->
+  <!-- Header Partial -->
   <div include-html="/assets/partials/headerAlpine.html"></div>
 
   <!-- Page Content -->
-  <main class="px-4 py-16 max-w-screen-md mx-auto text-center">
+  <main class="flex-grow px-4 py-16 max-w-screen-md mx-auto text-center">
     <h1 class="text-3xl font-bold mb-4">00/alpine Test Page</h1>
-    <p class="text-lg text-gray-700"> lorem ipsum ya!</p>
+    <p class="text-lg text-gray-700 mb-8">lorem ipsum ya!</p>
 
     <!-- Hero Image -->
     <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jiachen-lin-q_dNpU4kAKo-unsplash.jpg"
@@ -24,50 +25,42 @@
     <p class="text-xs text-gray-600 text-center mt-2">
       Source: Jiachen Lin, Unsplash
     </p>
-    <br>
-
-
-
-
-
-
-
   </main>
 
   <!-- Footer Partial -->
   <div include-html="/assets/partials/footer.html"></div>
 
-  <!-- Loader Script for Partials & Alpine -->
+  <!-- Load Partials, then Alpine -->
   <script type="module">
-  async function injectPartials(selector = '[include-html]') {
-    const elements = document.querySelectorAll(selector);
-    await Promise.all([...elements].map(async el => {
-      const file = el.getAttribute('include-html');
-      if (!file) return;
-      try {
-        const res = await fetch(file);
-        if (res.ok) {
-          el.innerHTML = await res.text();
-        } else {
-          el.innerHTML = `<p>Error loading ${file}</p>`;
+    async function injectPartials(selector = '[include-html]') {
+      const elements = document.querySelectorAll(selector);
+      await Promise.all([...elements].map(async el => {
+        const file = el.getAttribute('include-html');
+        if (!file) return;
+        try {
+          const res = await fetch(file);
+          if (res.ok) {
+            el.innerHTML = await res.text();
+          } else {
+            el.innerHTML = `<p>Error loading ${file}</p>`;
+          }
+        } catch (err) {
+          console.warn('Partial load error:', file, err);
         }
-      } catch (err) {
-        console.warn('Partial load error:', file, err);
-      }
-    }));
-  }
+      }));
+    }
 
-  async function initPage() {
-    await injectPartials();
+    async function initPage() {
+      await injectPartials();
 
-    // ✅ Load Alpine after header is injected
-    const alpine = document.createElement('script');
-    alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
-    alpine.defer = true;
-    document.head.appendChild(alpine);
-  }
+      // ✅ Load Alpine after partials
+      const alpine = document.createElement('script');
+      alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+      alpine.defer = true;
+      document.head.appendChild(alpine);
+    }
 
-  document.addEventListener('DOMContentLoaded', initPage);
-</script>
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
 </body>
 </html>
