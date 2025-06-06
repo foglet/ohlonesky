@@ -24,6 +24,17 @@
     </footer>
 
     <script src="/assets/js/partialLoader.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+  <!-- Instead of defer-loading Alpine, do this inline -->
+      <script>
+        // Wait until partials are injected, then load Alpine manually
+        injectPartials().then(() => {
+          const alpineScript = document.createElement('script');
+          alpineScript.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpineScript.defer = true;
+          document.body.appendChild(alpineScript);
+        });
+      </script>
+
   </body>
 </html>
