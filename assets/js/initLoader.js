@@ -1,3 +1,5 @@
+console.log('🚀 initLoader.js started');
+
 import { initMain } from '/assets/js/mainInit.js';
 
 let menuClickHandler = null;
