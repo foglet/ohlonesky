@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Alpine Test – Ohlone Sky</title>
 
     <!-- Tailwind CSS -->
@@ -12,27 +11,26 @@
 
   <body class="relative font-adobe text-brandDark">
 
-    <!-- 💡 Inject hamburger + overlay here -->
+    <!-- 🧩 Alpine-powered menu partial (renamed) -->
     <div include-html="/assets/partials/menuAlpine.html"></div>
 
-    <!-- ✨ Main content for test -->
-    <main class="min-h-screen flex flex-col items-center justify-center text-center px-4">
-      <h1 class="text-4xl font-semibold mb-4">🌄 Ohlone Sky Alpine Test</h1>
-      <p class="max-w-xl text-lg leading-relaxed text-neutralText">
-        This page demonstrates the new Alpine.js-based mobile menu with modular partials.
-        Click the hamburger above to open the overlay.
+    <!-- Main test content -->
+    <main class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24">
+      <h1 class="text-4xl font-semibold mb-4">🧪 Alpine.js Test</h1>
+      <p class="max-w-xl text-lg text-neutralText leading-relaxed">
+        This tests the mobile menu overlay using Alpine.js and Tailwind partials. Resize to mobile view and toggle the menu.
       </p>
     </main>
 
-    <!-- ℹ️ Optional footer space check -->
+    <!-- Footer area for spacing -->
     <footer class="h-16 flex items-center justify-center text-sm text-gray-500">
       © Ohlone Sky · Test Footer
     </footer>
 
-    <!-- 🔌 Load partials -->
+    <!-- Inject partials -->
     <script src="/assets/js/partialLoader.js"></script>
 
-    <!-- ⚡ Load Alpine.js (after partials are injected) -->
+    <!-- Load Alpine.js AFTER partials -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </body>
 </html>
