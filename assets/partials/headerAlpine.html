@@ -46,10 +46,11 @@
 
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
     <!-- Logo -->
-    <a href="/00/" class="flex items-center space-x-2">
+    <a href="/" class="flex items-center shrink-0 z-50 relative">
       <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg"
-           alt="Ohlone Sky Logo"
-           class="h-[28px] w-auto" />
+           alt="Ohlone Sky logo"
+           class="h-8 w-auto sm:h-10" />
+    </a>
 
     <!-- Right: Desktop nav + Mobile hamburger -->
     <div class="flex items-center space-x-4">
@@ -70,20 +71,19 @@
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-70 h-[3px]'
             : 'top-[11px] h-[2px]'"
-             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out" x-cloak></div>
+             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out"></div>
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 -rotate-45 scale-x-70 h-[3px]'
             : 'bottom-[11px] h-[2px]'"
-             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out" x-cloak></div>
+             class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-300 ease-in-out"></div>
       </button>
     </div>
   </div>
 
-  <!-- Slide-Up Mobile Menu -->
+  <!-- Slide-Up Mobile Menu (confined between header and footer) -->
   <div class="relative z-40 md:hidden">
-    <!-- Dimmed Backdrop -->
+    <!-- Dimmed Background confined to the overlay area -->
     <div x-show="open"
-         x-cloak
          x-transition:enter="transition-opacity duration-500"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-40"
@@ -93,10 +93,9 @@
          class="absolute top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-sm pointer-events-none">
     </div>
 
-    <!-- Overlay -->
+    <!-- Overlay Navigation (height limited to between header & footer) -->
     <nav id="menuOverlay"
          x-show="open"
-         x-cloak
          x-transition:enter="transition duration-500 ease-out"
          x-transition:enter-start="opacity-0 translate-y-full"
          x-transition:enter-end="opacity-100 translate-y-0"
