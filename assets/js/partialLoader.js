@@ -21,7 +21,7 @@ async function injectPartials(selector = '[include-html]') {
     }
   }));
 
-  // ✅ Re-init Alpine if present
+  // ✅ Re-scan Alpine on injected content
   if (window.Alpine && typeof Alpine.initTree === 'function') {
     Alpine.initTree(document.body);
   }
