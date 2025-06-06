@@ -1,3 +1,5 @@
+console.log('🚀 partialLoader.js script running');
+
 async function injectPartials(selector = '[include-html]') {
   const nodes = document.querySelectorAll(selector);
 
