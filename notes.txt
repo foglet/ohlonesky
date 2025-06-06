@@ -1,5 +1,12 @@
 Project Notes.
 
+Files:
+        alpine.html 
+        headerAlpine.html
+        menuAlpine.html
+        partialLoader.html
+
+
 Challenge. Load mobile menu "with" partials. DOM needs to reload after loading partials.
 Note: Do not next partials. Do not include partial in a partial.
 
