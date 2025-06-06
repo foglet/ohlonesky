@@ -4,8 +4,16 @@ Goal: Load hamburger menu with partials.
 Files:
         alpine.html
         headerAlpine.html
-        menuAlpine.html
+        >>> menuAlpine.html / combine with header.
         partialLoader.html
+
+        <!-- Old (remove this): -->
+        <!-- <div include-html="/assets/partials/menuAlpine.html"></div> -->
+
+        <!-- Keep this: -->
+        <div include-html="/assets/partials/headerAlpine.html"></div>
+
+
 
 CHALLENGE. Load mobile menu "with" partials. DOM needs to reload after loading partials.
 
