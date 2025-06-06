@@ -7,7 +7,7 @@ window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
   try {
-    const version = ?v=${Date.now()};
+    const version = `?v=${Date.now()}`;
 
     injectStyles([
       '/assets/css/output.css',
@@ -15,7 +15,13 @@ window.initMenu = waitForAndInitMenu;
     ], version);
 
     await injectPartials('[include-html]', version);
+
+    // 🔁 Ensure browser parses injected DOM
+    await new Promise(requestAnimationFrame);
+
+    // ✅ Wait for and bind menu after DOM stabilizes
     await waitForAndInitMenu();
+
     setupScrollAwareHeader();
     initMain();
   } catch (err) {
@@ -29,7 +35,7 @@ function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = ${file}${version};
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 }
@@ -40,23 +46,23 @@ async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(🧩 Found ${nodes.length} partial(s));
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
     if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
 
-    const url = ${file}${version};
+    const url = `${file}${version}`;
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(HTTP ${res.status});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(✅ Injected partial: ${url});
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
-      node.innerHTML = <!-- Failed to load ${url} -->;
-      console.error(❌ Error injecting ${url}, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Error injecting ${url}`, err);
     }
   }));
 }
@@ -107,6 +113,7 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
 
       menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
       btn.addEventListener('click', menuClickHandler);
+      btn.__menuBound = true;
 
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
@@ -155,8 +162,9 @@ function setupScrollAwareHeader() {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
 
-      if (!menuIsInitialized) {
-        waitForAndInitMenu();
+      const btn = document.getElementById('menuToggle');
+      if (btn && !btn.__menuBound) {
+        waitForAndInitMenu(); // Retry binding if necessary
       }
     }, 150);
   });
