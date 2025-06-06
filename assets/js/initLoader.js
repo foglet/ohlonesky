@@ -19,9 +19,15 @@ window.initMenu = waitForAndInitMenu;
     ], version);
 
     await injectPartials('[include-html]', version);
-    await new Promise(requestAnimationFrame); // Let DOM stabilize
 
-    await waitForAndInitMenu(); // 🍔 Bind menu toggle
+      setTimeout(() => {
+      waitForAndInitMenu(); // async not needed
+      setupScrollAwareHeader(); // now safe
+      initMain();
+      }, 0);
+
+      await new Promise(r => setTimeout(r, 500)); // simulate network latency
+
 
     setupScrollAwareHeader();
     initMain();
