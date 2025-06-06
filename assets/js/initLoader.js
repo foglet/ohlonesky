@@ -6,20 +6,25 @@ let menuIsInitialized = false;
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
-  const version = `?v=${Date.now()}`;
+  try {
+    const version = `?v=${Date.now()}`;
 
-  injectStyles([
-    '/assets/css/output.css',
-    '/assets/css/hero.css'
-  ], version);
+    injectStyles([
+      '/assets/css/output.css',
+      '/assets/css/hero.css'
+    ], version);
 
-  await injectPartials('[include-html]', version);
-  await waitForAndInitMenu();
-  setupScrollAwareHeader();
-  initMain();
+    await injectPartials('[include-html]', version);
+    await waitForAndInitMenu();
+    setupScrollAwareHeader();
+    initMain();
+  } catch (err) {
+    console.error('❌ initApp() failed:', err);
+  }
 })();
 
-// Inject CSS dynamically
+// ─────────────────────────────────────────────────────────
+// 🧩 Inject styles
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -29,7 +34,8 @@ function injectStyles(files, version) {
   });
 }
 
-// Replace include-html with partial content
+// ─────────────────────────────────────────────────────────
+// 🧩 Inject partials (HTML includes)
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -55,7 +61,35 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// Wait for mobile menu and bind toggle
+// ─────────────────────────────────────────────────────────
+// 🍔 Toggle mobile menu
+function toggleMobileMenu({ btn, menu, gondola }) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  const willOpen = !expanded;
+
+  btn.setAttribute('aria-expanded', willOpen);
+  btn.classList.toggle('open');
+  document.body.classList.toggle('overflow-hidden', willOpen);
+
+  if (willOpen) {
+    menu.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      menu.classList.remove('translate-y-full', 'opacity-0');
+      menu.classList.add('translate-y-0', 'opacity-100');
+    });
+  } else {
+    menu.classList.remove('translate-y-0', 'opacity-100');
+    menu.classList.add('translate-y-full', 'opacity-0');
+    setTimeout(() => menu.classList.add('hidden'), 300);
+  }
+
+  if (gondola) {
+    gondola.style.opacity = willOpen ? '0' : '1';
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// 🔁 Initialize mobile menu logic
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
@@ -89,33 +123,8 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   console.warn('⚠️ Menu elements not fully ready (missing or empty)');
 }
 
-// Handle menu toggle behavior
-function toggleMobileMenu({ btn, menu, gondola }) {
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  const willOpen = !expanded;
-
-  btn.setAttribute('aria-expanded', willOpen);
-  btn.classList.toggle('open');
-  document.body.classList.toggle('overflow-hidden', willOpen);
-
-  if (willOpen) {
-    menu.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      menu.classList.remove('translate-y-full', 'opacity-0');
-      menu.classList.add('translate-y-0', 'opacity-100');
-    });
-  } else {
-    menu.classList.remove('translate-y-0', 'opacity-100');
-    menu.classList.add('translate-y-full', 'opacity-0');
-    setTimeout(() => menu.classList.add('hidden'), 300);
-  }
-
-  if (gondola) {
-    gondola.style.opacity = willOpen ? '0' : '1';
-  }
-}
-
-// Header hides on scroll down, shows on scroll up
+// ─────────────────────────────────────────────────────────
+// 🎯 Hide header on scroll down, reveal on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -147,7 +156,7 @@ function setupScrollAwareHeader() {
       header.style.pointerEvents = 'auto';
 
       if (!menuIsInitialized) {
-        waitForAndInitMenu(); // Safe retry if menu wasn't ready before
+        waitForAndInitMenu();
       }
     }, 150);
   });
