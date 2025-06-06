@@ -47,31 +47,8 @@
     <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
 
     <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-
-
       <header include-html="/assets/partials/header.html"></header>
 
-
-
-  <style>
-    /* Tailwind CSS classes are used for styling */
-    .bar {
-      width: 24px;
-      height: 2px;
-      background-color: #000;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
-    .open .bar1 {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .open .bar2 {
-      opacity: 0;
-    }
-    .open .bar3 {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-  </style>
 </head>
 <body class="bg-white">
 
@@ -91,14 +68,6 @@
 
 <footer include-html="/assets/partials/header-non.html"></footer>
 
-  <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow transform translate-x-full transition-transform duration-300 ease-in-out">
-    <ul class="p-4">
-      <li><a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight">FAQs</a></li>
-      <li><a href="/00/support/" class="text-brandDark font-bold hover:text-highlight">Support</a></li>
-      <li><a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight">Contact</a></li>
-    </ul>
-  </nav>
 
 
 
@@ -119,7 +88,7 @@
 
 
 <footer include-html="/assets/partials/footer.html"></footer>
-<script type="module" src="/assets/js/initLoader.js"></script>
+<!-- <script type="module" src="/assets/js/initLoader.js"></script> -->
 
 <!-- Scripts: Accordion -->
 <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
