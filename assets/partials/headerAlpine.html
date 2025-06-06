@@ -55,35 +55,23 @@
        x-cloak>
   </div>
 
-  <!-- ✅ Slide-Up Mobile Overlay (INSIDE header) -->
+  <!-- ✅ Slide-Up Mobile Overlay - NEVER covers header/footer -->
   <nav id="menuOverlay"
        x-show="open"
-       x-transition:enter="transition-opacity duration-500 ease-out"
-       x-transition:enter-start="opacity-0"
-       x-transition:enter-end="opacity-100"
-       x-transition:leave="transition-opacity duration-500 ease-in"
-       x-transition:leave-start="opacity-100"
-       x-transition:leave-end="opacity-0"
-       class="fixed inset-x-0 top-[64px] bottom-[56px] z-40 bg-white md:hidden"
+       x-transition:enter="transition duration-500 ease-out"
+       x-transition:enter-start="translate-y-[60vh] opacity-0"
+       x-transition:enter-end="translate-y-[40vh] opacity-100"
+       x-transition:leave="transition duration-500 ease-in"
+       x-transition:leave-start="translate-y-[40vh] opacity-100"
+       x-transition:leave-end="translate-y-[60vh] opacity-0"
+       class="fixed left-0 right-0 top-[40vh] bottom-[56px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
        tabindex="0"
        x-cloak>
 
-    <div class="relative h-full flex items-start justify-center pt-[80vh]">
-      <div class="flex flex-col items-center space-y-6"
-           x-show="open"
-           x-transition:enter="transition-all duration-500 ease-out"
-           x-transition:enter-start="translate-y-12 opacity-0"
-           x-transition:enter-end="translate-y-[-30vh] opacity-100"
-           x-transition:leave="transition-all duration-400 ease-in"
-           x-transition:leave-start="translate-y-[-30vh] opacity-100"
-           x-transition:leave-end="translate-y-12 opacity-0">
-
-        <a @click="open = false" href="/00/faqs/" class="block text-4xl font-bold text-brandDark hover:text-highlight transition">FAQs</a>
-        <a @click="open = false" href="/00/support/" class="block text-4xl font-bold text-brandDark hover:text-highlight transition">Support</a>
-        <a @click="open = false" href="/00/contact/" class="block text-4xl font-bold text-brandDark hover:text-highlight transition">Contact</a>
-
-      </div>
+    <div class="flex flex-col items-center justify-center space-y-6">
+      <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-100">FAQs</a>
+      <a @click="open = false" href="/00/support/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-200">Support</a>
+      <a @click="open = false" href="/00/contact/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-300">Contact</a>
     </div>
   </nav>
-
 </header>
