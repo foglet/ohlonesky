@@ -15,10 +15,9 @@ window.initMenu = waitForAndInitMenu;
     ], version);
 
     await injectPartials('[include-html]', version);
-
     await new Promise(requestAnimationFrame); // Let DOM stabilize
 
-    await waitForAndInitMenu(); // Ensure mobile menu is ready
+    await waitForAndInitMenu(); // 🍔 Bind menu toggle
 
     setupScrollAwareHeader();
     initMain();
@@ -28,18 +27,18 @@ window.initMenu = waitForAndInitMenu;
 })();
 
 // ─────────────────────────────────────────────────────────
-// 🎨 Inject Tailwind CSS dynamically
+// 🎨 Dynamically inject Tailwind CSS
 function injectStyles(files, version) {
-  for (const file of files) {
+  files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${file}${version}`;
     document.head.appendChild(link);
-  }
+  });
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧩 Inject partial HTML (header, footer, etc.)
+// 🧩 Inject partial HTML into page
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -91,7 +90,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧠 Wait for menu to be ready and bind toggle
+// 🧠 Bind menu toggle after confirming required elements
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
@@ -100,7 +99,7 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
     const menu = document.getElementById('mobile-menu');
     const gondola = document.getElementById('gondola');
 
-    if (btn && menu && menu.children.length > 0) {
+    if (btn && menu) {
       console.log('✅ Menu ready — binding toggle');
 
       if (menuClickHandler) {
@@ -123,11 +122,11 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
     await new Promise(res => setTimeout(res, interval));
   }
 
-  console.warn('⚠️ Menu toggle not initialized — element(s) missing or empty');
+  console.warn('⚠️ Menu toggle not initialized — element(s) missing');
 }
 
 // ─────────────────────────────────────────────────────────
-// 🎯 Sticky header hides on scroll down, reappears on scroll up
+// 🎯 Sticky header scroll logic
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -160,7 +159,7 @@ function setupScrollAwareHeader() {
 
       const btn = document.getElementById('menuToggle');
       if (btn && !btn.__menuBound) {
-        waitForAndInitMenu(); // Retry if unbound
+        waitForAndInitMenu();
       }
     }, 150);
   });
