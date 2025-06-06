@@ -1,5 +1,8 @@
 import { initMain } from '/assets/js/mainInit.js';
 
+let menuClickHandler = null;
+let menuIsInitialized = false;
+
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
@@ -16,6 +19,7 @@ window.initMenu = waitForAndInitMenu;
   initMain();
 })();
 
+// Inject CSS dynamically
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -25,6 +29,7 @@ function injectStyles(files, version) {
   });
 }
 
+// Replace include-html with partial content
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -50,7 +55,10 @@ async function injectPartials(selector, version) {
   }));
 }
 
+// Wait for menu elements and bind toggle
 async function waitForAndInitMenu(maxTries = 20, interval = 200) {
+  if (menuIsInitialized) return;
+
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
     const menu = document.getElementById('mobile-menu');
@@ -59,12 +67,21 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
     if (btn && menu) {
       console.log('✅ Menu elements found');
 
+      // Remove previous handler if any
+      if (menuClickHandler) {
+        btn.removeEventListener('click', menuClickHandler);
+      }
+
+      menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
+      btn.addEventListener('click', menuClickHandler);
+
+      // Reset gondola opacity if present
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
 
-      btn.addEventListener('click', () => toggleMobileMenu({ btn, menu, gondola }));
+      menuIsInitialized = true;
       return;
     }
 
@@ -74,6 +91,7 @@ async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   console.warn('⚠️ Menu elements not found after retrying');
 }
 
+// Toggle mobile menu open/close
 function toggleMobileMenu({ btn, menu, gondola }) {
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   const willOpen = !expanded;
@@ -99,6 +117,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
   }
 }
 
+// Hide header on scroll down, show on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -128,7 +147,9 @@ function setupScrollAwareHeader() {
     scrollTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
-      waitForAndInitMenu(); // Ensures menu works even after scroll
+
+      // Only retry menu binding if not already done
+      if (!menuIsInitialized) waitForAndInitMenu();
     }, 150);
   });
 
