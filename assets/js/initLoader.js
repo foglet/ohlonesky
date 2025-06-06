@@ -1,30 +1,22 @@
 import { initMain } from '/assets/js/mainInit.js';
 
-let menuClickHandler = null;
-let menuIsInitialized = false;
-
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
-  try {
-    const version = `?v=${Date.now()}`;
+  const version = `?v=${Date.now()}`;
 
-    injectStyles([
-      '/assets/css/output.css',
-      '/assets/css/hero.css'
-    ], version);
+  injectStyles([
+    '/assets/css/output.css',
+    '/assets/css/hero.css'
+  ], version);
 
-    await injectPartials('[include-html]', version);
-    await waitForAndInitMenu();
-    setupScrollAwareHeader();
-    initMain();
-  } catch (err) {
-    console.error('❌ initApp() failed:', err);
-  }
+  await injectPartials('[include-html]', version);
+  await waitForAndInitMenu();
+  setupScrollAwareHeader();
+  initMain();
 })();
 
-// ─────────────────────────────────────────────────────────
-// 🧩 Inject styles
+// Inject CSS files
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
@@ -34,8 +26,7 @@ function injectStyles(files, version) {
   });
 }
 
-// ─────────────────────────────────────────────────────────
-// 🧩 Inject partials (HTML includes)
+// Replace include-html placeholders with partials
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -61,70 +52,57 @@ async function injectPartials(selector, version) {
   }));
 }
 
-// ─────────────────────────────────────────────────────────
-// 🍔 Toggle mobile menu
-function toggleMobileMenu({ btn, menu, gondola }) {
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  const willOpen = !expanded;
-
-  btn.setAttribute('aria-expanded', willOpen);
-  btn.classList.toggle('open');
-  document.body.classList.toggle('overflow-hidden', willOpen);
-
-  if (willOpen) {
-    menu.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      menu.classList.remove('translate-y-full', 'opacity-0');
-      menu.classList.add('translate-y-0', 'opacity-100');
-    });
-  } else {
-    menu.classList.remove('translate-y-0', 'opacity-100');
-    menu.classList.add('translate-y-full', 'opacity-0');
-    setTimeout(() => menu.classList.add('hidden'), 300);
-  }
-
-  if (gondola) {
-    gondola.style.opacity = willOpen ? '0' : '1';
-  }
-}
-
-// ─────────────────────────────────────────────────────────
-// 🔁 Initialize mobile menu logic
-async function waitForAndInitMenu(maxTries = 30, interval = 200) {
-  if (menuIsInitialized) return;
-
+// Menu toggle logic
+async function waitForAndInitMenu(maxTries = 20, interval = 200) {
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
     const menu = document.getElementById('mobile-menu');
     const gondola = document.getElementById('gondola');
 
-    if (btn && menu && menu.children.length > 0) {
+    if (btn && menu) {
       console.log('✅ Menu elements found');
 
-      if (menuClickHandler) {
-        btn.removeEventListener('click', menuClickHandler);
-      }
-
-      menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
-      btn.addEventListener('click', menuClickHandler);
-
+      // Initial gondola state
       if (gondola) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
 
-      menuIsInitialized = true;
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const willOpen = !expanded;
+
+        btn.setAttribute('aria-expanded', willOpen);
+        btn.classList.toggle('open');
+        document.body.classList.toggle('overflow-hidden', willOpen);
+
+        if (willOpen) {
+          menu.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            menu.classList.remove('translate-y-full', 'opacity-0');
+            menu.classList.add('translate-y-0', 'opacity-100');
+          });
+        } else {
+          menu.classList.remove('translate-y-0', 'opacity-100');
+          menu.classList.add('translate-y-full', 'opacity-0');
+          setTimeout(() => menu.classList.add('hidden'), 300);
+        }
+
+        if (gondola) {
+          gondola.style.opacity = willOpen ? '0' : '1';
+        }
+      });
+
       return;
     }
 
     await new Promise(resolve => setTimeout(resolve, interval));
   }
 
-  console.warn('⚠️ Menu elements not fully ready (missing or empty)');
+  console.warn('⚠️ Menu elements not found after retrying');
 }
 
-// ─────────────────────────────────────────────────────────
-// 🎯 Hide header on scroll down, reveal on scroll up
+// Header hides on scroll down, reappears on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
@@ -135,11 +113,9 @@ function setupScrollAwareHeader() {
 
   function updateHeader() {
     const currentY = window.scrollY;
-    const goingDown = currentY > lastY && currentY > 50;
-
-    header.style.transform = goingDown ? 'translateY(-100%)' : 'translateY(0)';
-    header.style.pointerEvents = goingDown ? 'none' : 'auto';
-
+    header.style.transform = (currentY > lastY && currentY > 50)
+      ? 'translateY(-100%)'
+      : 'translateY(0)';
     lastY = currentY;
     ticking = false;
   }
@@ -153,11 +129,6 @@ function setupScrollAwareHeader() {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
-      header.style.pointerEvents = 'auto';
-
-      if (!menuIsInitialized) {
-        waitForAndInitMenu();
-      }
     }, 150);
   });
 
