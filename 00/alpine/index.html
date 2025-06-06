@@ -1,3 +1,5 @@
+<!-- 00/alpine/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +32,7 @@
   <!-- Footer Partial -->
   <div include-html="/assets/partials/footer.html"></div>
 
-  <!-- Load Partials, then Alpine -->
+  <!-- Load Partials, Alpine, and menuOverlay -->
   <script type="module">
     async function injectPartials(selector = '[include-html]') {
       const elements = document.querySelectorAll(selector);
@@ -53,11 +55,15 @@
     async function initPage() {
       await injectPartials();
 
-      // ✅ Load Alpine after partials
+      // ✅ Load Alpine
       const alpine = document.createElement('script');
       alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
       alpine.defer = true;
       document.head.appendChild(alpine);
+
+      // ✅ Load menuOverlay and attach globally
+      const module = await import('/assets/js/menuOverlay.js');
+      window.menuOverlay = module.menuOverlay;
     }
 
     document.addEventListener('DOMContentLoaded', initPage);
