@@ -1,15 +1,13 @@
+<!-- ✅ Mobile Header with Alpine Menu -->
 <header x-data="menuOverlay()" x-init="init()" x-effect="document.body.classList.toggle('overflow-hidden', open)" class="sticky top-0 z-50 w-full bg-white shadow-sm">
-
   <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
-
     <!-- Logo -->
     <a href="/00/" class="flex items-center space-x-2">
       <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-logo.svg" alt="Ohlone Sky Logo" class="h-[28px] w-auto" />
     </a>
 
-    <!-- Right: Desktop nav + Mobile hamburger -->
+    <!-- Desktop nav + Mobile hamburger -->
     <div class="flex items-center space-x-4">
-
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
         <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">FAQs</a>
@@ -17,17 +15,15 @@
         <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Contact</a>
       </nav>
 
-      <!-- ✅ Mobile-only hamburger button -->
+      <!-- ✅ Mobile Hamburger Button -->
       <button id="menuToggle"
               @click="open = !open"
-              :aria-expanded="open"
-              aria-controls="menuOverlay"
               aria-label="Toggle menu"
+              :aria-expanded="open"
               class="w-8 h-8 relative flex items-center justify-center focus:outline-none md:hidden">
         <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
         <span class="bar absolute left-0 w-full h-0.5 bg-brandDark rounded transition-transform duration-300 ease-in-out"></span>
       </button>
-
     </div>
   </div>
 
@@ -37,9 +33,9 @@
        x-transition:enter-start="opacity-0"
        x-transition:enter-end="opacity-40"
        x-transition:leave="transition-opacity duration-500"
-       x-transition:leave-start="opacity-40"
+       x-transition:leave-start="opacity-100"
        x-transition:leave-end="opacity-0"
-       class="fixed inset-0 z-30 bg-white/40 md:hidden"
+       class="fixed inset-0 z-30 bg-white/100 md:hidden"
        @click="open = false"
        x-cloak>
   </div>
@@ -53,15 +49,39 @@
        x-transition:leave="transition duration-500 ease-in"
        x-transition:leave-start="opacity-100 translate-y-[40vh]"
        x-transition:leave-end="opacity-0 translate-y-[60vh]"
-       class="fixed inset-x-0 top-[40vh] bottom-[60px] z-40 bg-transparent px-4 py-8 overflow-y-auto md:hidden"
+       class="fixed inset-x-0 top-[40vh] bottom-[calc(100vh-60vh)] z-40 bg-transparent px-4 py-8 overflow-y-visible md:hidden text-center"
        tabindex="0"
        x-cloak>
 
     <div class="flex flex-col items-center justify-center space-y-6 h-full">
-      <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition-opacity duration-300 delay-100">FAQs</a>
-      <a @click="open = false" href="/00/support/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition-opacity duration-300 delay-200">Support</a>
-      <a @click="open = false" href="/00/contact/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition-opacity duration-300 delay-300">Contact</a>
+      <template x-for="(link, i) in navLinks" :key="i">
+        <a :href="link.href"
+           @click="open = false"
+           x-transition:enter="transition duration-500 ease-out delay-[calc(i*100)]"
+           x-transition:enter-start="opacity-0 translate-y-8"
+           x-transition:enter-end="opacity-100 translate-y-0"
+           class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+          <span x-text="link.label"></span>
+        </a>
+      </template>
     </div>
   </nav>
-
 </header>
+
+<script>
+function menuOverlay() {
+  return {
+    open: false,
+    navLinks: [
+      { href: '/00/faqs/', label: 'FAQs' },
+      { href: '/00/support/', label: 'Support' },
+      { href: '/00/contact/', label: 'Contact' },
+    ],
+    init() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') this.open = false;
+      });
+    }
+  }
+}
+</script>

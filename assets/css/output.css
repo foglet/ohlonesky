@@ -2655,6 +2655,10 @@ video {
   top: 40vh;
 }
 
+.bottom-\[calc\(100vh-60vh\)\] {
+  bottom: calc(100vh - 60vh);
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -3025,6 +3029,11 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.translate-y-8 {
+  --tw-translate-y: 2rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .-rotate-45 {
   --tw-rotate: -45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -3164,6 +3173,10 @@ video {
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.overflow-y-visible {
+  overflow-y: visible;
 }
 
 .scroll-smooth {
@@ -3778,6 +3791,10 @@ video {
 
 .delay-300 {
   transition-delay: 300ms;
+}
+
+.delay-\[calc\(i\*100\)\] {
+  transition-delay: calc(i * 100);
 }
 
 .duration-200 {
