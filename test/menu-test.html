@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Tailwind CSS classes are used for styling */
+    .bar {
+      width: 24px;
+      height: 2px;
+      background-color: #000;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .open .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .open .bar2 {
+      opacity: 0;
+    }
+    .open .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-gray-100">
+    <div class="text-lg font-bold">Ohlone Sky</div>
+    <button id="menuToggle" class="flex flex-col items-center justify-center w-8 h-8" aria-label="Toggle Menu">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+    </button>
+  </header>
+
+  <!-- Backdrop -->
+  <div id="menuBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow transform translate-x-full transition-transform duration-300 ease-in-out">
+    <ul class="p-4">
+      <li><a href="#" class="block py-2">FAQs</a></li>
+      <li><a href="#" class="block py-2">Support</a></li>
+      <li><a href="#" class="block py-2">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuBackdrop = document.getElementById('menuBackdrop');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('open');
+        mobileMenu.classList.toggle('translate-x-full');
+        menuBackdrop.classList.toggle('hidden');
+      });
+
+      menuBackdrop.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        mobileMenu.classList.add('translate-x-full');
+        menuBackdrop.classList.add('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>
