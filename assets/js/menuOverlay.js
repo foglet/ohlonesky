@@ -1,21 +1,33 @@
-// assets/js/menuOverlay.js
-
 export function menuOverlay() {
   return {
     open: false,
+
     init() {
       this.$watch('open', (val) => {
         if (val) {
           document.addEventListener('keydown', this.escHandler);
+          document.addEventListener('click', this.clickOutsideHandler, true);
           this.$nextTick(() => this.trapFocus());
         } else {
           document.removeEventListener('keydown', this.escHandler);
+          document.removeEventListener('click', this.clickOutsideHandler, true);
         }
       });
     },
+
     escHandler(e) {
       if (e.key === 'Escape') this.open = false;
     },
+
+    clickOutsideHandler(e) {
+      const menu = document.getElementById('menuOverlay');
+      const toggle = document.getElementById('menuToggle');
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile && this.open && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        this.open = false;
+      }
+    },
+
     trapFocus() {
       const overlay = document.getElementById('menuOverlay');
       if (!overlay) return;
