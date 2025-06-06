@@ -42,32 +42,31 @@
     </div>
   </div>
 
-  <!-- ✅ Backdrop (No blur) -->
-
+  <!-- ✅ Backdrop (no blur) -->
   <div x-show="open"
-     x-transition:enter="transition-opacity duration-500"
-     x-transition:enter-start="opacity-0"
-     x-transition:enter-end="opacity-90"
-     x-transition:leave="transition-opacity duration-500"
-     x-transition:leave-start="opacity-90"
-     x-transition:leave-end="opacity-0"
-     class="fixed inset-0 z-30 bg-white/90 md:hidden"
-     @click="open = false"
-     x-cloak>
+       x-transition:enter="transition-opacity duration-500"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-90"
+       x-transition:leave="transition-opacity duration-500"
+       x-transition:leave-start="opacity-90"
+       x-transition:leave-end="opacity-0"
+       class="fixed inset-x-0 top-[64px] bottom-[56px] z-30 bg-white/90 md:hidden"
+       @click="open = false"
+       x-cloak>
   </div>
 
   <!-- ✅ Slide-Up Mobile Overlay - NEVER covers header/footer -->
   <nav id="menuOverlay"
-       x-show="open"
-       x-transition:enter="transition duration-500 ease-out"
-       x-transition:enter-start="translate-y-[60vh] opacity-0"
-       x-transition:enter-end="translate-y-[40vh] opacity-100"
-       x-transition:leave="transition duration-500 ease-in"
-       x-transition:leave-start="translate-y-[40vh] opacity-100"
-       x-transition:leave-end="translate-y-[60vh] opacity-0"
-       class="fixed left-0 right-0 top-[40vh] bottom-[56px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
-       tabindex="0"
-       x-cloak>
+     x-show="open"
+     x-transition:enter="transition-opacity duration-500 ease-out"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition-opacity duration-500 ease-in"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0"
+     class="fixed left-0 right-0 top-[40vh] bottom-[56px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
+     tabindex="0"
+     x-cloak>
 
     <div class="flex flex-col items-center justify-center space-y-6">
       <a @click="open = false" href="/00/faqs/" class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-100">FAQs</a>
