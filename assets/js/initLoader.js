@@ -16,11 +16,9 @@ window.initMenu = waitForAndInitMenu;
 
     await injectPartials('[include-html]', version);
 
-    // 🔁 Ensure browser parses injected DOM
-    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame); // let DOM settle
 
-    // ✅ Wait for and bind menu after DOM stabilizes
-    await waitForAndInitMenu();
+    await waitForAndInitMenu(); // wait for elements before binding
 
     setupScrollAwareHeader();
     initMain();
@@ -30,18 +28,18 @@ window.initMenu = waitForAndInitMenu;
 })();
 
 // ─────────────────────────────────────────────────────────
-// 🧩 Inject styles
+// 🎨 Inject Tailwind CSS dynamically
 function injectStyles(files, version) {
-  files.forEach(file => {
+  for (const file of files) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${file}${version}`;
     document.head.appendChild(link);
-  });
+  }
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧩 Inject partials (HTML includes)
+// 🧩 Inject partial HTML (header, footer, etc.)
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
@@ -50,7 +48,7 @@ async function injectPartials(selector, version) {
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html attribute:', node);
+    if (!file) return console.warn('⚠️ Missing include-html:', node);
 
     const url = `${file}${version}`;
     try {
@@ -68,16 +66,16 @@ async function injectPartials(selector, version) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🍔 Toggle mobile menu
+// 🍔 Toggle mobile menu (slide & fade)
 function toggleMobileMenu({ btn, menu, gondola }) {
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  const willOpen = !expanded;
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  const nextState = !isOpen;
 
-  btn.setAttribute('aria-expanded', willOpen);
-  btn.classList.toggle('open');
-  document.body.classList.toggle('overflow-hidden', willOpen);
+  btn.setAttribute('aria-expanded', nextState);
+  btn.classList.toggle('open', nextState);
+  document.body.classList.toggle('overflow-hidden', nextState);
 
-  if (willOpen) {
+  if (nextState) {
     menu.classList.remove('hidden');
     requestAnimationFrame(() => {
       menu.classList.remove('translate-y-full', 'opacity-0');
@@ -89,13 +87,11 @@ function toggleMobileMenu({ btn, menu, gondola }) {
     setTimeout(() => menu.classList.add('hidden'), 300);
   }
 
-  if (gondola) {
-    gondola.style.opacity = willOpen ? '0' : '1';
-  }
+  if (gondola) gondola.style.opacity = nextState ? '0' : '1';
 }
 
 // ─────────────────────────────────────────────────────────
-// 🔁 Initialize mobile menu logic
+// 🧠 Wait for menu elements and bind behavior
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
@@ -105,7 +101,7 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
     const gondola = document.getElementById('gondola');
 
     if (btn && menu && menu.children.length > 0) {
-      console.log('✅ Menu elements found');
+      console.log('✅ Menu ready — binding toggle');
 
       if (menuClickHandler) {
         btn.removeEventListener('click', menuClickHandler);
@@ -124,21 +120,21 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
       return;
     }
 
-    await new Promise(resolve => setTimeout(resolve, interval));
+    await new Promise(res => setTimeout(res, interval));
   }
 
-  console.warn('⚠️ Menu elements not fully ready (missing or empty)');
+  console.warn('⚠️ Menu toggle not initialized — element(s) missing or empty');
 }
 
 // ─────────────────────────────────────────────────────────
-// 🎯 Hide header on scroll down, reveal on scroll up
+// 🎯 Sticky header hides on scroll down, reappears on scroll up
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
 
   let lastY = window.scrollY;
   let ticking = false;
-  let scrollTimeout;
+  let restoreTimeout;
 
   function updateHeader() {
     const currentY = window.scrollY;
@@ -157,17 +153,17 @@ function setupScrollAwareHeader() {
       ticking = true;
     }
 
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
+    clearTimeout(restoreTimeout);
+    restoreTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
 
       const btn = document.getElementById('menuToggle');
       if (btn && !btn.__menuBound) {
-        waitForAndInitMenu(); // Retry binding if necessary
+        waitForAndInitMenu(); // Retry if menu wasn't yet bound
       }
     }, 150);
   });
 
-  console.log('🎯 Sticky header scroll tracking enabled');
+  console.log('🎯 Header scroll detection enabled');
 }
