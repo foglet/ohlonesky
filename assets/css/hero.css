@@ -1,17 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
   #menuToggle {
-    @apply relative w-8 h-8 cursor-pointer flex items-center justify-center transition-colors duration-200 ease-in-out;
+    @apply relative w-8 h-8 cursor-pointer flex items-center justify-center transition-colors duration-200 ease-in-out z-50;
   }
 
   #menuToggle .bar {
-    @apply absolute w-full bg-brandDark rounded;
+    @apply absolute left-0 w-full bg-brandDark rounded transition-transform duration-300 ease-in-out;
     height: 2px;
-    left: 0;
-    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
     transform-origin: center;
   }
 
-  /* Closed positions */
+  /* Closed state */
   #menuToggle .bar:first-child {
     top: 11px;
   }
@@ -20,7 +22,7 @@
     bottom: 11px;
   }
 
-  /* Open state transforms */
+  /* Open state */
   #menuToggle.open {
     @apply bg-gray-100 border border-gray-300 rounded-full;
   }
@@ -30,42 +32,60 @@
   }
 
   #menuToggle.open .bar:first-child {
+    @apply h-[3px];
     top: 50%;
     transform: translateY(-50%) rotate(45deg) scaleX(0.7);
-    height: 3px;
   }
 
   #menuToggle.open .bar:last-child {
+    @apply h-[3px];
     top: 50%;
     bottom: auto;
     transform: translateY(-50%) rotate(-45deg) scaleX(0.7);
-    height: 3px;
   }
 
   #mobile-menu {
-    @apply opacity-100 transition-opacity duration-300 ease-in-out;
+    @apply opacity-100 transition-opacity duration-300 ease-in-out z-50;
   }
 
   #menuBackdrop {
-    transition: opacity 0.3s ease-out;
+    @apply transition-opacity duration-300 ease-out z-40;
   }
-
-  #mobile-menu { z-index: 50; }
-  #menuBackdrop {z-index: 40;}
-  #menuToggle.open {z-index: 60; }
 
   body.overflow-hidden {
     overflow: hidden;
   }
 
   #mainHeader {
-    transition: transform 0.3s ease-in-out;
+    @apply transition-transform duration-300 ease-in-out;
     will-change: transform;
   }
-
 
   #gondola {
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  }
+}
+
+/* adds spring! */
+@layer utilities {
+  @keyframes drop-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-1.5rem) scale(0.98);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(0.3rem) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-drop-in {
+    animation: drop-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
   }
 }
