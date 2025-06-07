@@ -65,6 +65,11 @@
     @apply w-full absolute;
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
   }
+
+  #menuOverlay a {
+    @apply animate-drop-in;
+  }
+
 }
 
 /* adds spring! */
