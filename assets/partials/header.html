@@ -10,8 +10,8 @@
     <div class="flex items-center space-x-4">
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center" aria-label="Main Navigation">
+          <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Support</a>
         <a href="/00/faqs/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">FAQs</a>
-        <a href="/00/support/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Support</a>
         <a href="/00/contact/" class="text-brandDark font-bold hover:text-highlight transition-colors duration-200">Contact</a>
       </nav>
 
@@ -77,8 +77,8 @@ function menuOverlay() {
   return {
     open: false,
     navLinks: [
-      { href: '/00/faqs/', label: 'FAQs' },
       { href: '/00/support/', label: 'Support' },
+      { href: '/00/faqs/', label: 'FAQs' },
       { href: '/00/contact/', label: 'Contact' },
     ],
     init() {
