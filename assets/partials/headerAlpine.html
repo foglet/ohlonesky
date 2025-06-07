@@ -46,9 +46,9 @@
   <div x-show="open"
        x-transition:enter="transition-opacity duration-500"
        x-transition:enter-start="opacity-0"
-       x-transition:enter-end="opacity-90"
+       x-transition:enter-end="opacity-100"
        x-transition:leave="transition-opacity duration-500"
-       x-transition:leave-start="opacity-90"
+       x-transition:leave-start="opacity-100"
        x-transition:leave-end="opacity-0"
        class="fixed inset-x-0 top-[64px] bottom-[56px] z-30 bg-white/90 md:hidden"
        @click="open = false"
@@ -64,7 +64,7 @@
        x-transition:leave="transition ease-in duration-500"
        x-transition:leave-start="opacity-100 translate-y-0"
        x-transition:leave-end="opacity-0 translate-y-4"
-       class="fixed left-0 right-0 top-[40vh] bottom-[56px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
+       class="fixed left-0 right-0 top-[40vh] bottom-[64px] z-40 bg-white px-4 py-8 overflow-y-auto md:hidden"
        tabindex="0"
        x-cloak>
 
