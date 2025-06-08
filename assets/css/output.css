@@ -3850,6 +3850,10 @@ video {
   transition-delay: calc(i * 100);
 }
 
+.delay-500 {
+  transition-delay: 500ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
 }
