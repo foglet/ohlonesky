@@ -9,7 +9,7 @@ window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
   try {
-    const version = ?v=${Date.now()};
+    const version = `?v=${Date.now()}`;
 
     injectStyles([
       '/assets/css/output.css',
@@ -24,10 +24,10 @@ window.initMenu = waitForAndInitMenu;
       setupScrollAwareHeader();
       initMain();
 
-      // Initialize Flowbite after dynamic content load
-      if (window.initFlowbite) {
+      // Initialize Flowbite after partials
+      if (typeof window.initFlowbite === 'function') {
         try {
-          window.initFlowbite(); // In case Flowbite export is available
+          window.initFlowbite();
           console.log('💡 Flowbite initialized');
         } catch (err) {
           console.warn('⚠️ Flowbite init failed:', err);
@@ -35,46 +35,49 @@ window.initMenu = waitForAndInitMenu;
       }
     }, 0);
 
-    await new Promise(r => setTimeout(r, 500)); // optional simulated latency
+    await new Promise(r => setTimeout(r, 500)); // simulate delay if needed
   } catch (err) {
     console.error('❌ initApp() failed:', err);
   }
 })();
 
 // ─────────────────────────────────────────────────────────
-// 🎨 Dynamically inject Tailwind CSS
+// 🎨 Inject Tailwind CSS dynamically
 function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = ${file}${version};
+    link.href = `${file}${version}`;
     document.head.appendChild(link);
   });
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧩 Inject partial HTML into page
+// 🧩 Inject partials like header/footer
 async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(🧩 Found ${nodes.length} partial(s));
+  console.log(`🧩 Found ${nodes.length} partial(s)`);
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
-    if (!file) return console.warn('⚠️ Missing include-html:', node);
+    if (!file) {
+      console.warn('⚠️ Missing include-html:', node);
+      return;
+    }
 
-    const url = ${file}${version};
+    const url = `${file}${version}`;
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(HTTP ${res.status});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(✅ Injected partial: ${url});
+      console.log(`✅ Injected partial: ${url}`);
     } catch (err) {
-      node.innerHTML = <!-- Failed to load ${url} -->;
-      console.error(❌ Error injecting ${url}, err);
+      node.innerHTML = `<!-- Failed to load ${url} -->`;
+      console.error(`❌ Error injecting ${url}`, err);
     }
   }));
 }
@@ -105,7 +108,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧠 Bind menu toggle after confirming required elements
+// 🧠 Wait for menu elements and bind click
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
@@ -141,7 +144,7 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🎯 Sticky header scroll logic
+// 🎯 Sticky header scroll behavior
 function setupScrollAwareHeader() {
   const header = document.getElementById('mainHeader');
   if (!header) return;
