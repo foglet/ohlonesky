@@ -64,3 +64,14 @@ Note: Do not nest partials. Do not include partial in a partial.
             console.log('✅ Partials injected');
             return Promise.resolve();
           }
+
+
+060925: Accordion was resolved. When I went to incorporate into initLoader.js, conflict. Site not showing again. Line 12 error again: const version = `?v=${Date.now()}`;
+
+00/alpine/index2.html :: working like a charm.
+caution when changing initLoader.js
+
+header.html // temporary fix.
+  { href: '/00/support/', label: 'Support' },
+  { href: '/00/alpine/index2.html/', label: 'FAQs' },
+  { href: '/00/contact/', label: 'Contact' },
