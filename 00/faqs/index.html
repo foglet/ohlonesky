@@ -239,38 +239,7 @@
 
 
 
-                <!-- Oakland Zoo Video -->
-                <section id="zoo" class="my-8">
-                  <div>
-                    <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full rounded-lg shadow">
-                      <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video>
-                    <p class="text-xs text-gray-500 text-center mt-2">
-                      Source: Fogday Studios
-                    </p>
-                  </div>
 
-                  <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                      const video = document.getElementById('zooVideo');
-
-                      if (!video) return;
-
-                      const observer = new IntersectionObserver(entries => {
-                        entries.forEach(entry => {
-                          if (entry.isIntersecting) {
-                            video.play().catch(() => {});
-                          } else {
-                            video.pause();
-                          }
-                        });
-                      }, { threshold: 0.5 });
-
-                      observer.observe(video);
-                    });
-                  </script>
-                </section> <!-- end Zoo -->
 
                 <!-- Accordion: content 9 -->
                     <h2 id="accordion-open-heading-9">
@@ -329,6 +298,39 @@
 
             </div><!-- Accordion-open heading close div -->
       </section><!-- Accordion section -->
+
+      <!-- Oakland Zoo Video -->
+      <section id="zoo" class="my-8">
+        <div>
+          <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full rounded-lg shadow">
+            <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="text-xs text-gray-500 text-center mt-2">
+            Source: Fogday Studios
+          </p>
+        </div>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('zooVideo');
+
+            if (!video) return;
+
+            const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  video.play().catch(() => {});
+                } else {
+                  video.pause();
+                }
+              });
+            }, { threshold: 0.5 });
+
+            observer.observe(video);
+          });
+        </script>
+      </section> <!-- end Zoo -->
     </main>
 
     <!-- Footer -->
