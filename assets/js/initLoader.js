@@ -170,7 +170,7 @@ function setupScrollAwareHeader() {
       ticking = true;
     }
 
-    clearTimeout(restoreTimeout);
+    clearTimeout(restoreTimeout);const version = `?v=${Date.now()}`;
     restoreTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
