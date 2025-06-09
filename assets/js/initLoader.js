@@ -1,16 +1,18 @@
+refactor initLoader.js with flowbite.min.js
+
 console.log('🚀 initLoader.js started');
 console.log('🧪 INIT START', window.location.pathname, Date.now());
 
 import { initMain } from '/assets/js/mainInit.js';
-import { initFlowbite } from 'flowbite';
 
 let menuClickHandler = null;
 let menuIsInitialized = false;
+
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
   try {
-    const version = `?v=${Date.now()}`;
+    const version = ?v=${Date.now()};
 
     injectStyles([
       '/assets/css/output.css',
@@ -19,23 +21,16 @@ window.initMenu = waitForAndInitMenu;
 
     await injectPartials('[include-html]', version);
 
-    // Let DOM settle, then initialize everything
-    setTimeout(() => {
-      waitForAndInitMenu();
-      setupScrollAwareHeader();
+      setTimeout(() => {
+      waitForAndInitMenu(); // async not needed
+      setupScrollAwareHeader(); // now safe
       initMain();
+      }, 0);
 
-      try {
-        initFlowbite(); // Re-initialize Flowbite on dynamic content
-        console.log('💡 Flowbite re-initialized after partials');
-      } catch (err) {
-        console.warn('⚠️ Flowbite init failed:', err);
-      }
-    }, 0);
+      await new Promise(r => setTimeout(r, 500)); // simulate network latency
 
-    // Simulated latency if needed
-    await new Promise(r => setTimeout(r, 500));
-
+    setupScrollAwareHeader();
+    initMain();
   } catch (err) {
     console.error('❌ initApp() failed:', err);
   }
@@ -47,7 +42,7 @@ function injectStyles(files, version) {
   files.forEach(file => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${file}${version}`;
+    link.href = ${file}${version};
     document.head.appendChild(link);
   });
 }
@@ -58,23 +53,23 @@ async function injectPartials(selector, version) {
   const nodes = document.querySelectorAll(selector);
   if (!nodes.length) return;
 
-  console.log(`🧩 Found ${nodes.length} partial(s)`);
+  console.log(🧩 Found ${nodes.length} partial(s));
 
   await Promise.all([...nodes].map(async node => {
     const file = node.getAttribute('include-html');
     if (!file) return console.warn('⚠️ Missing include-html:', node);
 
-    const url = `${file}${version}`;
+    const url = ${file}${version};
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) throw new Error(HTTP ${res.status});
       const html = await res.text();
       node.insertAdjacentHTML('afterend', html);
       node.remove();
-      console.log(`✅ Injected partial: ${url}`);
-    } catch (err) {
-      node.innerHTML = `<!-- Failed to load ${url} -->`;
-      console.error(`❌ Error injecting ${url}`, err);
+      console.log(✅ Injected partial: ${url});
+    } catch (err) {ß
+      node.innerHTML = <!-- Failed to load ${url} -->;
+      console.error(❌ Error injecting ${url}, err);
     }
   }));
 }
