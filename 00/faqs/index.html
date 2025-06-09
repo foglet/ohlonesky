@@ -82,37 +82,41 @@
       </section>
 
       <!-- Accordion --><!-- adjust section bg here -->
-      <section class="max-w-3xl mx-auto space-y-10 text-left text-gray-00 bg-slate-100">
+        <section class="max-w-3xl mx-auto space-y-10 text-left bg-slate-100" data-accordion="open">
 
-            <div id="accordion-open" data-accordion="open">
+
               <!-- Accordion: content 1-->
               <div>
-                  <h2 id="accordion-open-heading-1">
-                    <button
-                      type="button"
-                      class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 border border-b-0 border-gray-200 rounded-t-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white"
-                      data-accordion-target="#accordion-open-body-1"
-                      aria-expanded="true"
-                      aria-controls="accordion-open-body-1">
-                      <span class="flex items-center">
-                        What is Ohlone Sky?
-                      </span>
-                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                      </svg>
-                    </button>
-                  </h2>
-                  <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                      <p class="mb-2 text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
-                        Ohlone Sky is a privately funded aerial gondola connecting Pier 24 to Yerba Buena and Treasure Island in San Francisco.
-                      </p>
-                      <p class="text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
-                        We choose gondolas because they’re quick to build and can offer high-frequency service every thirty seconds. They’re cost-effective, climate-friendly, and when powered by renewables, entirely carbon-free. It's a soaring link that complements existing systems while bridging a critical transit gap.
-                      </p>
-                    </div>
+                <h2 id="accordion-open-heading-1">
+                  <button
+                    type="button"
+                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 border border-b-0 border-gray-200 rounded-t-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white"
+                    data-accordion-target="#accordion-open-body-1"
+                    aria-expanded="true"
+                    aria-controls="accordion-open-body-1">
+                    <span class="flex items-center">
+                      What is Ohlone Sky?
+                    </span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5 5 1 1 5" />
+                    </svg>
+                  </button>
+                </h2>
+                <div id="accordion-open-body-1" class="" aria-labelledby="accordion-open-heading-1">
+                  <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <p class="mb-2 text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
+                      Ohlone Sky is a privately funded aerial gondola connecting Pier 24 to Yerba Buena and Treasure Island in San Francisco.
+                    </p>
+                    <p class="text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
+                      We choose gondolas because they’re quick to build and can offer high-frequency service every thirty seconds.
+                      They’re cost-effective, climate-friendly, and when powered by renewables, entirely carbon-free. It's a soaring link
+                      that complements existing systems while bridging a critical transit gap.
+                    </p>
                   </div>
                 </div>
+              </div>
 
           <!-- Accordion: content 2-->
           <div>
@@ -194,7 +198,7 @@
                     </div>
                   </div>
                 </div>
-                </section>
+          </section>
 
                 <!-- Ruth Asawa quote -->
                     <section ID="ruth" class="text-center my-8 bg-slate-50 p-8">
@@ -207,8 +211,10 @@
                     </section>
 
 
-  <!-- <section class="max-w-3xl mx-auto space-y-10 text-left text-gray-00 bg-slate-100"> -->
-  <section class="max-w-3xl mx-auto text-left text-gray-00 bg-slate-100">
+    <!-- Accordion blocks 5 ...  -->
+
+    <section class="max-w-3xl mx-auto space-y-10 text-left bg-slate-100" data-accordion="collapse">
+
               <!-- Accordion: content 5 -->
               <div>
                   <h2 id="accordion-open-heading-5">
@@ -235,7 +241,7 @@
                   </div>
                 </div>
 
-                  <!-- Accordion: content 6 (old 7) -->
+                  <!-- Accordion: content 6 -->
                   <div>
                     <h2 id="accordion-open-heading-6">
                     <button
@@ -291,11 +297,7 @@
                   </div>
                 </div>
 
-
-
-
-
-                <!-- Accordion: content 8 (old 9) -->
+                <!-- Accordion: content 8 -->
                 <div>
                     <h2 id="accordion-open-heading-8">
                       <button
@@ -411,8 +413,8 @@
                     </div>
                   </div>
 
-            </div><!-- Accordion-open heading close div -->
-      </section><!-- Accordion section -->
+
+            </section><!-- Accordion section -->
 
       <!-- Oakland Zoo Video -->
       <section id="zoo" class="my-8">
