@@ -1,5 +1,3 @@
-refactor initLoader.js with flowbite.min.js
-
 console.log('🚀 initLoader.js started');
 console.log('🧪 INIT START', window.location.pathname, Date.now());
 
@@ -7,7 +5,6 @@ import { initMain } from '/assets/js/mainInit.js';
 
 let menuClickHandler = null;
 let menuIsInitialized = false;
-
 window.initMenu = waitForAndInitMenu;
 
 (async function initApp() {
@@ -21,16 +18,24 @@ window.initMenu = waitForAndInitMenu;
 
     await injectPartials('[include-html]', version);
 
-      setTimeout(() => {
-      waitForAndInitMenu(); // async not needed
-      setupScrollAwareHeader(); // now safe
+    // Wait a tick for DOM to settle
+    setTimeout(() => {
+      waitForAndInitMenu();
+      setupScrollAwareHeader();
       initMain();
-      }, 0);
 
-      await new Promise(r => setTimeout(r, 500)); // simulate network latency
+      // Initialize Flowbite after dynamic content load
+      if (window.initFlowbite) {
+        try {
+          window.initFlowbite(); // In case Flowbite export is available
+          console.log('💡 Flowbite initialized');
+        } catch (err) {
+          console.warn('⚠️ Flowbite init failed:', err);
+        }
+      }
+    }, 0);
 
-    setupScrollAwareHeader();
-    initMain();
+    await new Promise(r => setTimeout(r, 500)); // optional simulated latency
   } catch (err) {
     console.error('❌ initApp() failed:', err);
   }
@@ -67,7 +72,7 @@ async function injectPartials(selector, version) {
       node.insertAdjacentHTML('afterend', html);
       node.remove();
       console.log(✅ Injected partial: ${url});
-    } catch (err) {ß
+    } catch (err) {
       node.innerHTML = <!-- Failed to load ${url} -->;
       console.error(❌ Error injecting ${url}, err);
     }
