@@ -4176,6 +4176,3 @@ video {
 .rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {
   text-align: right;
 }
-ere([dir="rtl"], [dir="rtl"] *) {
-  text-align: right;
-}
