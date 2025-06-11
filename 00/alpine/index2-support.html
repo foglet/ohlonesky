@@ -16,7 +16,7 @@
   <div include-html="/assets/partials/headerAlpine.html"></div>
 
   <!-- image for the head -->
-  <section ID="heroImage">
+  <section id="heroImage">
       <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
              alt="Aerial view of tram line"
              class="w-full h-auto"
@@ -28,7 +28,7 @@
 
   <!-- HERO Page Content -->
         <!-- Hero Text: Support-Coalition Text Goes Here  -->
-        <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50 p-6 shadow">
+    <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50 p-6 shadow">
 
         <section class="bg-white py-8 px-4 sm:px-6 lg:px-8 text-left rounded-xl">
           <div class="max-w-3xl mx-auto">
@@ -44,88 +44,13 @@
               <!-- <p class="font-semibold text-brandDark text-xl">The moment is here. Let’s bring Ohlone Sky to life.</p> -->
             </div>
           </div>
-
-    <!-- Email web3 -->
-        <section class="px-4 py-6 max-w-2xl mx-auto space-y-10">
-          <div class="text-center">
-            <h2 class="text-xl font-semibold text-brandDark">The moment is here. Let’s bring Ohlone Sky to life.</h2>
-          </div>
-
-          <form action="https://api.web3forms.com/submit"
-                method="POST"
-                aria-label="Contact Form"
-                class="w-full max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
-
-            <!-- Hidden Fields -->
-            <input type="hidden" name="redirect" value="https://ohlonesky.com/thanks/" />
-            <input type="hidden" name="access_key" value="52f8a533-544a-4fba-abe2-adb4446f944c" />
-            <input type="hidden" name="subject" value="New Contact Form Submission" />
-            <input type="hidden" name="from_name" value="Ohlone Sky Website" />
-
-            <!-- Grid layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-              <!-- Name -->
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name" required
-                       class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-              </div>
-
-              <!-- Email -->
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="E-mail" required
-                       class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-              </div>
-
-              <!-- Organization -->
-              <div>
-                <label for="organization" class="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                <input type="text" id="organization" name="organization" placeholder="Organization"
-                       class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-              </div>
-
-              <!-- Website -->
-              <div>
-                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
-                <input type="text" id="website" name="website" placeholder="https://"
-                       class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-              </div>
-
-              <!-- Message (spans both columns) -->
-              <div class="md:col-span-2">
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <p class="text-sm text-gray-600 mb-1">
-                  Please type <span class="text-red-500 font-semibold">JOIN</span> to be listed as a Coalition Member.
-                  <span class="text-lime-500 font-semibold">Note</span>: Membership has no funding or participation requirement.
-                  Coalition members agree to be listed on this website and in promotional materials.
-                </p>
-                <textarea id="message" name="message" rows="4"
-                          placeholder="Your message"
-                          class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
-              </div>
-
-              <!-- Submit button (spans both columns) -->
-              <div class="md:col-span-2 text-center p-8">
-                <button type="submit"
-                        class="bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-highlight transition-colors duration-200">
-                  Send Message
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <div class="text-neutralText text-sm sm:text-base text-center px-4">
-            <span class="font-semibold text-brandDark">Privacy Statement</p></span>
-            <p class="font-normal mt-2">We never share your data, and we rarely e-mail.</p><p> If you’d like your e-mail removed, just let us know.</p>
-          </div>
         </section>
 
-          <hr class="my-12 border-t border-gray-300" />
-        <!--  <section class="text-center mb-6max-w-4xl mx-auto space-y-8 text-left text-gray-800"> -->
+        <!-- Email web3 -->
+        <div include-html="/assets/partials/emailForm"></div>
 
-        <section class=" gap-4 text-left mb-6 max-w-4xl mx-auto text-gray-800">
+        <!-- the Coalition -->
+        <section class="gap-4 text-left mb-6 max-w-4xl mx-auto text-gray-800">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 class="text-2xl font-semibold text-brandDark">Coalition Members</h3>
@@ -147,32 +72,30 @@
           <hr class="my-12 border-t border-gray-300" />
 
           <div class="mt-8">
-            <h3 class="text-3xl font-bold text-neutralText mb-6">A Commitment to Giving</h3>
+            <h3 class="text-2xl font-semibold text-brandDark mb-6">A Commitment to Giving</h3>
           </div>
-            <p class="mt-2">
-              <!-- <p class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed"> -->
-                <!-- <p class="max-w-lg mt-2 text-brandDark max-w-lg mx-auto leading-relaxed"> -->
-
+            <p class="mt-2 max-w-3xl text-neutralText text-base leading-relaxed">
               Ohlone Sky sets aside 10% of its annual revenue to nourish what moves us most: the communities we live in, the climate we share, and the cultures that shape us. As a certified B Corp, we see transit not just as a path from here to there, but as a thread that binds purpose to place. This is movement with meaning—designed to move society forward.
             </p>
-          </div>
+
         </section><!-- end coalition members -->
 
-      </section><!-- end hero section -->
+
 
         </main>
 
         <!-- Hero Image -->
-        <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
-             alt="Two cable cars traveling during sunset by Tbel Abuseridze"
-             class="w-full h-auto" loading="lazy" />
-
-        <p class="text-xs text-gray-600 text-center mt-2 mb-6">
-          Source: Tbel Abuseridze, Unsplash</p>
-
-
-
-
+        <section class="text-center my-10">
+            <figure class="text-center mt-8 mb-6">
+              <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                   alt="Two cable cars traveling during sunset by Tbel Abuseridze"
+                   class="w-full h-auto rounded-lg shadow-sm"
+                   loading="lazy" />
+              <figcaption class="text-xs text-gray-600 mt-2">
+                Source: Tbel Abuseridze, Unsplash
+              </figcaption>
+            </figure>
+        </section>
 
 
   <!-- Footer Partial -->
