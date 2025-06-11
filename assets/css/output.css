@@ -2696,6 +2696,11 @@ video {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -2714,11 +2719,6 @@ video {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
 }
 
 .mb-0 {
@@ -2941,6 +2941,10 @@ video {
   max-width: 56rem;
 }
 
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
 .max-w-\[60ch\] {
   max-width: 60ch;
 }
@@ -2967,14 +2971,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-\[220px\] {
-  max-width: 220px;
-}
-
-.max-w-\[300px\] {
-  max-width: 300px;
 }
 
 .shrink-0 {
@@ -3422,9 +3418,9 @@ video {
   padding: 2rem;
 }
 
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 
 .px-3 {
@@ -3480,11 +3476,6 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-24 {
-  padding-left: 6rem;
-  padding-right: 6rem;
 }
 
 .pb-16 {
@@ -4060,12 +4051,12 @@ video {
     height: 2.5rem;
   }
 
-  .sm\:max-w-\[65ch\] {
-    max-width: 65ch;
-  }
-
   .sm\:max-w-\[400px\] {
     max-width: 400px;
+  }
+
+  .sm\:max-w-\[65ch\] {
+    max-width: 65ch;
   }
 
   .sm\:grid-cols-2 {
