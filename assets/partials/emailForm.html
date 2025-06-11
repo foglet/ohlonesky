@@ -21,49 +21,55 @@
   <input type="hidden" name="subject" value="New Contact Form Submission" />
   <input type="hidden" name="from_name" value="Ohlone Sky Website" />
 
+
   <!-- Grid layout -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <!-- Name -->
-      <div class="space-y-2">
-      <label for="name" class="block text-sm font-medium text-gray-700 leading-6">Name</label>
-      <input type="text" id="name" name="name" placeholder="Name" required
-             class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-      </div>
+          <!-- Name -->
+          <div class="space-y-2">
+            <label for="name" class="block text-sm font-medium text-gray-700 leading-6 pl-[10px]">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required
+                   class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+          </div>
 
-      <!-- Email -->
-      <div class="space-y-2">
-      <label for="email" class="block text-sm font-medium text-gray-700 leading-6">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="E-mail" required
-             class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-      </div>
+          <!-- Email -->
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-700 leading-6 pl-[10px]">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="E-mail" required
+                   class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+          </div>
 
-      <!-- Organization -->
-      <div class="space-y-2">
-      <label for="organization" class="block text-sm font-medium text-gray-700 leading-6">Organization</label>
-      <input type="text" id="organization" name="organization" placeholder="Organization"
-             class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-      </div>
+          <!-- Organization -->
+          <div class="space-y-2">
+            <label for="organization" class="block text-sm font-medium text-gray-700 leading-6 pl-[10px]">Organization</label>
+            <input type="text" id="organization" name="organization" placeholder="Organization"
+                   class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+          </div>
 
-      <!-- Website -->
-      <div class="space-y-2">
-      <label for="website" class="block text-sm font-medium text-gray-700 leading-6">Website</label>
-      <input type="text" id="website" name="website" placeholder="https://"
-             class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-      </div>
+          <!-- Website -->
+          <div class="space-y-2">
+            <label for="website" class="block text-sm font-medium text-gray-700 leading-6 pl-[10px]">Website</label>
+            <input type="text" id="website" name="website" placeholder="https://"
+                   class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+          </div>
 
-      <!-- Message -->
-      <div class="md:col-span-2 space-y-2">
-      <label for="message" class="block text-sm font-medium text-gray-700 leading-6">Message</label>
-      <textarea id="message" name="message" rows="4"
-                placeholder="Your message"
-                class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
-      <p class="text-sm text-gray-600 mt-1">
-        Please type <span class="text-orange-600 font-semibold">JOIN</span> to be listed as a Coalition Member.
-        <span class="text-lime-500 font-semibold">Note</span>: Membership has no funding or participation requirement.
-        Coalition members agree to be listed on this website and in promotional materials.
-      </p>
-      </div>
+          <!-- Message (spans both columns) -->
+          <div class="md:col-span-2 space-y-2">
+            <label for="message" class="block text-sm font-medium text-gray-700 leading-6 pl-[10px]">Message</label>
+            <p class="text-sm text-gray-600 pl-[10px]">
+              Please type <span class="text-orange-600 font-semibold">JOIN</span> to be listed as a Coalition Member.
+              <span class="text-lime-500 font-semibold">Note</span>: Membership has no funding or participation requirement.
+              Coalition members agree to be listed on this website and in promotional materials.
+            </p>
+            <textarea id="message" name="message" rows="4"
+                      placeholder="Your message"
+                      class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
+          </div>
+        </div>
+
+
+
+
 
     <!-- Submit -->
           <div class="md:col-span-2 text-center py-2">
