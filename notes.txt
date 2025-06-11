@@ -75,3 +75,9 @@ header.html // temporary fix.
   { href: '/00/support/', label: 'Support' },
   { href: '/00/alpine/index2.html/', label: 'FAQs' },
   { href: '/00/contact/', label: 'Contact' },
+
+061025
+00/alpine/index2-contact.html
+00/alpine/index2-hm.html
+00/alpine/index2-support.html
+00/alpine/index2-thanks.html
