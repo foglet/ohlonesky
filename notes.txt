@@ -77,7 +77,18 @@ header.html // temporary fix.
   { href: '/00/contact/', label: 'Contact' },
 
 061025
+00/alpine/index2.html :: FAQs
 00/alpine/index2-contact.html
 00/alpine/index2-hm.html
 00/alpine/index2-support.html
-00/alpine/index2-thanks.html
+00/alpine/index2-thanks.html >>> different responses
+00/alpine/index2-404.html
+
+
+<!-- colors in tailwind.config.js -->
+    brandDark: '#1d2834',
+    brandSky: '#0f172a',
+    stormSky: '#374151',
+    warmRed: '#F54029',
+    highlight: '#FF5500',
+    neutralText: '#636363'
