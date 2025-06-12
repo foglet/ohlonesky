@@ -13,33 +13,30 @@
 <body class="min-h-screen flex flex-col">
 
   <!-- Header Partial -->
-  <div include-html="/assets/partials/headerAlpine.html"></div>
+      <div include-html="/assets/partials/headerAlpine.html"></div>
 
   <!-- Hero Image -->
-  <section class="text-center" id="heroImage">
-    <figure class="text-center mb-6">
-      <img src="https://images.unsplash.com/photo-1508449311527-313da8823205?auto=format&fit=crop&w=1350&q=80"
-           alt="Tian Tan Buddha in Hong Kong by Joe Green"
-           class="w-full h-auto shadow-sm"
-           loading="lazy" />
-      <figcaption class="text-xs text-gray-600 mt-2">
-        Source: Joe Green, Unsplash
-      </figcaption>
-    </figure>
-  </section>
-
-
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <img src="https://images.unsplash.com/photo-1508449311527-313da8823205?auto=format&fit=crop&w=1350&q=80"
+               alt="Tian Tan Buddha in Hong Kong by Joe Green"
+               class="w-full h-auto shadow-sm"
+               loading="lazy" />
+          <figcaption class="text-xs text-gray-600 mt-2">
+            Source: Joe Green, Unsplash
+          </figcaption>
+        </figure>
+      </section>
 
   <!-- HERO Page Content -->
-      <!-- HERO Main Content -->
-      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 p-6">
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
 
         <section class="text-center mb-6">
           <p> We support solving challenges aligned with the
           <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">United Nations’ 17 Sustainable Development Goals</a>.</p><br>
         </section>
 
-        <section class="bg-white pt-8 pb-16 text-left rounded-xl">
+        <section class="bg-white pt-8 pb-16 text-left bg-slate-50 rounded-xl">
             <div class="w-full px-4 sm:px-6 lg:px-8">
               <div class="text-center">
                 <h2 class="text-3xl font-bold text-neutralText mb-2">
@@ -47,10 +44,10 @@
                 </h2>
               </div>
 
-      <!-- Accordion --><!-- adjust section bg here -->
+  <!-- Accordion --><!-- adjust section bg here -->
         <section class="w-full px-4 sm:px-6 lg:px-8 text-left bg-slate-50 mb-6" data-accordion="multiple">
 
-      <!-- Accordion: content 1-->
+            <!-- Accordion: content 1-->
             <div>
               <h2 id="accordion-open-heading-1">
                 <button
@@ -81,7 +78,7 @@
               </div>
             </div>
 
-      <!-- Accordion: content 2-->
+            <!-- Accordion: content 2-->
             <div>
             <h2 id="accordion-open-heading-2">
                 <button
@@ -107,7 +104,7 @@
               </div>
             </div>
 
-      <!-- Accordion: content 3-->
+            <!-- Accordion: content 3-->
             <div>
                 <h2 id="accordion-open-heading-3">
                 <button
@@ -136,35 +133,35 @@
                 </div>
                 </div>
 
-          <!-- Accordion: content 4-->
-                <div>
-                    <h2 id="accordion-open-heading-4">
-                      <button
-                        type="button"
-                        class="group flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white"
-                        data-accordion-target="#accordion-open-body-4"
-                        aria-expanded="false"
-                        aria-controls="accordion-open-body-4">
-                        <span class="flex items-center">
-                          How often will it run? What's the ride like?
-                        </span>
-                        <svg data-accordion-icon class="w-3 h-3 shrink-0 transition-transform duration-300 group-[aria-expanded=true]:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                        </svg>
-                      </button>
-                    </h2>
-                    <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
-                      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                        <p class="mb-2 text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
-                          We intend this to operate everyday throughout the day. Treat this as transit as normal. The actual schedule has not been set. The ride takes twelve minutes. Embark and go. </p>
-                          <p>It’s smooth, quiet, and designed for comfort in all weather. 3S gondolas are engineered to operate in fog, rain, and winds up to 68 mph, keeping riders above the fray, even when the fog rolls in. Cabins are fully ADA accessible, stroller- and bike-friendly, and easy to board for riders of all ages and abilities.
-                        </p>
-                      </div>
-                    </div>
+            <!-- Accordion: content 4-->
+            <div>
+                <h2 id="accordion-open-heading-4">
+                  <button
+                    type="button"
+                    class="group flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-white"
+                    data-accordion-target="#accordion-open-body-4"
+                    aria-expanded="false"
+                    aria-controls="accordion-open-body-4">
+                    <span class="flex items-center">
+                      How often will it run? What's the ride like?
+                    </span>
+                    <svg data-accordion-icon class="w-3 h-3 shrink-0 transition-transform duration-300 group-[aria-expanded=true]:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                    </svg>
+                  </button>
+                </h2>
+                <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
+                  <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
+                      We intend this to operate everyday throughout the day. Treat this as transit as normal. The actual schedule has not been set. The ride takes twelve minutes. Embark and go. </p>
+                      <p>It’s smooth, quiet, and designed for comfort in all weather. 3S gondolas are engineered to operate in fog, rain, and winds up to 68 mph, keeping riders above the fray, even when the fog rolls in. Cabins are fully ADA accessible, stroller- and bike-friendly, and easy to board for riders of all ages and abilities.
+                    </p>
                   </div>
-            <!-- </section> -->
+                </div>
+              </div>
+              <!-- </section> -->
 
-                  <!-- Ruth Asawa quote -->
+              <!-- Ruth Asawa quote -->
                   <section id="ruth" class="text-center my-8 px-4">
                     <blockquote class="italic text-lg text-brandDark max-w-lg mx-auto leading-relaxed">
                       “I am able to take a wire and go into the air and define the air without stealing it from anyone.
@@ -174,8 +171,6 @@
                     </blockquote>
                   </section>
 
-
-    <!-- Accordion blocks 5-10   -->
           <!-- Accordion: content 5 -->
           <div>
             <h2 id="accordion-open-heading-5">
@@ -219,8 +214,9 @@
               <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
                 <p class="mb-2 text-gray-900 dark:text-gray-400 max-w-2xl mx-auto">
 
+                  <!-- Give partial : three inserts -->
                   <div include-html="/assets/partials/give.html"></div>
-                  
+
                 </p>
               </div>
             </div>
@@ -331,86 +327,84 @@
         </section><!-- end of accordion -->
       </section><!-- end of FAQs -->
 
-
-      <!-- Accordion end sections 5-10 -->
         <!-- Oakland Zoo Video -->
-        <section id="zoo" class="text-center mb-6">
+          <section id="zoo" class="text-center mb-6">
+              <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full shadow">
+                <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <figcaption class="text-xs text-gray-600 mt-2">
+                Source: Fogday Studios
+              </figcaption>
 
-            <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full shadow">
-              <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <figcaption class="text-xs text-gray-600 mt-2">
-              Source: Fogday Studios
-            </figcaption>
+            <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                const video = document.getElementById('zooVideo');
 
-          <script>
-            document.addEventListener('DOMContentLoaded', () => {
-              const video = document.getElementById('zooVideo');
+                if (!video) return;
 
-              if (!video) return;
+                const observer = new IntersectionObserver(entries => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      video.play().catch(() => {});
+                    } else {
+                      video.pause();
+                    }
+                  });
+                }, { threshold: 0.5 });
 
-              const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                    video.play().catch(() => {});
-                  } else {
-                    video.pause();
-                  }
-                });
-              }, { threshold: 0.5 });
+                observer.observe(video);
+              });
+            </script>
+          </section> <!-- end Zoo -->
 
-              observer.observe(video);
-            });
-          </script>
-        </section> <!-- end Zoo -->
       </main>
 
 
 
   <!-- Footer Partial -->
-  <div include-html="/assets/partials/footer.html"></div>
+      <div include-html="/assets/partials/footer.html"></div>
 
   <!-- Load Partials, Alpine, and menuOverlay -->
-  <script type="module">
-    async function injectPartials(selector = '[include-html]') {
-      const elements = document.querySelectorAll(selector);
-      await Promise.all([...elements].map(async el => {
-        const file = el.getAttribute('include-html');
-        if (!file) return;
-        try {
-          const res = await fetch(file);
-          if (res.ok) {
-            el.innerHTML = await res.text();
-          } else {
-            el.innerHTML = `<p>Error loading ${file}</p>`;
-          }
-        } catch (err) {
-          console.warn('Partial load error:', file, err);
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
         }
-      }));
-    }
 
-    async function initPage() {
-      await injectPartials();
+        async function initPage() {
+          await injectPartials();
 
-      // ✅ Load Alpine
-      const alpine = document.createElement('script');
-      alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
-      alpine.defer = true;
-      document.head.appendChild(alpine);
+          // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
 
-      // ✅ Load menuOverlay and attach globally
-      const module = await import('/assets/js/menuOverlay.js');
-      window.menuOverlay = module.menuOverlay;
-    }
+          // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
 
-    document.addEventListener('DOMContentLoaded', initPage);
-  </script>
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
 
   <!-- Scripts: Accordion -->
-  <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
-  <script type="module" src="/assets/js/initLoader.js"></script>
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
 
 </body>
 </html>
