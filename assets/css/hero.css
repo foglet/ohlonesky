@@ -72,6 +72,19 @@
 
 }
 
+/* Center items in each column of a CSS multi-column layout */
+/*  to center coalition members and supporters  */
+.coalition-list {
+  text-align: center; /* global default */
+}
+
+@media (min-width: 768px) {
+  .coalition-list li {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
 /* adds spring! */
 @layer utilities {
   @keyframes drop-in {
