@@ -1,14 +1,12 @@
 <!-- 00/assets/emailForm.html -->
-
-<!-- Email web3 -->
-<!-- 00/assets/emailForm.html -->
+<!-- forms web3forms.com -->
 
 <section class="bg-slate-300 px-4 py-6 max-w-2xl mx-auto space-y-10">
-<div class="text-center">
-  <h2 class="text-xl font-semibold text-brandDark">
-    The moment is here. Let’s bring Ohlone Sky to life.
-  </h2>
-</div>
+  <div class="text-center">
+    <h2 class="text-xl font-semibold text-brandDark">
+      The time is now. Let’s bring Ohlone Sky to life.
+    </h2>
+  </div>
 
 <form action="https://api.web3forms.com/submit"
       method="POST"
@@ -27,7 +25,7 @@
 
           <!-- Name -->
           <div class="space-y-2">
-            <label for="name" class="block text-sm font-medium text-gray-700 leading-4 pl-[10px]">
+            <label for="name" class="block text-sm font-medium text-gray-700 leading-4 pl-3">
               Name <span class="text-xs text-gray-400 ml-1">(required)</span>
             </label>
             <input type="text" id="name" name="name" required
@@ -36,7 +34,7 @@
 
           <!-- Email -->
           <div class="space-y-2">
-            <label for="email" class="block text-sm font-medium text-gray-700 leading-4 pl-[10px]">
+            <label for="email" class="block text-sm font-medium text-gray-700 leading-4 pl-3">
                 E-mail <span class="text-xs text-gray-400 ml-1">(required)</span>
             </label>
 
@@ -46,14 +44,14 @@
 
           <!-- Organization -->
           <div class="space-y-2">
-            <label for="organization" class="block text-sm font-medium text-gray-700 leading-4 pl-[10px]">Organization</label>
+            <label for="organization" class="block text-sm font-medium text-gray-700 leading-4 pl-3">Organization</label>
             <input type="text" id="organization" name="organization"
                    class="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
           </div>
 
           <!-- Website -->
           <div class="space-y-2">
-              <label for="website" class="block text-sm font-medium text-gray-700 leading-4 pl-[10px]">Website</label>
+              <label for="website" class="block text-sm font-medium text-gray-700 leading-4 pl-3">Website</label>
             <input type="text" id="website" name="website"
                    class="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
           </div>
@@ -61,39 +59,35 @@
           <!-- Message (spans both columns) -->
           <div class="md:col-span-2 space-y-2">
 
-            <label for="message" class="block text-sm font-medium text-gray-700 leading-4 pl-[10px]">
+            <label for="message" class="block text-sm font-medium text-gray-700 leading-4 pl-3">
                 Message <span class="text-xs text-gray-400 ml-1">(required)</span>
             </label>
-            <p class="text-sm text-gray-600 pl-[10px]">
+            <p class="text-sm text-gray-600 pl-3">
               Please type <span class="text-orange-600 font-semibold">JOIN</span> to be listed as a Coalition Member.
-              <span class="text-lime-500 font-semibold">Note</span>: Membership has no funding or participation requirement.
+              <span class="text-lime-600 font-semibold">Note</span>: Membership has no funding or participation requirement.
               Coalition members agree to be listed on this website and in promotional materials.
             </p>
-            <textarea id="message" name="message" rows="4" required
+            <textarea id="message" name="message" rows="5" required
                       class="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
           </div>
-        </div>
-
 
     <!-- Submit -->
           <div class="md:col-span-2 text-center py-1">
             <button type="submit"
-                    class="bg-lime-500 text-white text-capitalize font-semibold px-6 py-2 rounded-full shadow hover:bg-highlight transition-colors duration-200">
-              Let's build it together!
-            </button>
+                      class="bg-lime-500 text-white uppercase font-semibold px-6 py-2 rounded-full shadow hover:bg-highlight transition-colors duration-200">
+                Let's build it together!
+              </button>
           </div>
-        </div>
-      </form>
+        </div> <!-- end of grid layout -->
+    </form>
 
 <!-- Privacy -->
-<div class="text-brandDark text-sm sm:text-base text-center px-4 max-w-[300px] sm:max-w-[400px] w-full mx-auto py-1">
-  <span class="text-base text-capitalize font-semibold">Privacy Statement</span>
-  <p class="text-sm mt-1">
-    We never share your data, and we rarely e-mail. If you’d like your e-mail removed, just let us know.
-  </p>
-</div>
+      <div class="text-brandDark text-sm sm:text-base text-center px-4 max-w-[300px] sm:max-w-[400px] w-full mx-auto py-1">
+        <span class="text-sm uppercase font-semibold">Privacy Statement</span>
+        <p class="text-sm mt-1">
+          We never share your data, and we rarely e-mail. If you’d like your e-mail removed, just let us know.
+        </p>
+      </div>
 </section>
-
-   <!-- e-mail section -->
 
       <!-- <hr class="my-12 border-t border-gray-300" /> -->
