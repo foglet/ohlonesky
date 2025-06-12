@@ -75,10 +75,15 @@
 /* Center items in each column of a CSS multi-column layout */
 /*  to center coalition members and supporters  */
 .coalition-list {
-  text-align: center; /* global default */
+  column-count: 1;
+  column-gap: 2rem;
 }
 
 @media (min-width: 768px) {
+  .coalition-list {
+    column-count: 2;
+  }
+
   .coalition-list li {
     display: inline-block;
     width: 100%;
