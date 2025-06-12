@@ -1,4 +1,4 @@
-<!-- 00/alpine/index2-hm.html -->
+<!-- 00/alpine/index2-404.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,50 +11,45 @@
   <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
   <style>[x-cloak] { display: none !important; }</style>
 </head>
-<body id="home" class="min-h-screen flex flex-col">
+<body id="404" class="min-h-screen flex flex-col">
 
   <!-- Header Partial -->
       <div include-html="/assets/partials/headerAlpine.html"></div>
 
-  <!-- Hero Image top :: swap -->
-      <section class="text-center" id="heroImage">
-        <figure class="text-center mb-6">
-          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
-               alt="Aerial view of tram line"
-               class="w-full h-auto shadow-sm"
-               loading="lazy" />
-          <figcaption class="text-xs text-gray-500 mt-2">
-            Source: Fogday Studios
-          </figcaption>
-        </figure>
-      </section>
 
-  <!-- HERO Main Content -->
-      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
+      <main id="mainContent" class="flex-grow mx-auto">
 
+        <section class="relative w-screen h-screen text-center text-white overflow-hidden">
+          <!-- Clickable layer -->
+          <a href="/00/" class="absolute inset-0 z-10 cursor-pointer" aria-label="Return to homepage"></a>
 
+          <!-- Full-screen background -->
+            <div class="absolute inset-0 z-0 bg-cover bg-center brightness-75"
+                 style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg');">
+            </div>
 
+          <!-- Overlay content -->
+          <div class="absolute inset-0 z-20 flex flex-col md:items-center md:justify-center px-6 pt-24 md:pt-0">
+            <div class="max-w-3xl text-center space-y-2 text-lg">
+              <p lang="zh-Hant" class="drop-shadow"><span class="font-medium">迷失在霧中？</span></p>
+              <p lang="it" class="drop-shadow"><span class="font-medium">Perso nella nebbia?</span></p>
+              <p lang="ar" class="drop-shadow"><span class="font-medium">ضائع في الضباب؟</span></p>
+              <p lang="es" class="drop-shadow"><span class="font-medium">¿Perdido en la niebla?</span></p>
+              <p lang="en" class="drop-shadow"><span class="font-medium">Lost in the fog?</span></p>
+              <p lang="ru" class="drop-shadow"><span class="font-medium">Затерялся в тумане?</span></p>
+              <p lang="de" class="drop-shadow"><span class="font-medium">Verloren im Nebel?</span></p>
+              <p lang="fr" class="drop-shadow"><span class="font-medium">Perdu dans le brouillard?</span></p>
+            </div>
+          </div>
 
-
-        <!-- Give partial : three inserts -->
-        <div include-html="/assets/partials/give.html"></div>
-
-
-
+          <!-- Attribution -->
+            <p class="text-xs text-gray-600 text-center mt-2 mb-6">
+              Source: Jessica Christian, Unsplash
+            </p>
+        </section>
       </main>
 
-  <!-- Hero Image bottom :: swap-->
-      <section>
-          <figure class="text-center mb-6">
-            <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
-                 alt="Two cable cars traveling during sunset by Tbel Abuseridze"
-                 class="w-full h-auto shadow-sm"
-                 loading="lazy" />
-            <figcaption class="text-xs text-gray-600 mt-2">
-              Source: Tbel Abuseridze, Unsplash
-            </figcaption>
-          </figure>
-      </section>
+
 
 
   <!-- Footer Partial -->
