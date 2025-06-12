@@ -1,176 +1,114 @@
+<!-- 00/alpine/index2-contact.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Charset and Viewport -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Primary Meta Tags -->
-  <title>Ohlone Sky</title>
-  <meta name="title" content="Ohlone Sky" />
-  <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands." />
-  <link rel="canonical" href="https://ohlonesky.com" />
-  <link rel="icon" href="/favicon.ico" />
-
-  <!-- Social Meta -->
-  <meta property="og:title" content="Ohlone Sky" />
-  <meta property="og:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ohlonesky.com" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ohlone Sky" />
-  <meta name="twitter:description" content="A visionary project for a connected, carbon-neutral future." />
-  <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
-  <meta name="twitter:url" content="https://ohlonesky.com" />
-
-  <!-- Adobe Fonts -->
-  <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
-
-  <!-- ||||||||||||  CSS run from here: Terminal rebuild ||||||||||||| -->
-  <link rel="stylesheet" href="/assets/css/output.css" />
-  <link rel="stylesheet" href="/assets/css/hero.css" />
-
-  <!-- Fallback for no-JS users -->
-  <noscript>
-    <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" />
-  </noscript>
-  <!-- ||||||||||| CSS yippee ||||||| -->
-
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-  <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
+<div include-html="/assets/partials/meta.html"></div>
 
-    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-      <header include-html="/assets/partials/header.html"></header>
+<body id="contact" class="min-h-screen flex flex-col">
 
+    <!-- Header Partial -->
+        <div include-html="/assets/partials/headerAlpine.html"></div>
 
-    <!-- Hero Image -->
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jiachen-lin-q_dNpU4kAKo-unsplash.jpg"
-         alt="Singapore skyline by Jiachen Lin (@jiachenlin) on Unsplash"
-         class="w-full h-auto"
-         loading="lazy" />
-    <p class="text-xs text-gray-600 text-center mt-2">
-      Source: Jiachen Lin, Unsplash
-    </p>
-    <br>
+    <!-- Hero Image top -->
+        <section class="text-center" id="heroImage">
+          <figure class="text-center mb-6">
+            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jiachen-lin-q_dNpU4kAKo-unsplash.jpg"
+                 alt="Singapore skyline by Jiachen Lin (@jiachenlin) on Unsplash"
+                 class="w-full h-auto shadow-sm"
+                 loading="lazy" />
+            <figcaption class="text-xs text-gray-600 mt-2">
+              Source: Jiachen Lin, Unsplash
+            </figcaption>
+          </figure>
+        </section>
 
-    <!-- |||||||||||||||||||| Hero Image: the only stuff to change  ||||||||||||||||||||| -->
-    <!-- Hero Text: Contact  -->
+    <!-- HERO Page Content -->
+        <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
 
-    <main id="mainContent" class="flex-grow pt-8 pb-16 px-4 bg-indigo-50 rounded-xl p-6 shadow">
-
-        <h2 class="text-3xl font-bold text-neutralText text-center mb-2">Contact Ohlone Sky</h2>
-          <!-- Email web3 -->
-
-          <section class="px-4 py-6 max-w-2xl mx-auto space-y-10">
-            <div class="text-center">
-              <h2 class="text-xl font-semibold text-brandDark">The moment is here. Let’s bring Ohlone Sky to life.</h2>
-            </div>
-
-            <form action="https://api.web3forms.com/submit"
-                  method="POST"
-                  aria-label="Contact Form"
-                  class="w-full max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
-
-              <!-- Hidden Fields -->
-              <input type="hidden" name="redirect" value="https://ohlonesky.com/thanks/" />
-              <input type="hidden" name="access_key" value="52f8a533-544a-4fba-abe2-adb4446f944c" />
-              <input type="hidden" name="subject" value="New Contact Form Submission" />
-              <input type="hidden" name="from_name" value="Ohlone Sky Website" />
-
-              <!-- Grid layout -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- Name -->
-                <div>
-                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Name" required
-                         class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
+            <section class="bg-white pt-2 pb-6 px-4 sm:px-6 lg:px-8 text-left">
+              <div class="max-w-3xl mx-auto">
+                <div class="text-center">
+                  <h2 class="text-3xl font-bold text-neutralText mb-2">
+                    Let's Connnect!
+                  </h2>
                 </div>
 
-                <!-- Email -->
-                <div>
-                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                  <input type="email" id="email" name="email" placeholder="E-mail" required
-                         class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-                </div>
-
-                <!-- Organization -->
-                <div>
-                  <label for="organization" class="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                  <input type="text" id="organization" name="organization" placeholder="Organization"
-                         class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-                </div>
-
-                <!-- Website -->
-                <div>
-                  <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
-                  <input type="text" id="website" name="website" placeholder="https://"
-                         class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition" />
-                </div>
-
-                <!-- Message (spans both columns) -->
-                <div class="md:col-span-2">
-                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <p class="text-sm text-gray-600 mb-1">
-                    Please type <span class="text-red-500 font-semibold">JOIN</span> to be listed as a Coalition Member.
-                    <span class="text-lime-500 font-semibold">Note</span>: Membership has no funding or participation requirement.
-                    Coalition members agree to be listed on this website and in promotional materials.
-                  </p>
-                  <textarea id="message" name="message" rows="4"
-                            placeholder="Your message"
-                            class="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-highlight focus:border-highlight transition"></textarea>
-                </div>
-
-                <!-- Submit button (spans both columns) -->
-                <div class="md:col-span-2 text-center p-8">
-                  <button type="submit"
-                          class="bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-highlight transition-colors duration-200">
-                    Send Message
-                  </button>
+                <div class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed">
+                  <p></p>
                 </div>
               </div>
-            </form>
+            </section>
 
-            <div class="text-neutralText text-sm sm:text-base text-center px-4">
-              <span class="font-semibold text-brandDark">Privacy Statement</span>
-              <p class="font-normal mt-2">We never share your data, and we rarely e-mail.</p><p> If you’d like your e-mail removed, just let us know.</p>
-            </div>
+
+            <div include-html="/assets/partials/emailForm"></div>
+
+        </main>
+
+      <!-- Hero Image bottom -->
+        <section>
+          <figure class="text-center mb-6">
+              <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png"
+                   alt="Emirates Air Line cable car, London"
+                   class="w-full h-auto shadow-sm"
+                   loading="lazy" />
+              <figcaption class="text-xs text-gray-600 mt-2">
+                Wikipedia: Emirates Air Line
+              </figcaption>
+            </figure>
           </section>
 
-    </main>
 
-    <!-- Secondary Image -->
-    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png"
-     alt="Emirates Air Line cable car, London"
-     class="w-full h-auto"
-     loading="lazy" />
-    <p class="text-xs text-gray-600 text-center mt-2 mb-6">
-      Source: Emirates Air Line, Wikipedia
-    </p>
+      <!-- Footer Partial -->
+          <div include-html="/assets/partials/footer.html"></div>
 
-  </div> <!-- closed paged content -->
-<br>
+      <!-- Load Partials, Alpine, and menuOverlay -->
+          <script type="module">
+            async function injectPartials(selector = '[include-html]') {
+              const elements = document.querySelectorAll(selector);
+              await Promise.all([...elements].map(async el => {
+                const file = el.getAttribute('include-html');
+                if (!file) return;
+                try {
+                  const res = await fetch(file);
+                  if (res.ok) {
+                    el.innerHTML = await res.text();
+                  } else {
+                    el.innerHTML = `<p>Error loading ${file}</p>`;
+                  }
+                } catch (err) {
+                  console.warn('Partial load error:', file, err);
+                }
+              }));
+            }
 
-    <!-- Tertiary Image -->
-  <!--  <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jan-huber-FuChqSzeCAc-unsplash.jpg"
-     alt="Urban aerial view by Jan Huber on Unsplash"
-     class="w-full h-auto"
-     loading="lazy" />
-<p class="text-xs text-gray-600 text-center mt-2">
-  Source: Jan Huber, Unsplash
-</p><br> -->
+            async function initPage() {
+              await injectPartials();
 
-<!-- Footer -->
-<footer include-html="/assets/partials/footer.html"></footer>
+              // ✅ Load Alpine
+              const alpine = document.createElement('script');
+              alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+              alpine.defer = true;
+              document.head.appendChild(alpine);
 
-<script type="module" src="/assets/js/initLoader.js"></script>
+              // ✅ Load menuOverlay and attach globally
+              const module = await import('/assets/js/menuOverlay.js');
+              window.menuOverlay = module.menuOverlay;
+            }
+
+            document.addEventListener('DOMContentLoaded', initPage);
+          </script>
+
+    <!-- Scripts: Accordion -->
+        <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+        <script type="module" src="/assets/js/initLoader.js"></script>
 
 </body>
 </html>

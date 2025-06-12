@@ -92,3 +92,12 @@ header.html // temporary fix.
     warmRed: '#F54029',
     highlight: '#FF5500',
     neutralText: '#636363'
+
+    <!-- Tertiary Image -->
+  <!--  <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jan-huber-FuChqSzeCAc-unsplash.jpg"
+     alt="Urban aerial view by Jan Huber on Unsplash"
+     class="w-full h-auto"
+     loading="lazy" />
+<p class="text-xs text-gray-600 text-center mt-2">
+  Source: Jan Huber, Unsplash
+</p><br> -->
