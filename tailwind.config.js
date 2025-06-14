@@ -32,7 +32,10 @@ module.exports = {
         neutralText: '#636363',
       },
       fontFamily: {
-        adobe: ['freight-sans-pro', 'sans-serif'],
+        ardo: ['ardoise-std', 'sans-serif'], // font-weight font-style: normal 700
+        ardons: ['ardoise-narrow-std', 'sans-serif'], // font-weight font-style: normal 700
+
+
       },
     },
   },
