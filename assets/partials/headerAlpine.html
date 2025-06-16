@@ -18,7 +18,6 @@
     <div class="flex items-center space-x-4">
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center text-sm" aria-label="Main Navigation">
-        <a href="/00/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">HOME</a>
         <a href="/00/support/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">SUPPORT</a>
             <a href="/00/faqs/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">FAQs</a>
         <a href="/00/contact/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">CONTACT</a>
@@ -71,6 +70,10 @@
 
       <!-- Flexbox wrapper to center links with spacing -->
         <div class="flex flex-col justify-center items-center h-full space-y-6">
+
+          <a @click="open = false"
+             href="/"
+             class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-300 animate-drop-in">HOME</a>
 
           <a @click="open = false"
              href="/00/support/"
