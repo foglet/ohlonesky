@@ -122,3 +122,10 @@ buttons
 </button>
 
 <a href="/00/faqs/" class="font-semibold text-lg text-slate-800 hover:text-orange-600">« Tell Me More »</a>
+
+061825 ::
+-- Favicon
+-- fix: e-mail > ohsky@fogday.com, change on hover and web3forms...
+-- Quotes on why you would love this…
+-- vertical aerial tram photos on mobile.
+-- socials
