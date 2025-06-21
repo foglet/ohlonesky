@@ -1,0 +1,165 @@
+<!-- 00/alpine/index2-support.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
+  <div include-html="/assets/partials/meta.html"></div>
+</head>
+
+<body id="support" class="min-h-screen flex flex-col">
+
+  <!-- Header Partial -->
+      <div include-html="/assets/partials/headerAlpine.html"></div>
+
+  <!-- Hero Image -->
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg"
+               alt="Aerial view of tram line"
+               class="w-full h-auto shadow-sm"
+               loading="lazy" />
+          <figcaption class="text-xs text-gray-600 mt-2">
+            Source: UNStudio
+          </figcaption>
+        </figure>
+      </section>
+
+  <!-- Hero Text: Support-Coalition Text Goes Here  -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
+
+          <section class="bg-white pt-2 pb-6 px-4 sm:px-6 lg:px-8 text-left">
+              <div class="max-w-3xl mx-auto">
+                <div class="text-center">
+                  <h2 class="text-3xl font-bold text-neutralText mb-2">
+                    Join the Coalition
+                  </h2>
+                </div>
+
+                <!-- HR -->
+                  <hr class="w-36 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700">
+
+
+                <div class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed">
+                  <p>The Ohlone Sky Coalition is a growing alliance of visionaries, advocates, and organizations committed to shaping a more connected, more sustainable Bay Area. We champion clean, swift, and equitable transit. </p>
+                  <p>Our mission is to bring this future to life by building support among businesses, city leaders, regional partners, and state and federal agencies. Together, we can turn a bold idea into a lasting legacy.</p>
+                  <p>This is a once-in-a-generation chance to reimagine how we move—not just across the Bay, but toward a more just and resilient future. Your support moves the project forward. Let's bring Ohlone Sky to life.</p>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- the Coalition -->
+                <section class="bg-white py-6 px-4 sm:px-6 lg:px-8">
+                  <div class="max-w-3xl mx-auto">
+                    <ul class="columns-1 md:columns-2 gap-8 [column-fill:balance] text-center">
+                        <!-- <ul class="columns-1 md:columns-2 gap-8 [column-fill:balance] space-y-1 text-center"> -->
+                      <li class="text-lg font-bold text-lime-600 mt-6 break-inside-avoid">Supporters</li>
+                      <li>Adryenn Ashley, Slay Ventures</li>
+                      <li>Michael Terpin, Transform Group</li>
+
+                      <li class="text-lg font-bold text-lime-600 mt-6 break-inside-avoid">Members</li>
+                      <li>Sue Averell, Gallery Sausalito</li>
+                      <li>Gregory Dawson, Dawson Dance SF</li>
+                    </ul>
+                  </div>
+                </section>
+            <!-- end coalition -->
+
+            <!-- HR -->
+              <hr class="w-36 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700">
+
+
+            <!-- Email web3 -->
+                <div include-html="/assets/partials/emailForm"></div>
+
+
+            <!-- Commitment to Giving -->
+            <section class="bg-white pt-2 pb-6 px-4 sm:px-6 lg:px-8 text-left">
+              <div class="max-w-3xl mx-auto mt-8">
+                <h3 class="text-2xl font-semibold text-brandDark text-center mb-2">A Commitment to Giving</h3>
+                <div class="text-neutralText text-base leading-relaxed text-left">
+
+                <!-- HR -->
+                  <hr class="w-36 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700">
+
+                  <!-- Give partial : three inserts -->
+                  <!-- <div class="max-w-2xl" include-html="/assets/partials/give.html"></div> -->
+                  <div class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed">
+                    <div include-html="/assets/partials/give.html"></div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+
+      </main>
+
+    <!-- Hero Image bottom -->
+        <section>
+            <figure class="text-center mb-6">
+              <img src="https://images.unsplash.com/photo-1552696142-c264f14ee784?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                   alt="Two cable cars traveling during sunset by Tbel Abuseridze"
+                   class="w-full h-auto shadow-sm"
+                   loading="lazy" />
+              <figcaption class="text-xs text-gray-600 mt-2">
+                Source: Tbel Abuseridze, Unsplash
+              </figcaption>
+            </figure>
+        </section>
+
+  <!-- Tell Me More Partial -->
+      <div include-html="/assets/partials/tellMeMore.html"></div>
+
+
+  <!-- Footer Partial -->
+      <div include-html="/assets/partials/footer.html"></div>
+
+  <!-- Load Partials, Alpine, and menuOverlay -->
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
+        }
+
+        async function initPage() {
+          await injectPartials();
+
+          // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
+
+          // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
+
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
+
+  <!-- Scripts: Accordion -->
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
+</html>
