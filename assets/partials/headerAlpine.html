@@ -3,7 +3,7 @@
 <header x-data="menuOverlay()"
         x-init="init()"
         x-effect="document.body.classList.toggle('overflow-hidden', open)"
-        class="sticky top-0 z-50 w-full shadow-sm">
+        class="sticky top-0 z-50 w-full">
 
         <!-- class="sticky top-0 z-50 w-full bg-white shadow-sm" -->
 
@@ -16,12 +16,6 @@
            class="h-5" /> <!-- h-5 20px -->
     </a>
 
-    <!-- <a href="/" class="flex items-center space-x-2">
-      <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-text.svg"
-           alt="Ohlone Sky"
-           class="h-[28px] w-auto" />
-    </a> -->
-
     <!-- Right: Desktop nav + Mobile hamburger -->
     <div class="flex items-center space-x-4">
       <!-- Desktop nav -->
@@ -30,11 +24,6 @@
         <a href="/00/coalition/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">COALITION</a>
         <a href="/00/faqs/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">FAQs</a>
         <a href="/00/contact/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">CONTACT</a>
-
-        <!-- <a href="/00/support/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">SUPPORT</a>
-            <a href="/00/faqs/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">FAQs</a>
-        <a href="/00/contact/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">CONTACT</a> -->
-
       </nav>
 
       <!-- Mobile Hamburger -->
@@ -56,7 +45,6 @@
               class="absolute top-[-6px] right-[-6px] w-[44px] h-[44px] rounded-full
                  bg-gradient-to-r from-red-500 to-orange-500 pointer-events-none z-[-1]">
           </div> <!-- end circle addition -->
-
 
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-[0.7] h-[3px] bg-white'
@@ -101,18 +89,30 @@
 
           <a @click="open = false"
              href="/"
+               x-transition:enter="transition ease-out duration-500"
+               x-transition:enter-start="opacity-0 translate-y-8"
+               x-transition:enter-end="opacity-100 translate-y-0"
              class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-300 animate-drop-in">HOME</a>
 
           <a @click="open = false"
              href="/00/coalition"
+               x-transition:enter="transition ease-out duration-500"
+               x-transition:enter-start="opacity-0 translate-y-8"
+               x-transition:enter-end="opacity-100 translate-y-0"
              class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-400 animate-drop-in">COALITION</a>
 
           <a @click="open = false"
              href="/00/faqs/"
+               x-transition:enter="transition ease-out duration-500"
+               x-transition:enter-start="opacity-0 translate-y-8"
+               x-transition:enter-end="opacity-100 translate-y-0"
              class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-500 animate-drop-in">FAQs</a>
 
           <a @click="open = false"
              href="/00/contact/"
+               x-transition:enter="transition ease-out duration-500"
+               x-transition:enter-start="opacity-0 translate-y-8"
+               x-transition:enter-end="opacity-100 translate-y-0"
              class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-600 animate-drop-in">CONTACT</a>
         </div>
       </nav>
