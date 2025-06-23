@@ -27,9 +27,9 @@
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center text-sm" aria-label="Main Navigation">
 
-        <a href="/00/coalition/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-r from-lime-400 to-lime-600 hover:font-medium hover:text-white">COALITION</a>
-        <a href="/00/faqs/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-r from-lime-400 to-lime-600 hover:font-medium hover:text-white">FAQs</a>
-        <a href="/00/contact/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-r from-lime-400 to-lime-600 hover:font-medium hover:text-white">CONTACT</a>
+        <a href="/00/coalition/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">COALITION</a>
+        <a href="/00/faqs/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">FAQs</a>
+        <a href="/00/contact/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">CONTACT</a>
 
         <!-- <a href="/00/support/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">SUPPORT</a>
             <a href="/00/faqs/" class="text-brandDark font-normal hover:text-highlight transition-colors duration-200">FAQs</a>
@@ -44,6 +44,18 @@
               aria-label="Toggle menu"
               id="menuToggle"
               class="relative z-50 w-8 h-8 md:hidden">
+
+        <!-- new: Circle appears only when open -->
+          <div x-show="open"
+               x-transition:enter="transition-opacity duration-300"
+               x-transition:enter-start="opacity-0"
+               x-transition:enter-end="opacity-100"
+               x-transition:leave="transition-opacity duration-200"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               class="absolute inset-0 rounded-full bg-highlight pointer-events-none z-[-1]">
+          </div> <!-- end circle addition -->
+
         <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-[0.7] h-[3px]'
             : 'top-[11px] h-[2px]'"
@@ -69,7 +81,7 @@
        x-cloak>
   </div>
 
-  <!-- ✅ Slide-Up Mobile Overlay - NEVER covers header/footer -->
+  <!-- ✅ Slide-Up Mobile Overlay -->
       <nav id="menuOverlay"
          x-show="open"
          x-transition:enter="transition ease-out duration-500"
