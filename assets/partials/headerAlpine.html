@@ -89,31 +89,51 @@
 
           <a @click="open = false"
              href="/"
-               x-transition:enter="transition ease-out duration-500"
-               x-transition:enter-start="opacity-0 translate-y-8"
-               x-transition:enter-end="opacity-100 translate-y-0"
-             class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-300 animate-drop-in">HOME</a>
+             x-transition:enter="transition ease-out duration-500 delay-[300ms]"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-400 delay-[600ms]"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-8"
+             class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+             HOME
+          </a>
 
           <a @click="open = false"
-             href="/00/coalition"
-               x-transition:enter="transition ease-out duration-500"
-               x-transition:enter-start="opacity-0 translate-y-8"
-               x-transition:enter-end="opacity-100 translate-y-0"
-             class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-400 animate-drop-in">COALITION</a>
+             href="/coalition/"
+             x-transition:enter="transition ease-out duration-500 delay-[500ms]"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-400 delay-[600ms]"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-8"
+             class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+             COALITION
+          </a>
 
           <a @click="open = false"
-             href="/00/faqs/"
-               x-transition:enter="transition ease-out duration-500"
-               x-transition:enter-start="opacity-0 translate-y-8"
-               x-transition:enter-end="opacity-100 translate-y-0"
-             class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-500 animate-drop-in">FAQs</a>
+             href="/faqs/"
+             x-transition:enter="transition ease-out duration-500 delay-[700ms]"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-400 delay-[600ms]"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-8"
+             class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+             FAQs
+          </a>
 
           <a @click="open = false"
-             href="/00/contact/"
-               x-transition:enter="transition ease-out duration-500"
-               x-transition:enter-start="opacity-0 translate-y-8"
-               x-transition:enter-end="opacity-100 translate-y-0"
-             class="block text-3xl font-bold text-brandDark hover:text-highlight transition duration-300 delay-600 animate-drop-in">CONTACT</a>
+             href="/contact/"
+             x-transition:enter="transition ease-out duration-500 delay-[900ms]"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-400 delay-[600ms]"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-8"
+             class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+             CONTACT
+          </a>
         </div>
       </nav>
 </header>
