@@ -1,190 +1,91 @@
+<!-- 00/alpine/index2-thanks.html -->
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
+  <div include-html="/assets/partials/meta.html"></div>
+</head>
 
-  <head>
-    <!-- Meta Charset and Viewport -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<body id="thanks" class="min-h-screen flex flex-col">
 
-    <!-- Primary Meta Tags -->
-    <title>Ohlone Sky</title> <!-- Override this per page if needed -->
-    <meta name="title" content="Ohlone Sky" />
-    <meta name="description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
+  <!-- Header Partial -->
+      <div include-html="/assets/partials/headerAlpine.html"></div>
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://ohlonesky.com" />
+  <!-- Hero Image -->
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash.jpg"
+               alt="London Emirates cable car, London, UK"
+               class="w-full h-auto shadow-sm"
+               loading="lazy" />
+          <figcaption class="text-xs text-gray-600 mt-2">
+              Source: Olivier Depaep, Unsplash
+          </figcaption>
+        </figure>
+      </section>
 
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" />
+  <!-- Hero Main Content  -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ohlonesky.com" />
-    <meta property="og:title" content="Ohlone Sky" />
-    <meta property="og:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+        <!-- logo separator -->
+        <div include-html="/assets/partials/logo.html"></div>
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ohlonesky.com" />
-    <meta name="twitter:title" content="Ohlone Sky" />
-    <meta name="twitter:description" content="Ohlone Sky is a sustainable aerial gondola linking San Francisco with Yerba Buena and Treasure Islands. A visionary project for a connected, carbon-neutral future." />
-    <meta name="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+          <section class="text-center">
+            <!-- message input fro formLogic.js -->
+            <p id="thanksMessage" class="text-base font-normal text-lime-800 my-6"></p>
+            <h2 class="text-4xl font-bold text-lime-600 mb-8">Upward and onward!</h2>
+          </section>
 
-    <!-- Stylesheets: not loading...  -->
-    <link rel="stylesheet" href="/assets/css/output.css" />
-    <link rel="stylesheet" href="/assets/css/hero.css" />
-
-    <!-- Adobe Fonts -->
-    <link rel="preload" href="https://use.typekit.net/abc4def.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/abc4def.css" /></noscript>
-  </head>
-
-  <body id="thanks" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
-
-    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-      <header include-html="/assets/partials/header.html"></header>
-
-<!-- ||||||||||||||||||||||||||||||  CSS or broke |||||||||||||||||||||| -->
-      <!-- Tailwind CSS -->
-      <script src="https://cdn.tailwindcss.com"></script>
-      <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                brandDark: '#1d2834',
-                brandSky: '#0f172a', <!-- sky-900 -->
-                stormSky: '#374151', <!-- slate-700 -->
-                warmRed: '#F54029', <!-- ~red-500 -->
-                highlight: '#ff5500',
-                neutralText: '#636363',
-              },
-              fontFamily: {
-                adobe: ['freight-sans-pro', 'sans-serif'],
-              },
-            },
-          },
-        };
-      </script>
-
-      <!-- Clean paragraph widths -->
-      <style>
-        @layer base {
-          p{@apply max-w-[60ch] sm:max-w-[65ch] md:max-w-[70ch] text-base sm:text-lg leading-relaxed text-gray-800 mx-auto hyphens-none md:hyphens-auto;}
-          a{@apply underline text-brandDark hover:text-highlight transition-colors duration-200;}
-          #menuToggle.open .bar-top{@apply rotate-45 translate-y-[6px];}
-          #menuToggle.open .bar-middle{@apply opacity-0;}
-          #menuToggle.open .bar-bottom{@apply -rotate-45 -translate-y-[6px];}
-        }
-
-        @layer utilities {
-          @keyframes fade-up {
-            0% { opacity: 0; transform: translateY(12px); }
-            100% { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-up {
-            animation: fade-up 500ms ease-out forwards;
-            will-change: opacity, transform;
-          }
-        }
-      </style>
-
-      <!-- Bounce-in animation -->
-      <style>
-        @keyframes fade-up {
-          0% { opacity: 0; transform: translateY(12px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-fade-up {
-          animation: fade-up 500ms ease-out forwards;
-          will-change: opacity, transform;
-        }
-
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-      </style>
-
-<!-- ||||||||||||||||||||||||||||||  end of CSS or broke |||||||||||||||||||||| -->
-      <!-- Hero Image -->
-      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash.jpg"
-           alt="London Emirates cable car, London, UK"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Olivier Depaep, Unsplash
-      </p>
-
-      <!--    <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/wilson-chang-baUwEwGHZOg-unsplash.jpg"
-           alt="gondola sky blue"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Wilson Chang, Unsplash
-      </p>
-
-      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jessica-christian-Z68rL0U5FYU-unsplash.jpg"
-           alt="Back lit ski gondolas in Mammoth Lakes, California"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Jessica Christian, Unsplash
-      </p>
-
-      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg"
-           alt="Tbilisi, Georgia"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Alexander Voronov, Unsplash
-      </p> -->
-
-      <!-- Hero Text: Contact  -->
-      <main id="mainContent" class="flex-grow mx-auto">
-        <section class="text-center">
-          <!-- message input fro formLogic.js -->
-          <p id="thanksMessage" class="text-base font-normal text-lime-800 my-6"></p>
-          <h2 class="text-4xl font-bold text-lime-600 mb-8">Upward and onward!</h2>
-        </section>
       </main>
 
+  <!-- Footer Partial -->
+      <div include-html="/assets/partials/footer.html"></div>
 
-      <!-- Secondary Image -->
-      <!-- <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/londonCable.png"
-           alt="Emirates Air Line cable car, London"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Emirates Air Line, Wikipedia
-      </p><br> -->
+  <!-- Load Partials, Alpine, and menuOverlay -->
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
+        }
 
-      <!-- Tertiary Image -->
-      <!-- <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/jan-huber-FuChqSzeCAc-unsplash.jpg"
-           alt="Urban aerial view by Jan Huber on Unsplash"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Jan Huber, Unsplash
-      </p><br> -->
+        async function initPage() {
+          await injectPartials();
 
-      <!-- Footer -->
-      <footer include-html="/assets/partials/footer.html"></footer>
-    </div>
+          // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
 
-    <!-- Scripts: Ditch this IF using partials. -->
-    <!-- <script type="module">
-      import { initMain } from '/assets/js/mainInit.js';
-      import { initMenu } from '/assets/js/menuBlitzloader.js';
+          // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
 
-      initMain();
-      initMenu();
-    </script> -->
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
 
-    <!-- Load partials and init scripts -->
-    <script type="module" src="/assets/js/initLoader.js"></script>
-  </body>
+  <!-- Scripts: Accordion -->
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
 </html>
