@@ -14,17 +14,28 @@
       <img src="https://s3-us-west-1.amazonaws.com/fogday.ai/ohlone/ohloneSky-text.svg"
            alt="Ohlone Sky"
            class="h-5" /> <!-- h-5 20px -->
+
     </a>
 
     <!-- Right: Desktop nav + Mobile hamburger -->
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center">
       <!-- Desktop nav -->
-      <nav class="hidden md:flex space-x-4 items-center text-sm" aria-label="Main Navigation">
+      <nav class="hidden md:flex space-x-4 items-center text-base text-current font-ardo font-medium" aria-label="Main Navigation">
 
-        <a href="/00/coalition/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">COALITION</a>
-        <a href="/00/faqs/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">FAQs</a>
-        <a href="/00/contact/" class="ml-5 py-2 px-4 shadow-md no-underline rounded-full text-sm font-medium text-slate-750 bg-indigo-50 hover:bg-gradient-to-t from-slate-300 to-slate-500 hover:font-medium hover:text-white">CONTACT</a>
-      </nav>
+        <!-- <div include-html="/assets/partials/heartCheck.html"></div> -->
+
+        <a href="/00/coalition/" class="py-2 px-2
+          hover:text-highlight" >COALITION</a>
+
+        <a href="/00/faqs/" class="py-2 px-2 px-2
+          hover:text-highlight">FAQs</a>
+
+        <a href="/00/contact/" class="py-2 px-2 px-2
+          hover:text-highlight">CONTACT</a>
+
+
+          </div>
+
 
       <!-- Mobile Hamburger -->
       <button @click="open = !open"
@@ -56,7 +67,7 @@
              class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-150 ease-in-out"></div>
       </button>
     </div>
-  </div>
+
 
   <!-- ✅ Backdrop (no blur) -->
   <div x-show="open"
@@ -106,7 +117,7 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
                COALITION
             </a>
 
@@ -118,7 +129,7 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[600ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
                FAQs
             </a>
 
@@ -130,9 +141,12 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[0ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
                CONTACT
             </a>
+
+            <div include-html="/assets/partials/heartCheck.html"></div>
+
         </div>
       </nav>
 </header>
