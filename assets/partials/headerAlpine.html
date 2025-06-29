@@ -22,8 +22,6 @@
       <!-- Desktop nav -->
       <nav class="hidden md:flex space-x-4 items-center text-base text-current font-ardo font-medium" aria-label="Main Navigation">
 
-        <!-- <div include-html="/assets/partials/heartCheck.html"></div> -->
-
         <a href="/00/coalition/" class="py-2 px-2
           hover:text-highlight" >COALITION</a>
 
@@ -33,9 +31,7 @@
         <a href="/00/contact/" class="py-2 px-2 px-2
           hover:text-highlight">CONTACT</a>
 
-
           </div>
-
 
       <!-- Mobile Hamburger -->
       <button @click="open = !open"
@@ -67,7 +63,6 @@
              class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-150 ease-in-out"></div>
       </button>
     </div>
-
 
   <!-- ✅ Backdrop (no blur) -->
   <div x-show="open"
@@ -105,7 +100,7 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[1800ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-bold text-brandDark hover:text-highlight transition">
+               class="block text-4xl font-ardons font-semibold text-brandDark hover:text-highlight transition">
                HOME
             </a>
 
@@ -117,7 +112,7 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
+               class="block text-4xl font-ardons font-semibold text-brandDark hover:text-highlight transition">
                COALITION
             </a>
 
@@ -129,7 +124,7 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[600ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
+               class="block text-4xl font-ardons font-semibold text-brandDark hover:text-highlight transition">
                FAQs
             </a>
 
@@ -141,11 +136,9 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[0ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-3xl font-ardons font-bold text-brandDark hover:text-highlight transition">
+               class="block text-4xl font-ardons font-semibold text-brandDark hover:text-highlight transition">
                CONTACT
             </a>
-
-            <div include-html="/assets/partials/heartCheck.html"></div>
 
         </div>
       </nav>
