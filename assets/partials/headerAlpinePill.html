@@ -53,7 +53,7 @@
                  bg-gradient-to-r from-amber-500 to-pink-500 pointer-events-none z-[-1]">
           </div> <!-- end circle addition -->
 
-        <div :class="open
+          <div :class="open
             ? 'top-1/2 transform -translate-y-1/2 rotate-45 scale-x-[0.7] h-[3px] bg-white'
             : 'top-[11px] h-[2px]'"
              class="bar absolute left-0 w-full bg-brandDark rounded transition-all duration-150 ease-in-out"></div>
@@ -72,10 +72,12 @@
        x-transition:leave="transition-opacity duration-300"
        x-transition:leave-start="opacity-100"
        x-transition:leave-end="opacity-0"
-       class="fixed inset-x-0 top-[5px] bottom-[5px] z-30 bg-white/100 md:hidden"
+       class="fixed inset-x-0 top-[5px] bottom-[5px] z-30 bg-white/30 md:hidden"
        @click="open = false"
        x-cloak>
   </div>
+
+
 
   <!-- ✅ Slide-Up Mobile Overlay -->
       <nav id="menuOverlay"
@@ -100,8 +102,8 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[1800ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-4xl font-meta font-bold not-italic text-brandDark hover:text-highlight transition">
-               HOME
+               class="block text-4xl font-vista font-bold not-italic text-brandDark hover:text-highlight transition">
+               HOME SWEET HOME
             </a>
 
             <a @click="open = false"
@@ -112,9 +114,45 @@
                x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-8"
-               class="block text-4xl font-meta font-bold not-italic text-brandDark hover:text-highlight transition">
-               COALITION
+               class="text-blue-950 group inline-block rounded-full bg-gradient-to-r from-lime-400 to-lime-600 p-[1px] hover:text-white focus:ring-3 focus:outline-hidden">
+                 <span class="block rounded-full bg-white px-6 py-4 text-lg font-bold group-hover:bg-transparent transition md:duration-200 ease-in-out">Woohoo!</span>
             </a>
+
+            <a @click="open = false"
+    href="/00/coalition/"
+    x-transition:enter="transition ease-in-out duration-500 delay-[600ms]"
+    x-transition:enter-start="opacity-0 translate-y-8"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-8"
+    class="text-gray-900 group inline-block rounded-full bg-gradient-to-r from-pink-500 to-amber-500 p-[1px] hover:text-white focus:ring-3 focus:outline-hidden mt-5">
+    <span class="block rounded-full bg-white px-6 py-2.5 text-lg font-bold group-hover:bg-transparent transition md:duration-200 ease-in-out">Woohoo!</span>
+</a>
+
+<a @click="open = false"
+    href="/00/coalition/"
+    x-transition:enter="transition ease-in-out duration-500 delay-[600ms]"
+    x-transition:enter-start="opacity-0 translate-y-8"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-8"
+    class="px-6 py-2.5 text-lg rounded-full border border-solid border-slate-300 text-grey-900 cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-lime-600 hover:text-white">Yowza!</a>
+
+<a @click="open = false"
+    href="/00/coalition/"
+    x-transition:enter="transition ease-in-out duration-500 delay-[600ms]"
+    x-transition:enter-start="opacity-0 translate-y-8"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in-out duration-400 delay-[1200ms]"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-8" class='py-2.5 px-6 text-sm rounded-full border border-solid border-slate-300 text-indigo-600 cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-600 hover:text-white'>Woohoo</a>
+
+
+
+
+
 
             <a @click="open = false"
                href="/00/faqs/"
