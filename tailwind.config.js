@@ -32,12 +32,11 @@ module.exports = {
         neutralText: '#636363',
       },
       fontFamily: {
+        vista: ['vista-slab', 'serif'], //  font-slab font-bold italic not-italic: 500;
         ardoise: ['ardoise-std', 'sans-serif'], // font-bold 600 700 normal italic
         // ardoise-narrow-std: font-ardo font-medium not-italic font-semibold -bold 600, 700
         meta: ['"ff-meta-web-pro"', 'sans-serif'], // font-black: 900; normal, italic
         // class="font-meta font-extrabold not-italic">
-        vista: ['vista-slab', 'serif'], //  font-slab font-bold italic not-italic: 500;
-        
 
       },
     },
