@@ -1,0 +1,148 @@
+<!-- 00/alpine/index2-hm.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
+  <div include-html="/assets/partials/meta.html"></div>
+</head>
+
+<body id="home" class="min-h-screen flex flex-col">
+
+  <!-- Header Partial -->
+      <div include-html="/assets/partials/headerAlpinePill.html"></div>
+
+  <!-- Hero Image top :: swap -->
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+               alt="Aerial view of tram line"
+               class="w-full h-auto shadow-sm"
+               loading="lazy" />
+          <figcaption class="text-xs text-gray-500 mt-2">
+            Source: Fogday Studios
+          </figcaption>
+        </figure>
+      </section>
+
+  <!-- HERO Main Content -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
+
+        <section class="text-center mb-6">
+
+          <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl font-bold text-neutralText mb-0">
+              Ohlone Sky proposes a gondola from Pier 24 to Treasure Island
+            </h2>
+          </div>
+        </section>
+
+        <!-- logo separator -->
+        <div include-html="/assets/partials/logo.html"></div>
+
+            <!-- No Traffic -->
+            <div>
+              <h2 class="text-2xl font-semibold text-brandDark mb-0">No Traffic</h2>
+              <p>
+                No cars. No sideshows. No congestion. Just a smooth, reliable ride, flowing above the Bay—with poetry, purpose, and promise. The Golden Gate radiates.
+              </p>
+            </div> <!-- test -->
+
+            <!-- Carbon Neutral, Sustainable -->
+            <div>
+              <h2 class="text-2xl font-semibold text-brandDark mb-0">Carbon Neutral</h2>
+              <p>
+              Ohlone Sky runs quietly on clean electric power, cutting emissions and easing congestion across the Bay. It advances climate goals, strengthens infrastructure, and helps build a livable future for generations to come.
+
+              </p>
+            </div>
+
+            <!-- Connecting Communities -->
+            <div>
+              <h2 class="text-2xl font-semibold text-brandDark mb-0">Connecting Communities</h2>
+              <p>
+                Ohlone Sky links Yerba Buena and Treasure Island to the heart of San Francisco—generating tax revenue, and creating jobs. We provide better transit to arterial housing.
+              </p>
+            </div>
+
+            <!-- Extraordinary Views -->
+            <!-- <div>
+            <h2 class="text-2xl font-semibold text-brandDark mb-0">Extraordinary Views</h2>
+            <p>
+              Ohlone Sky is a silver thread through time. We drift above the Bay and its glinting tide where fog spills from the Pacific and light catches steel and glass. Past becomes present.
+          </div> -->
+
+            <!-- A Commitment to Giving -->
+            <div>
+              <h2 class="text-3xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
+
+              <!-- Give partial : three inserts -->
+              <div include-html="/assets/partials/give.html"></div>
+
+            </div>
+          </section>
+
+      </main>
+
+      <!-- Give partial : three inserts -->
+      <!-- <div include-html="/assets/partials/give.html"></div> -->
+
+      <section>
+        <!-- Embedded Map -->
+        <div style="display:flex; overflow:hidden;">
+          <!-- Google maps -->
+              <iframe style="position:relative; top:-60px; border:none; allowfullscreen="" loading="lazy"" src="https://www.google.com/maps/d/u/0/embed?mid=1OaWF-Ran0XFdpjRAzAW5XMD_IMPU85g&ehbc=2E312F&noprof=1" width="100%" height="600"></iframe>
+          </div>
+      </section>
+
+
+  <!-- Footer Partial -->
+      <div include-html="/assets/partials/footer.html"></div>
+
+  <!-- Load Partials, Alpine, and menuOverlay -->
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
+        }
+
+        async function initPage() {
+          await injectPartials();
+
+      // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
+
+      // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
+
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
+
+  <!-- Scripts: Accordion -->
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
+</html>
