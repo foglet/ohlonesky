@@ -128,15 +128,11 @@
         async function initPage() {
           await injectPartials();
 
-      // ✅ Load Alpine
+      // ✅ Load Alpine (initLoader.js will handle menuOverlay)
           const alpine = document.createElement('script');
           alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
           alpine.defer = true;
           document.head.appendChild(alpine);
-
-      // ✅ Load menuOverlay and attach globally
-          const module = await import('/assets/js/menuOverlay.js');
-          window.menuOverlay = module.menuOverlay;
         }
 
         document.addEventListener('DOMContentLoaded', initPage);
