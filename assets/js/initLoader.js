@@ -14,8 +14,8 @@ import { initMain } from './mainInit.js';
     const version = `?v=${Date.now()}`;
 
     injectStyles([
-      '../css/output.css',
-      '../css/hero.css'
+      'assets/css/output.css',
+      'assets/css/hero.css'
     ], version);
 
     await injectPartials('[include-html]', version);
