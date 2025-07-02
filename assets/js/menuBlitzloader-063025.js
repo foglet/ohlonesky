@@ -6,28 +6,42 @@ export function initMenu({
   linkSelector = '.menu-link',
   transitionDuration = 300
 } = {}) {
+  // 🧩 Fetch elements from DOM
   const toggle = document.getElementById(toggleId);
   const menu = document.getElementById(menuId);
   const backdrop = document.getElementById(backdropId);
   const close = document.getElementById(closeId);
   const links = document.querySelectorAll(`#${menuId} ${linkSelector}`);
 
-  const dev = location.hostname === 'localhost';
+  // 🧪 Log what was found
+  console.log('📦 initMenu — Elements found:', {
+    toggle,
+    menu,
+    backdrop,
+    close,
+    linkCount: links.length
+  });
 
   if (!toggle || !menu || !backdrop) {
-    if (dev) {
-      console.warn('⚠️ initMenu: Missing core elements', {
-        toggle, menu, backdrop
-      });
-      console.debug('🧱 DOM snapshot:', document.body.innerHTML.slice(0, 600));
+    console.warn('⚠️ initMenu: Missing core elements', {
+      toggle,
+      menu,
+      backdrop
+    });
+
+    // 🧰 Bonus: dump header if in dev
+    if (location.hostname === 'localhost') {
+      console.debug('🧱 Partial DOM snapshot:\n', document.body.innerHTML.slice(0, 800));
     }
+
     return;
   }
 
-  if (!close && dev) {
+  if (!close) {
     console.info('ℹ️ initMenu: No #closeMenu found — relying on backdrop and nav links.');
   }
 
+  // ✅ Open menu
   const openMenu = () => {
     toggle.setAttribute('aria-expanded', 'true');
     toggle.classList.add('open');
@@ -39,6 +53,7 @@ export function initMenu({
     backdrop.classList.add('opacity-100');
   };
 
+  // ✅ Close menu
   const closeMenu = () => {
     toggle.setAttribute('aria-expanded', 'false');
     toggle.classList.remove('open');
@@ -55,11 +70,14 @@ export function initMenu({
     }, transitionDuration);
   };
 
+  // ✅ Event listeners
   if (backdrop) backdrop.addEventListener('click', closeMenu);
   if (close) close.addEventListener('click', closeMenu);
+
   links.forEach(link => link.addEventListener('click', closeMenu));
 
-  if (dev) {
-    console.log('✅ Mobile menu initialized (toggle handled externally).');
-  }
+  // ❌ Hamburger click is handled elsewhere, so skip it here
+  // toggle.addEventListener('click', ...) is intentionally omitted
+
+  console.log('✅ Mobile menu initialized (toggle logic external).');
 }
