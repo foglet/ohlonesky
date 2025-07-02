@@ -1,20 +1,21 @@
 console.log('🚀 initLoader.js started');
 console.log('🧪 INIT START', window.location.pathname, Date.now());
 
-import { initMain } from '/assets/js/mainInit.js';
-import { initMenu } from '/assets/js/menuBlitzloader.js';
+import { initMain } from './mainInit.js';
 
-let menuClickHandler = null;
-let menuIsInitialized = false;
-window.initMenu = waitForAndInitMenu;
+// Load menuOverlay for Alpine.js
+(async () => {
+  const module = await import('./menuOverlay.js');
+  window.menuOverlay = module.menuOverlay;
+})();
 
 (async function initApp() {
   try {
     const version = `?v=${Date.now()}`;
 
     injectStyles([
-      '/assets/css/output.css',
-      '/assets/css/hero.css'
+      'assets/css/output.css',
+      'assets/css/hero.css'
     ], version);
 
     await injectPartials('[include-html]', version);
@@ -24,10 +25,7 @@ window.initMenu = waitForAndInitMenu;
       setupScrollAwareHeader();
       initMain();
 
-      // Delay menu init slightly to ensure elements exist
-      setTimeout(() => {
-        waitForAndInitMenu();
-      }, 200);
+      // Alpine.js will handle menu initialization
 
       if (typeof window.initFlowbite === 'function') {
         try {
@@ -88,69 +86,7 @@ async function injectPartials(selector, version) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🍔 Toggle mobile menu visibility
-function toggleMobileMenu({ btn, menu, gondola }) {
-  const isOpen = btn.getAttribute('aria-expanded') === 'true';
-  const nextState = !isOpen;
-
-  btn.setAttribute('aria-expanded', nextState);
-  btn.classList.toggle('open', nextState);
-  document.body.classList.toggle('overflow-hidden', nextState);
-
-  if (nextState) {
-    menu.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      menu.classList.remove('translate-y-full', 'opacity-0');
-      menu.classList.add('translate-y-0', 'opacity-100');
-    });
-  } else {
-    menu.classList.remove('translate-y-0', 'opacity-100');
-    menu.classList.add('translate-y-full', 'opacity-0');
-    setTimeout(() => menu.classList.add('hidden'), 300);
-  }
-
-  if (gondola) gondola.style.opacity = nextState ? '0' : '1';
-}
-
-// ─────────────────────────────────────────────────────────
-// 🧠 Wait for menu elements and initialize logic
-async function waitForAndInitMenu(maxTries = 100, interval = 200) {
-  if (menuIsInitialized) return;
-
-  for (let i = 0; i < maxTries; i++) {
-    const btn = document.getElementById('menuToggle');
-    const menu = document.getElementById('mobile-menu');
-    const backdrop = document.getElementById('menuBackdrop');
-
-    if (btn && menu && backdrop) {
-      console.log('✅ Menu DOM ready — binding toggle & init');
-
-      if (menuClickHandler) {
-        btn.removeEventListener('click', menuClickHandler);
-      }
-
-      const gondola = document.getElementById('gondola');
-      menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
-      btn.addEventListener('click', menuClickHandler);
-      btn.__menuBound = true;
-
-      if (gondola) {
-        gondola.style.transition = 'opacity 500ms ease';
-        gondola.style.opacity = '1';
-      }
-
-      // 🧩 Now run menu behavior init from separate module
-      initMenu(); // ← handles backdrop clicks, link closing, etc
-
-      menuIsInitialized = true;
-      return;
-    }
-
-    await new Promise(res => setTimeout(res, interval));
-  }
-
-  console.warn('⚠️ Menu toggle not initialized — element(s) missing');
-}
+// Menu initialization removed - handled by Alpine.js menuOverlay
 
 // ─────────────────────────────────────────────────────────
 // 🎯 Sticky header scroll behavior
@@ -183,11 +119,6 @@ function setupScrollAwareHeader() {
     restoreTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
-
-      const btn = document.getElementById('menuToggle');
-      if (btn && !btn.__menuBound) {
-        waitForAndInitMenu();
-      }
     }, 150);
   });
 

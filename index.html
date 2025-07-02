@@ -5,16 +5,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <link rel="stylesheet" href="assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="assets/css/hero.css?v=1" />
   <style>[x-cloak] { display: none !important; }</style>
-  <div include-html="/assets/partials/meta.html"></div>
+  <div include-html="assets/partials/meta.html"></div>
 </head>
 
 <body id="home" class="min-h-screen flex flex-col">
 
   <!-- Header Partial -->
-      <div include-html="/assets/partials/headerAlpine.html"></div>
+      <div include-html="assets/partials/headerAlpine.html"></div>
 
   <!-- Hero Image top :: swap -->
       <section class="text-center" id="heroImage">
@@ -42,7 +42,7 @@
         </section>
 
         <!-- HR -->
-        <div include-html="/assets/partials/logo.html"></div>
+        <div include-html="assets/partials/logo.html"></div>
 
 
         <!-- four reasons -->
@@ -84,7 +84,7 @@
             <div>
               <h2 class="text-2xl font-meta font-semibold text-neutralText mb-0">A Commitment to Giving</h2>
                 <!-- Give partial : three inserts -->
-                <div class="max-w-2xl" include-html="/assets/partials/give.html"></div>
+                <div class="max-w-2xl" include-html="assets/partials/give.html"></div>
             </div>
 
           </section>
@@ -100,10 +100,10 @@
           </div>
       </section>
 
-      <div include-html="/assets/partials/tellMeMore.html"></div>
+      <div include-html="assets/partials/tellMeMore.html"></div>
 
   <!-- Footer Partial -->
-      <div include-html="/assets/partials/footer.html"></div>
+      <div include-html="assets/partials/footer.html"></div>
 
   <!-- Load Partials, Alpine, and menuOverlay -->
       <script type="module">
@@ -128,15 +128,11 @@
         async function initPage() {
           await injectPartials();
 
-      // ✅ Load Alpine
+      // ✅ Load Alpine (initLoader.js will handle menuOverlay)
           const alpine = document.createElement('script');
           alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
           alpine.defer = true;
           document.head.appendChild(alpine);
-
-      // ✅ Load menuOverlay and attach globally
-          const module = await import('/assets/js/menuOverlay.js');
-          window.menuOverlay = module.menuOverlay;
         }
 
         document.addEventListener('DOMContentLoaded', initPage);
@@ -144,7 +140,7 @@
 
   <!-- Scripts: Accordion -->
       <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
-      <script type="module" src="/assets/js/initLoader.js"></script>
+      <script type="module" src="assets/js/initLoader.js"></script>
 
 </body>
 </html>

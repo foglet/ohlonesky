@@ -5,7 +5,7 @@ export function initMain() {
 
   // 🔹 Lazy-load accordion if present
   if (document.querySelector('[data-accordion-target]')) {
-    const accordionPromise = import('/assets/js/initAccordion.js')
+    const accordionPromise = import('./initAccordion.js')
       .then((mod) => {
         mod.initAccordion();
         console.log('🪗 Accordion initialized');
@@ -15,7 +15,7 @@ export function initMain() {
 
   // 🔹 Load mobile menu if toggle is present
   if (document.getElementById('menuToggle')) {
-    const menuPromise = import('/assets/js/menuBlitzloader.js')
+    const menuPromise = import('./menuBlitzloader.js')
       .then((mod) => {
         mod.initMenu();
         console.log('📱 Mobile menu initialized');
@@ -25,14 +25,14 @@ export function initMain() {
 
   // 🔹 Redirect form logic
   if (document.querySelector('input[name="redirect"]')) {
-    const redirectPromise = import('/assets/js/formLogic.js')
+    const redirectPromise = import('./formLogic.js')
       .then((mod) => mod.setFormRedirect());
     promises.push(redirectPromise);
   }
 
   // 🔹 Thank-you page message
   if (document.body.id === 'thanks') {
-    const thanksPromise = import('/assets/js/formLogic.js')
+    const thanksPromise = import('./formLogic.js')
       .then((mod) => mod.setThanksMessage());
     promises.push(thanksPromise);
   }
