@@ -20,10 +20,16 @@ window.initMenu = waitForAndInitMenu;
     await injectPartials('[include-html]', version);
 
     // Wait for DOM to settle after injection
-    setTimeout((200) => {
+    setTimeout(() => {
       waitForAndInitMenu();
       setupScrollAwareHeader();
       initMain();
+
+
+    // Delay menu init slightly to ensure elements exist
+    setTimeout(() => {
+      waitForAndInitMenu();
+    }, 200);
 
       if (typeof window.initFlowbite === 'function') {
         try {
