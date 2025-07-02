@@ -1,3 +1,2 @@
-# Ignore generated Tailwind CSS
-assets/css/output.css
+# Ignore temporary files
 assets/partials/headerAlpine-orig.html
