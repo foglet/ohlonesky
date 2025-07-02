@@ -45,6 +45,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),
     require('tailwind-hamburgers'),
+    require('@tailwindcss/aspect-ratio'),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.text-fluid-sm': { fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' },
