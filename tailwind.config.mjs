@@ -39,6 +39,7 @@ export default {
         vista: ['vista-slab', 'serif'],
         ardoise: ['ardoise-std', 'sans-serif'],
         meta: ['"ff-meta-web-pro"', 'sans-serif'],
+         testRed: '#ff0000',
       },
     },
   },
