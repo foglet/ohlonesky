@@ -21,14 +21,13 @@ window.initMenu = waitForAndInitMenu;
 
     // Wait for DOM to settle after injection
     setTimeout(() => {
-      waitForAndInitMenu();
       setupScrollAwareHeader();
       initMain();
 
-    // Delay menu init slightly to ensure elements exist
-    setTimeout(() => {
-      waitForAndInitMenu();
-    }, 200);
+      // Delay menu init slightly to ensure elements exist
+      setTimeout(() => {
+        waitForAndInitMenu();
+      }, 200);
 
       if (typeof window.initFlowbite === 'function') {
         try {
@@ -40,6 +39,7 @@ window.initMenu = waitForAndInitMenu;
       }
     }, 0);
 
+    
     await new Promise(r => setTimeout(r, 500)); // Optional delay
   } catch (err) {
     console.error('❌ initApp() failed:', err);
