@@ -2,6 +2,7 @@ console.log('🚀 initLoader.js started');
 console.log('🧪 INIT START', window.location.pathname, Date.now());
 
 import { initMain } from '/assets/js/mainInit.js';
+import { initMenu } from '/assets/js/menuBlitzloader.js';
 
 let menuClickHandler = null;
 let menuIsInitialized = false;
@@ -18,13 +19,12 @@ window.initMenu = waitForAndInitMenu;
 
     await injectPartials('[include-html]', version);
 
-    // Wait a tick for DOM to settle
+    // Wait for DOM to settle after injection
     setTimeout(() => {
       waitForAndInitMenu();
       setupScrollAwareHeader();
       initMain();
 
-      // Initialize Flowbite after partials
       if (typeof window.initFlowbite === 'function') {
         try {
           window.initFlowbite();
@@ -35,7 +35,7 @@ window.initMenu = waitForAndInitMenu;
       }
     }, 0);
 
-    await new Promise(r => setTimeout(r, 500)); // simulate delay if needed
+    await new Promise(r => setTimeout(r, 500)); // Optional delay
   } catch (err) {
     console.error('❌ initApp() failed:', err);
   }
@@ -108,22 +108,23 @@ function toggleMobileMenu({ btn, menu, gondola }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 🧠 Wait for menu elements and bind click
+// 🧠 Wait for menu elements and initialize logic
 async function waitForAndInitMenu(maxTries = 30, interval = 200) {
   if (menuIsInitialized) return;
 
   for (let i = 0; i < maxTries; i++) {
     const btn = document.getElementById('menuToggle');
     const menu = document.getElementById('mobile-menu');
-    const gondola = document.getElementById('gondola');
+    const backdrop = document.getElementById('menuBackdrop');
 
-    if (btn && menu) {
-      console.log('✅ Menu ready — binding toggle');
+    if (btn && menu && backdrop) {
+      console.log('✅ Menu DOM ready — binding toggle & init');
 
       if (menuClickHandler) {
         btn.removeEventListener('click', menuClickHandler);
       }
 
+      const gondola = document.getElementById('gondola');
       menuClickHandler = () => toggleMobileMenu({ btn, menu, gondola });
       btn.addEventListener('click', menuClickHandler);
       btn.__menuBound = true;
@@ -132,6 +133,9 @@ async function waitForAndInitMenu(maxTries = 30, interval = 200) {
         gondola.style.transition = 'opacity 500ms ease';
         gondola.style.opacity = '1';
       }
+
+      // 🧩 Now run menu behavior init from separate module
+      initMenu(); // ← handles backdrop clicks, link closing, etc
 
       menuIsInitialized = true;
       return;
@@ -170,7 +174,7 @@ function setupScrollAwareHeader() {
       ticking = true;
     }
 
-    clearTimeout(restoreTimeout);const version = `?v=${Date.now()}`;
+    clearTimeout(restoreTimeout);
     restoreTimeout = setTimeout(() => {
       header.style.transform = 'translateY(0)';
       header.style.pointerEvents = 'auto';
