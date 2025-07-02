@@ -25,7 +25,6 @@ window.initMenu = waitForAndInitMenu;
       setupScrollAwareHeader();
       initMain();
 
-
     // Delay menu init slightly to ensure elements exist
     setTimeout(() => {
       waitForAndInitMenu();
