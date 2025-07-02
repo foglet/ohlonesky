@@ -1,11 +1,11 @@
 console.log('🚀 initLoader.js started');
 console.log('🧪 INIT START', window.location.pathname, Date.now());
 
-import { initMain } from '/assets/js/mainInit.js';
+import { initMain } from './mainInit.js';
 
 // Load menuOverlay for Alpine.js
 (async () => {
-  const module = await import('/assets/js/menuOverlay.js');
+  const module = await import('./menuOverlay.js');
   window.menuOverlay = module.menuOverlay;
 })();
 
@@ -14,8 +14,8 @@ import { initMain } from '/assets/js/mainInit.js';
     const version = `?v=${Date.now()}`;
 
     injectStyles([
-      '/assets/css/output.css',
-      '/assets/css/hero.css'
+      '../css/output.css',
+      '../css/hero.css'
     ], version);
 
     await injectPartials('[include-html]', version);
