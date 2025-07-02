@@ -20,7 +20,7 @@ window.initMenu = waitForAndInitMenu;
     await injectPartials('[include-html]', version);
 
     // Wait for DOM to settle after injection
-    setTimeout(() => {
+    setTimeout((200) => {
       waitForAndInitMenu();
       setupScrollAwareHeader();
       initMain();
@@ -109,7 +109,7 @@ function toggleMobileMenu({ btn, menu, gondola }) {
 
 // ─────────────────────────────────────────────────────────
 // 🧠 Wait for menu elements and initialize logic
-async function waitForAndInitMenu(maxTries = 30, interval = 200) {
+async function waitForAndInitMenu(maxTries = 100, interval = 200) {
   if (menuIsInitialized) return;
 
   for (let i = 0; i < maxTries; i++) {
