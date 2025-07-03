@@ -16,13 +16,22 @@
   <!-- Header Partial -->
       <div include-html="assets/partials/headerAlpine.html"></div>
 
-  <!-- Hero Image top :: swap -->
+      <!-- Hero Image top :: swap -->
       <section class="text-center" id="heroImage">
         <figure class="text-center mb-6">
-          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
-               alt="Aerial view of tram line"
-               class="w-full h-auto shadow-sm"
-               loading="lazy" />
+          <picture>
+            <!-- Square image for portrait orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1-sq.png"
+                    media="(orientation: portrait)">
+            <!-- Original landscape image for landscape orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+                    media="(orientation: landscape)">
+            <!-- Fallback image -->
+            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/ohloneSky-bayBridgeView1.png"
+                 alt="Aerial view of tram line"
+                 class="w-full h-auto shadow-sm"
+                 loading="lazy" />
+          </picture>
           <figcaption class="text-xs text-gray-500 mt-2">
             Source: Fogday Studios
           </figcaption>

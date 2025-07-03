@@ -16,15 +16,24 @@
   <!-- Header Partial -->
       <div include-html="/assets/partials/headerAlpine.html"></div>
 
-  <!-- Hero Image -->
+      <!-- Hero Image -->
       <section class="text-center" id="heroImage">
         <figure class="text-center mb-6">
-          <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash.jpg"
-               alt="London Emirates cable car, London, UK"
-               class="w-full h-auto shadow-sm"
-               loading="lazy" />
+          <picture>
+            <!-- Square image for portrait orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash-sq.jpg"
+                    media="(orientation: portrait)">
+            <!-- Original landscape image for landscape orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash.jpg"
+                    media="(orientation: landscape)">
+            <!-- Fallback image -->
+            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/olivier-depaep-UPI4I2QKFy0-unsplash.jpg"
+                 alt="London Emirates cable car, London, UK"
+                 class="w-full h-auto shadow-sm"
+                 loading="lazy" />
+          </picture>
           <figcaption class="text-xs text-gray-600 mt-2">
-              Source: Olivier Depaep, Unsplash
+            Source: Olivier Depaep, Unsplash
           </figcaption>
         </figure>
       </section>
