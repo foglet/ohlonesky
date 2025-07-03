@@ -72,6 +72,16 @@
     @apply animate-drop-in;
   }
 
+/* ---- Aspect Ratio Crops ---- */
+  .square-to-portrait {
+  @apply aspect-square overflow-hidden;
+}
+@media (orientation: portrait) {
+  .square-to-portrait {
+    aspect-ratio: 3 / 4;
+  }
+}
+
 }
 
 /* Center items in each column of a CSS multi-column layout */
