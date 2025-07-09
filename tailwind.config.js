@@ -29,7 +29,7 @@ module.exports = {
         stormSky: '#374151',
         warmRed: '#F54029',
         highlight: '#FF5500',
-        neutralText: '#636363',
+        neutralText: '#525252', // neutral-600
       },
       fontFamily: {
         vista: ['vista-slab', 'serif'], //  font-slab font-bold italic not-italic: 500;
