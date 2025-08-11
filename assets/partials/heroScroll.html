@@ -1,0 +1,31 @@
+<section class="relative h-[300vh]">
+  <!-- Background image pinned -->
+  <div class="sticky top-0 h-screen w-full bg-cover bg-center z-0"
+       style="background-image: url('https://s3.us-west-1.amazonaws.com/fogday.ai/ohlone/IJBaan-cable-car-by-UNStudio-up.jpeg');">
+  </div>
+
+  <!-- Scroll-through text -->
+  <div class="relative z-10">
+    <div class="mt-[100vh] h-screen flex items-center justify-center">
+      <div
+        class="fade-scroll max-w-3xl px-4 text-center text-white drop-shadow opacity-100 transform transition duration-1500"
+        x-data="{ visible: true }"
+        x-init="
+          const el = $el;
+          const onScroll = () => {
+            const rect = el.getBoundingClientRect();
+            visible = rect.top > window.innerHeight * 0.25;
+          };
+          window.addEventListener('scroll', onScroll);
+          onScroll();
+        "
+        x-bind:class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'"
+      >
+        <h1 class="text-4xl md:text-6xl font-vista font-bold mb-4">Car-free travel</h1>
+        <p class="text-lg leading-relaxed">
+          in the Bay Area.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
