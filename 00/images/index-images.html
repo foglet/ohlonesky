@@ -1,0 +1,144 @@
+4<!-- 00/alpine/index2-faqs.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
+  <div include-html="/assets/partials/meta.html"></div>
+</head>
+
+<body id="faqs" class="min-h-screen flex flex-col">
+
+  <!-- Header Partial -->
+      <div include-html="/assets/partials/headerAlpine.html"></div>
+
+      <!-- Hero Image -->
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <picture>
+            <!-- Square image for portrait orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/joe-green-TFDcbCBhZuU-unsplash-sq.jpg"
+                    media="(orientation: portrait)">
+            <!-- Original landscape image for landscape orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/joe-green-TFDcbCBhZuU-unsplash.jpg"
+                    media="(orientation: landscape)">
+            <!-- Fallback image -->
+            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/joe-green-TFDcbCBhZuU-unsplash.jpg"
+                 alt="Tian Tan Buddha in Hong Kong by Joe Green"
+                 class="w-full h-auto shadow-sm square-to-portrait"
+                 loading="lazy" />
+          </picture>
+          <figcaption class="text-xs text-gray-600 mt-2">
+            Source: Joe Green, Unsplash
+          </figcaption>
+        </figure>
+      </section>
+
+  <!-- HERO Page Content -->
+      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4">
+
+        <section class="text-center mb-6">
+          <p> We support solving challenges aligned with the
+          <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer" class="underline text-brandDark hover:text-brandAccent">United Nations’ 17 Sustainable Development Goals</a>.</p><br>
+        </section>
+
+        <section class="bg-white pt-8 pb-16 text-left bg-slate-50 rounded-xl">
+            <div class="w-full px-1 sm:px-6 lg:px-8">
+              <div class="text-center">
+                <h2 class="text-3xl font-vista font-bold text-brandDark mb-2">
+                  Image Credits
+                </h2>
+              </div>
+
+              <!-- logo separator -->
+              <div include-html="/assets/partials/logo.html"></div>
+
+
+
+        <!-- Oakland Zoo Video -->
+          <section id="zoo" class="text-center mb-6">
+              <video id="zooVideo" muted playsinline poster="https://s3.us-west-1.amazonaws.com/fogday.ai/poster.jpg" class="w-full shadow">
+                <source src="https://s3.us-west-1.amazonaws.com/fogday.ai/oaklandZoo-gondola-movie.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <figcaption class="text-xs text-gray-600 mt-2">
+                Source: Fogday Studios
+              </figcaption>
+
+            <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                const video = document.getElementById('zooVideo');
+
+                if (!video) return;
+
+                const observer = new IntersectionObserver(entries => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      video.play().catch(() => {});
+                    } else {
+                      video.pause();
+                    }
+                  });
+                }, { threshold: 0.5 });
+
+                observer.observe(video);
+              });
+            </script>
+          </section> <!-- end Zoo -->
+
+      </main>
+
+
+  <!-- Join the Coalition Partial -->
+      <div include-html="/assets/partials/joinCoalition.html"></div>
+
+  <!-- Footer Partial -->
+      <div include-html="/assets/partials/footer.html"></div>
+
+  <!-- Load Partials, Alpine, and menuOverlay -->
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
+        }
+
+        async function initPage() {
+          await injectPartials();
+
+          // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
+
+          // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
+
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
+
+  <!-- Scripts: Accordion -->
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
+</html>
