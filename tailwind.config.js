@@ -24,7 +24,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brandDark: '#1d2834', //big stone 900
+        brandDark: '#1d2834', //big stone 950
         // see >> uicolors.app/generate/1d2834
         brand900: '#2c3e4e', //big stone 900
         brandSky: '#0f172a',
