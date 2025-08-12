@@ -26,6 +26,7 @@ module.exports = {
       colors: {
         brandDark: '#1d2834',
         brandSky: '#0f172a',
+        brandIndigo: '#362F78',
         stormSky: '#374151',
         warmRed: '#F54029',
         highlight: '#FF5500',
