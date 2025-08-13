@@ -31,6 +31,7 @@ module.exports = {
         brand700: '#36536e', //big stone 700
         brand600: '#426887', //big stone 600
         brand200: '#d0dce7', //big stone 200
+        brand100: '#eaeff4', //big stone 100
         brandSky: '#0f172a',
         brandIndigo: '#362F78',
         stormSky: '#374151',
