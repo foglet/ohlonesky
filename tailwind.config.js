@@ -28,6 +28,9 @@ module.exports = {
         // see >> uicolors.app/generate/1d2834
         brand900: '#2c3e4e', //big stone 900
         brand800: '#30485c', //big stone 800
+        brand700: '#36536e', //big stone 700
+        brand600: '#426887', //big stone 600
+        brand200: '#d0dce7', //big stone 200
         brandSky: '#0f172a',
         brandIndigo: '#362F78',
         stormSky: '#374151',
