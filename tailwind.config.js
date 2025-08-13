@@ -24,15 +24,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brandDark: '#1d2834', //big stone 950
+        brandDark: '#1D2834', //big stone 950
         // see >> uicolors.app/generate/1d2834
-        brand900: '#2c3e4e', //big stone 900
-        brand800: '#30485c', //big stone 800
-        brand700: '#36536e', //big stone 700
+        brand900: '#2C3E4E', //big stone 900
+        brand800: '#30485C', //big stone 800
+        brand700: '#36536E', //big stone 700
         brand600: '#426887', //big stone 600
-        brand200: '#d0dce7', //big stone 200
-        brand100: '#eaeff4', //big stone 100
-        brandSky: '#0f172a',
+        brand200: '#D0DCE7', //big stone 200
+        brand100: '#EAEFF4', //big stone 100
+        brandSky: '#0F172A',
         brandIndigo: '#362F78',
         stormSky: '#374151',
         warmRed: '#F54029',
