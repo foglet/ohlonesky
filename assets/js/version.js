@@ -1,1 +1,1 @@
-const BUILD_VERSION = '8c17fa1';
+const BUILD_VERSION = '262c473';
