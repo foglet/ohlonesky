@@ -1,1 +1,5 @@
-const BUILD_VERSION = '80063a7';
+<<<<<<< Updated upstream
+const BUILD_VERSION = 'baadc89';
+=======
+const BUILD_VERSION = 'ffd297b';
+>>>>>>> Stashed changes
