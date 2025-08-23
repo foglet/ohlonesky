@@ -1,5 +1,5 @@
 <<<<<<< Updated upstream
-const BUILD_VERSION = '3ba193d';
+const BUILD_VERSION = '254e7f5';
 =======
-const BUILD_VERSION = '0a8579a';
+const BUILD_VERSION = '4744bba';
 >>>>>>> Stashed changes
