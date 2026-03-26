@@ -1,0 +1,9 @@
+
+
+keep:::: ohlone@fogday.com > ohlonesky@gmail.com
+
+
+
+hello@fogday.com >>> fogday.hello@gmail.com ::: current fogfish@duck.com
+
+fogdayworks.com > forwards to ???
