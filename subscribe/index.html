@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
   <style>[x-cloak] { display: none !important; }</style>
   <div include-html="/assets/partials/meta.html"></div>
+
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lchin0tAAAAADAJE2SPtBUpW5Pr1yJynwMttuK6"></script>
+
+
 </head>
 
 <body id="thanks" class="min-h-screen flex flex-col">
@@ -97,6 +101,16 @@
   <!-- Scripts: Accordion -->
       <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
       <script type="module" src="/assets/js/initLoader.js"></script>
+
+      <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6Lchin0tAAAAADAJE2SPtBUpW5Pr1yJynwMttuK6', {action: 'LOGIN'});
+          });
+        }
+      </script>
+
 
 </body>
 </html>
