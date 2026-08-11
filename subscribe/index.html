@@ -10,7 +10,15 @@
   <style>[x-cloak] { display: none !important; }</style>
   <div include-html="/assets/partials/meta.html"></div>
 
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lchin0tAAAAADAJE2SPtBUpW5Pr1yJynwMttuK6"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lf7boEtAAAAADGwicCMYS_NGj8W6djpsatYuOwI"></script>
+    <script>
+      function onClick(e) {
+        e.preventDefault();
+        grecaptcha.enterprise.ready(async () => {
+          const token = await grecaptcha.enterprise.execute('6Lf7boEtAAAAADGwicCMYS_NGj8W6djpsatYuOwI', {action: 'LOGIN'});
+        });
+      }
+    </script>
 
 
 </head>
