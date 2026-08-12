@@ -1,99 +1,173 @@
+<!-- 00/alpine/index2-support.html -->
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/output.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/hero.css?v=1" />
+  <style>[x-cloak] { display: none !important; }</style>
+  <div include-html="/assets/partials/meta.html"></div>
+</head>
 
-    <head>
-      <!-- Charset & Responsive -->
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<body id="support" class="min-h-screen flex flex-col">
 
-      <!-- SEO & Metadata -->
-      <title>Ohlone Sky</title>
-      <meta name="description" content="Ohlone Sky – Aerial Tram Project" />
-
-      <!-- Adobe Fonts -->
-      <link rel="stylesheet" href="https://use.typekit.net/abc4def.css" />
-
-      <!-- Preload & Load Tailwind CSS -->
-      <link rel="preload" href="/assets/css/output.css" as="style">
-      <link rel="stylesheet" href="/assets/css/output.css" />
-
-      <!-- Optional additional styles -->
-      <link rel="preload" href="/assets/css/hero.css" as="style">
-      <link rel="stylesheet" href="/assets/css/hero.css" />
-
-      <!-- Hide content until CSS loads to prevent FOUC -->
-      <style>
-        body { visibility: hidden; }
-      </style>
-
-      <script>
-        window.addEventListener('DOMContentLoaded', () => {
-          document.body.style.visibility = 'visible';
-        });
-      </script>
-
-      <!-- Fallback: Dynamically inject CSS if static link fails -->
-      <script>
-        if (!document.querySelector('link[href*="output.css"]')) {
-          const version = `?v=${Date.now()}`;
-          ['output.css', 'hero.css'].forEach(file => {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = `/assets/css/${file}${version}`;
-            document.head.appendChild(link);
-          });
-        }
-      </script>
-    </head>
-
-    <body id="404" class="bg-white text-gray-800 flex flex-col min-h-screen">
-    <a href="#mainContent" class="sr-only focus:not-sr-only">Skip to content</a>
-    <noscript><style>#pageContent { opacity: 1 !important; }</style></noscript>
-
-    <div id="pageContent" class="opacity-0 transition-opacity duration-300 ease-in flex flex-col min-h-screen">
-
-      <!-- Header Section -->
-      <div include-html="/assets/partials/header-ham.html"></div>
+  <!-- Header Partial -->
+      <div include-html="/assets/partials/headerAlpine.html"></div>
 
       <!-- Hero Image -->
+      <section class="text-center" id="heroImage">
+        <figure class="text-center mb-6">
+          <picture>
+            <!-- Square image for portrait orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/stijn-te-strake-cYhjW6jLr5E-unsplash-sq-2.jpg"
+                    media="(orientation: portrait)">
+            <!-- Original landscape image for landscape orientation -->
+            <source srcset="https://s3.us-west-1.amazonaws.com/fogday.ai/stijn-te-strake-cYhjW6jLr5E-unsplash.jpg"
+                    media="(orientation: landscape)">
+            <!-- Fallback image -->
+            <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/stijn-te-strake-cYhjW6jLr5E-unsplash.jpg"
+                 alt="Aerial view of tram line"
+                 class="w-full h-auto shadow-sm square-to-portrait"
+                 loading="lazy" />
+          </picture>
+          <figcaption class="text-xs text-gray-600 mt-2">
+            Source: Stijn te Strake, Unsplash
+          </figcaption>
+        </figure>
+      </section>
 
-      <img src="https://s3.us-west-1.amazonaws.com/fogday.ai/alexander-voronov-xnRqnZcaiMc-unsplash.jpg"
-           alt="Tbilisi, Georgia"
-           class="w-full h-auto"
-           loading="lazy" />
-      <p class="text-xs text-gray-600 text-center mt-2">
-        Source: Alexander Voronov, Unsplash
-      </p>
+  <!-- Hero Text: Support-Coalition Text Goes Here  -->
+      <main id="mainContent" class="flex-grow pt-8 pb-16 px-4">
 
+          <section class="bg-white psy-4 px-4 sm:px-6 lg:px-8 text-left">
+              <div class="max-w-3xl mx-auto">
+                <div class="text-center text-neutralText leading-relaxed">
 
-<!-- Main Content **** Hero Text: Index SDG  -->
-<!-- Main Content **** Hero Text: Index SDG  -->
-  <!-- Main Content **** Hero Text: Index SDG  -->
-      <main id="mainContent" class="flex-grow pt-8 pb-8 px-4 bg-indigo-50">
-        <section class="text-center mb-6">
-
-
-
-      <!-- A Commitment to Giving -->
-      <div>
-        <h2 class="text-2xl font-semibold text-brandDark mb-0">A Commitment to Giving</h2>
-        <p>
-          Ohlone Sky donates...
-        </p>
-      </div>
-    </section>
-
-    </main>
-
-
-
-  </div> <!-- end of page content -->
+                    <p>Imagine ascending 400' above the water in seconds. The straits of the Golden Gate vanish. The Pacific Ocean is no more. Crissy Field, Alcatraz, Angel Island, the bay are blanketed. You rest above a giant pillow of fog and the sun has never shone brighter.</p><br>
 
 
-      <footer include-html="/assets/partials/footer.html"></footer>
-    </div>
+                  <h2 class="text-3xl font-vista font-bold text-brand900 my-4">
+                     Let's Create Our City
+                  </h2>
+                </div>
 
-    <!-- Init Scripts -->
-    <script type="module" src="/assets/js/initLoader.js"></script>
-  </body>
+                <!-- logo separator -->
+                  <div include-html="/assets/partials/logo.html"></div>
+
+
+
+
+              <!-- Your Gift -->
+                <div class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed">
+
+                    <p>Your gift enables day-to-day project development and the work needed to move Ohlone Sky forward as a catalyst. Equitable. Accessible. Transformative.</p>
+
+                </div>
+
+                <!-- HR : this is the only page with border rule. n=2-->
+                  <hr class="w-36 mx-auto my-4 border-[0.5px] rounded-sm bg-gray-100 md:my-10 dark:bg-gray-700">
+
+
+                <div class="text-center">
+                  <h2 class="text-3xl font-vista font-bold text-brand900 my-4">
+                     Donate
+                  </h2>
+                </div>
+
+
+              <!-- Your Gift -->
+                <div class="max-w-3xl space-y-5 text-neutralText text-lg leading-relaxed">
+
+                    <p>Donate to support better transit. Your generosity enables us to build a livable future for generations to come. Let's create a sense of place.</p><br>
+
+
+
+                </div>
+
+
+                <!-- HR : this is the only page with border rule. n=2-->
+                  <hr class="w-36 mx-auto my-4 border-[0.5px] rounded-sm bg-gray-100 md:my-10 dark:bg-gray-700">
+
+
+
+
+
+                  <div class="max-w-3xl space-y-5 text-neutralText text-xs leading-relaxed">
+                    <div class="text-center">
+                  <h3 class="text-base font-vista font-bold text-brand900 my-4">
+                    Disclaimer
+                  </h3>
+                      </div>
+
+                      <p>Contributions do not constitute an investment, security, or equity interest of any kind. Contributors receive no ownership interest, membership rights, equity, profit participation, revenue share, royalty, financial return, or any other economic benefit in exchange for their contribution. Nothing on this page constitutes an offer or solicitation to buy or sell securities.</p>
+
+                      <p>Contributions are made voluntarily, without expectation of goods, services, or other consideration, except as expressly described on this page. Fogday Sky LLC may use contributed funds, in its discretion, for project-related purposes described above.</p>
+
+                      <p>All contributions are final and non-refundable except where required by applicable law. Contributions to Fogday Sky LLC are not tax-deductible. Fogday Sky LLC is not a 501(c)(3) tax-exempt organization.</p>
+
+                      <p>By making a contribution, you acknowledge that you have read and understood this disclosure.</p>
+                </div>
+            </section>
+
+            <!-- HR : this is the only page with border rule. n=2 -->
+              <hr class="w-36 mx-auto my-4 border-[0.5px] rounded-sm bg-gray-100 md:my-10 dark:bg-gray-700">
+
+                </div>
+              </div>
+            </section>
+      </main>
+
+
+
+
+  <!-- Tell Me More Partial -->
+      <div include-html="/assets/partials/tellMeMore.html"></div>
+
+  <!-- Footer Partial -->
+      <div include-html="/assets/partials/footer.html"></div>
+
+  <!-- Load Partials, Alpine, and menuOverlay -->
+      <script type="module">
+        async function injectPartials(selector = '[include-html]') {
+          const elements = document.querySelectorAll(selector);
+          await Promise.all([...elements].map(async el => {
+            const file = el.getAttribute('include-html');
+            if (!file) return;
+            try {
+              const res = await fetch(file);
+              if (res.ok) {
+                el.innerHTML = await res.text();
+              } else {
+                el.innerHTML = `<p>Error loading ${file}</p>`;
+              }
+            } catch (err) {
+              console.warn('Partial load error:', file, err);
+            }
+          }));
+        }
+
+        async function initPage() {
+          await injectPartials();
+
+          // ✅ Load Alpine
+          const alpine = document.createElement('script');
+          alpine.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+          alpine.defer = true;
+          document.head.appendChild(alpine);
+
+          // ✅ Load menuOverlay and attach globally
+          const module = await import('/assets/js/menuOverlay.js');
+          window.menuOverlay = module.menuOverlay;
+        }
+
+        document.addEventListener('DOMContentLoaded', initPage);
+      </script>
+
+  <!-- Scripts: Accordion -->
+      <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
+      <script type="module" src="/assets/js/initLoader.js"></script>
+
+</body>
 </html>
