@@ -125,11 +125,9 @@
                               ownership or financial return.</span>
                           </label>
                         </div>
-                        <button type="submit" class="...">Contribute</button>
+                        <button type="submit" class="...">Contribute Button</button>
                       </form>
 
-
-                      <p>By making a contribution, you acknowledge that you have read and understood this disclosure.</p>
                 </div>
             </section>
 
@@ -190,6 +188,12 @@
   <!-- Scripts: Accordion -->
       <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
       <script type="module" src="/assets/js/initLoader.js"></script>
+
+      <script>
+        const ack = document.getElementById('ack');
+        const btn = document.getElementById('contributeBtn');
+        ack.addEventListener('change', () => { btn.disabled = !ack.checked; });
+      </script>
 
 </body>
 </html>
